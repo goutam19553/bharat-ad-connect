@@ -1,71 +1,37 @@
 
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
 
 const Hero = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const x = Math.round((clientX / window.innerWidth) * 100);
-      const y = Math.round((clientY / window.innerHeight) * 100);
-      
-      // Update the gradient position based on mouse movement
-      hero.style.background = `
-        radial-gradient(
-          circle at ${x}% ${y}%, 
-          rgba(255, 153, 51, 0.3) 0%, 
-          rgba(0, 0, 128, 0.6) 50%, 
-          rgba(0, 0, 128, 0.8) 100%
-        )
-      `;
-      
-      // 3D parallax effect for content
-      const cards = hero.querySelectorAll('.parallax-card');
-      const badges = hero.querySelectorAll('.badge-3d');
-      
-      cards.forEach((card: Element) => {
-        const cardElement = card as HTMLElement;
-        const moveX = (clientX - window.innerWidth / 2) / 50;
-        const moveY = (clientY - window.innerHeight / 2) / 50;
-        
-        cardElement.style.transform = `perspective(1000px) rotateY(${moveX * 0.05}deg) rotateX(${-moveY * 0.05}deg) translateZ(10px)`;
-      });
-      
-      badges.forEach((badge: Element, index: number) => {
-        const badgeElement = badge as HTMLElement;
-        const moveX = (clientX - window.innerWidth / 2) / (30 + index * 10);
-        const moveY = (clientY - window.innerHeight / 2) / (30 + index * 10);
-        
-        badgeElement.style.transform = `perspective(1000px) rotateY(${moveX * 0.1}deg) rotateX(${-moveY * 0.1}deg) translateZ(20px)`;
-      });
-    };
-    
-    document.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   return (
     <div 
-      ref={heroRef} 
-      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden transition-all duration-500"
+      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
       style={{
         background: "radial-gradient(circle at 50% 50%, rgba(255, 153, 51, 0.3) 0%, rgba(0, 0, 128, 0.6) 50%, rgba(0, 0, 128, 0.8) 100%)"
       }}
     >
-      {/* Floating 3D objects in background */}
+      {/* 3D advertising GIFs positioned as floating elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="floating-shape absolute right-[10%] top-[20%] w-32 h-32 bg-bharat-saffron/10 rounded-full blur-xl"></div>
-        <div className="floating-shape absolute left-[15%] top-[40%] w-40 h-40 bg-bharat-teal/10 rounded-full blur-xl"></div>
-        <div className="floating-shape delay-1 absolute right-[30%] bottom-[10%] w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
-        <div className="floating-shape delay-2 absolute left-[25%] top-[15%] w-20 h-20 bg-bharat-saffron/20 rounded-full blur-md"></div>
+        <div className="absolute right-[5%] top-[15%] w-32 h-32 floating-shape">
+          <img 
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHNreTdkbWdmenczaXNrcGd0eHRnYjdxanV2bHVqeGEzeXZvb3RybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hsDkGbPvTwfks/giphy.gif" 
+            alt="3D Billboard Animation" 
+            className="w-full h-full object-contain rounded-lg shadow-lg"
+          />
+        </div>
+        <div className="absolute left-[10%] top-[40%] w-40 h-40 delay-1">
+          <img 
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG1xeWYzdXdzdDVrZWVpYTZqdTdydnN4amdyYnkzdGJ3MGlzZHJnbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btQsLqXMJAPu6Na/giphy.gif" 
+            alt="Digital Marketing Animation" 
+            className="w-full h-full object-contain rounded-lg shadow-lg"
+          />
+        </div>
+        <div className="absolute right-[15%] bottom-[10%] w-36 h-36 delay-2">
+          <img 
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTF1Y2VzYzg0cGpjNHhsbXIxc3ZvZTdkZzU5NmFrZTc0MzA3c3Z6aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgpernHG70HVA76/giphy.gif" 
+            alt="3D Statistics Graph" 
+            className="w-full h-full object-contain rounded-lg shadow-lg"
+          />
+        </div>
       </div>
 
       <div className="container-custom relative z-10">
@@ -88,19 +54,19 @@ const Hero = () => {
           </div>
           
           <div className="relative">
-            <div className="parallax-card bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
+            <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
               <img 
                 src="https://source.unsplash.com/photo-1527576539890-dfa815648363" 
                 alt="Billboard on a building" 
                 className="rounded-lg w-full h-auto"
               />
             </div>
-            <div className="badge-3d absolute -bottom-4 -left-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
+            <div className="absolute -bottom-4 -left-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
               <div className="bg-bharat-saffron p-3 rounded">
                 <p className="text-white font-bold">AI-Powered</p>
               </div>
             </div>
-            <div className="badge-3d absolute -top-4 -right-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
+            <div className="absolute -top-4 -right-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
               <div className="bg-bharat-navy p-3 rounded">
                 <p className="text-white font-bold">AR Preview</p>
               </div>
@@ -109,8 +75,8 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Add floating animation styles */}
-      <style jsx>{`
+      <style>
+        {`
         @keyframes float {
           0% { transform: translateY(0px) translateX(0px); }
           50% { transform: translateY(-20px) translateX(10px); }
@@ -140,7 +106,8 @@ const Hero = () => {
         .delay-2 {
           animation: float-delay-2 10s ease-in-out infinite;
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };

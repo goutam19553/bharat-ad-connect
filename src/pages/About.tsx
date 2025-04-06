@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const About = () => {
   const teamMembers = [
     {
-      name: "Arjun Sharma",
+      name: "Goutam N P",
       position: "Founder & CEO",
-      bio: "Former marketing executive with 15 years experience in outdoor advertising across major Indian markets.",
+      bio: "Former marketing executive with 5 years experience in outdoor advertising across major Indian markets.",
       image: "https://source.unsplash.com/photo-1519085360753-af0119f7cbe7"
     },
     {

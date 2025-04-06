@@ -9,31 +9,6 @@ const Hero = () => {
         background: "radial-gradient(circle at 50% 50%, rgba(255, 153, 51, 0.3) 0%, rgba(0, 0, 128, 0.6) 50%, rgba(0, 0, 128, 0.8) 100%)"
       }}
     >
-      {/* 3D advertising GIFs positioned as floating elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute right-[5%] top-[15%] w-32 h-32 floating-shape">
-          <img 
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHNreTdkbWdmenczaXNrcGd0eHRnYjdxanV2bHVqeGEzeXZvb3RybiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hsDkGbPvTwfks/giphy.gif" 
-            alt="3D Billboard Animation" 
-            className="w-full h-full object-contain rounded-lg shadow-lg"
-          />
-        </div>
-        <div className="absolute left-[10%] top-[40%] w-40 h-40 delay-1">
-          <img 
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG1xeWYzdXdzdDVrZWVpYTZqdTdydnN4amdyYnkzdGJ3MGlzZHJnbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btQsLqXMJAPu6Na/giphy.gif" 
-            alt="Digital Marketing Animation" 
-            className="w-full h-full object-contain rounded-lg shadow-lg"
-          />
-        </div>
-        <div className="absolute right-[15%] bottom-[10%] w-36 h-36 delay-2">
-          <img 
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTF1Y2VzYzg0cGpjNHhsbXIxc3ZvZTdkZzU5NmFrZTc0MzA3c3Z6aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgpernHG70HVA76/giphy.gif" 
-            alt="3D Statistics Graph" 
-            className="w-full h-full object-contain rounded-lg shadow-lg"
-          />
-        </div>
-      </div>
-
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
@@ -74,40 +49,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
-      <style>
-        {`
-        @keyframes float {
-          0% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-20px) translateX(10px); }
-          100% { transform: translateY(0px) translateX(0px); }
-        }
-        
-        @keyframes float-delay-1 {
-          0% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-15px) translateX(-10px); }
-          100% { transform: translateY(0px) translateX(0px); }
-        }
-        
-        @keyframes float-delay-2 {
-          0% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(15px) translateX(5px); }
-          100% { transform: translateY(0px) translateX(0px); }
-        }
-        
-        .floating-shape {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .delay-1 {
-          animation: float-delay-1 8s ease-in-out infinite;
-        }
-        
-        .delay-2 {
-          animation: float-delay-2 10s ease-in-out infinite;
-        }
-        `}
-      </style>
     </div>
   );
 };

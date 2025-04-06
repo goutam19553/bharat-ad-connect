@@ -44,8 +44,9 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading font-semibold text-lg">Our Office</h3>
                     <p className="text-gray-600">
-                      123 Innovation Park, Electronic City<br />
+                      Innovation Park, Electronic City<br />
                       Bengaluru, Karnataka 560100<br />
+                      Belagavi, Karnataka 590001
                       India
                     </p>
                   </div>

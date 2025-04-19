@@ -1,4 +1,5 @@
 
+
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -6,7 +7,7 @@ const Hero = () => {
     <div 
       className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
       style={{
-        background: "radial-gradient(circle at 50% 50%, rgba(255, 153, 51, 0.3) 0%, rgba(0, 0, 128, 0.6) 50%, rgba(0, 0, 128, 0.8) 100%)"
+        background: "radial-gradient(circle at 50% 50%, rgb(20, 146, 250) 0%, rgba(0, 0, 128, 0.6) 50%, rgba(0, 0, 128, 0.8) 100%)"
       }}
     >
       <div className="container-custom relative z-10">
@@ -31,8 +32,8 @@ const Hero = () => {
           <div className="relative">
             <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
               <img 
-                src="https://source.unsplash.com/photo-1527576539890-dfa815648363" 
-                alt="Billboard on a building" 
+                src="                  Advertise Where India Lives." 
+                alt="                                           Advertisee              Advertise Where India Lives......" 
                 className="rounded-lg w-full h-auto"
               />
             </div>

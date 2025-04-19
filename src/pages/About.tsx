@@ -16,7 +16,7 @@ const About = () => {
       image: "https://source.unsplash.com/photo-1580489944761-15a19d654956"
     },
     {
-      name: "Vikram Mehta",
+      name: "Zeeshan M",
       position: "Head of Partnerships",
       bio: "Former government liaison with extensive experience in public-private partnerships across India.",
       image: "https://source.unsplash.com/photo-1472099645785-5658abf4ff4e"

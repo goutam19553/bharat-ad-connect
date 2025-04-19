@@ -50,7 +50,7 @@ const About = () => {
   return (
     <div>
       {/* About Header */}
-      <div className="bg-gradient-to-r from-bharat-navy to-bharat-pink/90 pt-32 pb-16 text-white">
+      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>

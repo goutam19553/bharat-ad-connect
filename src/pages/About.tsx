@@ -5,18 +5,18 @@ const About = () => {
   const teamMembers = [
     {
       name: "Goutam N P",
-      position: "Founder & CEO",
-      bio: "Former marketing executive with 5 years experience in outdoor advertising across major Indian markets.",
+      position: "Founder & CTO",
+      bio: "Former marketing executive with 5 years experience in outdoor & tech advertising across major Indian markets.",
       image: "https://source.unsplash.com/photo-1519085360753-af0119f7cbe7"
     },
     {
-      name: "Priya Patel",
-      position: "Chief Technology Officer",
-      bio: "AI and AR specialist with previous experience leading tech teams at major Indian startups.",
+      name: "Zeeshan M",
+      position: "CEO & head of Partnerships",
+      bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
       image: "https://source.unsplash.com/photo-1580489944761-15a19d654956"
     },
     {
-      name: "Zeeshan M",
+      name: "Priya Patel ",
       position: "Head of Partnerships",
       bio: "Former government liaison with extensive experience in public-private partnerships across India.",
       image: "https://source.unsplash.com/photo-1472099645785-5658abf4ff4e"

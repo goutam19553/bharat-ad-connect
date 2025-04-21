@@ -82,17 +82,17 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Bharat-Ad was founded in 2023 with a simple mission: to transform the fragmented outdoor 
+                  Aura-Ad was founded in 2023 with a simple mission: to transform the fragmented outdoor 
                   advertising industry in India through digital innovation and technology.
                 </p>
                 <p>
-                  Our founder, Arjun Sharma, spent 15 years in traditional outdoor advertising and saw firsthand 
+                  Our founders, Goutam P & Zeeshan M, spent 15 years in traditional outdoor advertising and saw firsthand 
                   the inefficiencies and missed opportunities in the market. Advertisers struggled to find and 
                   evaluate ad spaces, while property owners had no reliable way to monetize their valuable spaces.
                 </p>
                 <p>
                   By bringing together a team of experts in technology, marketing, and government relations, 
-                  Bharat-Ad was born as a comprehensive solution connecting advertisers with premium ad spaces 
+                  Aura-Ad was born as a comprehensive solution connecting advertisers with premium ad spaces 
                   across India.
                 </p>
                 <p>
@@ -249,7 +249,7 @@ const About = () => {
                 Our Technology
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                At the heart of Bharat-Ad is our commitment to innovation through technology. We've developed 
+                At the heart of Aura-Ad is our commitment to innovation through technology. We've developed 
                 proprietary tools that transform how outdoor advertising is bought, sold, and optimized.
               </p>
               
@@ -313,7 +313,7 @@ const About = () => {
             Ready to Join the Outdoor Advertising Revolution?
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Whether you're looking to advertise or list your ad space, Bharat-Ad is your partner in success
+            Whether you're looking to advertise or list your ad space, Aura-Ad is your partner in success
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link to="/ad-spaces" className="btn-primary">

@@ -13,7 +13,7 @@ const About = () => {
       name: "Zeeshan M",
       position: "CEO & head of Partnerships",
       bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
-      image: "blob:https://web.whatsapp.com/b48645c2-8a5e-4214-b37b-294b4b0cabbe"
+      image: "/WhatsApp Image 2025-04-21 at 14.18.03.jpeg"/
     },
     {
       name: "Priya Patel ",

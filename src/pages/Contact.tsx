@@ -44,10 +44,9 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading font-semibold text-lg">Our Office</h3>
                     <p className="text-gray-600">
-                      Innovation Park, Electronic City<br />
-                      Bengaluru, Karnataka 560100<br />
-                      Belagavi, Karnataka 590001
-                      India
+                      Innovation Park, <br />
+                     Belagavi, Karnataka 590001 <br />
+                    India
                     </p>
                   </div>
                 </div>
@@ -60,7 +59,7 @@ const Contact = () => {
                     <h3 className="font-heading font-semibold text-lg">Phone</h3>
                     <p className="text-gray-600">
                       <a href="tel:+918050853225" className="hover:text-bharat-saffron">+91 80508 53225</a><br />
-                      <a href="tel:+911234567890" className="hover:text-bharat-saffron">+91 12345 67890</a>
+                      <a href="tel:+919008404456" className="hover:text-bharat-saffron">+91 9008404456</a>
                     </p>
                   </div>
                 </div>
@@ -72,8 +71,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading font-semibold text-lg">Email</h3>
                     <p className="text-gray-600">
-                      <a href="mailto:info@bharat-ad.com" className="hover:text-bharat-saffron">info@bharat-ad.com</a><br />
-                      <a href="mailto:support@bharat-ad.com" className="hover:text-bharat-saffron">support@bharat-ad.com</a>
+                      <a href="mailto:info@aura-ad.com" className="hover:text-bharat-saffron">info@aura-ad.com</a><br />
+                      <a href="mailto:support@aura-ad.com" className="hover:text-bharat-saffron">support@aura-ad.com</a>
                     </p>
                   </div>
                 </div>
@@ -130,7 +129,7 @@ const Contact = () => {
             Our Location
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Visit our office in Bengaluru's tech hub, Electronic City
+            Visit our office in Belagavi's tech hub, 
           </p>
         </div>
         
@@ -169,7 +168,7 @@ const Contact = () => {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-heading font-semibold mb-3">Do you have offices in other cities?</h3>
               <p className="text-gray-600">
-                Currently, our main office is in Bengaluru, but we have representative partners 
+                Currently, our main office is in Belagavi & Bengaluru, but we have representative partners 
                 in Mumbai, Delhi, Hyderabad, and Chennai.
               </p>
             </div>
@@ -185,7 +184,7 @@ const Contact = () => {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-heading font-semibold mb-3">How do I report technical issues?</h3>
               <p className="text-gray-600">
-                For technical support, please email support@bharat-ad.com with details of the issue 
+                For technical support, please email support@Aura-ad.com with details of the issue 
                 you're experiencing.
               </p>
             </div>

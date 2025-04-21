@@ -276,12 +276,12 @@ const Index = () => {
                 Ready to Transform Your Advertising Strategy?
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Get in touch with our team to learn more about how Bharat-Ad can help you find the perfect 
+                Get in touch with our team to learn more about how Aura-Brand can help you find the perfect 
                 advertising spaces or maximize the revenue from your ad inventory.
               </p>
               
               <div className="bg-bharat-navy text-white p-6 rounded-lg mb-6">
-                <h3 className="text-xl font-heading font-semibold mb-4">Why Choose Bharat-Ad?</h3>
+                <h3 className="text-xl font-heading font-semibold mb-4">Why Choose Aura Brand-Ad?</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <svg className="h-6 w-6 text-bharat-saffron mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

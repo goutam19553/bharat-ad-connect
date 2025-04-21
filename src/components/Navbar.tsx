@@ -43,8 +43,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold text-bharat-navy">
-                Bharat<span className="text-bharat-saffron">-Ad</span>
+              <span className="text-2xl font-heading font-bold text-Aura-white">
+                Aura<span className="text-bharat-saffron">-Ad</span>
               </span>
             </Link>
           </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
                 to={item.href}
                 className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
-                    ? "text-bharat-saffron font-semibold"
+                    ? "text-Aura-saffron font-semibold"
                     : "text-gray-600 hover:text-bharat-saffron"
                 }`}
               >

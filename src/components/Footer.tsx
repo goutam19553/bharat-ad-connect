@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Company Information */}
           <div>
             <h3 className="text-xl font-heading font-bold mb-4">
-              Bharat<span className="text-bharat-saffron">-Ad</span>
+              Aura<span className="text-bharat-saffron">-Ad</span>
             </h3>
             <p className="mb-4 text-gray-300">
               Connecting advertisers with ad space owners across India through our innovative digital marketplace.

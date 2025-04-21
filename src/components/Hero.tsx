@@ -17,7 +17,7 @@ const Hero = () => {
               Revolutionizing <span className="text-bharat-saffron">Outdoor Advertising</span> Across India
             </h1>
             <p className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 backdrop-blur-sm">
-              Bharat-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
+              Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">

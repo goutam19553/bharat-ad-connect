@@ -109,20 +109,20 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-bharat-saffron mr-2 mt-0.5" />
                 <span className="text-gray-300">
-                  123 Innovation Park, Electronic City<br />
-                  Bengaluru, Karnataka 560100
+                  123 Innovation Park, <br />
+                  Belagavi, Karnataka 590001
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-bharat-saffron mr-2" />
-                <a href="tel:+918050853225" className="text-gray-300 hover:text-bharat-saffron">
-                  +91 80508 53225
+                <a href="tel:+918050853225, +919008404456" className="text-gray-300 hover:text-bharat-saffron">
+                  +91 80508 53225 +91 90084 04456
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-bharat-saffron mr-2" />
-                <a href="mailto:info@bharat-ad.com" className="text-gray-300 hover:text-bharat-saffron">
-                  info@bharat-ad.com
+                <a href="mailto:info@aura-ad.com" className="text-gray-300 hover:text-bharat-saffron">
+                  info@aura-ad.com
                 </a>
               </li>
             </ul>
@@ -130,7 +130,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
-          <p>© {currentYear} Bharat-Ad. All rights reserved.</p>
+          <p>© {currentYear} Aura-Ad. All rights reserved.</p>
         </div>
       </div>
     </footer>

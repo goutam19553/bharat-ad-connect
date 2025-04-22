@@ -1,15 +1,25 @@
-
-
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div 
-      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
-      style={{
-        background: "radial-gradient(circle at 50% 50%, rgb(20, 146, 250) 0%, rgba(0, 0, 128, 0.6) 50%, rgba(0, 0, 128, 0.8) 100%)"
-      }}
-    >
+    <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+      
+      {/* 🔥 Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src="/19419586-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* 🔲 Overlay (optional) */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
+
+      {/* 📦 Main Content */}
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
@@ -28,12 +38,12 @@ const Hero = () => {
               </Link>
             </div>
           </div>
-          
+
           <div className="relative">
             <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
               <img 
-                src="                  Advertise Where India Lives." 
-                alt="                                           Advertisee              Advertise Where India Lives......" 
+                src="/images/your-image.jpg" 
+                alt="Advertise Where India Lives" 
                 className="rounded-lg w-full h-auto"
               />
             </div>

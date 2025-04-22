@@ -58,7 +58,7 @@ const Navbar = () => {
                 className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
                     ? "text-Aura-saffron font-semibold"
-                    : "text-gray-600 hover:text-bharat-saffron"
+                    : "text-white hover:text-bharat-saffron"
                 }`}
               >
                 {item.name}

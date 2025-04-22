@@ -43,7 +43,7 @@ const Hero = () => {
             <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
               <img 
                 src="/images/your-image.jpg" 
-                alt="Advertise Where India Lives" 
+                alt="Discover" 
                 className="rounded-lg w-full h-auto"
               />
             </div>

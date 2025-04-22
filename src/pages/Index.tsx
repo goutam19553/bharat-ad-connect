@@ -18,7 +18,7 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image: "https://source.unsplash.com/photo-1527576539890-dfa815648363",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ChatGPT%20Image%20Apr%2022%2C%202025%2C%2005_26_31%20PM.png",
       rating: 5,
       featured: true
     },

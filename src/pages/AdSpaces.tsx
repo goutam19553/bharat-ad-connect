@@ -17,7 +17,7 @@ const AdSpaces = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.png",
       rating: 5,
       featured: true
     },

@@ -41,7 +41,7 @@ const AdSpaces = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image: "https://source.unsplash.com/photo-1506744038136-46273834b3fb",
+      image: "https://github.com/goutam19553/Startup-adtech/blob/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true
     },

@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop"; // ✅ this is perfect
+import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
 
 
 const queryClient = new QueryClient();
@@ -31,7 +32,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/ad-spaces" element={<AdSpaces />} />
               <Route path="/advertisers" element={<Advertisers />} />
-              <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
+              <Route path="/list-wall-space" element={<WallSpaceOwnerSection />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -10,6 +10,7 @@ const Hero = () => {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src="/19419586-hd_1920_1080_30fps (1).mp4" type="video/mp4" />

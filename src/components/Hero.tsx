@@ -4,20 +4,21 @@ const Hero = () => {
   return (
     <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       
-      {/* 🔥 Video Background */}
+      {/* 🔥 Video Background with Poster */}
       <video
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        poster="/hero-video-poster.webp" // <-- Update this path if needed
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
       >
         <source src="/19419586-hd_1920_1080_30fps (1).mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* 🔲 Overlay (optional) */}
+      {/* 🔲 Overlay */}
       <div className="absolute inset-0 bg-black/50 z-0" />
 
       {/* 📦 Main Content */}

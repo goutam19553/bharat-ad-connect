@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: "Home", href: "/" },
     { name: "Ad Spaces", href: "/ad-spaces" },
     { name: "Advertisers", href: "/advertisers" },
-    { name: "List Your Wall", href: "/list-wall-space" },
+    { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -36,22 +36,20 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
-        scrolled 
-          ? "bg-gray-200 shadow-md py-2" 
-          : "bg-gray-100 py-4"
+        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold">
-                <span className={scrolled ? "text-gray-800" : "text-gray-700"}>The Ad</span>
-                <span className="text-bharat-saffron">-Project</span>
+              <span className="text-2xl font-heading font-bold text-bharat-navy">
+                Ad<span className="text-bharat-saffron">-Parampara </span>
               </span>
             </Link>
           </div>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center">
             {navigation.map((item) => (
               <Link
@@ -59,8 +57,8 @@ const Navbar = () => {
                 to={item.href}
                 className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
-                    ? "text-gray-900 font-semibold"
-                    : "text-gray-600 hover:text-gray-800"
+                    ? "text-bharat-saffron font-semibold"
+                    : "text-gray-600 hover:text-bharat-saffron"
                 }`}
               >
                 {item.name}
@@ -74,6 +72,7 @@ const Navbar = () => {
             </Link>
           </div>
 
+          {/* Mobile Navigation Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -89,8 +88,9 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-100 shadow-lg animate-fade-in">
+        <div className="md:hidden bg-white shadow-lg animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => (
               <Link
@@ -100,7 +100,7 @@ const Navbar = () => {
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
-                    : "text-gray-600 hover:bg-gray-200 hover:text-gray-800"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron"
                 }`}
               >
                 {item.name}

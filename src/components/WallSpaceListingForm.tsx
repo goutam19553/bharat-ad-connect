@@ -21,7 +21,10 @@ const formSchema = z.object({
   location: z.string().min(5, "Location must be at least 5 characters"),
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
-  images: z.any().refine((files) => files && files.length > 0, "Please upload at least one image"),
+  images: z.instanceof(FileList).refine(
+    (files) => files && files.length > 0, 
+    "Please upload at least one image"
+  ),
 });
 
 const WallSpaceListingForm = () => {
@@ -32,7 +35,6 @@ const WallSpaceListingForm = () => {
       location: "",
       size: "",
       price: "",
-      images: undefined,
     },
   });
 
@@ -106,7 +108,7 @@ const WallSpaceListingForm = () => {
           <FormField
             control={form.control}
             name="images"
-            render={({ field: { onChange, value, ...fieldProps } }) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Upload Wall Space Images</FormLabel>
                 <FormControl>
@@ -125,9 +127,14 @@ const WallSpaceListingForm = () => {
                         accept="image/*"
                         multiple
                         onChange={(e) => {
-                          onChange(e.target.files);
+                          // Only pass the FileList to the form state
+                          if (e.target.files) {
+                            field.onChange(e.target.files);
+                          }
                         }}
-                        {...fieldProps}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
                       />
                     </label>
                   </div>

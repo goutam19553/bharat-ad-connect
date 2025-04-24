@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -44,14 +43,12 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-heading font-bold">
-  <span className={scrolled ? "text-Aura-navy" : "text-white"}>Aura</span>
-  <span className="text-bharat-saffron">-Ad</span>
-</span>
-
+                <span className={scrolled ? "text-Aura-navy" : "text-white"}>The Ad</span>
+                <span className="text-bharat-saffron">-Project</span>
+              </span>
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center">
             {navigation.map((item) => (
               <Link
@@ -74,7 +71,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Navigation Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -90,7 +86,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">

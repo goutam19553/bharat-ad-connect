@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
@@ -12,7 +11,7 @@ const Footer = () => {
           {/* Company Information */}
           <div>
             <h3 className="text-xl font-heading font-bold mb-4">
-              Aura<span className="text-bharat-saffron">-Ad</span>
+              The Ad<span className="text-bharat-saffron">-Project</span>
             </h3>
             <p className="mb-4 text-gray-300">
               Connecting advertisers with ad space owners across India through our innovative digital marketplace.
@@ -130,7 +129,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
-          <p>© {currentYear} Aura-Ad. All rights reserved.</p>
+          <p>© {currentYear} The Ad-Project. All rights reserved.</p>
         </div>
       </div>
     </footer>

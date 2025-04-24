@@ -1,4 +1,3 @@
-
 import ContactForm from "@/components/ContactForm";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
@@ -71,8 +70,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading font-semibold text-lg">Email</h3>
                     <p className="text-gray-600">
-                      <a href="mailto:info@aura-ad.com" className="hover:text-bharat-saffron">info@aura-ad.com</a><br />
-                      <a href="mailto:support@aura-ad.com" className="hover:text-bharat-saffron">support@aura-ad.com</a>
+                      <a href="mailto:info@the-ad-project.com" className="hover:text-bharat-saffron">info@the-ad-project.com</a><br />
+                      <a href="mailto:support@the-ad-project.com" className="hover:text-bharat-saffron">support@the-ad-project.com</a>
                     </p>
                   </div>
                 </div>
@@ -184,7 +183,7 @@ const Contact = () => {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-heading font-semibold mb-3">How do I report technical issues?</h3>
               <p className="text-gray-600">
-                For technical support, please email support@Aura-ad.com with details of the issue 
+                For technical support, please email support@The Ad-Project.com with details of the issue 
                 you're experiencing.
               </p>
             </div>

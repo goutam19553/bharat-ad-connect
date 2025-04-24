@@ -29,6 +29,7 @@ const App = () => (
           <Navbar />
           <main className="flex-grow">
             <Routes>
+              <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
               <Route path="/" element={<Index />} />
               <Route path="/ad-spaces" element={<AdSpaces />} />
               <Route path="/advertisers" element={<Advertisers />} />

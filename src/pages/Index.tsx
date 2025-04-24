@@ -34,8 +34,20 @@ const Index = () => {
       rating: 4,
       featured: true
     },
-    {
+        {
       id: 3,
+      title: "Drone Advertising",
+      location: "Anywhere",
+      city: "Anywhere",
+      type: "Digital LED Flying Drones",
+      size: "20 x 10 feet",
+      price: 8000/min,
+      image: "https://source.unsplash.com/photo-1487958449943-2429e8be8625",
+      rating: 5,
+      featured: true
+    },
+    {
+      id: 4,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
       city: "New Delhi",

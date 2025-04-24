@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -35,7 +36,9 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        scrolled 
+          ? "bg-gray-200 shadow-md py-2" 
+          : "bg-gray-100 py-4"
       }`}
     >
       <div className="container-custom">
@@ -43,7 +46,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-heading font-bold">
-                <span className={scrolled ? "text-Aura-navy" : "text-white"}>The Ad</span>
+                <span className={scrolled ? "text-gray-800" : "text-gray-700"}>The Ad</span>
                 <span className="text-bharat-saffron">-Project</span>
               </span>
             </Link>
@@ -56,8 +59,8 @@ const Navbar = () => {
                 to={item.href}
                 className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
-                    ? "text-Aura-saffron font-semibold"
-                    : "text-orange-600 hover:text-bharat-saffron"
+                    ? "text-gray-900 font-semibold"
+                    : "text-gray-600 hover:text-gray-800"
                 }`}
               >
                 {item.name}
@@ -87,7 +90,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg animate-fade-in">
+        <div className="md:hidden bg-gray-100 shadow-lg animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => (
               <Link
@@ -97,7 +100,7 @@ const Navbar = () => {
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron"
+                    : "text-gray-600 hover:bg-gray-200 hover:text-gray-800"
                 }`}
               >
                 {item.name}

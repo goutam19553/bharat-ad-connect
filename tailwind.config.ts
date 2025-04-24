@@ -65,7 +65,7 @@ export default {
 				},
 				// Custom colors for Bharat-Ad
 				bharat: {
-					red: '#E50914',
+					neon pink: '#FF10F0',
 					saffron: '#FF9933',
 					navy: '#000080',
 					teal: '#008080',

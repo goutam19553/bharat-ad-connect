@@ -24,18 +24,6 @@ const Index = () => {
     },
     {
       id: 2,
-      title: "Digital Display - Cyber Hub",
-      location: "Cyber Hub",
-      city: "Gurugram",
-      type: "Digital Screen",
-      size: "20 x 10 feet",
-      price: 38000,
-      image: "https://source.unsplash.com/photo-1487958449943-2429e8be8625",
-      rating: 4,
-      featured: true
-    },
-        {
-      id: 3,
       title: "Drone Advertising",
       location: "Anywhere",
       city: "Anywhere",
@@ -47,7 +35,7 @@ const Index = () => {
       featured: true
     },
     {
-      id: 4,
+      id: 3,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
       city: "New Delhi",

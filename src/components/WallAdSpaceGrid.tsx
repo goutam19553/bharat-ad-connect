@@ -1,4 +1,3 @@
-
 import React from 'react';
 import WallAdSpace from './WallAdSpace';
 
@@ -33,6 +32,14 @@ const wallAdSpaces = [
     location: "Whitefield, Bangalore",
     size: "45ft x 22ft",
     price: 48000,
+    imageUrl: "/placeholder.svg"
+  },
+  {
+    id: 5,
+    title: "Brigade Road Billboard",
+    location: "Brigade Road, Bangalore",
+    size: "35ft x 18ft",
+    price: 42000,
     imageUrl: "/placeholder.svg"
   }
 ];

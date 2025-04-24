@@ -42,7 +42,7 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image: "https://github.com/goutam19553/Startup-adtech/blob/main/public/Annotation%202025-04-24%20171619.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true
     }

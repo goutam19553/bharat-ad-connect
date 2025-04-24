@@ -43,8 +43,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold text-bharat-navy">
-                Ad<span className="text-bharat-saffron">-Parampara </span>
+              <span className="text-2xl font-heading font-bold text-bharat-white">
+                The Ad<span className="text-bharat-saffron">-Project </span>
               </span>
             </Link>
           </div>

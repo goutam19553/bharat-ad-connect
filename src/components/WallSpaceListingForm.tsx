@@ -14,14 +14,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Image, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   location: z.string().min(5, "Location must be at least 5 characters"),
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
-  images: z.instanceof(FileList).refine((files) => files.length > 0, "Please upload at least one image"),
+  images: z.any().refine((files) => files && files.length > 0, "Please upload at least one image"),
 });
 
 const WallSpaceListingForm = () => {
@@ -32,6 +32,7 @@ const WallSpaceListingForm = () => {
       location: "",
       size: "",
       price: "",
+      images: undefined,
     },
   });
 
@@ -105,7 +106,7 @@ const WallSpaceListingForm = () => {
           <FormField
             control={form.control}
             name="images"
-            render={({ field: { onChange, ...field } }) => (
+            render={({ field: { onChange, value, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel>Upload Wall Space Images</FormLabel>
                 <FormControl>
@@ -119,14 +120,14 @@ const WallSpaceListingForm = () => {
                         <p className="text-xs text-gray-500">High quality images recommended (MAX. 10MB)</p>
                       </div>
                       <input
-                        {...field}
-                        onChange={(e) => {
-                          onChange(e.target.files);
-                        }}
                         type="file"
                         className="hidden"
                         accept="image/*"
                         multiple
+                        onChange={(e) => {
+                          onChange(e.target.files);
+                        }}
+                        {...fieldProps}
                       />
                     </label>
                   </div>

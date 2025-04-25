@@ -9,8 +9,8 @@ const AIDesignDemo = () => {
     {
       title: "Urban Billboard Design",
       description: "AI optimized design for high traffic areas with improved visibility and brand recall.",
-      before: "https://source.unsplash.com/photo-1460925895917-afdab827c52f",
-      after: "https://source.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      before: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Add%20a%20heading%20(1).jpg",
+      after: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Add%20a%20heading%20(2).jpg",
       improvements: [
         "Enhanced contrast for better visibility from a distance",
         "Strategic color palette based on surrounding environment",

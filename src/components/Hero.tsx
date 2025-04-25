@@ -26,7 +26,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight backdrop-blur-sm">
-              Revolutionizing <span className="text-bharat-saffron">Outdoor Advertising</span> Across India
+              Revolutionizing <span className="text-bharat-saffron">Traditional Outdoor Advertising</span> Across India
             </h1>
             <p className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 backdrop-blur-sm">
               Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.

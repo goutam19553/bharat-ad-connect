@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ARSolutions = () => {
+const ARsolutions = () => {
   return (
     <div>
       <header>
@@ -59,4 +59,4 @@ const ARSolutions = () => {
   );
 };
 
-export default ARSolutions;
+export default ARsolutions;

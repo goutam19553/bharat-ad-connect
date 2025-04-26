@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
+import ARSolution from "./pages/ARSolution";  // Import the new ARSolution component
 import "keen-slider/keen-slider.min.css";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
               <Route path="/list-wall-space" element={<WallSpaceOwnerSection />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/ar-solution" element={<ARSolution />} /> {/* Add the AR solution page route */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

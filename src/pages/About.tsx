@@ -63,7 +63,7 @@ const About = () => {
             </div>
             <div className="hidden lg:block">
               <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Gov-removebg-preview.png" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Gov.png" 
                 alt="Team collaboration" 
                 className="rounded-xl shadow-xl"
               />

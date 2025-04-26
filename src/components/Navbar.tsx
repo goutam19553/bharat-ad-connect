@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "AR Solutions", href: "/AR solutions" },   
+    { name: "AR Solutions", href: "/ARsolutions" },   
     { name: "Ad Spaces", href: "/ad-spaces" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },

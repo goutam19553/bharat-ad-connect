@@ -8,7 +8,7 @@ import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
 import ARSolutions from "@/pages/ARsolutions"; // Ensure this matches the file name exactly
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
@@ -18,8 +18,6 @@ function App() {
     </Router>
   );
 }
-
-export default App;
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -277,4 +275,6 @@ const Index = () => {
   );
 };
 
-export default Index;
+export { Index };  // Named export for Index
+
+export default App;  // Default export for App

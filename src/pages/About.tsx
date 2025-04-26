@@ -7,7 +7,7 @@ const About = () => {
       name: "Goutam N P",
       position: "Founder & CTO",
       bio: "Former marketing executive with 5 years experience in outdoor & tech advertising across major Indian markets.",
-      image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/IMG_20241203_093333%7E2.jpg"
     },
     {
       name: "Zeeshan M",

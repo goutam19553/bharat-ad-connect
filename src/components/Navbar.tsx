@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -36,14 +35,16 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        scrolled
+          ? "bg-white shadow-md py-2 dark:bg-gray-800 dark:text-white"
+          : "bg-transparent py-4 dark:bg-transparent dark:text-white"
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold text-bharat-green">
+              <span className="text-2xl font-heading font-bold text-bharat-green dark:text-white">
                 The Ad<span className="text-bharat-saffron">-Project </span>
               </span>
             </Link>
@@ -58,7 +59,7 @@ const Navbar = () => {
                 className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
                     ? "text-bharat-saffron font-semibold"
-                    : "text-gray-600 hover:text-bharat-saffron"
+                    : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
                 }`}
               >
                 {item.name}
@@ -76,7 +77,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none"
+              className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -90,7 +91,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg animate-fade-in">
+        <div className="md:hidden bg-white shadow-lg animate-fade-in dark:bg-gray-800">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigation.map((item) => (
               <Link
@@ -100,7 +101,7 @@ const Navbar = () => {
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron dark:text-white dark:hover:bg-gray-700"
                 }`}
               >
                 {item.name}

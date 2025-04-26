@@ -252,7 +252,7 @@ const Index = () => {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Advertising Strategy?</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Get in touch with our team to learn more about how Bharat-Ad can help you find the perfect
+              Get in touch with our team to learn more about how The Ad-Project can help you find the perfect
               advertising spaces or maximize the revenue from your ad inventory.
             </p>
           </div>

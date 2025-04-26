@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -6,7 +6,7 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
-import ARSolutions from "@/pages/ARsolutions"; // Make sure the name matches exactly (case-sensitive!)
+import ARSolutions from "@/pages/ARsolutions"; // Ensure this matches the file name exactly
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
 }
 
 export default App;
-
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -222,6 +221,7 @@ const Index = () => {
           <BrandSlider /> {/* Add the BrandSlider component here */}
         </div>
       </section>
+      
       {/* Partnerships */}
       <section className="section bg-gradient-to-r from-bharat-navy to-bharat-navy/90 text-white">
         <div className="container-custom">

@@ -128,3 +128,21 @@
     @apply bg-gradient-to-r from-bharat-saffron to-bharat-navy inline-block text-transparent bg-clip-text;
   }
 }
+<header className="ar-header">
+  <h1>Augmented Reality (AR) Advertising Solutions</h1>
+  <p>Transform your outdoor advertising with cutting-edge AR experiences.</p>
+</header>
+
+<section className="ar-services">
+  <div className="service-card">
+    <h3>AR-Enhanced Billboards</h3>
+    <p>Bring static billboards to life with 3D elements.</p>
+  </div>
+  {/* more service cards */}
+</section>
+
+<section className="ar-cta">
+  <h2>Ready to Elevate Your Advertising?</h2>
+  <p>Let's build unforgettable AR experiences together.</p>
+  <button onClick={() => window.location.href = '/contact'}>Contact Us</button>
+</section>

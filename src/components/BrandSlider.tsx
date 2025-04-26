@@ -1,6 +1,6 @@
 import { useKeenSlider } from "keen-slider/react";
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // <-- SVG icons from Lucide
+import { ChevronLeft, ChevronRight } from "lucide-react"; // SVG icons
+import "keen-slider/keen-slider.min.css"; // Don't forget the Keen slider CSS
 
 const brandLogos = [
   "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
@@ -53,13 +53,13 @@ const BrandSlider = () => {
               <img
                 src={logo}
                 alt={`Brand ${index + 1}`}
-                className="h-12 md:h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                className="h-12 md:h-16 object-contain transition-all duration-300 hover:scale-105" // Colorful logos + slight zoom on hover
               />
             </div>
           ))}
         </div>
 
-        {/* Animated Custom Buttons */}
+        {/* Custom Navigation Buttons */}
         <button
           onClick={handlePrev}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 group"

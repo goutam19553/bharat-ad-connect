@@ -6,7 +6,6 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
-import Index from "@/pages/Index";
 import ARSolutions from "@/pages/ARsolutions"; // Make sure the name matches exactly (case-sensitive!)
 
 function App() {

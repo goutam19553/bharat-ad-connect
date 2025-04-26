@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css'; // Import your CSS file
 
 const ARSolutions = () => {
   return (

@@ -159,7 +159,60 @@ const About = () => {
         </div>
       </section>
 
-      {/* Rest of the sections remain unchanged, but ensure they follow similar dark mode adjustments */}
+      {/* Team Members Section */}
+      <section className="bg-gray-800 dark:bg-gray-100 py-16">
+        <div className="container-custom">
+          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+            Meet Our Team
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+                />
+                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-gray-300 dark:text-gray-700 mb-2">
+                  {member.position}
+                </p>
+                <p className="text-gray-400 dark:text-gray-800">
+                  {member.bio}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="bg-gray-800 dark:bg-gray-100 py-16">
+        <div className="container-custom">
+          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+            Our Partners
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {partners.map((partner, index) => (
+              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
+                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
+                  {partner.name}
+                </h3>
+                <p className="text-gray-300 dark:text-gray-700 mb-2">
+                  {partner.type}
+                </p>
+                <p className="text-gray-400 dark:text-gray-800">
+                  {partner.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rest of the sections remain unchanged */}
     </div>
   );
 };

@@ -1,20 +1,6 @@
 import { Link } from "react-router-dom";
 
 const About = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Toggle dark mode on/off
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
   const teamMembers = [
     {
       name: "Goutam N P",

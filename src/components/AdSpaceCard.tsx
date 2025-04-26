@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -21,7 +20,7 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
   const [showARPreview, setShowARPreview] = useState(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden card-hover transition-colors duration-300">
       <div className="relative">
         <img
           src={adSpace.image}
@@ -29,36 +28,34 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
           className="w-full h-48 object-cover"
         />
         {adSpace.featured && (
-          <div className="absolute top-0 right-0 bg-bharat-saffron text-white py-1 px-3 text-sm font-bold">
+          <div className="absolute top-0 right-0 bg-bharat-saffron text-white py-1 px-3 text-xs font-bold uppercase">
             Featured
           </div>
         )}
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start">
-          <h3 className="text-lg font-heading font-semibold text-bharat-navy truncate">
+          <h3 className="text-lg font-heading font-semibold text-bharat-navy dark:text-white truncate">
             {adSpace.title}
           </h3>
-          <div className="bg-bharat-lightgray px-2 py-1 rounded text-sm font-medium">
+          <div className="bg-bharat-lightgray dark:bg-gray-700 px-2 py-1 rounded text-sm font-medium text-gray-800 dark:text-gray-200">
             {adSpace.type}
           </div>
         </div>
         
-        <div className="flex items-center mt-2 text-gray-600">
+        <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
           <MapPin className="h-4 w-4 text-bharat-teal mr-1" />
           <p className="text-sm truncate">{adSpace.location}, {adSpace.city}</p>
         </div>
         
         <div className="mt-3 flex items-center justify-between">
-          <div>
-            <p className="text-sm text-gray-500">Size: {adSpace.size}</p>
-          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Size: {adSpace.size}</p>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
                 className={`w-4 h-4 ${
-                  i < adSpace.rating ? "text-yellow-500" : "text-gray-300"
+                  i < adSpace.rating ? "text-yellow-500" : "text-gray-300 dark:text-gray-600"
                 }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -68,10 +65,10 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
             ))}
           </div>
         </div>
-        
-        <div className="mt-4 border-t pt-4 flex items-center justify-between">
-          <p className="font-heading font-bold text-lg text-bharat-navy">
-            ₹{adSpace.price.toLocaleString('en-IN')}<span className="text-xs text-gray-500 font-normal">/month</span>
+
+        <div className="mt-4 border-t dark:border-gray-700 pt-4 flex items-center justify-between">
+          <p className="font-heading font-bold text-lg text-bharat-navy dark:text-white">
+            ₹{adSpace.price.toLocaleString('en-IN')}<span className="text-xs text-gray-500 dark:text-gray-400 font-normal">/month</span>
           </p>
           <div className="flex space-x-2">
             <button

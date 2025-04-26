@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,7 +37,7 @@
       const toggle = document.getElementById("toggle-dark");
       const html = document.documentElement;
 
-      // Load preference
+      // Load preference from localStorage
       if (localStorage.getItem("theme") === "dark") {
         html.classList.add("dark");
       }
@@ -45,7 +45,7 @@
       toggle.addEventListener("click", () => {
         html.classList.toggle("dark");
         const mode = html.classList.contains("dark") ? "dark" : "light";
-        localStorage.setItem("theme", mode);
+        localStorage.setItem("theme", mode); // Save preference to localStorage
       });
     </script>
   </body>

@@ -1,48 +1,62 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // for better navigation (optional)
 
-const ARsolutions = () => {
+const ARSolutions: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <header>
-        <h1>Augmented Reality (AR) Advertising Solutions</h1>
+    <div style={{ fontFamily: 'Arial, sans-serif', lineHeight: 1.6, margin: 0, padding: 0 }}>
+      <header style={{ padding: '40px' }}>
+        <h1 style={{ color: '#333' }}>Augmented Reality (AR) Advertising Solutions</h1>
         <p>Transform your outdoor advertising with cutting-edge AR experiences. Engage your audience like never before!</p>
       </header>
 
-      <section className="examples">
-        <h2>AR Advertising Examples</h2>
-        <img src="your-ar-example-image1.jpg" alt="AR Billboard Example" />
-        <video src="your-ar-example-video1.mp4" controls></video>
+      <section className="examples" style={{ padding: '40px' }}>
+        <h2 style={{ color: '#333' }}>AR Advertising Examples</h2>
+        <img 
+          src="/your-ar-example-image1.jpg" 
+          alt="AR Billboard Example" 
+          style={{ width: '100%', marginBottom: '20px', borderRadius: '10px' }} 
+        />
+        <video 
+          src="/your-ar-example-video1.mp4" 
+          controls 
+          style={{ width: '100%', borderRadius: '10px' }}
+        />
       </section>
 
-      <section>
-        <h2>Our AR Services</h2>
-        <div className="services">
-          <div className="service-card">
-            <h3>AR-Enhanced Billboards</h3>
-            <p>Bring static billboards to life with interactive 3D elements and animations.</p>
-          </div>
-          <div className="service-card">
-            <h3>Interactive Wall Murals</h3>
-            <p>Transform public walls into immersive brand experiences using AR.</p>
-          </div>
-          <div className="service-card">
-            <h3>WebAR Solutions</h3>
-            <p>No app needed! Let users experience AR directly from their mobile browsers.</p>
-          </div>
-          <div className="service-card">
-            <h3>Social AR Filters</h3>
-            <p>Create custom Instagram and Snapchat filters for broader engagement.</p>
-          </div>
-          <div className="service-card">
-            <h3>AR Campaign Management</h3>
-            <p>From design to deployment, we handle the complete AR journey for your brand.</p>
-          </div>
+      <section style={{ padding: '40px' }}>
+        <h2 style={{ color: '#333' }}>Our AR Services</h2>
+        <div 
+          className="services" 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+            gap: '20px' 
+          }}
+        >
+          {[
+            { title: 'AR-Enhanced Billboards', description: 'Bring static billboards to life with interactive 3D elements and animations.' },
+            { title: 'Interactive Wall Murals', description: 'Transform public walls into immersive brand experiences using AR.' },
+            { title: 'WebAR Solutions', description: 'No app needed! Let users experience AR directly from their mobile browsers.' },
+            { title: 'Social AR Filters', description: 'Create custom Instagram and Snapchat filters for broader engagement.' },
+            { title: 'AR Campaign Management', description: 'From design to deployment, we handle the complete AR journey for your brand.' },
+          ].map((service, index) => (
+            <div 
+              key={index} 
+              className="service-card" 
+              style={{ background: '#f5f5f5', padding: '20px', borderRadius: '10px' }}
+            >
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="steps">
-        <h2>How It Works</h2>
-        <ol>
+      <section className="steps" style={{ padding: '40px' }}>
+        <h2 style={{ color: '#333' }}>How It Works</h2>
+        <ol style={{ marginTop: '30px' }}>
           <li>Choose your advertising space.</li>
           <li>We design the perfect AR experience for your campaign.</li>
           <li>Launch the AR campaign with promotions and QR codes.</li>
@@ -50,13 +64,27 @@ const ARsolutions = () => {
         </ol>
       </section>
 
-      <section className="cta">
-        <h2>Ready to Elevate Your Advertising?</h2>
+      <section className="cta" style={{ textAlign: 'center', marginTop: '50px', padding: '40px' }}>
+        <h2 style={{ color: '#333' }}>Ready to Elevate Your Advertising?</h2>
         <p>Let's build unforgettable AR experiences together.</p>
-        <button onClick={() => window.location.href = 'contact.html'}>Contact Us</button>
+        <button 
+          onClick={() => navigate('/contact')} 
+          style={{ 
+            padding: '10px 20px', 
+            fontSize: '18px', 
+            backgroundColor: '#0077ff', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '5px', 
+            cursor: 'pointer',
+            marginTop: '20px'
+          }}
+        >
+          Contact Us
+        </button>
       </section>
     </div>
   );
 };
 
-export default ARsolutions;
+export default ARSolutions;

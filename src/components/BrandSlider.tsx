@@ -4,10 +4,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react"; // <-- SVG icons from 
 
 const brandLogos = [
   "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/99-removebg-preview.png",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/2.png",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/3.webp",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/4.webp",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/6.webp",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/7.webp",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/8.webp",
   "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/1.webp",
 ];
 

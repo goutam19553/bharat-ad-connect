@@ -6,7 +6,7 @@ const brandLogos = [
   "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
   "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
   "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-  "https://upload.wikimedia.org/wikipedia/commons/7/7e/Spotify_logo_with_text.svg",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/1.webp",
 ];
 
 const BrandSlider = () => {

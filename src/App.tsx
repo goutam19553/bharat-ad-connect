@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop"; // ✅ this is perfect
 import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
+import "keen-slider/keen-slider.min.css";
 
 
 const queryClient = new QueryClient();

@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  publicDir: "public", // <--- ADD THIS LINE
   plugins: [
     react(),
     mode === "development" && componentTagger(),

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,10 +17,36 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
   </head>
 
-  <body>
+  <body class="transition-colors duration-300">
+    <!-- Dark Mode Toggle Button -->
+    <button
+      id="toggle-dark"
+      class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-4 py-2 rounded shadow"
+    >
+      🌓 Toggle Dark Mode
+    </button>
+
     <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+
+    <!-- GPT & App Scripts -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Dark Mode Script -->
+    <script>
+      const toggle = document.getElementById("toggle-dark");
+      const html = document.documentElement;
+
+      // Load preference
+      if (localStorage.getItem("theme") === "dark") {
+        html.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        html.classList.toggle("dark");
+        const mode = html.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", mode);
+      });
+    </script>
   </body>
 </html>

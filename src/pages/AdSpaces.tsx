@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import SearchFilter from "@/components/SearchFilter";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -135,19 +134,19 @@ const AdSpaces = () => {
       </div>
       
       {/* Search and Filters Section */}
-      <div className="bg-gray-100 py-6">
+      <div className="bg-gray-100 dark:bg-gray-800 py-6">
         <div className="container-custom">
           <SearchFilter onSearch={filterAdSpaces} />
           
           <div className="mt-4 flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
               <MapPin className="h-5 w-5 text-bharat-teal mr-2" />
-              <span className="font-medium">Popular cities:</span>
+              <span className="font-medium text-gray-800 dark:text-gray-100">Popular cities:</span>
               <div className="ml-2 space-x-2">
                 {["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai"].map((city) => (
                   <button 
                     key={city}
-                    className="text-sm bg-white px-3 py-1 rounded-full border hover:bg-bharat-saffron hover:text-white hover:border-bharat-saffron transition-colors"
+                    className="text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-bharat-saffron hover:text-white hover:border-bharat-saffron transition-colors"
                     onClick={() => filterAdSpaces({ location: city })}
                   >
                     {city}
@@ -157,16 +156,16 @@ const AdSpaces = () => {
             </div>
             
             <div className="flex items-center space-x-2">
-              <span className="text-gray-600">View:</span>
+              <span className="text-gray-600 dark:text-gray-300">View:</span>
               <div className="flex border rounded-md overflow-hidden">
                 <button 
-                  className={`px-3 py-1 ${view === "grid" ? "bg-bharat-navy text-white" : "bg-white"}`}
+                  className={`px-3 py-1 ${view === "grid" ? "bg-bharat-navy text-white" : "bg-white dark:bg-gray-700"}`}
                   onClick={() => setView("grid")}
                 >
                   Grid
                 </button>
                 <button 
-                  className={`px-3 py-1 ${view === "map" ? "bg-bharat-navy text-white" : "bg-white"}`}
+                  className={`px-3 py-1 ${view === "map" ? "bg-bharat-navy text-white" : "bg-white dark:bg-gray-700"}`}
                   onClick={() => setView("map")}
                 >
                   Map
@@ -183,11 +182,11 @@ const AdSpaces = () => {
           {view === "grid" ? (
             <>
               <div className="mb-6 flex justify-between items-center">
-                <h2 className="text-2xl font-heading font-semibold">
+                <h2 className="text-2xl font-heading font-semibold text-gray-800 dark:text-white">
                   {adSpacesData.length} Ad Spaces Available
                 </h2>
                 <div>
-                  <select className="border rounded-md px-3 py-2">
+                  <select className="border rounded-md px-3 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-white">
                     <option>Sort by: Recommended</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>
@@ -209,8 +208,8 @@ const AdSpaces = () => {
               </div>
             </>
           ) : (
-            <div className="bg-white rounded-lg shadow-lg p-4">
-              <p className="text-lg text-center py-12">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
+              <p className="text-lg text-center py-12 text-gray-800 dark:text-gray-300">
                 Map view is under development. Please use the grid view to explore ad spaces.
               </p>
               {/* In a real application, we would integrate a map here */}

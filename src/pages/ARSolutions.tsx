@@ -58,7 +58,7 @@ const ARSolutions = () => {
       <section className="bg-gray-800 dark:bg-gray-100">
         <div className="container-custom">
           <h2 className="text-2xl font-heading font-semibold text-center mb-8 text-white dark:text-black">Our AR Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className=""space-y-4 text-gray-400 dark:text-gray-800">>
             {[{
               title: "AR-Enhanced Billboards",
               description: "Bring static billboards to life with interactive 3D elements and animations.",

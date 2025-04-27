@@ -8,7 +8,7 @@ const ARSolutions = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-sans font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Augmented Reality (AR) Advertising Solutions
               </h1>
               <p className="text-xl text-gray-300 dark:text-gray-700 mb-8">
@@ -71,7 +71,7 @@ const ARSolutions = () => {
               description: "From design to deployment, we handle the complete AR journey for your brand.",
             }].map(service => (
               <div key={service.title} className="p-6 border rounded-lg shadow-md hover:shadow-lg transition bg-gray-700 dark:bg-gray-300">
-                <h3 className="text-xl font-semibold mb-2 text-bharat-saffron">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-bharat-saffron">{service.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
               </div>
             ))}

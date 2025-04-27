@@ -1,280 +1,131 @@
-import { Link, BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Hero from "@/components/Hero";
-import ContactForm from "@/components/ContactForm";
-import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
-import AIDesignDemo from "@/components/AIDesignDemo";
-import FootTrafficDemo from "@/components/FootTrafficDemo";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import BrandSlider from "@/components/BrandSlider";
-import ARSolutions from "@/pages/ARsolutions"; // Ensure this matches the file name exactly
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/ARsolutions" element={<ARSolutions />} />
-      </Routes>
-    </Router>
-  );
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 30 100% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 100% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 180 100% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
 
-export default App;
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-const Index = () => {
-  const featuredAdSpaces: AdSpaceProps[] = [
-    {
-      id: 1,
-      title: "Prime Billboard - MG Road",
-      location: "MG Road",
-      city: "Bengaluru",
-      type: "Billboard",
-      size: "30 x 15 feet",
-      price: 45000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
-      rating: 5,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Drone Advertising",
-      location: "Anywhere",
-      city: "Anywhere",
-      type: "Digital LED Flying Drones",
-      size: "20 x 10 feet",
-      price: 8000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Metro Station Panels",
-      location: "Rajiv Chowk Metro",
-      city: "New Delhi",
-      type: "Transit",
-      size: "15 x 8 feet",
-      price: 25000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
-      rating: 4,
-      featured: true,
-    },
-  ];
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
 
-  const advertiserBenefits = [
-    {
-      icon: <MapPin className="h-8 w-8 text-bharat-saffron" />,
-      title: "Prime Locations",
-      description: "Access to exclusive premium ad spaces across major Indian cities.",
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-bharat-saffron" />,
-      title: "AR Preview",
-      description: "See exactly how your ad will look before making an investment.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-saffron" />,
-      title: "AI-Powered Design",
-      description: "Get intelligent design recommendations based on location and audience.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />,
-      title: "Traffic Analysis",
-      description: "Make data-driven decisions with our foot traffic analysis.",
-    },
-  ];
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
 
-  const ownerBenefits = [
-    {
-      icon: <Building className="h-8 w-8 text-bharat-navy" />,
-      title: "Maximize Revenue",
-      description: "List your ad spaces and connect with quality advertisers.",
-    },
-    {
-      icon: <Award className="h-8 w-8 text-bharat-navy" />,
-      title: "Verified Advertisers",
-      description: "We verify all advertisers to ensure quality partnerships.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />,
-      title: "Data Insights",
-      description: "Access analytics about your space's performance and value.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-navy" />,
-      title: "Seamless Management",
-      description: "Easy-to-use platform for managing your ad inventory.",
-    },
-  ];
+@layer components {
+  .btn-primary {
+    @apply bg-bharat-saffron text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-bharat-navy text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
+  }
+  
+  .btn-accent {
+    @apply bg-bharat-teal text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
+  }
 
-  return (
-    <div className="dark:bg-gray-900 dark:text-white">
-      <Hero />
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
 
-      {/* Benefits Section */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners across India through our
-              innovative digital marketplace powered by AI and AR technology.
-            </p>
-          </div>
+  .section {
+    @apply py-16 px-4 md:px-8 lg:px-16;
+  }
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Advertisers */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">
-                  For Advertisers
-                </Link>
-              </div>
-            </div>
-
-            {/* Owners */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {ownerBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">
-                  For Ad Space Owners
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Ad Spaces */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Ad Spaces</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Discover prime advertising locations in major cities across India
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace) => (
-              <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">
-              View All Ad Spaces
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* AI & AR Section */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Powered by Advanced Technology</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our platform combines cutting-edge AI and AR technology to revolutionize
-              outdoor advertising effectiveness and ROI.
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            <AIDesignDemo />
-            <div className="mt-12">
-              <FootTrafficDemo />
-            </div>
-          </div>
-        </div>
-      </section>
-     
-      {/* Brand Slider - Insert it here */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Trusted Brands</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Explore the brands that trust our platform for their advertising needs.
-            </p>
-          </div>
-
-          <BrandSlider /> {/* Add the BrandSlider component here */}
-        </div>
-      </section>
-      
-      {/* Partnerships */}
-      <section className="section bg-gradient-to-r from-bharat-navy to-bharat-navy/90 text-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Partnerships & Collaborations</h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              We work with government bodies and industry leaders to transform the outdoor advertising landscape.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Government */}
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Government Collaboration</h3>
-              <p className="text-gray-300">
-                Working with urban development authorities to create Smart City advertising solutions.
-              </p>
-            </div>
-
-            {/* Agencies */}
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Agency Partnerships</h3>
-              <p className="text-gray-300">
-                Collaborating with advertising agencies to enhance campaign effectiveness.
-              </p>
-            </div>
-
-            {/* Print Shops */}
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Print Shop Network</h3>
-              <p className="text-gray-300">
-                Nationwide network of quality-verified print shops for seamless production.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Advertising Strategy?</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Get in touch with our team to learn more about how The Ad-Project can help you find the perfect
-              advertising spaces or maximize the revenue from your ad inventory.
-            </p>
-          </div>
-          <ContactForm />
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default Index;
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-bharat-saffron to-bharat-navy inline-block text-transparent bg-clip-text;
+  }
+}

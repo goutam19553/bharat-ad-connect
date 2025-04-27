@@ -9,12 +9,12 @@ const Navbar = () => {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "AR Solutions", href: "/ar-solutions" },   
     { name: "Ad Spaces", href: "/ad-spaces" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
+   { name: "AR Solutions", href: "/ar-solutions" }, 
   ];
 
   useEffect(() => {

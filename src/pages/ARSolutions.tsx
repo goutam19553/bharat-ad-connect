@@ -33,8 +33,17 @@ const ARSolutions = () => {
             <h2 className="text-2xl font-heading font-semibold mb-6 text-white dark:text-black">AR Advertising Examples</h2>
             <div className="flex flex-col items-center gap-6">
               <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/TakeATasteNow.jpg" 
-                 src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(30).jpeg" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(30).jpeg" 
+                alt="AR Billboard Example" 
+                className="w-full max-w-3xl rounded-lg shadow-lg"
+              />
+      <section className="section bg-gray-800 dark:bg-gray-100">
+        <div className="container-custom">
+          <div className="text-center">
+            <h2 className="text-2xl font-heading font-semibold mb-6 text-white dark:text-black">AR Advertising Examples</h2>
+            <div className="flex flex-col items-center gap-6">
+              <img 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/TakeATasteNow.jpg"
                 alt="AR Billboard Example" 
                 className="w-full max-w-3xl rounded-lg shadow-lg"
               />

@@ -11,7 +11,7 @@ const ARSolutions = () => {
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
                 Augmented Reality (AR) Advertising Solutions
               </h1>
-               <p className="text-gray-300 dark:text-black mb-8">
+               <p className="text-gray-300 dark:text-gray-700 mb-8">
                 Transform your outdoor advertising with cutting-edge AR experiences. Engage your audience like never before!
               </p>
             </div>
@@ -55,7 +55,7 @@ const ARSolutions = () => {
       </section>
 
       {/* AR Services */}
-      <section className="bg-gray-800 dark:bg-gray-100 py-16">
+      <section className="bg-gray-800 dark:bg-gray-100">
         <div className="container-custom">
           <h2 className="text-2xl font-heading font-semibold text-center mb-8 text-white dark:text-black">Our AR Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

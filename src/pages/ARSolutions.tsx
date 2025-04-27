@@ -37,6 +37,11 @@ const ARSolutions = () => {
                 alt="AR Billboard Example" 
                 className="w-full max-w-3xl rounded-lg shadow-lg"
               />
+              <img 
+          src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(30).jpeg"
+          alt="AR Billboard Example" 
+          className="w-full max-w-3xl rounded-lg shadow-lg"
+        />
               <video 
                 src="your-ar-example-video1.mp4" 
                 controls 

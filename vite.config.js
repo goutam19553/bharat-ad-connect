@@ -8,6 +8,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      // Redirect /ar-solutions to another path (for example, to /path-to-ar-solutions)
+      '/ar-solutions': '/path-to-ar-solutions',
+    },
   },
   publicDir: "public", // <--- ADD THIS LINE
   plugins: [

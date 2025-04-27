@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const ARsolutions = () => {
+const ARSolutions = () => {
   return (
     <div className="px-4 py-8 max-w-7xl mx-auto">
       {/* Header */}
@@ -97,4 +97,4 @@ const ARsolutions = () => {
   );
 };
 
-export default ARsolutions;
+export default ARSolutions;

@@ -17,7 +17,7 @@ const ARSolutions = () => {
             </div>
             <div className="hidden lg:block">
               <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/TakeATasteNow.jpg" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" 
                 alt="AR Example" 
                 className="rounded-xl shadow-xl"
               />
@@ -33,7 +33,7 @@ const ARSolutions = () => {
             <h2 className="text-2xl font-heading font-semibold mb-6 text-white dark:text-black">AR Advertising Examples</h2>
             <div className="flex flex-col items-center gap-6">
               <img 
-                src="your-ar-example-image1.jpg" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/TakeATasteNow.jpg" 
                 alt="AR Billboard Example" 
                 className="w-full max-w-3xl rounded-lg shadow-lg"
               />

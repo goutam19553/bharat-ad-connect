@@ -11,7 +11,7 @@ const ARSolutions = () => {
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
                 Augmented Reality (AR) Advertising Solutions
               </h1>
-              <p className="text-gray-600 dark:text-gray-300">This text will be light gray in light mode and darker gray in dark mode.</p>
+               <p className="text-gray-300 dark:text-black mb-8">
                 Transform your outdoor advertising with cutting-edge AR experiences. Engage your audience like never before!
               </p>
             </div>

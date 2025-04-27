@@ -9,11 +9,11 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     proxy: {
-      // Redirect /ar-solutions to another path (for example, to /path-to-ar-solutions)
-      '/ar-solutions': '/path-to-ar-solutions',
+      // If you need to proxy API requests, use this
+      '/api': 'http://localhost:3000', // Replace with your actual API URL
     },
   },
-  publicDir: "public", // <--- ADD THIS LINE
+  publicDir: "public", // Static assets like images and fonts will be served from here
   plugins: [
     react(),
     mode === "development" && componentTagger(),

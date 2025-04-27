@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import ARSolutions from "./pages/ARsolutions";  //
 import AdSpaces from "./pages/AdSpaces";
 import Advertisers from "./pages/Advertisers";
 import AdSpaceOwners from "./pages/AdSpaceOwners";
@@ -13,7 +14,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
-import ARsolutions from "./pages/ARsolutions";  // Import the new ARsolution component
 import "keen-slider/keen-slider.min.css";
 
 const queryClient = new QueryClient();

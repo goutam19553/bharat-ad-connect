@@ -44,7 +44,7 @@ const ARSolutions = () => {
               <img 
                 src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/openart-image_pRJkFJsA_1745855705344_raw-removebg-preview.png" 
                 alt="Phone Frame" 
-                className="w-full"
+                className=""w-full max-w-xs md:max-w-md mx-auto rounded-xl shadow-xl animate-float"l"
               />
 
               {/* AR Content inside the Phone */}

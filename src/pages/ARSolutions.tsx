@@ -42,7 +42,7 @@ const ARSolutions = () => {
             <div className="relative w-[300px] md:w-[400px] animate-float-slow">
               {/* Phone Frame */}
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_13_Pro_Vector.svg" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/openart-image_pRJkFJsA_1745855705344_raw-removebg-preview.png" 
                 alt="Phone Frame" 
                 className="w-full"
               />

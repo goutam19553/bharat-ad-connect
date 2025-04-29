@@ -24,8 +24,8 @@ export default defineConfig(({ mode }) => ({
     commonjsOptions: {
       include: [/node_modules/, "@supabase/supabase-js"], // Include the Supabase package in the build process
     },
-    rollupOptions: {
-      external: [], // Ensure Supabase is bundled, not excluded
+      rollupOptions: {
+      // Don't include external at all unless you really need it
     },
   },
   esbuild: {

@@ -47,16 +47,16 @@ const WallUpload: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="bg-[#000080] text-white text-center py-12 mb-10">
-        <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-          Monetize Your Wall Space
-        </h1>
-        <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-          Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
-          set a rental price, and attract top advertisers looking for visibility in your area.
-        </p>
-      </div>
+  <div className="pt-20"> {/* <-- Add padding to push content below fixed navbar */}
+    <div className="bg-[#000080] text-white text-center py-12 mb-10">
+      <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
+        Monetize Your Wall Space
+      </h1>
+      <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
+        Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
+        set a rental price, and attract top advertisers looking for visibility in your area.
+      </p>
+    </div>
 
       {/* Upload Form */}
       <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-md">

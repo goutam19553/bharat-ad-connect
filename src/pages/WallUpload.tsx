@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Upload } from "lucide-react";
 import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
+import { supabase } from "@/lib/supabase"; // Supabase client
 
 // Schema definition
 const formSchema = z.object({
@@ -40,23 +41,56 @@ const WallUpload: React.FC = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (values) => {
-    console.log("Form submitted:", values);
-    toast.success("Wall space listed successfully! We'll contact you soon.");
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
+    const files = Array.from(values.images || []);
+    const uploadedUrls: string[] = [];
+
+    toast.loading("Uploading images...");
+
+    for (const file of files) {
+      const { data, error } = await supabase.storage
+        .from("wall-images")
+        .upload(`walls/${Date.now()}-${file.name}`, file);
+
+      if (error) {
+        toast.error(`Failed to upload image: ${file.name}`);
+        return;
+      }
+
+      const url = supabase.storage.from("wall-images").getPublicUrl(data.path).data.publicUrl;
+      uploadedUrls.push(url);
+    }
+
+    const { error: dbError } = await supabase.from("wall_spaces").insert([
+      {
+        title: values.title,
+        location: values.location,
+        size: values.size,
+        price: values.price,
+        image_urls: uploadedUrls,
+      },
+    ]);
+
+    if (dbError) {
+      toast.error("Failed to submit wall data.");
+      return;
+    }
+
+    toast.success("Wall space listed successfully!");
     form.reset();
   };
 
   return (
-  <div className="pt-20"> {/* <-- Add padding to push content below fixed navbar */}
-    <div className="bg-[#000080] text-white text-center py-12 mb-10">
-      <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-        Monetize Your Wall Space
-      </h1>
-      <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-        Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
-        set a rental price, and attract top advertisers looking for visibility in your area.
-      </p>
-    </div>
+    <div className="pt-20">
+      <div className="bg-[#000080] text-white text-center py-12 mb-10">
+        <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
+          Monetize Your Wall Space
+        </h1>
+        <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
+          Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
+          set a rental price, and attract top advertisers looking for visibility in your area.
+        </p>
+      </div>
 
       {/* Upload Form */}
       <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-md">

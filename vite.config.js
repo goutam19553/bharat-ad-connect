@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => ({
       include: [/node_modules/, "@supabase/supabase-js"],
     },
     rollupOptions: {
-      external: [],
+      external: ["@supabase/supabase-js"],  // Ensure it's treated as external
     },
   },
 }));

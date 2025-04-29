@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+/* New section for text animation in header */
+@keyframes text-animate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #6a0dad, #ff007f, #6a0dad);
+  background-size: 400% 400%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-animate 3s ease infinite;
+}

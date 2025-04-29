@@ -47,9 +47,9 @@ const Wallupload: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-10 px-4">
-      {/* Header Section with Background */}
-      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-12 mb-10">
+    <div className="min-h-screen bg-background text-foreground py-10 px-4 mt-16">
+      {/* Header Section with Navy Background */}
+      <div className="bg-[#000080] text-white text-center py-12 mb-10">
         <h1 className="text-4xl font-bold mb-4">Monetize Your Wall Space</h1>
         <p className="text-lg">
           Turn your empty walls into a steady source of income. Upload photos of your wall spaces, set a rental price, and attract top advertisers looking for visibility in your area.

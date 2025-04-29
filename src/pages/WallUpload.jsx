@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -16,19 +15,22 @@ import {
 } from "@/components/ui/form";
 import { Upload } from "lucide-react";
 
+// Schema definition
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   location: z.string().min(5, "Location must be at least 5 characters"),
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
-  images: z.instanceof(FileList).refine(
-    (files) => files && files.length > 0, 
-    "Please upload at least one image"
-  ),
+  images: z
+    .instanceof(FileList)
+    .refine((files) => files && files.length > 0, "Please upload at least one image"),
 });
 
-const WallSpaceListingForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+// Type inference
+type FormValues = z.infer<typeof formSchema>;
+
+const Wallupload: React.FC = () => {
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -38,8 +40,7 @@ const WallSpaceListingForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // For now, we'll just show a success message
+  const onSubmit: SubmitHandler<FormValues> = (values) => {
     console.log("Form submitted:", values);
     toast.success("Wall space listed successfully! We'll contact you soon.");
     form.reset();
@@ -119,7 +120,9 @@ const WallSpaceListingForm = () => {
                         <p className="mb-2 text-sm text-gray-500">
                           <span className="font-semibold">Click to upload</span> or drag and drop
                         </p>
-                        <p className="text-xs text-gray-500">High quality images recommended (MAX. 10MB)</p>
+                        <p className="text-xs text-gray-500">
+                          High quality images recommended (MAX. 10MB)
+                        </p>
                       </div>
                       <input
                         type="file"
@@ -127,7 +130,6 @@ const WallSpaceListingForm = () => {
                         accept="image/*"
                         multiple
                         onChange={(e) => {
-                          // Only pass the FileList to the form state
                           if (e.target.files) {
                             field.onChange(e.target.files);
                           }
@@ -144,11 +146,13 @@ const WallSpaceListingForm = () => {
             )}
           />
 
-          <Button type="submit" className="w-full">List Your Wall Space</Button>
+          <Button type="submit" className="w-full">
+            List Your Wall Space
+          </Button>
         </form>
       </Form>
     </div>
   );
 };
 
-export default WallSpaceListingForm;
+export default Wallupload;

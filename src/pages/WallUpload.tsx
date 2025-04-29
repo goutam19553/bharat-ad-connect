@@ -48,6 +48,15 @@ const Wallupload: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-10 px-4">
+      {/* Header Message */}
+      <div className="max-w-3xl mx-auto text-center mb-10">
+        <h1 className="text-4xl font-bold mb-4 text-primary">Monetize Your Wall Space</h1>
+        <p className="text-lg text-muted-foreground">
+          Turn your empty walls into a steady source of income. Upload photos of your wall spaces, set a rental price, and attract top advertisers looking for visibility in your area.
+        </p>
+      </div>
+
+      {/* Upload Form */}
       <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -154,7 +163,7 @@ const Wallupload: React.FC = () => {
         </Form>
       </div>
 
-      {/* Wall space examples */}
+      {/* Example Wall Spaces */}
       <WallAdSpaceGrid />
     </div>
   );

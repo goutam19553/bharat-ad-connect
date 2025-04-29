@@ -18,14 +18,20 @@ export default defineConfig(({ mode }) => ({
     },
   },
   optimizeDeps: {
-    include: ["@supabase/supabase-js"],
+    include: ["@supabase/supabase-js"], // Ensure Vite pre-bundles @supabase/supabase-js
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/, "@supabase/supabase-js"],
+      include: [/node_modules/, "@supabase/supabase-js"], // Include the Supabase package in the build process
     },
     rollupOptions: {
-      external: ["@supabase/supabase-js"],  // Ensure it's treated as external
+      external: [], // Ensure Supabase is bundled, not excluded
     },
+  },
+  esbuild: {
+    // Optional: Improve module resolution if needed
+    loader: 'tsx', // Assuming you're using TS/JSX files
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
   },
 }));

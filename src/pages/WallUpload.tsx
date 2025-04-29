@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -48,10 +48,10 @@ const Wallupload: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-10 px-4">
-      {/* Header Message */}
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h1 className="text-4xl font-bold mb-4 text-primary">Monetize Your Wall Space</h1>
-        <p className="text-lg text-muted-foreground">
+      {/* Header Section with Background */}
+      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-12 mb-10">
+        <h1 className="text-4xl font-bold mb-4">Monetize Your Wall Space</h1>
+        <p className="text-lg">
           Turn your empty walls into a steady source of income. Upload photos of your wall spaces, set a rental price, and attract top advertisers looking for visibility in your area.
         </p>
       </div>

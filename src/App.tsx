@@ -15,6 +15,9 @@ import ScrollToTop from "./components/ScrollToTop";
 import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
 import "keen-slider/keen-slider.min.css";
 import ARSolutions from "./pages/ARSolutions"; {/* Importing AR Solutions page */}
+import WallUpload from './pages/WallUpload';
+
+
 
 const queryClient = new QueryClient();
 
@@ -36,7 +39,8 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/ar-solutions" element={<ARSolutions />} /> {/* Add the AR solutions page route */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="/upload-wall" element={<WallUpload />} />
+              <Route path="*" element={<NotFound />} />           
             </Routes>
           </main>
           <Footer />

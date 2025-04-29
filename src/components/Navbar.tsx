@@ -12,25 +12,18 @@ const Navbar = () => {
     { name: "Ad Spaces", href: "/ad-spaces" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
+    { name: "Wall Upload", href: "/upload-wall" }, // ✅ Added here
+    { name: "AR Solutions", href: "/ar-solutions" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
-   { name: "AR Solutions", href: "/ar-solutions" }, 
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -50,7 +43,7 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center">
             {navigation.map((item) => (
@@ -80,11 +73,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
             >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>

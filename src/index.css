@@ -74,7 +74,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -84,7 +83,9 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
@@ -102,11 +103,11 @@
   .btn-primary {
     @apply bg-bharat-saffron text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
-
+  
   .btn-secondary {
     @apply bg-bharat-navy text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
-
+  
   .btn-accent {
     @apply bg-bharat-teal text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
@@ -122,30 +123,9 @@
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-
+  
   .gradient-text {
     @apply bg-gradient-to-r from-bharat-saffron to-bharat-navy inline-block text-transparent bg-clip-text;
-  }
-
-  /* ✅ Upload Wall Section */
-  .upload-wall-section {
-    @apply bg-gray-100 dark:bg-gray-800 text-center rounded-lg shadow-lg py-12 md:py-16 px-4 sm:px-6 lg:px-8;
-  }
-
-  .upload-wall-section h2 {
-    @apply text-2xl md:text-3xl font-semibold text-bharat-navy dark:text-bharat-saffron;
-  }
-
-  .upload-wall-section p {
-    @apply text-md text-muted-foreground mt-4;
-  }
-
-  .upload-wall-btn {
-    @apply bg-bharat-saffron text-white font-bold text-lg py-4 px-8 rounded-md transition-all duration-200;
-  }
-
-  .upload-wall-btn:hover {
-    @apply bg-opacity-90;
   }
 }
 

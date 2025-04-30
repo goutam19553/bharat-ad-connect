@@ -50,20 +50,20 @@ const WallUpload: React.FC = () => {
     for (const file of files) {
       // Optional size check (10MB max)
       if (file.size > 10 * 1024 * 1024) {
-        toast.error(`File ${file.name} exceeds 10MB size limit.`);
+        toast.error(File ${file.name} exceeds 10MB size limit.);
         return;
       }
 
       const { data, error } = await supabase.storage
         .from("wall-images")
-        .upload(`walls/${Date.now()}-${file.name}`, file, {
+        .upload(walls/${Date.now()}-${file.name}, file, {
           cacheControl: "3600",
           upsert: false,
           contentType: file.type || "image/png", // <-- FIXED LINE
         });
 
       if (error) {
-        toast.error(`Failed to upload image: ${file.name}`);
+        toast.error(Failed to upload image: ${file.name});
         return;
       }
 

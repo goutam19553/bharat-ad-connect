@@ -1,4 +1,4 @@
- import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -6,7 +6,7 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
-
+import WallUploadSection from "@/components/WallUploadSection";
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -18,7 +18,8 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
       rating: 5,
       featured: true,
     },
@@ -30,7 +31,8 @@ const Index = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
       rating: 4,
       featured: true,
     },
@@ -42,7 +44,8 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
     },
@@ -96,7 +99,13 @@ const Index = () => {
 
   return (
     <div className="dark:bg-gray-900 dark:text-white">
-      <Hero />
+      {/* Hero with WallUpload inside */}
+      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+        <Hero />
+        <div className="absolute w-full left-0 mt-[-80px] z-10 px-4 md:px-8">
+          <WallUploadSection />
+        </div>
+      </div>
 
       {/* Benefits Section */}
       <section className="section bg-white dark:bg-gray-800">
@@ -194,8 +203,8 @@ const Index = () => {
           </div>
         </div>
       </section>
-      
-      {/* Brand Slider - Insert it here */}
+
+      {/* Brand Slider */}
       <section className="section bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">
@@ -204,11 +213,10 @@ const Index = () => {
               Explore the brands that trust our platform for their advertising needs.
             </p>
           </div>
-
-          <BrandSlider /> {/* Add the BrandSlider component here */}
+          <BrandSlider />
         </div>
       </section>
-      
+
       {/* Partnerships */}
       <section className="section bg-gradient-to-r from-bharat-navy to-bharat-navy/90 text-white">
         <div className="container-custom">
@@ -220,23 +228,18 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Government */}
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
               <h3 className="font-semibold text-xl mb-2">Government Collaboration</h3>
               <p className="text-gray-300">
                 Working with urban development authorities to create Smart City advertising solutions.
               </p>
             </div>
-
-            {/* Agencies */}
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
               <h3 className="font-semibold text-xl mb-2">Agency Partnerships</h3>
               <p className="text-gray-300">
                 Collaborating with advertising agencies to enhance campaign effectiveness.
               </p>
             </div>
-
-            {/* Print Shops */}
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
               <h3 className="font-semibold text-xl mb-2">Print Shop Network</h3>
               <p className="text-gray-300">
@@ -247,7 +250,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section className="section bg-gray-50 dark:bg-gray-800">
         <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>

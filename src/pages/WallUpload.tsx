@@ -116,9 +116,9 @@ const WallUpload: React.FC = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Wall Space Title</FormLabel>
+                  <FormLabel htmlFor="title">Wall Space Title</FormLabel> {/* Updated */}
                   <FormControl>
-                    <Input placeholder="e.g., Prime Commercial Wall Space - MG Road" {...field} />
+                    <Input id="title" placeholder="e.g., Prime Commercial Wall Space - MG Road" {...field} /> {/* Updated */}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,9 +130,9 @@ const WallUpload: React.FC = () => {
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Location</FormLabel>
+                  <FormLabel htmlFor="location">Location</FormLabel> {/* Updated */}
                   <FormControl>
-                    <Input placeholder="e.g., MG Road, Bangalore" {...field} />
+                    <Input id="location" placeholder="e.g., MG Road, Bangalore" {...field} /> {/* Updated */}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -144,9 +144,9 @@ const WallUpload: React.FC = () => {
               name="size"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Wall Size</FormLabel>
+                  <FormLabel htmlFor="size">Wall Size</FormLabel> {/* Updated */}
                   <FormControl>
-                    <Input placeholder="e.g., 20ft x 10ft" {...field} />
+                    <Input id="size" placeholder="e.g., 20ft x 10ft" {...field} /> {/* Updated */}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -158,9 +158,9 @@ const WallUpload: React.FC = () => {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Monthly Rental Price (₹)</FormLabel>
+                  <FormLabel htmlFor="price">Monthly Rental Price (₹)</FormLabel> {/* Updated */}
                   <FormControl>
-                    <Input type="number" placeholder="e.g., 25000" {...field} />
+                    <Input id="price" type="number" placeholder="e.g., 25000" {...field} /> {/* Updated */}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -172,10 +172,10 @@ const WallUpload: React.FC = () => {
               name="images"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Upload Wall Space Images</FormLabel>
+                  <FormLabel htmlFor="images">Upload Wall Space Images</FormLabel> {/* Updated */}
                   <FormControl>
                     <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-700">
+                      <label htmlFor="images" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-700"> {/* Updated */}
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <Upload className="w-8 h-8 mb-4 text-gray-500" />
                           <p className="mb-2 text-sm text-gray-500">
@@ -186,6 +186,7 @@ const WallUpload: React.FC = () => {
                           </p>
                         </div>
                         <input
+                          id="images" // Added 'id' to input
                           type="file"
                           className="hidden"
                           accept="image/*"

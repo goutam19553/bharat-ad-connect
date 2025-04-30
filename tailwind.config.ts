@@ -31,15 +31,25 @@ export default {
           darkBackground: '#121212',
           darkText: '#f5f5f5',
         },
+        background: 'var(--background)', // Custom CSS variable for background
+        foreground: 'var(--foreground)', // Custom CSS variable for foreground
+        primary: 'var(--primary)', // Custom CSS variable for primary
+        secondary: 'var(--secondary)', // Custom CSS variable for secondary
+        muted: 'var(--muted)', // Custom CSS variable for muted text
+        accent: 'var(--accent)', // Custom CSS variable for accent
+        destructive: 'var(--destructive)', // Custom CSS variable for destructive
+        border: 'var(--border)', // Custom CSS variable for border
+        input: 'var(--input)', // Custom CSS variable for input
+        ring: 'var(--ring)', // Custom CSS variable for ring
       },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],
         heading: ['Poppins', 'sans-serif'],
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: 'var(--radius)', // Use custom radius variable
+        md: 'calc(var(--radius) - 2px)', // Adjust based on custom radius variable
+        sm: 'calc(var(--radius) - 4px)', // Adjust based on custom radius variable
       },
       fontSize: {
         // Add custom size for text-md

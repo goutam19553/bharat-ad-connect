@@ -98,13 +98,11 @@ const Index = () => {
 
   return (
     <div className="dark:bg-gray-900 dark:text-white">
-  {/* Hero without WallUpload */}
-  <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
-    <Hero />
-    {/* Removed WallUploadSection */}
-  </div>
-</div>
-
+      {/* Hero without WallUpload */}
+      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+        <Hero />
+        {/* Removed WallUploadSection */}
+      </div>
 
       {/* Benefits Section */}
       <section className="section bg-white dark:bg-gray-800">

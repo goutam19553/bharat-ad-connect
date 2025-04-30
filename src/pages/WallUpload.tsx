@@ -17,7 +17,6 @@ import { Upload } from "lucide-react";
 import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
 import { supabase } from "@/lib/supabase"; // Supabase client
 
-// Schema definition
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   location: z.string().min(5, "Location must be at least 5 characters"),
@@ -48,16 +47,29 @@ const WallUpload: React.FC = () => {
     toast.loading("Uploading images...");
 
     for (const file of files) {
+      // Optional size check (10MB max)
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error(`File ${file.name} exceeds 10MB size limit.`);
+        return;
+      }
+
       const { data, error } = await supabase.storage
         .from("wall-images")
-        .upload(`walls/${Date.now()}-${file.name}`, file);
+        .upload(`walls/${Date.now()}-${file.name}`, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type || "image/png", // <-- FIXED LINE
+        });
 
       if (error) {
         toast.error(`Failed to upload image: ${file.name}`);
         return;
       }
 
-      const url = supabase.storage.from("wall-images").getPublicUrl(data.path).data.publicUrl;
+      const url = supabase.storage
+        .from("wall-images")
+        .getPublicUrl(data.path).data.publicUrl;
+
       uploadedUrls.push(url);
     }
 

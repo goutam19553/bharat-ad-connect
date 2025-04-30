@@ -46,6 +46,7 @@ const WallUpload: React.FC = () => {
 
     toast.loading("Uploading images...");
 
+    // Loop through files and upload each one
     for (const file of files) {
       // Optional size check (10MB max)
       if (file.size > 10 * 1024 * 1024) {
@@ -66,6 +67,7 @@ const WallUpload: React.FC = () => {
         return;
       }
 
+      // Get the public URL of the uploaded file
       const url = supabase.storage
         .from("wall-images")
         .getPublicUrl(data.path).data.publicUrl;
@@ -73,6 +75,7 @@ const WallUpload: React.FC = () => {
       uploadedUrls.push(url);
     }
 
+    // Insert wall data into the database
     const { error: dbError } = await supabase.from("wall_spaces").insert([
       {
         title: values.title,
@@ -89,7 +92,7 @@ const WallUpload: React.FC = () => {
     }
 
     toast.success("Wall space listed successfully!");
-    form.reset();
+    form.reset();  // Reset the form after submission
   };
 
   return (

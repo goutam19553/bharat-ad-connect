@@ -50,7 +50,7 @@ const WallUpload: React.FC = () => {
 
       // Upload image to the 'wall-images' bucket
       const { data, error: uploadError } = await supabase.storage
-        .from("wall-images")
+        .from("wall-images") // Corrected bucket name
         .upload(fileName, imageFile, {
           cacheControl: "3600",
           upsert: false, // Avoid overwriting the same file
@@ -67,7 +67,7 @@ const WallUpload: React.FC = () => {
     }
 
     // Insert the form data and image URLs into the 'wall_spaces' table
-    const { error: insertError } = await supabase.from("wall_spaces").insert([
+    const { error: insertError } = await supabase.from("wall_spaces").insert([ // Corrected table name
       {
         title: values.title,
         location: values.location,

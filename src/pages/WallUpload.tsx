@@ -13,18 +13,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Upload } from "lucide-react";
+import { UploadCloud } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
-import { supabase } from "@/lib/supabase"; // Supabase client
 
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   location: z.string().min(5, "Location must be at least 5 characters"),
-  size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
-  price: z.string().min(1, "Please enter the monthly rental price"),
+  size: z.string().min(3, "Specify the size (e.g., 20ft x 10ft)"),
+  price: z.string().min(1, "Enter the monthly rental price"),
   images: z
     .instanceof(FileList)
-    .refine((files) => files && files.length > 0, "Please upload at least one image"),
+    .refine((files) => files?.length > 0, "Please upload at least one image"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -46,11 +46,9 @@ const WallUpload: React.FC = () => {
 
     toast.loading("Uploading images...");
 
-    // Loop through files and upload each one
     for (const file of files) {
-      // Optional size check (10MB max)
       if (file.size > 10 * 1024 * 1024) {
-        toast.error(`File ${file.name} exceeds 10MB size limit.`);
+        toast.error(`File ${file.name} exceeds 10MB.`);
         return;
       }
 
@@ -59,15 +57,14 @@ const WallUpload: React.FC = () => {
         .upload(`walls/${Date.now()}-${file.name}`, file, {
           cacheControl: "3600",
           upsert: false,
-          contentType: file.type || "image/png", // <-- FIXED LINE
+          contentType: file.type || "image/png",
         });
 
       if (error) {
-        toast.error(`Failed to upload image: ${file.name}`);
+        toast.error(`Failed to upload ${file.name}`);
         return;
       }
 
-      // Get the public URL of the uploaded file
       const url = supabase.storage
         .from("wall-images")
         .getPublicUrl(data.path).data.publicUrl;
@@ -75,56 +72,48 @@ const WallUpload: React.FC = () => {
       uploadedUrls.push(url);
     }
 
-    // Insert wall data into the database
-    const { error: dbError } = await supabase.from("wall_spaces").insert([
-      {
-        title: values.title,
-        location: values.location,
-        size: values.size,
-        price: values.price,
-        image_urls: uploadedUrls,
-      },
-    ]);
+    const { error: dbError } = await supabase.from("wall_spaces").insert([{
+      title: values.title,
+      location: values.location,
+      size: values.size,
+      price: values.price,
+      image_urls: uploadedUrls,
+    }]);
 
     if (dbError) {
-      toast.error("Failed to submit wall data.");
+      toast.error("Submission failed.");
       return;
     }
 
-    toast.success("Wall space listed successfully!");
-    form.reset();  // Reset the form after submission
+    toast.success("Wall space listed!");
+    form.reset();
   };
 
   return (
-    <div className="pt-20">
-      <div className="bg-[#000080] text-white text-center py-12 mb-10">
-        <h1 className="text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-          Monetize Your Wall Space
-        </h1>
-        <p className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a00] to-[#ff8c00] animate-text">
-          Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
-          set a rental price, and attract top advertisers looking for visibility in your area.
-        </p>
-      </div>
+    <div className="min-h-screen py-20 px-4 bg-gradient-to-br from-zinc-100 via-white to-zinc-200 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+      <div className="max-w-xl mx-auto bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-6">
+        <h2 className="text-2xl font-bold text-center text-zinc-800 dark:text-zinc-100 mb-6">
+          📍 List Your Wall Space
+        </h2>
 
-      {/* Upload Form */}
-      <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-md">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Title */}
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Wall Space Title</FormLabel>
+                  <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., Prime Commercial Wall Space - MG Road" {...field} />
+                    <Input placeholder="e.g. Prime Wall - MG Road" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* Location */}
             <FormField
               control={form.control}
               name="location"
@@ -132,90 +121,88 @@ const WallUpload: React.FC = () => {
                 <FormItem>
                   <FormLabel>Location</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., MG Road, Bangalore" {...field} />
+                    <Input placeholder="e.g. MG Road, Bengaluru" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* Size */}
             <FormField
               control={form.control}
               name="size"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Wall Size</FormLabel>
+                  <FormLabel>Size</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., 20ft x 10ft" {...field} />
+                    <Input placeholder="e.g. 20ft x 10ft" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* Price */}
             <FormField
               control={form.control}
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Monthly Rental Price (₹)</FormLabel>
+                  <FormLabel>Monthly Price (₹)</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="e.g., 25000" {...field} />
+                    <Input type="number" placeholder="e.g. 25000" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* Image Upload */}
             <FormField
               control={form.control}
               name="images"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Upload Wall Space Images</FormLabel>
+                  <FormLabel>Upload Images</FormLabel>
                   <FormControl>
-                    <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-zinc-800 hover:bg-gray-100 dark:hover:bg-zinc-700">
-                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                          <Upload className="w-8 h-8 mb-4 text-gray-500" />
-                          <p className="mb-2 text-sm text-gray-500">
-                            <span className="font-semibold">Click to upload</span> or drag and drop
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            High quality images recommended (MAX. 10MB)
-                          </p>
-                        </div>
-                        <input
-                          type="file"
-                          className="hidden"
-                          accept="image/*"
-                          multiple
-                          onChange={(e) => {
-                            if (e.target.files) {
-                              field.onChange(e.target.files);
-                            }
-                          }}
-                          onBlur={field.onBlur}
-                          name={field.name}
-                          ref={field.ref}
-                        />
-                      </label>
-                    </div>
+                    <label className="flex flex-col items-center justify-center w-full h-44 border-2 border-dashed rounded-xl cursor-pointer bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition">
+                      <div className="flex flex-col items-center justify-center pt-4 pb-6">
+                        <UploadCloud className="w-8 h-8 text-zinc-500" />
+                        <p className="text-sm text-zinc-500">Click or drag & drop</p>
+                        <p className="text-xs text-zinc-400">Max size: 10MB</p>
+                      </div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        className="hidden"
+                        onChange={(e) => {
+                          if (e.target.files) field.onChange(e.target.files);
+                        }}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </label>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full">
-              List Your Wall Space
+            {/* Submit Button */}
+            <Button type="submit" className="w-full text-lg py-6">
+              🚀 List Wall Space
             </Button>
           </form>
         </Form>
       </div>
 
-      {/* Example Wall Spaces */}
-      <WallAdSpaceGrid />
+      {/* Display Grid */}
+      <div className="mt-12">
+        <WallAdSpaceGrid />
+      </div>
     </div>
   );
 };

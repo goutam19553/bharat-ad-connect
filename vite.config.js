@@ -20,19 +20,19 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: [
       "@supabase/supabase-js",
-      "react-hook-form", // Ensure Vite pre-bundles react-hook-form
-    ], 
+      "react-hook-form",  // Ensure react-hook-form is pre-bundled
+    ],
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/, "@supabase/supabase-js"], // Include the Supabase package in the build process
+      include: [/node_modules/, "@supabase/supabase-js", "react-hook-form"], // Include react-hook-form in the build process
     },
     rollupOptions: {
-      external: ["react-hook-form"], // Add react-hook-form as an external dependency if needed
+      external: ["react-hook-form"],  // Prevent bundling react-hook-form if needed
     },
   },
   esbuild: {
-    loader: "tsx", // Assuming you're using TS/JSX files
+    loader: "tsx",  // Assuming you're using TS/JSX files
     jsxFactory: "React.createElement",
     jsxFragment: "React.Fragment",
   },

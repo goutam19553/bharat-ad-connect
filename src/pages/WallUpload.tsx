@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -24,12 +24,17 @@ const formSchema = z.object({
   price: z.string().min(1, "Please enter the monthly rental price"),
   images: z
     .any()
-    .refine((files) => files instanceof FileList && files.length > 0, "Please upload at least one image"),
+    .refine(
+      (files) => files instanceof FileList && files.length > 0,
+      "Please upload at least one image"
+    ),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 const WallUpload: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,15 +45,19 @@ const WallUpload: React.FC = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = async (values) => {
+  const onSubmit: SubmitHandler<FormValues> = useCallback(async (values) => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const files: File[] = Array.from(values.images);
     const uploadedUrls: string[] = [];
 
-    toast.loading("Uploading images...");
+    toast.loading("Uploading images...", { id: "upload" });
 
     for (const file of files) {
       if (file.size > 10 * 1024 * 1024) {
-        toast.error(`File ${file.name} exceeds 10MB size limit.`);
+        toast.error(`File ${file.name} exceeds 10MB size limit.`, { id: "upload" });
+        setIsSubmitting(false);
         return;
       }
 
@@ -60,16 +69,19 @@ const WallUpload: React.FC = () => {
           contentType: file.type || "image/png",
         });
 
-      if (error || !data) {
-        toast.error(`Failed to upload image: ${file.name}`);
+      if (error || !data?.path) {
+        toast.error(`Failed to upload image: ${file.name}`, { id: "upload" });
+        setIsSubmitting(false);
         return;
       }
 
       const publicUrl = supabase.storage
         .from("wall-images")
-        .getPublicUrl(data.path).data.publicUrl;
+        .getPublicUrl(data.path)?.data?.publicUrl;
 
-      uploadedUrls.push(publicUrl);
+      if (publicUrl) {
+        uploadedUrls.push(publicUrl);
+      }
     }
 
     const { error: dbError } = await supabase.from("wall_spaces").insert([
@@ -77,20 +89,26 @@ const WallUpload: React.FC = () => {
         title: values.title,
         location: values.location,
         size: values.size,
-        price: values.price,
+        price: Number(values.price),
         image_urls: uploadedUrls,
       },
     ]);
 
     if (dbError) {
-      toast.error("Failed to submit wall data.");
+      toast.error("Failed to submit wall data.", { id: "upload" });
+      setIsSubmitting(false);
       return;
     }
 
-    toast.success("Wall space listed successfully!");
-    form.reset();
-    (document.querySelector('input[type="file"]') as HTMLInputElement).value = "";
-  };
+    toast.success("Wall space listed successfully!", { id: "upload" });
+
+    setTimeout(() => {
+      form.reset();
+      const fileInput = document.getElementById("wall-image-upload") as HTMLInputElement;
+      if (fileInput) fileInput.value = "";
+      setIsSubmitting(false);
+    }, 1000);
+  }, [form, isSubmitting]);
 
   return (
     <div className="pt-20 bg-gradient-to-b from-indigo-950 via-purple-900 to-black min-h-screen">
@@ -155,7 +173,10 @@ const WallUpload: React.FC = () => {
                   </FormLabel>
                   <FormControl>
                     <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-purple-600 rounded-xl cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition duration-300">
+                      <label
+                        htmlFor="wall-image-upload"
+                        className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-purple-600 rounded-xl cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition duration-300"
+                      >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <Upload className="w-8 h-8 mb-4 text-purple-400" />
                           <p className="mb-2 text-sm text-purple-300">
@@ -166,13 +187,12 @@ const WallUpload: React.FC = () => {
                           </p>
                         </div>
                         <input
+                          id="wall-image-upload"
                           type="file"
                           className="hidden"
                           accept="image/*"
                           multiple
-                          onChange={(e) => {
-                            field.onChange(e.target.files);
-                          }}
+                          onChange={(e) => field.onChange(e.target.files)}
                           onBlur={field.onBlur}
                           name={field.name}
                           ref={field.ref}
@@ -188,8 +208,9 @@ const WallUpload: React.FC = () => {
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold py-3 rounded-lg hover:brightness-110 transition-all shadow-lg"
+              disabled={isSubmitting}
             >
-              List Your Wall Space
+              {isSubmitting ? "Uploading..." : "List Your Wall Space"}
             </Button>
           </form>
         </Form>

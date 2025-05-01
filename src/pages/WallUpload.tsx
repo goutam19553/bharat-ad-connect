@@ -48,9 +48,9 @@ const WallUpload: React.FC = () => {
       const imageFile = values.images[i];
       const fileName = `${Date.now()}-${imageFile.name}`;
 
-      // Upload image to the 'wall_images' bucket
+      // Upload image to the 'wall-images' bucket
       const { data, error: uploadError } = await supabase.storage
-        .from("wall_images")
+        .from("wall-images")
         .upload(fileName, imageFile, {
           cacheControl: "3600",
           upsert: false, // Avoid overwriting the same file
@@ -62,7 +62,7 @@ const WallUpload: React.FC = () => {
       }
 
       // Get the public URL of the uploaded image
-      const publicUrl = supabase.storage.from("wall_images").getPublicUrl(fileName).publicURL;
+      const publicUrl = supabase.storage.from("wall-images").getPublicUrl(fileName).publicURL;
       uploadedImageUrls.push(publicUrl);
     }
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner"; // ✅ Use only Sonner (better notifications)
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -14,40 +15,40 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WallSpaceOwnerSection from "./components/WallSpaceOwnerSection";
 import "keen-slider/keen-slider.min.css";
-import ARSolutions from "./pages/ARSolutions"; {/* Importing AR Solutions page */}
-import WallUpload from './pages/WallUpload';
-
-
+import ARSolutions from "./pages/ARSolutions";
+import WallUpload from "./pages/WallUpload";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster /> {/* ✅ only one Toaster */}
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
-              <Route path="/" element={<Index />} />
-              <Route path="/ad-spaces" element={<AdSpaces />} />
-              <Route path="/advertisers" element={<Advertisers />} />
-              <Route path="/list-wall-space" element={<WallSpaceOwnerSection />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/ar-solutions" element={<ARSolutions />} /> {/* Add the AR solutions page route */}
-              <Route path="/upload-wall" element={<WallUpload />} />
-              <Route path="*" element={<NotFound />} />           
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [showWallUpload, setShowWallUpload] = useState(false);
 
-export default App;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <BrowserRouter>
+          <ScrollToTop />
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Index />
+                      <div className="text-center my-8">
+                        <button
+                          onClick={() => setShowWallUpload((prev) => !prev)}
+                          className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
+                        >
+                          {showWallUpload ? "Hide Upload Form" : "List Your Wall Space"}
+                        </button>
+                      </div>
+                      {showWallUpload && <WallUpload />}
+                    </>
+                  }
+                />
+                <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
+                <Route path="/ad-spaces" element={<Ad

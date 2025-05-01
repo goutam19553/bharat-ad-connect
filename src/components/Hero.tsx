@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
-const Hero = () => {
+interface HeroProps {
+  onUploadClick: () => void;
+  showUpload: boolean;
+}
+
+const Hero: React.FC<HeroProps> = ({ onUploadClick, showUpload }) => {
+  const heroRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      
+    <div ref={heroRef} className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* 🔥 Video Background with Poster */}
       <video
         autoPlay
@@ -11,7 +18,7 @@ const Hero = () => {
         muted
         playsInline
         preload="auto"
-        poster="/hero-video-poster.webp" // <-- Update this path if needed
+        poster="/hero-video-poster.webp"
         className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
       >
         <source src="/19419586-hd_1920_1080_30fps (1).mp4" type="video/mp4" />
@@ -38,6 +45,12 @@ const Hero = () => {
               <Link to="/about" className="bg-white/90 backdrop-blur-sm text-bharat-navy hover:bg-white font-bold py-3 px-6 rounded-md transition-all duration-200 hover:scale-105">
                 Learn More
               </Link>
+              <button
+                onClick={onUploadClick}
+                className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
+              >
+                {showUpload ? "Hide Upload Form" : "List Your Wall Space"}
+              </button>
             </div>
           </div>
 

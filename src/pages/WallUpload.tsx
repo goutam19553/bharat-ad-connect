@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Upload } from "lucide-react";
 import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
-import { supabase } from "@/lib/supabase"; // Supabase client
+import { supabase } from "@/lib/supabase";
 
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
@@ -23,8 +23,8 @@ const formSchema = z.object({
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
   images: z
-    .array(z.instanceof(File)) // Updated to accept an array of File objects
-    .refine((files) => files.length > 0, "Please upload at least one image"),
+    .any()
+    .refine((files) => files instanceof FileList && files.length > 0, "Please upload at least one image"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -41,14 +41,12 @@ const WallUpload: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    const files = Array.from(values.images || []);
+    const files: File[] = Array.from(values.images);
     const uploadedUrls: string[] = [];
 
     toast.loading("Uploading images...");
 
-    // Loop through files and upload each one
     for (const file of files) {
-      // Optional size check (10MB max)
       if (file.size > 10 * 1024 * 1024) {
         toast.error(`File ${file.name} exceeds 10MB size limit.`);
         return;
@@ -59,23 +57,21 @@ const WallUpload: React.FC = () => {
         .upload(`walls/${Date.now()}-${file.name}`, file, {
           cacheControl: "3600",
           upsert: false,
-          contentType: file.type || "image/png", // <-- FIXED LINE
+          contentType: file.type || "image/png",
         });
 
-      if (error) {
+      if (error || !data) {
         toast.error(`Failed to upload image: ${file.name}`);
         return;
       }
 
-      // Get the public URL of the uploaded file
-      const url = supabase.storage
+      const publicUrl = supabase.storage
         .from("wall-images")
         .getPublicUrl(data.path).data.publicUrl;
 
-      uploadedUrls.push(url);
+      uploadedUrls.push(publicUrl);
     }
 
-    // Insert wall data into the database
     const { error: dbError } = await supabase.from("wall_spaces").insert([
       {
         title: values.title,
@@ -92,7 +88,8 @@ const WallUpload: React.FC = () => {
     }
 
     toast.success("Wall space listed successfully!");
-    form.reset();  // Reset the form after submission
+    form.reset();
+    (document.querySelector('input[type="file"]') as HTMLInputElement).value = "";
   };
 
   return (
@@ -107,11 +104,10 @@ const WallUpload: React.FC = () => {
         </p>
       </div>
 
-      {/* Upload Form */}
       <div className="max-w-3xl mx-auto p-8 bg-zinc-950 border border-purple-800 rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.4)] backdrop-blur-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            {["title", "location", "size", "price"].map((fieldKey, index) => (
+            {["title", "location", "size", "price"].map((fieldKey) => (
               <FormField
                 key={fieldKey}
                 control={form.control}
@@ -175,9 +171,7 @@ const WallUpload: React.FC = () => {
                           accept="image/*"
                           multiple
                           onChange={(e) => {
-                            if (e.target.files) {
-                              field.onChange(e.target.files);
-                            }
+                            field.onChange(e.target.files);
                           }}
                           onBlur={field.onBlur}
                           name={field.name}
@@ -201,7 +195,6 @@ const WallUpload: React.FC = () => {
         </Form>
       </div>
 
-      {/* Example Wall Spaces */}
       <div className="mt-16">
         <WallAdSpaceGrid />
       </div>

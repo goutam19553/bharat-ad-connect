@@ -41,7 +41,51 @@ const WallUpload: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    // ...same upload logic
+    try {
+      const imageFiles = Array.from(values.images);
+      const uploadedImageUrls: string[] = [];
+
+      for (const file of imageFiles) {
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `wall-images/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("wall-images") // your Supabase bucket
+          .upload(filePath, file);
+
+        if (uploadError) {
+          throw uploadError;
+        }
+
+        const { data: publicUrlData } = supabase
+          .storage
+          .from("wall-images")
+          .getPublicUrl(filePath);
+
+        uploadedImageUrls.push(publicUrlData.publicUrl);
+      }
+
+      const { error: insertError } = await supabase.from("wall_spaces").insert([
+        {
+          title: values.title,
+          location: values.location,
+          size: values.size,
+          price: values.price,
+          images: uploadedImageUrls,
+        },
+      ]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      toast.success("Wall space listed successfully!");
+      form.reset();
+    } catch (error: any) {
+      console.error("Error submitting form:", error.message || error);
+      toast.error("Failed to list wall space. Please try again.");
+    }
   };
 
   return (

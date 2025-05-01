@@ -1,6 +1,6 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hookform";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -41,50 +41,46 @@ const WallUpload: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    try {
-      const imageFiles = Array.from(values.images);
-      const uploadedImageUrls: string[] = [];
+    // Upload images to Supabase Storage
+    const uploadedImageUrls: string[] = [];
 
-      for (const file of imageFiles) {
-        const fileExt = file.name.split(".").pop();
-        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-        const filePath = `wall-images/${fileName}`;
+    for (let i = 0; i < values.images.length; i++) {
+      const imageFile = values.images[i];
+      const fileName = `${Date.now()}-${imageFile.name}`;
+      
+      // Upload image to the 'wall_images' bucket
+      const { data, error: uploadError } = await supabase.storage
+        .from("wall_images")
+        .upload(fileName, imageFile, {
+          cacheControl: "3600",
+          upsert: false, // Avoid overwriting the same file
+        });
 
-        const { error: uploadError } = await supabase.storage
-          .from("wall-images") // your Supabase bucket
-          .upload(filePath, file);
-
-        if (uploadError) {
-          throw uploadError;
-        }
-
-        const { data: publicUrlData } = supabase
-          .storage
-          .from("wall-images")
-          .getPublicUrl(filePath);
-
-        uploadedImageUrls.push(publicUrlData.publicUrl);
+      if (uploadError) {
+        toast.error(`Error uploading image: ${uploadError.message}`);
+        return;
       }
 
-      const { error: insertError } = await supabase.from("wall_spaces").insert([
-        {
-          title: values.title,
-          location: values.location,
-          size: values.size,
-          price: values.price,
-          images: uploadedImageUrls,
-        },
-      ]);
+      // Get the public URL of the uploaded image
+      const publicUrl = supabase.storage.from("wall_images").getPublicUrl(fileName).publicURL;
+      uploadedImageUrls.push(publicUrl);
+    }
 
-      if (insertError) {
-        throw insertError;
-      }
+    // Insert the form data and image URLs into the 'wall_spaces' table
+    const { error: insertError } = await supabase.from("wall_spaces").insert([
+      {
+        title: values.title,
+        location: values.location,
+        size: values.size,
+        price: values.price,
+        images: uploadedImageUrls, // Store the image URLs in the table
+      },
+    ]);
 
+    if (insertError) {
+      toast.error(`Error inserting data: ${insertError.message}`);
+    } else {
       toast.success("Wall space listed successfully!");
-      form.reset();
-    } catch (error: any) {
-      console.error("Error submitting form:", error.message || error);
-      toast.error("Failed to list wall space. Please try again.");
     }
   };
 

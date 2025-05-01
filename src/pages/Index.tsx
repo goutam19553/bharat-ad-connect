@@ -97,13 +97,36 @@ const Index = () => {
     },
   ];
 
+  const [showWallUpload, setShowWallUpload] = useState(false);
+
   return (
     <div className="dark:bg-gray-900 dark:text-white">
       {/* Hero without WallUpload */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
-        {/* Removed WallUploadSection */}
       </div>
+
+      {/* Earn Money Section Below Hero */}
+      <section className="earn-money-section text-center my-8 bg-gray-100 p-8">
+        <div className="content max-w-3xl mx-auto">
+          <h2 className="text-3xl font-semibold mb-4">
+            Earn Passive Income from Your Walls
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">
+            You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls,
+            allowing you to earn a passive income from your property. It's that simple!
+          </p>
+          <button
+            onClick={() => setShowWallUpload((prev) => !prev)}
+            className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
+          >
+            {showWallUpload ? "Hide Upload Form" : "Upload Your Wall"}
+          </button>
+        </div>
+      </section>
+
+      {/* Display Upload Form if Active */}
+      {showWallUpload && <WallUpload />}
 
       {/* Benefits Section */}
       <section className="section bg-white dark:bg-gray-800">
@@ -186,78 +209,32 @@ const Index = () => {
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Powered by Advanced Technology</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">AI & AR-Powered Ad Experience</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our platform combines cutting-edge AI and AR technology to revolutionize
-              outdoor advertising effectiveness and ROI.
+              Preview your ads with AR technology and let AI suggest the best designs based on audience and location data.
             </p>
           </div>
 
-          <div className="space-y-12">
-            <AIDesignDemo />
-            <div className="mt-12">
-              <FootTrafficDemo />
-            </div>
-          </div>
+          <AIDesignDemo />
+          <FootTrafficDemo />
         </div>
       </section>
 
-      {/* Brand Slider */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Trusted Brands</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Explore the brands that trust our platform for their advertising needs.
-            </p>
-          </div>
-          <BrandSlider />
-        </div>
-      </section>
-
-      {/* Partnerships */}
-      <section className="section bg-gradient-to-r from-bharat-navy to-bharat-navy/90 text-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Partnerships & Collaborations</h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              We work with government bodies and industry leaders to transform the outdoor advertising landscape.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Government Collaboration</h3>
-              <p className="text-gray-300">
-                Working with urban development authorities to create Smart City advertising solutions.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Agency Partnerships</h3>
-              <p className="text-gray-300">
-                Collaborating with advertising agencies to enhance campaign effectiveness.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center">
-              <h3 className="font-semibold text-xl mb-2">Print Shop Network</h3>
-              <p className="text-gray-300">
-                Nationwide network of quality-verified print shops for seamless production.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Brand Partnerships */}
+      <section className="section bg-gray-100 dark:bg-gray-900 py-8">
+        <BrandSlider />
       </section>
 
       {/* Contact Section */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Advertising Strategy?</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Get in touch with our team to learn more about how Bharat-Ad can help you find the perfect
-              advertising spaces or maximize the revenue from your ad inventory.
+      <section className="section bg-gray-50 dark:bg-gray-800 py-8">
+        <div className="container-custom">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Have questions or need assistance? Reach out to us today!
             </p>
           </div>
+
           <ContactForm />
         </div>
       </section>

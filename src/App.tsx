@@ -38,14 +38,28 @@ const App = () => {
                   element={
                     <>
                       <Index />
-                      <div className="text-center my-8">
-                        <button
-                          onClick={() => setShowWallUpload((prev) => !prev)}
-                          className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
-                        >
-                          {showWallUpload ? "Hide Upload Form" : "List Your Wall Space"}
-                        </button>
-                      </div>
+                      {/* New Section Below Hero */}
+                      <section className="earn-money-section text-center my-8 bg-gray-100 p-8">
+                        <div className="content max-w-3xl mx-auto">
+                          <h2 className="text-3xl font-semibold mb-4">
+                            Earn Passive Income from Your Walls
+                          </h2>
+                          <p className="text-lg text-gray-700 mb-6">
+                            You can earn money by simply uploading your wall
+                            spaces. Advertisers will pay to place ads on your
+                            walls, allowing you to earn a passive income from your
+                            property. It's that simple!
+                          </p>
+                          <button
+                            onClick={() => setShowWallUpload((prev) => !prev)}
+                            className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
+                          >
+                            {showWallUpload ? "Hide Upload Form" : "Upload Your Wall"}
+                          </button>
+                        </div>
+                      </section>
+
+                      {/* Display Upload Form if Active */}
                       {showWallUpload && <WallUpload />}
                     </>
                   }

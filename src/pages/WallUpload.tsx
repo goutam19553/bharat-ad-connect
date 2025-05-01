@@ -41,47 +41,58 @@ const WallUpload: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    // Upload images to Supabase Storage
-    const uploadedImageUrls: string[] = [];
+    const files = Array.from(values.images || []);
+    const uploadedUrls: string[] = [];
 
-    for (let i = 0; i < values.images.length; i++) {
-      const imageFile = values.images[i];
-      const fileName = `${Date.now()}-${imageFile.name}`;
+    toast.loading("Uploading images...");
 
-      // Upload image to the 'wall-images' bucket
-      const { data, error: uploadError } = await supabase.storage
-        .from("wall-images") // Corrected bucket name
-        .upload(fileName, imageFile, {
-          cacheControl: "3600",
-          upsert: false, // Avoid overwriting the same file
-        });
-
-      if (uploadError) {
-        toast.error(`Error uploading image: ${uploadError.message}`);
+    // Loop through files and upload each one
+    for (const file of files) {
+      // Optional size check (10MB max)
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error(`File ${file.name} exceeds 10MB size limit.`);
         return;
       }
 
-      // Get the public URL of the uploaded image
-      const publicUrl = supabase.storage.from("wall-images").getPublicUrl(fileName).publicURL;
-      uploadedImageUrls.push(publicUrl);
+      const { data, error } = await supabase.storage
+        .from("wall-images")
+        .upload(`walls/${Date.now()}-${file.name}`, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type || "image/png", // <-- FIXED LINE
+        });
+
+      if (error) {
+        toast.error(`Failed to upload image: ${file.name}`);
+        return;
+      }
+
+      // Get the public URL of the uploaded file
+      const url = supabase.storage
+        .from("wall-images")
+        .getPublicUrl(data.path).data.publicUrl;
+
+      uploadedUrls.push(url);
     }
 
-    // Insert the form data and image URLs into the 'wall_spaces' table
-    const { error: insertError } = await supabase.from("wall_spaces").insert([
+    // Insert wall data into the database
+    const { error: dbError } = await supabase.from("wall_spaces").insert([
       {
         title: values.title,
         location: values.location,
         size: values.size,
         price: values.price,
-        image_urls: uploadedImageUrls, // Correct column name for image URLs
+        image_urls: uploadedUrls,
       },
     ]);
 
-    if (insertError) {
-      toast.error(`Error inserting data: ${insertError.message}`);
-    } else {
-      toast.success("Wall space listed successfully!");
+    if (dbError) {
+      toast.error("Failed to submit wall data.");
+      return;
     }
+
+    toast.success("Wall space listed successfully!");
+    form.reset();  // Reset the form after submission
   };
 
   return (

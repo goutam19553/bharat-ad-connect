@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,9 +21,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="transition-colors duration-300">
+  <body class="transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <!-- Dark Mode Toggle Button -->
     <button
       id="toggle-dark"
@@ -32,7 +34,11 @@
       🌓 Mode
     </button>
 
-    <div id="root"></div>
+    <!-- Root container -->
+    <div id="root" class="max-w-5xl mx-auto px-4 pt-20">
+      <h1 class="text-3xl font-bold mb-6 text-center">Available Wall Spaces</h1>
+      <div id="wallSpacesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
 
     <!-- GPT & App Scripts -->
     <script type="module" src="https://cdn.gpteng.co/gptengineer.js"></script>
@@ -48,11 +54,26 @@
       );
 
       window.addEventListener('DOMContentLoaded', async () => {
-        const { data, error } = await supabase.from('wall_spaces').select('*'); // Changed here
+        const { data, error } = await supabase.from('wall_spaces').select('*');
+        const container = document.getElementById('wallSpacesContainer');
+
         if (error) {
           console.error('Error fetching data:', error);
+          container.innerHTML = '<p class="text-red-500">Failed to load wall spaces.</p>';
+        } else if (data.length === 0) {
+          container.innerHTML = '<p class="text-gray-500">No wall spaces available.</p>';
         } else {
-          console.log('Data:', data);
+          data.forEach(space => {
+            const card = document.createElement('div');
+            card.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow border dark:border-gray-700';
+            card.innerHTML = `
+              <h2 class="text-xl font-semibold mb-2">${space.title}</h2>
+              <p><strong>📍 Location:</strong> ${space.location}</p>
+              <p><strong>📐 Size:</strong> ${space.size}</p>
+              <p><strong>💰 Price:</strong> ₹${space.price}</p>
+            `;
+            container.appendChild(card);
+          });
         }
       });
     </script>

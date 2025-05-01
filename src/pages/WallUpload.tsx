@@ -1,6 +1,6 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,8 @@ const formSchema = z.object({
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
   images: z
-    .instanceof(FileList)
-    .refine((files) => files && files.length > 0, "Please upload at least one image"),
+    .array(z.instanceof(File)) // Updated to accept an array of File objects
+    .refine((files) => files.length > 0, "Please upload at least one image"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -47,7 +47,7 @@ const WallUpload: React.FC = () => {
     for (let i = 0; i < values.images.length; i++) {
       const imageFile = values.images[i];
       const fileName = `${Date.now()}-${imageFile.name}`;
-      
+
       // Upload image to the 'wall_images' bucket
       const { data, error: uploadError } = await supabase.storage
         .from("wall_images")

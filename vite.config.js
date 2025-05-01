@@ -20,15 +20,15 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: [
       "@supabase/supabase-js",
-      "react-hook-form",  // Ensure react-hook-form is pre-bundled
+      "react-hook-form", // Explicitly include react-hook-form in optimizeDeps
     ],
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/, "@supabase/supabase-js", "react-hook-form"], // Include react-hook-form in the build process
+      include: [/node_modules/, "@supabase/supabase-js", "react-hook-form"], // Ensure it's bundled correctly
     },
     rollupOptions: {
-      external: ["react-hook-form"],  // Prevent bundling react-hook-form if needed
+      external: [], // Ensure external is empty or properly configured
     },
   },
   esbuild: {

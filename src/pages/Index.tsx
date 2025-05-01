@@ -98,38 +98,12 @@ const Index = () => {
     },
   ];
 
-  const [showWallUpload, setShowWallUpload] = useState(false);
-
-  return (
-    <div className="dark:bg-gray-900 dark:text-white">
-      {/* Hero without WallUpload */}
+        {/* Hero without WallUpload */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
-      {/* Earn Money Section Below Hero */}
-      <section className="earn-money-section text-center my-8 bg-gray-100 p-8">
-        <div className="content max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-4">
-            Earn Passive Income from Your Walls
-          </h2>
-          <p className="text-lg text-gray-700 mb-6">
-            You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls,
-            allowing you to earn a passive income from your property. It's that simple!
-          </p>
-          <button
-            onClick={() => setShowWallUpload((prev) => !prev)}
-            className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
-          >
-            {showWallUpload ? "Hide Upload Form" : "Upload Your Wall"}
-          </button>
-        </div>
-      </section>
-
-      {/* Display Upload Form if Active */}
-      {showWallUpload && <WallUpload />}
-
-      {/* Benefits Section */}
+       {/* Benefits Section */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">

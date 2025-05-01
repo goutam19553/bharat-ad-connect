@@ -197,12 +197,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* WallUpload Section - Added */}
-      <section className="section bg-white dark:bg-gray-800 py-8">
-        <WallUpload /> {/* Display WallUpload component here */}
-      </section>
-
-      {/* Brand Partnerships */}
+       {/* Brand Partnerships */}
       <section className="section bg-gray-100 dark:bg-gray-900 py-8">
         <BrandSlider />
       </section>

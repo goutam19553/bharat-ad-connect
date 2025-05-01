@@ -73,7 +73,7 @@ const WallUpload: React.FC = () => {
         location: values.location,
         size: values.size,
         price: values.price,
-        images: uploadedImageUrls, // Store the image URLs in the table
+        image_urls: uploadedImageUrls, // Corrected column name here
       },
     ]);
 

@@ -51,4 +51,22 @@ const App = () => {
                   }
                 />
                 <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
-                <Route path="/ad-spaces" element={<Ad
+                <Route path="/ad-spaces" element={<AdSpaces />} />
+                <Route path="/advertisers" element={<Advertisers />} />
+                <Route path="/list-wall-space" element={<WallSpaceOwnerSection />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/ar-solutions" element={<ARSolutions />} />
+                <Route path="/upload-wall" element={<WallUpload />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
+
+export default App;

@@ -7,7 +7,7 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
-import WallUpload from "@/pages/WallUpload"; 
+import WallUpload from "@/pages/WallUpload"; // Import WallUpload component
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -98,12 +98,14 @@ const Index = () => {
     },
   ];
 
-        {/* Hero without WallUpload */}
+  return (
+    <div>
+      {/* Hero without WallUpload */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
-       {/* Benefits Section */}
+      {/* Benefits Section */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">
@@ -193,6 +195,11 @@ const Index = () => {
           <AIDesignDemo />
           <FootTrafficDemo />
         </div>
+      </section>
+
+      {/* WallUpload Section - Added */}
+      <section className="section bg-white dark:bg-gray-800 py-8">
+        <WallUpload /> {/* Display WallUpload component here */}
       </section>
 
       {/* Brand Partnerships */}

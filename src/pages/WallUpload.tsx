@@ -1,4 +1,33 @@
-// ...imports remain unchanged
+import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Upload } from "lucide-react";
+import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
+import { supabase } from "@/lib/supabase"; // Supabase client
+
+const formSchema = z.object({
+  title: z.string().min(5, "Title must be at least 5 characters"),
+  location: z.string().min(5, "Location must be at least 5 characters"),
+  size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
+  price: z.string().min(1, "Please enter the monthly rental price"),
+  images: z
+    .instanceof(FileList)
+    .refine((files) => files && files.length > 0, "Please upload at least one image"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 const WallUpload: React.FC = () => {
   const form = useForm<FormValues>({

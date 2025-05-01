@@ -4,37 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Ad-Project | Outdoor Advertising Marketplace</title>
-    <meta name="description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
+    <meta
+      name="description"
+      content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace."
+    />
     <meta name="author" content="The Ad-Project" />
 
     <meta property="og:title" content="The Ad-Project | Outdoor Advertising Marketplace" />
-    <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
+    <meta
+      property="og:description"
+      content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <!-- Add the Supabase CDN Script -->
-    <script type="module">
-      import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
-
-      // Initialize Supabase client (replace with your actual URL and anon key)
-      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE');
-
-      // Example usage (feel free to adjust to your use case)
-      async function fetchData() {
-        const { data, error } = await supabase.from('wall-spaces').select('*');
-        if (error) {
-          console.error('Error fetching data:', error);
-        } else {
-          console.log('Data:', data);
-        }
-      }
-
-      fetchData();
-    </script>
   </head>
 
   <body class="transition-colors duration-300">
@@ -49,15 +35,33 @@
     <div id="root"></div>
 
     <!-- GPT & App Scripts -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="https://cdn.gpteng.co/gptengineer.js"></script>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Supabase Script -->
+    <script type="module">
+      import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
+
+      const supabase = createClient(
+        'https://eemwdgvywfjdvvhewglt.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE'
+      );
+
+      window.addEventListener('DOMContentLoaded', async () => {
+        const { data, error } = await supabase.from('wall_spaces').select('*'); // Changed here
+        if (error) {
+          console.error('Error fetching data:', error);
+        } else {
+          console.log('Data:', data);
+        }
+      });
+    </script>
 
     <!-- Dark Mode Script -->
     <script>
       const toggle = document.getElementById("toggle-dark");
       const html = document.documentElement;
 
-      // Load preference from localStorage
       if (localStorage.getItem("theme") === "dark") {
         html.classList.add("dark");
       }
@@ -65,7 +69,7 @@
       toggle.addEventListener("click", () => {
         html.classList.toggle("dark");
         const mode = html.classList.contains("dark") ? "dark" : "light";
-        localStorage.setItem("theme", mode); // Save preference to localStorage
+        localStorage.setItem("theme", mode);
       });
     </script>
   </body>

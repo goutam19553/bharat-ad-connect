@@ -17,6 +17,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallSpaceOwnerSection = lazy(() => import("./components/WallSpaceOwnerSection"));
 const ARSolutions = lazy(() => import("./pages/ARSolutions"));
+const WallUpload = lazy(() => import("./pages/WallUpload"));
 
 const queryClient = new QueryClient();
 
@@ -62,7 +63,7 @@ const App = () => {
                   <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />
-                  <Route path="/list-wall-space" element={<WallSpaceOwnerSection />} />
+                  <Route path="/list-wall-space" element={<WallUpload />} /> {/* Redirect to WallUpload page */}
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />

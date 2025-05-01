@@ -71,7 +71,6 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/ar-solutions" element={<ARSolutions />} />
-                <Route path="/upload-wall" element={<WallUpload />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

@@ -103,11 +103,11 @@
   .btn-primary {
     @apply bg-bharat-saffron text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
-  
+
   .btn-secondary {
     @apply bg-bharat-navy text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
-  
+
   .btn-accent {
     @apply bg-bharat-teal text-white hover:bg-opacity-90 font-bold py-3 px-6 rounded-md transition-all duration-200;
   }
@@ -123,9 +123,41 @@
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-bharat-saffron to-bharat-navy inline-block text-transparent bg-clip-text;
+  }
+
+  /* Styles for Earn Money Section */
+  .earn-money-section {
+    background: #f9fafb;
+    padding: 3rem 0;
+  }
+
+  .earn-money-section h2 {
+    color: #f56b00;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .earn-money-section p {
+    font-size: 1.125rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+  }
+
+  .earn-money-section button {
+    background: linear-gradient(135deg, #f56b00, #ff6b6b);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+
+  .earn-money-section button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff6b6b, #f56b00);
   }
 }
 

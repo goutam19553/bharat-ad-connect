@@ -67,13 +67,13 @@ const WallUpload: React.FC = () => {
     }
 
     // Insert the form data and image URLs into the 'wall_spaces' table
-    const { error: insertError } = await supabase.from("wall_spaces").insert([ // Corrected table name
+    const { error: insertError } = await supabase.from("wall_spaces").insert([
       {
         title: values.title,
         location: values.location,
         size: values.size,
         price: values.price,
-        image_urls: uploadedImageUrls, // Corrected column name here
+        image_urls: uploadedImageUrls, // Correct column name for image URLs
       },
     ]);
 

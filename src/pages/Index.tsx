@@ -7,7 +7,6 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
-import WallUpload from "@/pages/WallUpload"; // Import WallUpload component
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [

@@ -34,7 +34,7 @@ const EarnMoneySection = () => {
           You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
         </p>
         <button
-          onClick={() => navigate("/list-wall-space")}
+          onClick={() => navigate("/wall-upload")}  {/* Corrected path */}
           className="px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105 animate-pulse"
         >
           Upload Your Wall
@@ -58,17 +58,17 @@ const App = () => {
                 <Routes>
                   <Route
                     path="/"
-                    element={
+                    element={(
                       <>
                         <Index />
                         <EarnMoneySection />
                       </>
-                    }
+                    )}
                   />
                   <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />
-                  <Route path="/wall-upload" element={<WallUpload />} />
+                  <Route path="/wall-upload" element={<WallUpload />} /> {/* Make sure this route exists */}
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />

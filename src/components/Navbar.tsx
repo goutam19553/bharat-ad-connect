@@ -12,7 +12,7 @@ const Navbar = () => {
     { name: "Ad Spaces", href: "/ad-spaces" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
-    { name: "Wall Upload", href: "/upload-wall" }, // ✅ Added here
+    { name: "Wall Upload", href: "/wall-upload" }, // ✅ Added here
     { name: "AR Solutions", href: "/ar-solutions" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },

@@ -34,6 +34,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const WallUpload: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -42,6 +43,7 @@ const WallUpload: React.FC = () => {
       location: "",
       size: "",
       price: "",
+      images: undefined,
     },
   });
 
@@ -77,7 +79,7 @@ const WallUpload: React.FC = () => {
 
       const publicUrl = supabase.storage
         .from("wall-images")
-        .getPublicUrl(data.path)?.data?.publicUrl;
+        .getPublicUrl(data.path).data?.publicUrl;
 
       if (publicUrl) {
         uploadedUrls.push(publicUrl);
@@ -106,6 +108,7 @@ const WallUpload: React.FC = () => {
       form.reset();
       const fileInput = document.getElementById("wall-image-upload") as HTMLInputElement;
       if (fileInput) fileInput.value = "";
+      setPreviewUrls([]);
       setIsSubmitting(false);
     }, 1000);
   }, [form, isSubmitting]);
@@ -145,13 +148,15 @@ const WallUpload: React.FC = () => {
                       <Input
                         {...field}
                         type={fieldKey === "price" ? "number" : "text"}
-                        placeholder={fieldKey === "title"
-                          ? "e.g., Prime Commercial Wall Space - MG Road"
-                          : fieldKey === "location"
-                          ? "e.g., MG Road, Bangalore"
-                          : fieldKey === "size"
-                          ? "e.g., 20ft x 10ft"
-                          : "e.g., 25000"}
+                        placeholder={
+                          fieldKey === "title"
+                            ? "e.g., Prime Commercial Wall Space - MG Road"
+                            : fieldKey === "location"
+                            ? "e.g., MG Road, Bangalore"
+                            : fieldKey === "size"
+                            ? "e.g., 20ft x 10ft"
+                            : "e.g., 25000"
+                        }
                         className="bg-zinc-800 border border-zinc-700 placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                       />
                     </FormControl>
@@ -170,7 +175,7 @@ const WallUpload: React.FC = () => {
                     Upload Wall Space Images
                   </FormLabel>
                   <FormControl>
-                    <div className="flex items-center justify-center w-full">
+                    <div className="flex flex-col items-center justify-center w-full">
                       <label
                         htmlFor="wall-image-upload"
                         className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-purple-600 rounded-xl cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition duration-300"
@@ -190,32 +195,41 @@ const WallUpload: React.FC = () => {
                           className="hidden"
                           accept="image/*"
                           multiple
-                          onChange={(e) => field.onChange(e.target.files)}
+                          onChange={(e) => {
+                            const files = e.target.files;
+                            if (files && files.length > 0) {
+                              const urls = Array.from(files).map((file) =>
+                                URL.createObjectURL(file)
+                              );
+                              setPreviewUrls(urls);
+                            }
+                            field.onChange(e.target.files);
+                          }}
                           onBlur={field.onBlur}
                           name={field.name}
                           ref={field.ref}
                         />
                       </label>
+
+                      {previewUrls.length > 0 && (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 w-full">
+                          {previewUrls.map((url, index) => (
+                            <img
+                              key={index}
+                              src={url}
+                              alt={`Preview ${index + 1}`}
+                              className="w-full h-40 object-cover rounded-lg border border-purple-600"
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-{/* 📷 IMAGE PREVIEWS */}
-            {imagePreviews.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                {imagePreviews.map((src, idx) => (
-                  <img
-                    key={idx}
-                    src={src}
-                    alt={`Preview ${idx}`}
-                    className="rounded-lg border border-purple-500 object-cover w-full h-48"
-                  />
-                ))}
-              </div>
-            )}
-            
+
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold py-3 rounded-lg hover:brightness-110 transition-all shadow-lg"

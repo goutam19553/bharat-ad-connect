@@ -22,10 +22,6 @@ const queryClient = new QueryClient();
 
 const App = () => {
   return (
-
- return (
-    <>
-      <Index />
       <section className="earn-money-section text-center my-8 bg-gray-100 p-8">
         <div className="content max-w-3xl mx-auto">
           <h2 className="text-3xl font-semibold mb-4">

@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -20,28 +20,32 @@ const ARSolutions = lazy(() => import("./pages/ARSolutions"));
 
 const queryClient = new QueryClient();
 
-const App = () => {
+// 👇 Create the "Earn Money" section as a separate component
+const EarnMoneySection = () => {
+  const navigate = useNavigate();
+
   return (
-      <section className="earn-money-section text-center my-8 bg-gray-100 p-8">
-        <div className="content max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-4">
-            Earn Passive Income from Your Walls
-          </h2>
-          <p className="text-lg text-gray-700 mb-6">
-            You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
-          </p>
-          <button
-            onClick={() => navigate("/list-wall-space")}
-            className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-semibold rounded-full shadow-lg hover:scale-105 transition"
-          >
-            Upload Your Wall
-          </button>
-        </div>
-      </section>
-    </>
+    <section className="earn-money-section text-center my-16 bg-white dark:bg-gray-900 py-20 px-6 overflow-hidden">
+      <div className="relative z-10 max-w-3xl mx-auto text-center">
+        <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-6">
+          Earn Passive Income from Your Walls
+        </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+          You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
+        </p>
+        <button
+          onClick={() => navigate("/list-wall-space")}
+          className="px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105 animate-pulse"
+        >
+          Upload Your Wall
+        </button>
+      </div>
+    </section>
   );
 };
-    
+
+const App = () => {
+  return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -52,7 +56,15 @@ const App = () => {
             <main className="flex-grow">
               <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
                 <Routes>
-                  <Route path="/" element={<Index />} />
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <Index />
+                        <EarnMoneySection />
+                      </>
+                    }
+                  />
                   <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />

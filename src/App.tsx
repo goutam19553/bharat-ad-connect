@@ -67,6 +67,7 @@ const App = () => {
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />
+                   <Route path="/wallupload" element={<WallUpload />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

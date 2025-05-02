@@ -36,7 +36,7 @@ const App = () => {
                   <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />
-                  <Route path="/wallupload" element={<WallUpload />} />
+                  <Route path="/wall-upload" element={<WallUpload />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />

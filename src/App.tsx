@@ -17,8 +17,10 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
 const ARSolutions = lazy(() => import("./pages/ARSolutions"));
+const AdPreview = lazy(() => import("./pages/AdPreview")); // ✅ Correctly lazy load it
 
 const queryClient = new QueryClient();
+
 
 // 👇 Create the "Earn Money" section as a separate component
 const EarnMoneySection = () => {
@@ -70,6 +72,7 @@ const App = () => {
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />
                   <Route path="/wall-upload" element={<WallUpload />} /> {/* Make sure this route exists */}
+                  <Route path="/ad-preview" element={<AdPreview />} /> {/* ✅ Add this */}
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />

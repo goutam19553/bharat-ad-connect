@@ -42,6 +42,7 @@ const WallUpload: React.FC = () => {
       location: "",
       size: "",
       price: "",
+      images: undefined,
     },
   });
 
@@ -77,7 +78,7 @@ const WallUpload: React.FC = () => {
 
       const publicUrl = supabase.storage
         .from("wall-images")
-        .getPublicUrl(data.path)?.data?.publicUrl;
+        .getPublicUrl(data.path).data?.publicUrl;
 
       if (publicUrl) {
         uploadedUrls.push(publicUrl);
@@ -145,13 +146,15 @@ const WallUpload: React.FC = () => {
                       <Input
                         {...field}
                         type={fieldKey === "price" ? "number" : "text"}
-                        placeholder={fieldKey === "title"
-                          ? "e.g., Prime Commercial Wall Space - MG Road"
-                          : fieldKey === "location"
-                          ? "e.g., MG Road, Bangalore"
-                          : fieldKey === "size"
-                          ? "e.g., 20ft x 10ft"
-                          : "e.g., 25000"}
+                        placeholder={
+                          fieldKey === "title"
+                            ? "e.g., Prime Commercial Wall Space - MG Road"
+                            : fieldKey === "location"
+                            ? "e.g., MG Road, Bangalore"
+                            : fieldKey === "size"
+                            ? "e.g., 20ft x 10ft"
+                            : "e.g., 25000"
+                        }
                         className="bg-zinc-800 border border-zinc-700 placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                       />
                     </FormControl>

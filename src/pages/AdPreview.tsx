@@ -3,9 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const sampleWallImages = [
-  "/sample-walls/wall1.jpg",
-  "/sample-walls/wall2.jpg",
-  "/sample-walls/wall3.jpg",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(22).jpeg",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(24).jpeg",
+  "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/images%20(26).jpeg",
 ];
 
 const AdPreview: React.FC = () => {

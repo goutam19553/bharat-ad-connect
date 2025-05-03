@@ -8,7 +8,7 @@ const wallAdSpaces = [
     location: "MG Road, Bangalore",
     size: "40ft x 20ft",
     price: 45000,
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/1.jfif"
   },
   {
     id: 2,

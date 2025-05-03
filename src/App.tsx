@@ -71,7 +71,6 @@ const App = () => {
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/advertisers" element={<Advertisers />} />
                   <Route path="/wall-upload" element={<WallUpload />} /> {/* Make sure this route exists */}
-                  <Route path="/ad-preview" element={<AdPreview />} /> {/* ✅ Add this */}
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/ar-solutions" element={<ARSolutions />} />

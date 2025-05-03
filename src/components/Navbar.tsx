@@ -14,7 +14,6 @@ const Navbar = () => {
     { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "Wall Upload", href: "/wall-upload" }, // ✅ Added here
     { name: "AR Solutions", href: "/ar-solutions" },
-    { name: "Ad Preview", href: "/ad-preview" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];

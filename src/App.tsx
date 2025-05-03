@@ -17,7 +17,6 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
 const ARSolutions = lazy(() => import("./pages/ARSolutions"));
-const AdPreview = lazy(() => import("./pages/AdPreview")); // ✅ Correctly lazy load it
 
 const queryClient = new QueryClient();
 

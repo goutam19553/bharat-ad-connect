@@ -40,14 +40,7 @@ const ARSolutions = () => {
 
           <div className="flex flex-col items-center">
             <div className="relative w-[300px] md:w-[400px] animate-float-slow">
-              {/* Phone Frame */}
-              <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/openart-image_pRJkFJsA_1745855705344_raw-removebg-preview.png" 
-                alt="Phone Frame" 
-                className="w-full max-w-xs md:max-w-md mx-auto rounded-xl shadow-xl animate-float"
-              />
-
-              {/* AR Content inside the Phone */}
+                            {/* AR Content inside the Phone */}
               <div className="absolute top-[12%] left-[10%] w-[80%] h-[76%] overflow-hidden rounded-3xl shadow-inner">
                 <video 
                   src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback%20(1).mp4"

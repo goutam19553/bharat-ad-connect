@@ -70,7 +70,7 @@ const App = () => {
                   />
                   <Route path="/ad-space-owners" element={<AdSpaceOwners />} />
                   <Route path="/ad-spaces" element={<AdSpaces />} />
-                  <Route path="/ai-analytics" element={<AIAnalytics /> />
+                  <Route path="/ai-analytics" element={<AIAnalytics />} />
                   <Route path="/advertisers" element={<Advertisers />} />
                   <Route path="/wall-upload" element={<WallUpload />} /> {/* Make sure this route exists */}
                   <Route path="/about" element={<About />} />

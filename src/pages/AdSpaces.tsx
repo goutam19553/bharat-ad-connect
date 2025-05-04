@@ -28,7 +28,7 @@ const AdSpaces = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image: "",
       rating: 4,
       featured: true
     },

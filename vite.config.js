@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: [
       "@supabase/supabase-js",
-      "framer-motion", // Force Vite to optimize it
+      "framer-motion",
     ],
   },
   build: {
@@ -28,11 +28,11 @@ export default defineConfig(({ mode }) => ({
       include: [
         /node_modules/,
         "@supabase/supabase-js",
-        "framer-motion" // Add this here as well
+        "framer-motion",
       ],
     },
     rollupOptions: {
-      // Keep default unless you're doing something custom
+      external: [], // Ensure `framer-motion` is NOT externalized
     },
   },
 }));

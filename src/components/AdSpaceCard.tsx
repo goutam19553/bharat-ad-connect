@@ -22,17 +22,29 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
   return (
     <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden card-hover transition-colors duration-300">
       <div className="relative">
-        <img
-          src={adSpace.image}
-          alt={adSpace.title}
-          className="w-full h-48 object-cover"
-        />
+        {adSpace.type === "Digital LED Flying Drones" ? (
+          <video
+            src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback.mp4" // Replace with your actual drone ad video URL
+            controls
+            autoPlay
+            loop
+            muted
+            className="w-full h-48 object-cover"
+          />
+        ) : (
+          <img
+            src={adSpace.image}
+            alt={adSpace.title}
+            className="w-full h-48 object-cover"
+          />
+        )}
         {adSpace.featured && (
           <div className="absolute top-0 right-0 bg-bharat-saffron text-white py-1 px-3 text-xs font-bold uppercase">
             Featured
           </div>
         )}
       </div>
+
       <div className="p-4">
         <div className="flex justify-between items-start">
           <h3 className="text-lg font-heading font-semibold text-bharat-navy dark:text-white truncate">
@@ -42,21 +54,19 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
             {adSpace.type}
           </div>
         </div>
-        
+
         <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
           <MapPin className="h-4 w-4 text-bharat-teal mr-1" />
           <p className="text-sm truncate">{adSpace.location}, {adSpace.city}</p>
         </div>
-        
+
         <div className="mt-3 flex items-center justify-between">
           <p className="text-sm text-gray-500 dark:text-gray-400">Size: {adSpace.size}</p>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-4 h-4 ${
-                  i < adSpace.rating ? "text-yellow-500" : "text-gray-300 dark:text-gray-600"
-                }`}
+                className={`w-4 h-4 ${i < adSpace.rating ? "text-yellow-500" : "text-gray-300 dark:text-gray-600"}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >

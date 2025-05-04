@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -20,20 +20,19 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: [
       "@supabase/supabase-js",
-      "react-hook-form", // Explicitly include react-hook-form in optimizeDeps
+      "framer-motion", // Force Vite to optimize it
     ],
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/, "@supabase/supabase-js", "react-hook-form"], // Ensure it's bundled correctly
+      include: [
+        /node_modules/,
+        "@supabase/supabase-js",
+        "framer-motion" // Add this here as well
+      ],
     },
     rollupOptions: {
-      external: [], // Ensure external is empty or properly configured
+      // Keep default unless you're doing something custom
     },
-  },
-  esbuild: {
-    loader: "tsx",  // Assuming you're using TS/JSX files
-    jsxFactory: "React.createElement",
-    jsxFragment: "React.Fragment",
   },
 }));

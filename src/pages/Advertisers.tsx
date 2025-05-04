@@ -191,23 +191,8 @@ const Advertisers = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section bg-bharat-navy text-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Success Stories
-            </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              See how businesses across India have transformed their outdoor advertising strategy with Bharat-Ad
-            </p>
-          </div>
-
-          {/* Testimonials Content */}
-          {/* ... (no change needed here, already optimized for dark bg) */}
-        </div>
-      </section>
-
+     
+             
       {/* Contact Form */}
       <section className="section bg-white dark:bg-gray-900">
         <div className="container-custom">

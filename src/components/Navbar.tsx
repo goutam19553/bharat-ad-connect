@@ -10,6 +10,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Ad Spaces", href: "/ad-spaces" },
+    { name: "AI Analytics", href: "ai-analytics" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "Wall Upload", href: "/wall-upload" }, // ✅ Added here

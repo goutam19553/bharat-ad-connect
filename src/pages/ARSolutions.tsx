@@ -50,7 +50,7 @@ const ARSolutions = () => {
               {/* AR Content inside the Phone */}
               <div className="absolute top-[12%] left-[10%] w-[80%] h-[76%] overflow-hidden rounded-3xl shadow-inner">
                 <video 
-                  src="your-ar-example-video1.mp4"
+                  src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback%20(1).mp4"
                   autoPlay 
                   loop 
                   muted 

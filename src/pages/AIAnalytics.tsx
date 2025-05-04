@@ -109,7 +109,7 @@ const chartConfig = {
 // Analysis types
 type AnalysisType = 'demographics' | 'insights' | 'prediction';
 
-const AIAnalyticsSection = () => {
+const AIAnalytics = () => {
   const [activeAnalysis, setActiveAnalysis] = useState<AnalysisType>('demographics');
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
@@ -576,4 +576,4 @@ const AIAnalyticsSection = () => {
   );
 };
 
-export default AIAnalyticsSection;
+export default AIAnalytics;

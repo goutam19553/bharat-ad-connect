@@ -8,7 +8,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChartPie, BrainCircuit, LightbulbIcon, Zap } from "lucide-react";
-
+import { motion } from "framer-motion";
 
 // Mock data for demographics
 const demographicData = [

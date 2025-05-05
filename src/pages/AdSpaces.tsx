@@ -52,7 +52,7 @@ const AdSpaces = () => {
       type: "Mall",
       size: "12 x 8 feet",
       price: 32000,
-      image: "https://source.unsplash.com/photo-1493397212122-2b85dda8106b",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%201_4_11zon.jpg",
       rating: 4
     },
     {
@@ -63,7 +63,7 @@ const AdSpaces = () => {
       type: "Billboard",
       size: "40 x 20 feet",
       price: 35000,
-      image: "https://source.unsplash.com/photo-1501854140801-50d01698950b",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%202_8_11zon.jpg",
       rating: 3
     },
     {
@@ -74,7 +74,7 @@ const AdSpaces = () => {
       type: "Street Furniture",
       size: "8 x 4 feet",
       price: 15000,
-      image: "https://source.unsplash.com/photo-1460925895917-afdab827c52f",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%203_7_11zon.jpg",
       rating: 4
     },
     {
@@ -85,7 +85,7 @@ const AdSpaces = () => {
       type: "Digital Screen",
       size: "15 x 10 feet",
       price: 28000,
-      image: "https://source.unsplash.com/photo-1498050108023-c5249f4df085",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%204_3_11zon.jpg",
       rating: 5
     },
     {
@@ -96,7 +96,7 @@ const AdSpaces = () => {
       type: "Digital Screen",
       size: "18 x 12 feet",
       price: 55000,
-      image: "https://source.unsplash.com/photo-1483058712412-4245e9b90334",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%205_6_11zon.jpg",
       rating: 5
     },
     {
@@ -107,7 +107,7 @@ const AdSpaces = () => {
       type: "Billboard",
       size: "25 x 15 feet",
       price: 30000,
-      image: "https://source.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%206_5_11zon.jpg",
       rating: 3
     }
   ];

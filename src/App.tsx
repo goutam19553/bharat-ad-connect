@@ -63,8 +63,8 @@ const App = () => {
                     path="/"
                     element={(
                       <>
-                       <EarnMoneySection />
                         <Index />
+                        <EarnMoneySection />
                       </>
                     )}
                   />

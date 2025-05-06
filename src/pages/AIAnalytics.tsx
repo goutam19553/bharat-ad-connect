@@ -567,9 +567,9 @@ const AIAnalytics = () => {
         </div>
       </CardContent>
     </Card>
-  </div>
-)}
-
+    </motion.div>
+    </div>
+  );
 };
 
 export default AIAnalytics;

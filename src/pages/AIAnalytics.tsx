@@ -110,15 +110,16 @@ const chartConfig = {
 type AnalysisType = 'demographics' | 'insights' | 'prediction';
 
 
- const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+ 
 
 const AIAnalytics = () => {
   const [activeAnalysis, setActiveAnalysis] = useState<AnalysisType>('demographics');
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
 
+  const fadeInVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
  
   };
 

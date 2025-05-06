@@ -562,12 +562,12 @@ const AIAnalytics = () => {
             </span>
             <span className={`px-3 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-800'}`}>
               AI-Generated
-            </span>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-    </motion.div>
+                </span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 };

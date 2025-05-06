@@ -79,7 +79,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/advertisers" className="text-gray-300 hover:text-bharat-saffron">
+                <Link to="/ai-analytics" className="text-gray-300 hover:text-bharat-saffron">
                   AI Design Recommendations
                 </Link>
               </li>

@@ -422,162 +422,154 @@ const AIAnalytics = () => {
           )}
 
           {activeAnalysis === 'prediction' && (
-            <div className="p-6 lg:p-8">
-              <div className="mb-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className={`text-xl font-semibold flex items-center ${isDarkMode ? 'text-white' : 'text-ad-blue'}`}>
-                    <Zap className="w-5 h-5 mr-2" />
-                    AI Performance Prediction
-                  </h3>
-                  <Badge variant="outline" className={`${isDarkMode ? 'border-ad-purple text-ad-purple' : 'border-ad-blue text-ad-blue'}`}>
-                    Predictive Engine v2.5
-                  </Badge>
-                </div>
-                
-                <div className="bg-gradient-to-br from-transparent via-transparent to-ad-purple/5 rounded-xl p-4 mb-6">
-                  <div className="h-72">
-                    <ChartContainer config={chartConfig}>
-                      <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart
-                          data={predictionData}
-                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke={isDarkMode ? "#444" : "#eee"} />
-                          <XAxis 
-                            dataKey="month" 
-                            fontSize={12} 
-                            tick={{ fill: isDarkMode ? "#ccc" : "#333" }} 
-                          />
-                          <YAxis 
-                            fontSize={12} 
-                            tick={{ fill: isDarkMode ? "#ccc" : "#333" }} 
-                          />
-                          <ChartTooltip 
-                            content={<ChartTooltipContent />} 
-                          />
-                          <Legend />
-                          <Area type="monotone" dataKey="actual" stackId="1" stroke="var(--color-actual)" fill="var(--color-actual)" fillOpacity={0.2} />
-                          <Area type="monotone" dataKey="predicted" stackId="2" stroke="var(--color-predicted)" fill="var(--color-predicted)" fillOpacity={0.2} />
-                          <Area type="monotone" dataKey="potential" stackId="3" stroke="var(--color-potential)" fill="var(--color-potential)" fillOpacity={0.2} />
-                        </AreaChart>
-                      </ResponsiveContainer>
-                    </ChartContainer>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
-                  <div className={`h-2 bg-gradient-to-r from-green-400 to-green-600`}></div>
-                  <CardContent className="pt-6">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>ROI Prediction</p>
-                        <h4 className={`text-3xl font-bold mt-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+24%</h4>
-                      </div>
-                      <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-green-900/30' : 'bg-green-50'}`}>
-                        <svg className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-500'}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="mt-4">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                        <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '75%' }}></div>
-                      </div>
-                    </div>
-                    <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                      Estimated increase with optimized targeting
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
-                  <div className={`h-2 bg-gradient-to-r from-purple-400 to-purple-600`}></div>
-                  <CardContent className="pt-6">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Brand Recall</p>
-                        <h4 className={`text-3xl font-bold mt-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+18%</h4>
-                      </div>
-                      <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-purple-900/30' : 'bg-purple-50'}`}>
-                        <svg className={`w-6 h-6 ${isDarkMode ? 'text-purple-400' : 'text-purple-500'}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="mt-4">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                        <div className="bg-purple-500 h-1.5 rounded-full" style={{ width: '65%' }}></div>
-                      </div>
-                    </div>
-                    <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                      Projected improvement with AI-suggested creative
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
-                  <div className={`h-2 bg-gradient-to-r from-orange-400 to-orange-600`}></div>
-                  <CardContent className="pt-6">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Conversion Rate</p>
-                        <h4 className={`text-3xl font-bold mt-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+15%</h4>
-                      </div>
-                      <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-orange-900/30' : 'bg-orange-50'}`}>
-                        <svg className={`w-6 h-6 ${isDarkMode ? 'text-orange-400' : 'text-orange-500'}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M16 21V5C16 3.89543 15.1046 3 14 3H10C8.89543 3 8 3.89543 8 5V21M3 7H21M5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="mt-4">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
-                        <div className="bg-orange-500 h-1.5 rounded-full" style={{ width: '55%' }}></div>
-                      </div>
-                    </div>
-                    <p className={`mt-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                      Expected improvement with optimal placement strategy
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              
-              <Card className={`${isDarkMode ? 'bg-gray-800/80 border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
-                <CardHeader className="pb-2">
-                  <CardTitle className={`text-lg flex items-center ${isDarkMode ? 'text-white' : 'text-ad-blue'}`}>
-                    <BrainCircuit className="w-5 h-5 mr-2" />
-                    AI Recommendation Engine
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-900/90' : 'bg-white'} border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                    <div className="flex items-center mb-3">
-                      <div className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-ad-purple' : 'bg-ad-blue'} mr-2`}></div>
-                      <h5 className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Strategic Recommendation</h5>
-                    </div>
-                    <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
-                      Based on our predictive models, allocating 60% of your budget to digital displays in high-traffic business districts 
-                      during morning hours (7-9AM) will maximize ROI and brand recall. Focus creative content on local landmarks with blue 
-                      color schemes to enhance engagement with your key demographic segments.
-                    </p>
-                    <div className="mt-4 flex items-center">
-                      <div className={`px-3 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-800'} mr-2`}>
-                        94% Confidence
-                      </div>
-                      <div className={`px-3 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-800'}`}>
-                        AI-Generated
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-        </motion.div>
+  <div className="p-6 lg:p-8 space-y-8">
+    {/* Header */}
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className={`text-xl font-semibold flex items-center ${isDarkMode ? 'text-white' : 'text-ad-blue'}`}>
+          <Zap className="w-5 h-5 mr-2" />
+          AI Performance Prediction
+        </h3>
+        <Badge variant="outline" className={`${isDarkMode ? 'border-ad-purple text-ad-purple' : 'border-ad-blue text-ad-blue'}`}>
+          Predictive Engine v2.5
+        </Badge>
       </div>
-    </section>
-  );
+
+      {/* Chart */}
+      <div className="bg-gradient-to-br from-transparent via-transparent to-ad-purple/5 rounded-xl p-4 mb-6">
+        <div className="h-72">
+          <ChartContainer config={chartConfig}>
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={predictionData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={isDarkMode ? "#444" : "#eee"} />
+                <XAxis dataKey="month" fontSize={12} tick={{ fill: isDarkMode ? "#ccc" : "#333" }} />
+                <YAxis fontSize={12} tick={{ fill: isDarkMode ? "#ccc" : "#333" }} />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Legend />
+                <Area type="monotone" dataKey="actual" stackId="1" stroke="var(--color-actual)" fill="var(--color-actual)" fillOpacity={0.2} />
+                <Area type="monotone" dataKey="predicted" stackId="2" stroke="var(--color-predicted)" fill="var(--color-predicted)" fillOpacity={0.2} />
+                <Area type="monotone" dataKey="potential" stackId="3" stroke="var(--color-potential)" fill="var(--color-potential)" fillOpacity={0.2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartContainer>
+        </div>
+      </div>
+    </div>
+
+    {/* Prediction Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* ROI Prediction */}
+      <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
+        <div className="h-2 bg-gradient-to-r from-green-400 to-green-600"></div>
+        <CardContent className="pt-6">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <p className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>ROI Prediction</p>
+              <h4 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+24%</h4>
+            </div>
+            <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-green-900/30' : 'bg-green-50'}`}>
+              <svg className={`w-6 h-6 ${isDarkMode ? 'text-green-400' : 'text-green-500'}`} fill="none" viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div className="mt-3">
+            <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+              <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '75%' }}></div>
+            </div>
+          </div>
+          <p className={`mt-4 text-sm leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            Estimated increase with optimized targeting
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Brand Recall */}
+      <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
+        <div className="h-2 bg-gradient-to-r from-purple-400 to-purple-600"></div>
+        <CardContent className="pt-6">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <p className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Brand Recall</p>
+              <h4 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+18%</h4>
+            </div>
+            <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-purple-900/30' : 'bg-purple-50'}`}>
+              <svg className={`w-6 h-6 ${isDarkMode ? 'text-purple-400' : 'text-purple-500'}`} fill="none" viewBox="0 0 24 24">
+                <path d="..." stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div className="mt-3">
+            <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+              <div className="bg-purple-500 h-1.5 rounded-full" style={{ width: '65%' }}></div>
+            </div>
+          </div>
+          <p className={`mt-4 text-sm leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            Projected improvement with AI-suggested creative
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Conversion Rate */}
+      <Card className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden`}>
+        <div className="h-2 bg-gradient-to-r from-orange-400 to-orange-600"></div>
+        <CardContent className="pt-6">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <p className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Conversion Rate</p>
+              <h4 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>+15%</h4>
+            </div>
+            <div className={`p-2 rounded-lg ${isDarkMode ? 'bg-orange-900/30' : 'bg-orange-50'}`}>
+              <svg className={`w-6 h-6 ${isDarkMode ? 'text-orange-400' : 'text-orange-500'}`} fill="none" viewBox="0 0 24 24">
+                <path d="..." stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div className="mt-3">
+            <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+              <div className="bg-orange-500 h-1.5 rounded-full" style={{ width: '55%' }}></div>
+            </div>
+          </div>
+          <p className={`mt-4 text-sm leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            Expected improvement with optimal placement strategy
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+
+    {/* Recommendation Box */}
+    <Card className={`${isDarkMode ? 'bg-gray-800/80 border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
+      <CardHeader className="pb-2">
+        <CardTitle className={`text-lg flex items-center ${isDarkMode ? 'text-white' : 'text-ad-blue'}`}>
+          <BrainCircuit className="w-5 h-5 mr-2" />
+          AI Recommendation Engine
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-900/90' : 'bg-white'} border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+          <div className="flex items-center mb-3">
+            <div className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-ad-purple' : 'bg-ad-blue'} mr-2`}></div>
+            <h5 className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Strategic Recommendation</h5>
+          </div>
+          <p className={`leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            Based on our predictive models, allocating 60% of your budget to digital displays in high-traffic business districts 
+            during morning hours (7–9AM) will maximize ROI and brand recall. Focus creative content on local landmarks with blue 
+            color schemes to enhance engagement with your key demographic segments.
+          </p>
+          <div className="mt-4 flex items-center gap-2">
+            <span className={`px-3 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-800'}`}>
+              94% Confidence
+            </span>
+            <span className={`px-3 py-1 rounded-full text-xs font-medium ${isDarkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-800'}`}>
+              AI-Generated
+            </span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+)}
+
 };
 
 export default AIAnalytics;

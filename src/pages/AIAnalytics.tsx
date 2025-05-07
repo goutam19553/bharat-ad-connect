@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import ReactECharts from 'echarts-for-react';
 import 'echarts-gl';
 import Switch from 'react-switch';
-import 'echarts/map/js/india';
+import indiaMap from 'echarts-countries-js/dist/india.json';
+import * as echarts from 'echarts';
+
+// Register the India map manually
+echarts.registerMap('india', indiaMap);
+
 
 const AIAnalytics = () => {
   const [darkMode, setDarkMode] = useState(true);

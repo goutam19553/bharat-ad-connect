@@ -3,7 +3,8 @@ import ReactECharts from 'echarts-for-react';
 import 'echarts-gl';
 import Switch from 'react-switch';
 import * as echarts from 'echarts';
-import 'echarts-countries-js/india.js'; // Static import
+import { india } from 'echarts-countries-js';
+
 
 const AIAnalytics = () => {
   const [darkMode, setDarkMode] = useState(true);

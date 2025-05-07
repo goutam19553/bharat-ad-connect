@@ -21,7 +21,8 @@ export default defineConfig(({ mode }) => ({
     include: [
       "@supabase/supabase-js",
       "framer-motion",
-      "echarts-for-react", // ✅ Added to fix Netlify build issue
+      "echarts-for-react",
+      "echarts-gl", // ✅ Make sure to include 'echarts-gl' if you're using it directly
     ],
   },
   build: {
@@ -30,11 +31,12 @@ export default defineConfig(({ mode }) => ({
         /node_modules/,
         "@supabase/supabase-js",
         "framer-motion",
-        "echarts-for-react", // ✅ Ensure it's included in CommonJS processing
+        "echarts-for-react",
+        "echarts-gl", // ✅ Ensure 'echarts-gl' is handled during CommonJS processing
       ],
     },
     rollupOptions: {
-      external: [], // ✅ Leave empty to avoid externalizing necessary packages
+      external: [], // ✅ Keep empty to ensure necessary packages are bundled
     },
   },
 }));

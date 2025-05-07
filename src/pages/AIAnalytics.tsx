@@ -3,6 +3,7 @@ import ReactECharts from 'echarts-for-react';
 import 'echarts-gl';
 import Switch from 'react-switch';
 import * as echarts from 'echarts';
+import 'echarts-countries-js/india.js';
 
 const AIAnalytics = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -12,7 +13,7 @@ const AIAnalytics = () => {
 
   useEffect(() => {
     const registerIndiaMap = async () => {
-      const indiaMap = await import('echarts-countries-js/dist/india.js');
+      const indiaMap = await import('echarts-countries-js/india.js');
       echarts.registerMap('india', indiaMap.default);
     };
     registerIndiaMap();

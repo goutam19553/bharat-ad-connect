@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 import 'echarts-gl';
 import Switch from 'react-switch';
-import indiaMap from 'echarts-countries-js/dist/india.json';
 import * as echarts from 'echarts';
-
-// Register the India map manually
-echarts.registerMap('india', indiaMap);
-
 
 const AIAnalytics = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -15,7 +10,14 @@ const AIAnalytics = () => {
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
-  // Filtered data simulation
+  useEffect(() => {
+    const registerIndiaMap = async () => {
+      const indiaMap = await import('echarts-countries-js/dist/india.json');
+      echarts.registerMap('india', indiaMap.default);
+    };
+    registerIndiaMap();
+  }, []);
+
   const regions = {
     All: [
       { name: 'Delhi', value: [77.1025, 28.7041, 120] },

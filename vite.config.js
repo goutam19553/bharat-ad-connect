@@ -15,15 +15,20 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "echarts/map/js/india": path.resolve(__dirname, "node_modules/echarts/map/js/india.js"), // Ensure correct path to india.js
+      // Correct the alias to reflect the correct path for india.js
+      "echarts-countries-js/india": path.resolve(
+        __dirname,
+        "node_modules/echarts-countries-js/india.js"
+      ),
     },
   },
   optimizeDeps: {
     include: [
       "@supabase/supabase-js",
       "framer-motion",
-      "echarts-for-react", // ✅ Added to fix Netlify build issue
-      "echarts", // Ensure that echarts is included
+      "echarts-for-react",
+      "echarts", // Make sure echarts is included
+      "echarts-countries-js", // Explicitly add echarts-countries-js
     ],
   },
   build: {
@@ -32,12 +37,13 @@ export default defineConfig(({ mode }) => ({
         /node_modules/,
         "@supabase/supabase-js",
         "framer-motion",
-        "echarts-for-react", // ✅ Ensure it's included in CommonJS processing
-        "echarts", // Ensure echarts is bundled correctly
+        "echarts-for-react",
+        "echarts",
+        "echarts-countries-js", // Include the echarts-countries-js in the CommonJS processing
       ],
     },
     rollupOptions: {
-      external: [], // ✅ Leave empty to avoid externalizing necessary packages
+      external: [], // Make sure nothing necessary is externalized unless needed
     },
   },
 }));

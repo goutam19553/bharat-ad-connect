@@ -12,7 +12,7 @@ const AIAnalytics = () => {
 
   useEffect(() => {
     const registerIndiaMap = async () => {
-      const indiaMap = await import('echarts-countries-js/echarts-countries-js/india.js');
+      const indiaMap = await import('echarts/echarts-countries-js/india.js');
       echarts.registerMap('india', indiaMap.default);
     };
     registerIndiaMap();

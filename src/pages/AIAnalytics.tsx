@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react';
 import 'echarts-gl';
 import Switch from 'react-switch';
 import * as echarts from 'echarts';
-import 'echarts-countries-js/india.js';
+import 'echarts-countries-js';  // No need to import india.js directly here
 
 const AIAnalytics = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -13,8 +13,12 @@ const AIAnalytics = () => {
 
   useEffect(() => {
     const registerIndiaMap = async () => {
-      const indiaMap = await import('echarts-countries-js/india.js');
-      echarts.registerMap('india', indiaMap.default);
+      try {
+        const indiaMap = await import('echarts-countries-js/india.js');  // Dynamically import the map
+        echarts.registerMap('india', indiaMap);  // Register the map with ECharts
+      } catch (error) {
+        console.error('Error loading India map:', error);
+      }
     };
     registerIndiaMap();
   }, []);
@@ -69,7 +73,7 @@ const AIAnalytics = () => {
 
   const geoOptions = {
     geo3D: {
-      map: 'india',
+      map: 'india',  // Use the registered map
       shading: 'lambert',
       light: { main: { intensity: 1.2 }, ambient: { intensity: 0.3 } },
       viewControl: { autoRotate: true },

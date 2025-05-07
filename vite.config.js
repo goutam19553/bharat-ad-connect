@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => ({
     include: [
       "@supabase/supabase-js",
       "framer-motion",
+      "echarts-for-react", // ✅ Added to fix Netlify build issue
     ],
   },
   build: {
@@ -29,10 +30,11 @@ export default defineConfig(({ mode }) => ({
         /node_modules/,
         "@supabase/supabase-js",
         "framer-motion",
+        "echarts-for-react", // ✅ Ensure it's included in CommonJS processing
       ],
     },
     rollupOptions: {
-      external: [], // Ensure `framer-motion` is NOT externalized
+      external: [], // ✅ Leave empty to avoid externalizing necessary packages
     },
   },
 }));

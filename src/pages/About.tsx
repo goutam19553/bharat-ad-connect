@@ -4,13 +4,13 @@ const About = () => {
   const teamMembers = [
     {
       name: "Goutam N P",
-      position: "Founder & CTO",
+      position: "DIRECTOR",
       bio: "Former marketing executive with 5 years experience in outdoor & tech advertising across major Indian markets.",
       image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/IMG_20241203_093333%7E2.jpg"
     },
     {
       name: "Zeeshan M",
-      position: "CEO & head of Partnerships",
+      position: "DIRECTOR",
       bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
       image:"https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/WhatsApp%20Image%202025-04-21%20at%2014.18.03.jpeg"
     },

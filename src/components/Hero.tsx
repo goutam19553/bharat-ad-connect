@@ -83,18 +83,7 @@ const Hero = () => {
                   </Link>
                 </div>
 
-                {/* AI & AR Experience Button */}
-                <div className="mt-6 w-full flex justify-center lg:justify-start">
-                  <Link
-                    to="/ai-analytics"
-                    className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-                  >
-                    AI & AR Experience
-                  </Link>
-                </div>
-              </div>
-            </div>
-
+               
             <div className="relative">
               <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
                 <img src="/images/your-image.jpg" alt="Discover" className="rounded-lg w-full h-auto" />
@@ -110,6 +99,19 @@ const Hero = () => {
                 </div>
               </div>
             </div>
+
+ {/* AI & AR Experience Button */}
+                <div className="mt-6 w-full flex justify-center lg:justify-start">
+                  <Link
+                    to="/ai-analytics"
+                    className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
+                  >
+                    AI & AR Experience
+                  </Link>
+                </div>
+              </div>
+            </div>
+                
           </div>
         </div>
       </div>

@@ -98,7 +98,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ✅ AI & AR Button moved below everything */}
+          {/* ✅ "AI & AR Experience" Button Positioned Below All Content */}
           <div className="mt-12 flex justify-center">
             <Link
               to="/ai-analytics"

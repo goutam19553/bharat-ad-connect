@@ -69,7 +69,7 @@ const Hero = () => {
                 making outdoor advertising smarter, simpler, and more effective.
               </p>
 
-              {/* Explore & Learn Buttons + AI Button below */}
+              {/* Buttons Section */}
               <div className="mt-8 flex flex-col items-center lg:items-start">
                 <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                   <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
@@ -83,7 +83,7 @@ const Hero = () => {
                   </Link>
                 </div>
 
-                {/* AI & AR Experience Button (below) */}
+                {/* AI & AR Experience Button */}
                 <div className="mt-6 w-full flex justify-center lg:justify-start">
                   <Link
                     to="/ai-analytics"

@@ -314,16 +314,16 @@
   box-shadow: 6px 6px 12px #4a58e2, -6px -6px 12px #6e7dff;
   transition: all 0.3s ease;
   cursor: pointer;
-  /* animation: floatingLeftToRight 10s linear infinite; */ /* Removed the animation */
+  animation: floatingLeftToRight 20s linear infinite; /* Added the animation with slow speed */
 }
 
 /* Keyframe Animation for Full Width Movement */
 @keyframes floatingLeftToRight {
   0% {
-    transform: translateX(0); /* Start at the left corner */
+    transform: translateX(-100vw); /* Start from the left outside the viewport */
   }
   100% {
-    transform: translateX(100vw); /* Move to the right corner */
+    transform: translateX(100vw); /* Move to the right outside the viewport */
   }
 }
 
@@ -336,25 +336,14 @@
   left: 50%;
   width: 100%;
   height: 100%;
-  border-radius: 1.5rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: -1;
   transition: all 0.3s ease;
-  transform: translate(-50%, -50%);
 }
 
-.btn-3d::before {
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+.btn-3d:hover::before,
+.btn-3d:hover::after {
+  transform: scale(1.1);
 }
 
-.btn-3d::after {
-  box-shadow: -4px -4px 10px rgba(255, 255, 255, 0.25);
-}
-
-.btn-3d:hover {
-  transform: translateY(-5px);
-  box-shadow: 10px 10px 20px #4a58e2, -10px -10px 20px #6e7dff;
-}
-
-.btn-3d:active {
-  transform: translateY(2px);
-  box-shadow: 4px 4px 8px #4a58e2, -4px -4px 8px #6e7dff;
-}

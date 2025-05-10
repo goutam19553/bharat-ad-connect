@@ -13,11 +13,17 @@ const Hero = () => {
 
   return (
     <>
-      {/* 3D Loading Spinner */}
+      {/* 3D Cube Spinner */}
       {isLoading && (
         <div className="loader-container">
-          <div className="spinner"></div>
-          <div className="loader-text">Loading...</div>
+          <div className="cube-spinner">
+            <div className="front"></div>
+            <div className="back"></div>
+            <div className="left"></div>
+            <div className="right"></div>
+            <div className="top"></div>
+            <div className="bottom"></div>
+          </div>
         </div>
       )}
 

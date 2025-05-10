@@ -69,26 +69,29 @@ const Hero = () => {
                 making outdoor advertising smarter, simpler, and more effective.
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
-                  Explore Ad Spaces
-                </Link>
-                <Link
-                  to="/about"
-                  className="bg-white/90 backdrop-blur-sm text-bharat-navy hover:bg-white font-bold py-3 px-6 rounded-md transition-all duration-200 hover:scale-105"
-                >
-                  Learn More
-                </Link>
-              </div>
+              {/* Explore & Learn Buttons + AI Button below */}
+              <div className="mt-8 flex flex-col items-center lg:items-start">
+                <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                  <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
+                    Explore Ad Spaces
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="bg-white/90 backdrop-blur-sm text-bharat-navy hover:bg-white font-bold py-3 px-6 rounded-md transition-all duration-200 hover:scale-105"
+                  >
+                    Learn More
+                  </Link>
+                </div>
 
-              {/* AI & AR Experience Button moved below */}
-              <div className="mt-8 flex justify-center">
-                <Link
-                  to="/ai-analytics" // Modify this URL to the actual route for the experience page
-                  className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-                >
-                  AI & AR Experience
-                </Link>
+                {/* AI & AR Experience Button (below) */}
+                <div className="mt-6 w-full flex justify-center lg:justify-start">
+                  <Link
+                    to="/ai-analytics"
+                    className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
+                  >
+                    AI & AR Experience
+                  </Link>
+                </div>
               </div>
             </div>
 

@@ -325,7 +325,7 @@
     transform: translateX(0); /* Start position */
   }
   50% {
-    transform: translateX(15px); /* Move 15px to the right */
+    transform: translateX(40px); /* Move 15px to the right */
   }
   100% {
     transform: translateX(0); /* Return to the start position */

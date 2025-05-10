@@ -174,3 +174,62 @@
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
+
+/* Typing Animation */
+.typing-effect {
+  display: inline-block;
+  border-right: 4px solid #fff;
+  padding-right: 5px;
+  animation: typing 2.5s steps(40) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch 1s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch 1s infinite linear alternate-reverse;
+  animation-delay: 0.2s;
+}
+
+@keyframes glitch {
+  0% {
+    transform: skew(-0.5deg);
+    left: -2px;
+    top: 2px;
+  }
+  100% {
+    transform: skew(0.5deg);
+    left: 2px;
+    top: -2px;
+  }
+}
+

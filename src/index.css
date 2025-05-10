@@ -316,8 +316,23 @@
   box-shadow: 6px 6px 12px #4a58e2, -6px -6px 12px #6e7dff;
   transition: all 0.3s ease;
   cursor: pointer;
+  animation: floatingLeftRight 6s ease-in-out infinite;
 }
 
+/* Keyframe Animation for Left to Right Movement */
+@keyframes floatingLeftRight {
+  0% {
+    transform: translateX(0); /* Start position */
+  }
+  50% {
+    transform: translateX(15px); /* Move 15px to the right */
+  }
+  100% {
+    transform: translateX(0); /* Return to the start position */
+  }
+}
+
+/* 3D Button Shadow Effects */
 .btn-3d::before,
 .btn-3d::after {
   content: "";
@@ -348,4 +363,3 @@
   transform: translateY(2px);
   box-shadow: 4px 4px 8px #4a58e2, -4px -4px 8px #6e7dff;
 }
-

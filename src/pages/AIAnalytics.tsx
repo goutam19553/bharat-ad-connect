@@ -1,10 +1,16 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AIAnalytics = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
+    // Push homepage into history before redirect
+    window.history.pushState(null, '', '/');
+    
     const timer = setTimeout(() => {
-      window.location.href = 'https://neww-coral.vercel.app/';
-    }, 2000); // 2 seconds for smooth transition
+      window.location.replace('https://neww-coral.vercel.app/');
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,6 +28,23 @@ const AIAnalytics = () => {
     }}>
       <div className="spinner-3d" />
       <p style={{ marginTop: '20px', fontSize: '18px' }}>Redirecting to AI Analytics...</p>
+
+      <button
+        onClick={() => navigate('/')}
+        style={{
+          marginTop: '30px',
+          padding: '10px 20px',
+          fontSize: '16px',
+          borderRadius: '8px',
+          border: 'none',
+          backgroundColor: '#4ade80',
+          color: '#0f0f0f',
+          cursor: 'pointer',
+          transition: 'background 0.3s ease'
+        }}
+      >
+        Back to Home
+      </button>
 
       <style>
         {`

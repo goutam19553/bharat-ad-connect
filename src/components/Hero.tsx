@@ -83,7 +83,7 @@ const Hero = () => {
               {/* Add the 3D button for "AI & AR Experience" */}
               <div className="mt-8 flex justify-center">
                 <Link
-                  to="/ai-ar-experience" // Modify this URL to the actual route for the experience page
+                  to="/ai-analytics" // Modify this URL to the actual route for the experience page
                   className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
                 >
                   AI & AR Experience

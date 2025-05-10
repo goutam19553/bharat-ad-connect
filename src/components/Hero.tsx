@@ -65,7 +65,8 @@ const Hero = () => {
                   isLoading ? "glitch" : ""
                 }`}
               >
-                Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
+                Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace,
+                making outdoor advertising smarter, simpler, and more effective.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
@@ -80,7 +81,7 @@ const Hero = () => {
                 </Link>
               </div>
 
-              {/* Add the 3D button for "AI & AR Experience" */}
+              {/* Move the 3D Button below the other buttons */}
               <div className="mt-8 flex justify-center">
                 <Link
                   to="/ai-analytics" // Modify this URL to the actual route for the experience page

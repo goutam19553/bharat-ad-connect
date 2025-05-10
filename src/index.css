@@ -305,8 +305,9 @@
 
 /* 3D Button Styles */
 .btn-3d {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  top: 50%; /* Vertically center */
+  left: 0; /* Start from the left */
   padding: 1rem 2rem;
   font-size: 1.125rem;
   text-align: center;
@@ -316,19 +317,16 @@
   box-shadow: 6px 6px 12px #4a58e2, -6px -6px 12px #6e7dff;
   transition: all 0.3s ease;
   cursor: pointer;
-  animation: floatingLeftRight 6s ease-in-out infinite;
+  animation: floatingLeftToRight 10s linear infinite;
 }
 
-/* Keyframe Animation for Left to Right Movement */
-@keyframes floatingLeftRight {
+/* Keyframe Animation for Full Width Movement */
+@keyframes floatingLeftToRight {
   0% {
-    transform: translateX(0); /* Start position */
-  }
-  50% {
-    transform: translateX(40px); /* Move 15px to the right */
+    transform: translateX(0); /* Start at the left corner */
   }
   100% {
-    transform: translateX(0); /* Return to the start position */
+    transform: translateX(100vw); /* Move to the right corner */
   }
 }
 
@@ -363,3 +361,4 @@
   transform: translateY(2px);
   box-shadow: 4px 4px 8px #4a58e2, -4px -4px 8px #6e7dff;
 }
+

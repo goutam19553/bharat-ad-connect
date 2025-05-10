@@ -65,25 +65,32 @@ const Hero = () => {
                   isLoading ? "glitch" : ""
                 }`}
               >
-                Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace,
-                making outdoor advertising smarter, simpler, and more effective.
+                Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
               </p>
 
-              {/* Buttons Section */}
-              <div className="mt-8 flex flex-col items-center lg:items-start">
-                <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                  <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
-                    Explore Ad Spaces
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="bg-white/90 backdrop-blur-sm text-bharat-navy hover:bg-white font-bold py-3 px-6 rounded-md transition-all duration-200 hover:scale-105"
-                  >
-                    Learn More
-                  </Link>
-                </div>
+              <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
+                  Explore Ad Spaces
+                </Link>
+                <Link
+                  to="/about"
+                  className="bg-white/90 backdrop-blur-sm text-bharat-navy hover:bg-white font-bold py-3 px-6 rounded-md transition-all duration-200 hover:scale-105"
+                >
+                  Learn More
+                </Link>
+              </div>
 
-               
+              {/* Add the 3D button for "AI & AR Experience" */}
+              <div className="mt-8 flex justify-center">
+                <Link
+                  to="/ai-analytics" // Modify this URL to the actual route for the experience page
+                  className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
+                >
+                  AI & AR Experience
+                </Link>
+              </div>
+            </div>
+
             <div className="relative">
               <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
                 <img src="/images/your-image.jpg" alt="Discover" className="rounded-lg w-full h-auto" />
@@ -99,19 +106,6 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-
- {/* AI & AR Experience Button */}
-                <div className="mt-6 w-full flex justify-center lg:justify-start">
-                  <Link
-                    to="/ai-analytics"
-                    className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-                  >
-                    AI & AR Experience
-                  </Link>
-                </div>
-              </div>
-            </div>
-                
           </div>
         </div>
       </div>

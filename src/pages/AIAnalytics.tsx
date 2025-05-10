@@ -1,16 +1,10 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const AIAnalytics = () => {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    // Push homepage into history before redirect
-    window.history.pushState(null, '', '/');
-    
     const timer = setTimeout(() => {
       window.location.replace('https://neww-coral.vercel.app/');
-    }, 2000);
+    }, 2500); // 2.5 seconds for better visual experience
 
     return () => clearTimeout(timer);
   }, []);
@@ -24,47 +18,58 @@ const AIAnalytics = () => {
       backgroundColor: '#0f0f0f',
       flexDirection: 'column',
       color: '#fff',
-      fontFamily: 'Arial, sans-serif'
+      fontFamily: 'Arial, sans-serif',
     }}>
-      <div className="spinner-3d" />
-      <p style={{ marginTop: '20px', fontSize: '18px' }}>Redirecting to AI Analytics...</p>
-
-      <button
-        onClick={() => navigate('/')}
-        style={{
-          marginTop: '30px',
-          padding: '10px 20px',
-          fontSize: '16px',
-          borderRadius: '8px',
-          border: 'none',
-          backgroundColor: '#4ade80',
-          color: '#0f0f0f',
-          cursor: 'pointer',
-          transition: 'background 0.3s ease'
-        }}
-      >
-        Back to Home
-      </button>
+      <div className="orbit-loader">
+        <div className="center-dot"></div>
+        <div className="orbit"></div>
+      </div>
+      <p style={{ marginTop: '30px', fontSize: '18px' }}>Redirecting to AI Analytics...</p>
 
       <style>
         {`
-        .spinner-3d {
-          width: 60px;
-          height: 60px;
-          border: 6px solid transparent;
-          border-top: 6px solid #4ade80;
-          border-bottom: 6px solid #4ade80;
-          border-radius: 50%;
-          animation: spin3D 1s linear infinite;
+        .orbit-loader {
+          position: relative;
+          width: 80px;
+          height: 80px;
         }
 
-        @keyframes spin3D {
-          0% {
-            transform: rotateX(0deg) rotateY(0deg);
-          }
-          100% {
-            transform: rotateX(360deg) rotateY(360deg);
-          }
+        .center-dot {
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          background-color: #4ade80;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+        }
+
+        .orbit {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: 2px dashed rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          animation: orbitRotate 1.8s linear infinite;
+        }
+
+        .orbit::before {
+          content: '';
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          background-color: #60a5fa;
+          border-radius: 50%;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        @keyframes orbitRotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         `}
       </style>

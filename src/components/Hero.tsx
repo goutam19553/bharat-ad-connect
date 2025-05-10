@@ -79,16 +79,6 @@ const Hero = () => {
                   Learn More
                 </Link>
               </div>
-
-              {/* Add the 3D button for "AI & AR Experience" */}
-              <div className="mt-8 flex justify-center">
-                <Link
-                  to="/ai-analytics" // Modify this URL to the actual route for the experience page
-                  className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-                >
-                  AI & AR Experience
-                </Link>
-              </div>
             </div>
 
             <div className="relative">
@@ -106,6 +96,16 @@ const Hero = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* ✅ AI & AR Button moved below everything */}
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/ai-analytics"
+              className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
+            >
+              AI & AR Experience
+            </Link>
           </div>
         </div>
       </div>

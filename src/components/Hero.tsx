@@ -81,7 +81,7 @@ const Hero = () => {
                 </Link>
               </div>
 
-              {/* Move the 3D Button below the other buttons */}
+              {/* AI & AR Experience Button moved below */}
               <div className="mt-8 flex justify-center">
                 <Link
                   to="/ai-analytics" // Modify this URL to the actual route for the experience page

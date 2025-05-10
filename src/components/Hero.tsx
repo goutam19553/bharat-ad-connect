@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Simulate loading time for the effect
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       
@@ -25,12 +35,16 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight backdrop-blur-sm">
+            {/* Typing Animation for Heading */}
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight backdrop-blur-sm ${isLoading ? 'typing-effect' : ''}`}>
               Revolutionizing <span className="text-bharat-saffron">Traditional Outdoor Advertising</span> Across India
             </h1>
-            <p className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 backdrop-blur-sm">
+            
+            {/* Glitch Effect for Subtitle */}
+            <p className={`mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 backdrop-blur-sm ${isLoading ? 'glitch' : ''}`}>
               Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
             </p>
+            
             <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/ad-spaces" className="btn-primary hover:scale-105 transition-transform">
                 Explore Ad Spaces

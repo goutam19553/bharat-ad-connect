@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState("light");
   const location = useLocation();
 
   const navigation = [
@@ -13,19 +14,30 @@ const Navbar = () => {
     { name: "AI Analytics", href: "ai-analytics" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
-    { name: "Wall Upload", href: "/wall-upload" }, // ✅ Added here
+    { name: "Wall Upload", href: "/wall-upload" },
     { name: "AR Solutions", href: "/ar-solutions" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   return (
     <nav
@@ -37,16 +49,17 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-heading font-bold text-bharat-green dark:text-white">
-                The Ad<span className="text-bharat-saffron">-Project </span>
+                The Ad<span className="text-bharat-saffron">-Project</span>
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center">
+          <div className="hidden md:flex md:items-center gap-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -60,16 +73,38 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              className="ml-4 btn-primary"
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+              aria-label="Toggle Theme"
             >
+              {theme === "light" ? (
+                <Moon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <Sun className="h-5 w-5 text-yellow-400" />
+              )}
+            </button>
+
+            <Link to="/contact" className="ml-2 btn-primary">
               Get Started
             </Link>
           </div>
 
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden">
+          {/* Mobile Nav Button */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+              aria-label="Toggle Theme"
+            >
+              {theme === "light" ? (
+                <Moon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <Sun className="h-5 w-5 text-yellow-400" />
+              )}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"

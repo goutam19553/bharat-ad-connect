@@ -16,14 +16,10 @@
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://example.com/image.png" />
 
-    <!-- Add the Supabase CDN Script -->
+    <!-- Supabase CDN -->
     <script type="module">
       import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
-
-      // Initialize Supabase client (replace with your actual URL and anon key)
       const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'your-anon-key');
-
-      // Example usage (feel free to adjust to your use case)
       async function fetchData() {
         const { data, error } = await supabase.from('wall-spaces').select('*');
         if (error) {
@@ -32,16 +28,15 @@
           console.log('Data:', data);
         }
       }
-
       fetchData();
     </script>
 
-    <!-- TailwindCSS for Styling -->
+    <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body class="transition-colors duration-300 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <!-- Dark Mode Toggle Button -->
+    <!-- Dark Mode Toggle Button (Only one) -->
     <button
       id="toggle-dark"
       class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-700"

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  darkMode: "class", // Enable dark mode using class
+  darkMode: "class", // Enables dark mode via class on <html> or <body>
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -12,72 +12,70 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: "2rem",
       screens: {
-        '2xl': '1400px',
+        "2xl": "1400px",
       },
     },
     extend: {
       colors: {
-        // Custom colors for Bharat-Ad
         bharat: {
-          green: '#00A651',
-          saffron: '#FF9933',
-          navy: '#000080',
-          teal: '#008080',
-          lightgray: '#F5F5F5',
-          darkgray: '#333333',
-          // Dark Mode Custom Colors
-          darkBackground: '#121212',
-          darkText: '#f5f5f5',
+          green: "#00A651",
+          saffron: "#FF9933",
+          navy: "#000080",
+          teal: "#008080",
+          lightgray: "#F5F5F5",
+          darkgray: "#333333",
+          darkBackground: "#121212",
+          darkText: "#f5f5f5",
         },
-        background: 'var(--background)', // Custom CSS variable for background
-        foreground: 'var(--foreground)', // Custom CSS variable for foreground
-        primary: 'var(--primary)', // Custom CSS variable for primary
-        secondary: 'var(--secondary)', // Custom CSS variable for secondary
-        muted: 'var(--muted)', // Custom CSS variable for muted text
-        accent: 'var(--accent)', // Custom CSS variable for accent
-        destructive: 'var(--destructive)', // Custom CSS variable for destructive
-        border: 'var(--border)', // Custom CSS variable for border
-        input: 'var(--input)', // Custom CSS variable for input
-        ring: 'var(--ring)', // Custom CSS variable for ring
+        // Tailwind will handle theme switching using CSS variables and dark:
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        muted: "var(--muted)",
+        accent: "var(--accent)",
+        destructive: "var(--destructive)",
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
       },
       fontFamily: {
-        sans: ['Open Sans', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ["Open Sans", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
       },
       borderRadius: {
-        lg: 'var(--radius)', // Use custom radius variable
-        md: 'calc(var(--radius) - 2px)', // Adjust based on custom radius variable
-        sm: 'calc(var(--radius) - 4px)', // Adjust based on custom radius variable
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontSize: {
-        // Add custom size for text-md
-        'md': '1rem', // Adjust this as needed for your desired size
+        md: "1rem",
       },
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-        'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.5s ease-out',
-        'fade-up': 'fade-up 0.5s ease-out',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
+        "fade-up": "fade-up 0.5s ease-out",
       },
     },
   },

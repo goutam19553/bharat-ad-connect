@@ -74,6 +74,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -83,19 +84,18 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
+    font-family: 'Open Sans', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
@@ -128,7 +128,6 @@
     @apply bg-gradient-to-r from-bharat-saffron to-bharat-navy inline-block text-transparent bg-clip-text;
   }
 
-  /* Styles for Earn Money Section */
   .earn-money-section {
     background: #f9fafb;
     padding: 3rem 0;
@@ -161,7 +160,7 @@
   }
 }
 
-/* ✅ Floating Animation For AR Elements */
+/* Floating Animation */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -175,7 +174,7 @@
   animation: float 4s ease-in-out infinite;
 }
 
-/* Typing Animation */
+/* Typing Effect */
 .typing-effect {
   display: inline-block;
   border-right: 4px solid #fff;
@@ -195,7 +194,8 @@
   color: #fff;
 }
 
-.glitch::before {
+.glitch::before,
+.glitch::after {
   content: attr(data-text);
   position: absolute;
   top: 0;
@@ -208,15 +208,6 @@
 }
 
 .glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff;
-  clip: rect(0, 900px, 0, 0);
-  animation: glitch 1s infinite linear alternate-reverse;
   animation-delay: 0.2s;
 }
 
@@ -264,48 +255,21 @@
   opacity: 0.9;
 }
 
-.cube-spinner .front {
-  transform: rotateY(  0deg) translateZ(40px);
-  background: #3498db;
-}
-
-.cube-spinner .back {
-  transform: rotateY(180deg) translateZ(40px);
-  background: #9b59b6;
-}
-
-.cube-spinner .left {
-  transform: rotateY(-90deg) translateZ(40px);
-  background: #1abc9c;
-}
-
-.cube-spinner .right {
-  transform: rotateY( 90deg) translateZ(40px);
-  background: #2ecc71;
-}
-
-.cube-spinner .top {
-  transform: rotateX( 90deg) translateZ(40px);
-  background: #f1c40f;
-}
-
-.cube-spinner .bottom {
-  transform: rotateX(-90deg) translateZ(40px);
-  background: #e67e22;
-}
+.cube-spinner .front  { transform: rotateY(0deg) translateZ(40px);  background: #3498db; }
+.cube-spinner .back   { transform: rotateY(180deg) translateZ(40px); background: #9b59b6; }
+.cube-spinner .left   { transform: rotateY(-90deg) translateZ(40px); background: #1abc9c; }
+.cube-spinner .right  { transform: rotateY(90deg) translateZ(40px);  background: #2ecc71; }
+.cube-spinner .top    { transform: rotateX(90deg) translateZ(40px);  background: #f1c40f; }
+.cube-spinner .bottom { transform: rotateX(-90deg) translateZ(40px); background: #e67e22; }
 
 @keyframes rotateCube {
-  0% {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
 }
 
-/* 3D Button Styles */
+/* 3D Button */
 .btn-3d {
-  position: relative; /* Required for absolute pseudo-elements */
+  position: relative;
   display: inline-block;
   padding: 1rem 2rem;
   font-size: 1.125rem;
@@ -317,27 +281,13 @@
   transition: all 0.3s ease;
   cursor: pointer;
   animation: floatingLeftToRight 20s linear infinite;
-  overflow: hidden; /* Prevent pseudo-elements from leaking */
+  overflow: hidden;
 }
 
-/* Keyframe Animation */
-@keyframes floatingLeftToRight {
-  0% {
-    transform: translateX(-100vw);
-  }
-  100% {
-    transform: translateX(100vw);
-  }
-}
-
-/* Optional pseudo-element glow or ripple */
 .btn-3d::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   border-radius: inherit;
   background: rgba(255, 255, 255, 0.1);
   opacity: 0;
@@ -345,7 +295,6 @@
   z-index: 0;
 }
 
-/* Hover Effects */
 .btn-3d:hover {
   transform: scale(1.05);
   box-shadow: 4px 4px 8px #4a58e2, -4px -4px 8px #6e7dff;
@@ -353,4 +302,9 @@
 
 .btn-3d:hover::before {
   opacity: 1;
+}
+
+@keyframes floatingLeftToRight {
+  0%   { transform: translateX(-100vw); }
+  100% { transform: translateX(100vw); }
 }

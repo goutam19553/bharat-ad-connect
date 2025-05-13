@@ -1,9 +1,30 @@
 import React from "react";
 import { Line, Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,  // Added BarElement
+  Title,
+  Tooltip,
+  Legend,
+  Filler,  // Added Filler plugin
+} from "chart.js";
 
 // Register chart components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,  // Register BarElement for bar charts
+  Title,
+  Tooltip,
+  Legend,
+  Filler  // Register Filler plugin for fill effect
+);
 
 const GovernmentSupportPage = () => {
   // Sample data for the charts
@@ -15,7 +36,7 @@ const GovernmentSupportPage = () => {
         data: [5, 10, 8, 12, 14, 16, 18, 20, 25, 30, 35, 40],
         borderColor: "#FDCB6E",
         backgroundColor: "rgba(253, 203, 110, 0.3)",
-        fill: true,
+        fill: true,  // Enabling fill (Filler plugin required)
         tension: 0.3,
       },
     ],

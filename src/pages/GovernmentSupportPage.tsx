@@ -5,67 +5,103 @@ const GovernmentSupportPage = () => {
     <div className="bg-white dark:bg-gray-900 min-h-screen px-6 py-20">
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6">
-          Empowering Governments Through Transparent Outdoor Advertising
+          Empowering Governments with Transparent Outdoor Advertising
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-          Our platform bridges traditional outdoor advertising with digital governance. By partnering with government bodies, we provide a structured, accountable, and revenue-driven ecosystem for managing ad spaces across cities and towns.
+          The Ad Project transforms outdoor advertising into a digitized, accountable, and tax-transparent ecosystem.
+          We partner with State and Central governments to solve long-standing issues like illegal hoardings,
+          tax leakages, and opaque media contracts — building a smarter India.
         </p>
       </div>
 
-      <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
-        {/* Feature 1 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🚫 Curbing Illegal Advertisements</h2>
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2">
+        {/* Issue 1 */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🚫 Curbing Illegal Hoardings</h2>
           <p>
-            Our AI-based wall and hoarding detection tools help local authorities identify unauthorized ads in real-time. These tools track geolocations, detect visual anomalies, and alert officials for action — helping to reduce visual clutter, maintain city aesthetics, and eliminate black-market outdoor advertising.
+            Cities lose crores each year due to unauthorized hoardings that clutter skylines and evade government revenue.
+            Our AI tools detect unregistered ad spaces in real-time, using geolocation, image analysis, and violation tagging.
+            Municipal bodies get instant alerts, ensuring swift action and improved urban aesthetics.
           </p>
         </div>
 
-        {/* Feature 2 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">💰 Transparent Tax Collection</h2>
+        {/* Issue 2 */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">💸 Plugging Tax Leakages</h2>
           <p>
-            Every transaction on our platform is digitally logged, including ad size, duration, location, and advertiser identity. Governments can use this data to automate billing, verify compliance, and collect rightful advertising taxes — reducing corruption and leakage in the system.
+            Lack of ad tracking means tax evasion runs unchecked. Our platform automatically logs every transaction —
+            from wall ownership to ad duration and location — helping local governments generate accurate GST and municipal tax invoices.
+            Full transparency. No revenue loss.
           </p>
         </div>
 
         {/* Feature 3 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">📊 Real-Time Monitoring Dashboard</h2>
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📊 Unified Monitoring Dashboard</h2>
           <p>
-            We provide an integrated control panel where municipal officers can view live advertisements on a map-based interface. The dashboard includes campaign durations, location heatmaps, revenue stats, and alerts — making citywide monitoring simpler and smarter.
+            Our government dashboard provides real-time visualizations: live ad locations, campaign durations, expected revenue,
+            unauthorized ad alerts, and heatmaps. Perfect for Smart Cities, District Collectors, and Municipal Commissioners.
           </p>
         </div>
 
         {/* Feature 4 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🌆 Support for Urban Planning</h2>
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🏙️ Urban Planning Intelligence</h2>
           <p>
-            Our AI analytics layer provides footfall heatmaps, demographic targeting, and location performance — helping urban planners make informed decisions about commercial zones, pedestrian movement, and ad placement standards.
+            Use ad data to understand urban movement. Our platform maps crowd density, high-footfall zones,
+            and ad engagement — helping Smart City teams and urban developers create pedestrian-friendly zones
+            and profitable ad corridors.
           </p>
         </div>
 
-        {/* Feature 5 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md md:col-span-2">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🤝 Government Partnerships & Compliance</h2>
+        {/* Collaboration */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg md:col-span-2">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🤝 Central & State-Level Collaboration</h2>
           <p>
-            We actively collaborate with municipal corporations, smart city councils, and local authorities to ensure legal compliance and shared governance. Our platform can be customized to integrate with government portals or operate as a white-label solution under government schemes.
+            Whether it’s a municipal council, smart city mission, or a central urban ministry — we adapt our platform
+            for your needs. Governments can integrate our system via APIs, white-label it, or run it as part of PPP models.
+            <br />
+            We also support digital infrastructure development under Digital India and Smart City initiatives.
           </p>
         </div>
       </div>
 
-      <div className="mt-20 text-center">
+      {/* Graphical placeholder */}
+      <div className="mt-20 max-w-5xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          A Smarter, Greener & Transparent Future Starts Here.
+          Visualizing Government Impact
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-6">
+          Below are data-driven insights for better decision-making. (Note: these charts can be dynamically connected to dashboards.)
+        </p>
+
+        {/* Placeholder: You can replace this with actual charts (Chart.js / Recharts) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl p-6 shadow">
+            <h3 className="font-semibold mb-2 text-lg text-gray-800 dark:text-gray-100">🧾 Monthly Revenue Recovery</h3>
+            <div className="h-48 bg-gradient-to-r from-green-300 to-green-500 rounded-lg animate-pulse" />
+          </div>
+          <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl p-6 shadow">
+            <h3 className="font-semibold mb-2 text-lg text-gray-800 dark:text-gray-100">📍 Illegal Hoardings Detected</h3>
+            <div className="h-48 bg-gradient-to-r from-red-300 to-red-500 rounded-lg animate-pulse" />
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="mt-24 text-center">
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+          Ready to Partner for a Cleaner, Smarter India?
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          Join our mission to digitize and democratize outdoor advertising while boosting civic revenue and accountability. If you're a policymaker or officer, let’s talk and build India's future infrastructure together.
+          We’re already in talks with local and regional governments. If you represent a civic body or ministry,
+          let’s connect to bring this solution to your city or state.
         </p>
         <a
           href="/contact"
           className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
         >
-          Contact Us →
+          Talk to Our Team →
         </a>
       </div>
     </div>

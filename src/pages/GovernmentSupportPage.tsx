@@ -1,30 +1,9 @@
 import React from "react";
 import { Line, Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,  // Added BarElement
-  Title,
-  Tooltip,
-  Legend,
-  Filler,  // Added Filler plugin
-} from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 
 // Register chart components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,  // Register BarElement for bar charts
-  Title,
-  Tooltip,
-  Legend,
-  Filler  // Register Filler plugin for fill effect
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const GovernmentSupportPage = () => {
   // Sample data for the charts
@@ -36,7 +15,7 @@ const GovernmentSupportPage = () => {
         data: [5, 10, 8, 12, 14, 16, 18, 20, 25, 30, 35, 40],
         borderColor: "#FDCB6E",
         backgroundColor: "rgba(253, 203, 110, 0.3)",
-        fill: true,  // Enabling fill (Filler plugin required)
+        fill: true,
         tension: 0.3,
       },
     ],
@@ -129,19 +108,19 @@ const GovernmentSupportPage = () => {
         {/* Chart 1: Monthly Revenue */}
         <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📈 Monthly Revenue Growth</h2>
-          <Line data={monthlyRevenueData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+          <Line data={monthlyRevenueData} options={{ responsive: true, maintainAspectRatio: true }} height={200} />
         </div>
 
         {/* Chart 2: Annual Revenue */}
         <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📊 Annual Revenue Overview</h2>
-          <Bar data={annualRevenueData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+          <Bar data={annualRevenueData} options={{ responsive: true, maintainAspectRatio: true }} height={200} />
         </div>
 
         {/* Chart 3: Tax Collection Help */}
         <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg md:col-span-2">
           <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">💡 Tax Recovery Assistance</h2>
-          <Bar data={taxCollectionHelpData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+          <Bar data={taxCollectionHelpData} options={{ responsive: true, maintainAspectRatio: true }} height={200} />
         </div>
       </div>
 

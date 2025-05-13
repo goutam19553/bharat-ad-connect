@@ -1,6 +1,53 @@
 import React from "react";
+import { Line, Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+
+// Register chart components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const GovernmentSupportPage = () => {
+  // Sample data for the charts
+  const monthlyRevenueData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+      {
+        label: "Revenue in ₹ Crores",
+        data: [5, 10, 8, 12, 14, 16, 18, 20, 25, 30, 35, 40],
+        borderColor: "#FDCB6E",
+        backgroundColor: "rgba(253, 203, 110, 0.3)",
+        fill: true,
+        tension: 0.3,
+      },
+    ],
+  };
+
+  const annualRevenueData = {
+    labels: ["2021", "2022", "2023", "2024", "2025"],
+    datasets: [
+      {
+        label: "Annual Revenue in ₹ Crores",
+        data: [50, 70, 85, 100, 130],
+        backgroundColor: "#1B3A4B",
+        borderColor: "#FDCB6E",
+        borderWidth: 1,
+        hoverBackgroundColor: "#FDCB6E",
+      },
+    ],
+  };
+
+  const taxCollectionHelpData = {
+    labels: ["Ad Space A", "Ad Space B", "Ad Space C", "Ad Space D", "Ad Space E"],
+    datasets: [
+      {
+        label: "Tax Recovery in ₹ Crores",
+        data: [5, 12, 8, 15, 18],
+        backgroundColor: "#FDCB6E",
+        borderColor: "#FDCB6E",
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen px-6 py-20">
       <div className="max-w-5xl mx-auto text-center">
@@ -14,77 +61,66 @@ const GovernmentSupportPage = () => {
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2">
-        {/* Issue 1 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🚫 Curbing Illegal Hoardings</h2>
+      <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
+        {/* Feature 1 */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🚫 Curbing Illegal Advertisements</h2>
           <p>
-            Cities lose crores each year due to unauthorized hoardings that clutter skylines and evade government revenue.
-            Our AI tools detect unregistered ad spaces in real-time, using geolocation, image analysis, and violation tagging.
-            Municipal bodies get instant alerts, ensuring swift action and improved urban aesthetics.
+            Our AI-based wall and hoarding detection tools help local authorities identify unauthorized ads in real-time. These tools track geolocations, detect visual anomalies, and alert officials for action — helping to reduce visual clutter, maintain city aesthetics, and eliminate black-market outdoor advertising.
           </p>
         </div>
 
-        {/* Issue 2 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">💸 Plugging Tax Leakages</h2>
+        {/* Feature 2 */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">💰 Transparent Tax Collection</h2>
           <p>
-            Lack of ad tracking means tax evasion runs unchecked. Our platform automatically logs every transaction —
-            from wall ownership to ad duration and location — helping local governments generate accurate GST and municipal tax invoices.
-            Full transparency. No revenue loss.
+            Every transaction on our platform is digitally logged, including ad size, duration, location, and advertiser identity. Governments can use this data to automate billing, verify compliance, and collect rightful advertising taxes — reducing corruption and leakage in the system.
           </p>
         </div>
 
         {/* Feature 3 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📊 Unified Monitoring Dashboard</h2>
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">📊 Real-Time Monitoring Dashboard</h2>
           <p>
-            Our government dashboard provides real-time visualizations: live ad locations, campaign durations, expected revenue,
-            unauthorized ad alerts, and heatmaps. Perfect for Smart Cities, District Collectors, and Municipal Commissioners.
+            We provide an integrated control panel where municipal officers can view live advertisements on a map-based interface. The dashboard includes campaign durations, location heatmaps, revenue stats, and alerts — making citywide monitoring simpler and smarter.
           </p>
         </div>
 
         {/* Feature 4 */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🏙️ Urban Planning Intelligence</h2>
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🌆 Support for Urban Planning</h2>
           <p>
-            Use ad data to understand urban movement. Our platform maps crowd density, high-footfall zones,
-            and ad engagement — helping Smart City teams and urban developers create pedestrian-friendly zones
-            and profitable ad corridors.
+            Our AI analytics layer provides footfall heatmaps, demographic targeting, and location performance — helping urban planners make informed decisions about commercial zones, pedestrian movement, and ad placement standards.
           </p>
         </div>
 
-        {/* Collaboration */}
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg md:col-span-2">
-          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">🤝 Central & State-Level Collaboration</h2>
+        {/* Feature 5 */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-md md:col-span-2">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-3">🤝 Government Partnerships & Compliance</h2>
           <p>
-            Whether it’s a municipal council, smart city mission, or a central urban ministry — we adapt our platform
-            for your needs. Governments can integrate our system via APIs, white-label it, or run it as part of PPP models.
-            <br />
-            We also support digital infrastructure development under Digital India and Smart City initiatives.
+            We actively collaborate with municipal corporations, smart city councils, and local authorities to ensure legal compliance and shared governance. Our platform can be customized to integrate with government portals or operate as a white-label solution under government schemes.
           </p>
         </div>
       </div>
 
-      {/* Graphical placeholder */}
-      <div className="mt-20 max-w-5xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Visualizing Government Impact
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-6">
-          Below are data-driven insights for better decision-making. (Note: these charts can be dynamically connected to dashboards.)
-        </p>
+      {/* Charts Section */}
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mt-16">
+        {/* Chart 1: Monthly Revenue */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📈 Monthly Revenue Growth</h2>
+          <Line data={monthlyRevenueData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+        </div>
 
-        {/* Placeholder: You can replace this with actual charts (Chart.js / Recharts) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl p-6 shadow">
-            <h3 className="font-semibold mb-2 text-lg text-gray-800 dark:text-gray-100">🧾 Monthly Revenue Recovery</h3>
-            <div className="h-48 bg-gradient-to-r from-green-300 to-green-500 rounded-lg animate-pulse" />
-          </div>
-          <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl p-6 shadow">
-            <h3 className="font-semibold mb-2 text-lg text-gray-800 dark:text-gray-100">📍 Illegal Hoardings Detected</h3>
-            <div className="h-48 bg-gradient-to-r from-red-300 to-red-500 rounded-lg animate-pulse" />
-          </div>
+        {/* Chart 2: Annual Revenue */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">📊 Annual Revenue Overview</h2>
+          <Bar data={annualRevenueData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
+        </div>
+
+        {/* Chart 3: Tax Collection Help */}
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-8 shadow-lg md:col-span-2">
+          <h2 className="text-2xl font-bold text-[#FDCB6E] mb-4">💡 Tax Recovery Assistance</h2>
+          <Bar data={taxCollectionHelpData} options={{ responsive: true, maintainAspectRatio: false }} height={300} />
         </div>
       </div>
 

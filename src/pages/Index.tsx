@@ -11,6 +11,51 @@ import BrandSlider from "@/components/BrandSlider";
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
     {
+      id: 3,
+      title: "Metro Station Panels",
+      location: "Rajiv Chowk Metro",
+      city: "New Delhi",
+      type: "Transit",
+      size: "15 x 8 feet",
+      price: 25000,
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      rating: 4,
+      featured: true,
+    },
+  ];
+
+   {
+      id: 3,
+      title: "Metro Station Panels",
+      location: "Rajiv Chowk Metro",
+      city: "New Delhi",
+      type: "Transit",
+      size: "15 x 8 feet",
+      price: 25000,
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      rating: 4,
+      featured: true,
+    },
+  ];
+
+      {
+      id: 3,
+      title: "Metro Station Panels",
+      location: "Rajiv Chowk Metro",
+      city: "New Delhi",
+      type: "Transit",
+      size: "15 x 8 feet",
+      price: 25000,
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      rating: 4,
+      featured: true,
+    },
+  ];
+    
+    {
       id: 1,
       title: "Prime Billboard - MG Road",
       location: "MG Road",

@@ -65,7 +65,7 @@ const Hero = () => {
                   isLoading ? "glitch" : ""
                 }`}
               >
-                Aura-Ad connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, making outdoor advertising smarter, simpler, and more effective.
+                India’s First Real-World AdTech Platform connects advertisers with prime ad spaces nationwide through an AI-powered marketplace, AR, and a map-powered dashboard, making outdoor advertising smarter, simpler, and more effective.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">

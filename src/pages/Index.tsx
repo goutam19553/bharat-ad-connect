@@ -24,8 +24,7 @@ const Index = () => {
       featured: true,
     },
   ];
-
-   {
+    {
       id: 3,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
@@ -39,7 +38,6 @@ const Index = () => {
       featured: true,
     },
   ];
-
       {
       id: 3,
       title: "Metro Station Panels",
@@ -54,8 +52,7 @@ const Index = () => {
       featured: true,
     },
   ];
-    
-    {
+        {
       id: 1,
       title: "Prime Billboard - MG Road",
       location: "MG Road",

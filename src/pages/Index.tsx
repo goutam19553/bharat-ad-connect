@@ -11,7 +11,7 @@ import BrandSlider from "@/components/BrandSlider";
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
     {
-      id: 3,
+      id: 1,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
       city: "New Delhi",
@@ -25,7 +25,7 @@ const Index = () => {
     },
   ];
     {
-      id: 3,
+      id: 2,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
       city: "New Delhi",
@@ -53,7 +53,7 @@ const Index = () => {
     },
   ];
         {
-      id: 1,
+      id: 4,
       title: "Prime Billboard - MG Road",
       location: "MG Road",
       city: "Bengaluru",
@@ -66,7 +66,7 @@ const Index = () => {
       featured: true,
     },
     {
-      id: 2,
+      id: 5,
       title: "Drone Advertising",
       location: "Anywhere",
       city: "Anywhere",
@@ -79,7 +79,7 @@ const Index = () => {
       featured: true,
     },
     {
-      id: 3,
+      id: 6,
       title: "Metro Station Panels",
       location: "Rajiv Chowk Metro",
       city: "New Delhi",

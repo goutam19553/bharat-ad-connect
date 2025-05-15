@@ -13,7 +13,6 @@ import {
   Filler,
 } from "chart.js";
 
-// Register necessary chart elements
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +26,6 @@ ChartJS.register(
 );
 
 const GovernmentSupportPage = () => {
-  // Chart data
   const monthlyRevenueData = {
     labels: ["Jan", "Feb", "Mar"],
     datasets: [
@@ -66,7 +64,6 @@ const GovernmentSupportPage = () => {
     ],
   };
 
-  // Chart animation config
   const lineOptions = {
     responsive: true,
     maintainAspectRatio: true,
@@ -75,9 +72,7 @@ const GovernmentSupportPage = () => {
       easing: "easeInOutQuart",
     },
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: false },
     },
   };
 
@@ -89,93 +84,94 @@ const GovernmentSupportPage = () => {
       easing: "easeOutBounce",
     },
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: false },
     },
   };
 
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen px-6 py-20">
-      {/* Intro */}
-      <div className="max-w-5xl mx-auto text-center mb-14">
+      {/* Hero Section */}
+      <div className="max-w-6xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6">
-          Empowering Governments with Transparent Outdoor Advertising
+          Digitizing Outdoor Advertising for a Smarter Bharat
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          The Ad Project helps State and Central governments digitize ad monitoring and tax collection. Our platform eliminates illegal hoardings, boosts tax revenue, and provides real-time campaign visibility — building smarter, cleaner cities.
+          We're transforming public advertising into a powerful tool for governance. Our AI-powered platform helps city bodies track, tax, and manage ad spaces with real-time dashboards — reducing illegal ads, increasing civic revenue, and aligning with Smart City and Digital India missions.
         </p>
       </div>
 
-      {/* Features */}
+      {/* Benefits Section */}
       <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">🚫 Stop Illegal Ads</h2>
-          <p>
-            AI scans walls and hoardings to detect unauthorized ads. Authorities receive alerts with location and proof, helping reduce visual pollution and black-market hoardings.
-          </p>
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">💰 Boost Tax Collection</h2>
-          <p>
-            Every campaign is digitally recorded — from size to duration. Municipalities can verify, bill, and collect ad taxes with transparency and zero manual paperwork.
-          </p>
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">📡 Live Dashboard</h2>
-          <p>
-            Real-time dashboard shows all live ads on a map, campaign status, heatmaps, and revenue analytics for better planning and governance.
-          </p>
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">🌆 Smarter Urban Planning</h2>
-          <p>
-            AI insights like footfall data, demographic reach, and ad impact help governments optimize public spaces and commercial zones for better engagement.
-          </p>
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md md:col-span-2">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">🤝 Seamless Government Integration</h2>
-          <p>
-            We work directly with smart city missions, local bodies, and government agencies — offering white-label solutions or deep integration with existing governance systems.
-          </p>
-        </div>
+        {[
+          {
+            title: "🚫 Stop Illegal Hoardings",
+            desc: "AI detects and reports unauthorized ads across cities — reducing visual clutter, political misuse, and tax leakage.",
+          },
+          {
+            title: "💰 Increase Municipal Revenue",
+            desc: "Our billing engine automates ad fee calculations based on verified durations, sizes, and city zones. Every rupee is accounted for.",
+          },
+          {
+            title: "📊 Real-Time Visibility",
+            desc: "Administrators can track all campaigns, locations, and ad vendors on a live map with tax status and expiry alerts.",
+          },
+          {
+            title: "📍 Geo-Fenced Planning",
+            desc: "Allocate permitted ad zones, enforce rules, and plan smarter placements based on footfall and traffic data.",
+          },
+          {
+            title: "🤝 Fully Integratable",
+            desc: "White-label dashboards can plug directly into Smart City portals, state ad departments, or municipal revenue systems.",
+          },
+        ].map((feature, i) => (
+          <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
+            <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">{feature.title}</h2>
+            <p>{feature.desc}</p>
+          </div>
+        ))}
       </div>
 
-      {/* Charts with animation */}
+      {/* Potential Impact */}
+      <div className="max-w-5xl mx-auto mt-20 text-center">
+        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+          📈 Unlock ₹2,000+ Crores in Lost Revenue
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300 mb-6">
+          Cities like Bangalore have lost over ₹2,000 Cr to unauthorized hoardings in the past decade. Our technology ensures such revenue doesn’t slip through the cracks again.
+        </p>
+      </div>
+
+      {/* Data Visualization */}
       <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mt-16">
         <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📈 Monthly Revenue</h2>
+          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📅 Monthly Revenue Trends</h2>
           <Line data={monthlyRevenueData} options={lineOptions} />
         </div>
 
         <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📊 Annual Revenue</h2>
+          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📊 Yearly Tax Uplift</h2>
           <Bar data={annualRevenueData} options={barOptions} />
         </div>
 
         <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg md:col-span-2">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">💡 Tax Collection Support</h2>
+          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">💡 Ad-Wise Tax Intelligence</h2>
           <Bar data={taxCollectionHelpData} options={barOptions} />
         </div>
       </div>
 
-      {/* CTA */}
+      {/* Call to Action */}
       <div className="mt-24 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Ready to Partner for a Smarter India?
+          Join Us in Transforming Urban Governance
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          We're already in talks with several governments. If you represent a civic body, let's collaborate and digitize your city’s outdoor ad ecosystem.
+          Partner with us to digitize your city's ad infrastructure, increase civic trust, and enable data-driven governance.
         </p>
         <a
           href="/contact"
           className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
         >
-          Talk to Our Team →
+          Contact Government Team →
         </a>
       </div>
     </div>

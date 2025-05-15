@@ -3,7 +3,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react"; // SVG icons
 import "keen-slider/keen-slider.min.css"; // Don't forget the Keen slider CSS
 
 const brandLogos = [
-  "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
   "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/99-removebg-preview.png",
   "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/2.png",
   "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/3.webp",

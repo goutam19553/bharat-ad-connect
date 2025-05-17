@@ -29,7 +29,6 @@ export default {
           darkBackground: "#121212",
           darkText: "#f5f5f5",
         },
-        // Tailwind will handle theme switching using CSS variables and dark:
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
@@ -70,12 +69,17 @@ export default {
           "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "fade-up": "fade-up 0.5s ease-out",
+        "spin-slow": "spin-slow 5s linear infinite",
       },
     },
   },

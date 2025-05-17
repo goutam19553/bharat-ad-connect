@@ -17,7 +17,6 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
-const ARSolutions = lazy(() => import("./pages/ARSolutions"));
 const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage")); // ✅ Added
 
 const queryClient = new QueryClient();
@@ -103,7 +102,6 @@ const App = () => {
                   <Route path="/wall-upload" element={<WallUpload />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/ar-solutions" element={<ARSolutions />} />
                   <Route path="/government-support" element={<GovernmentSupportPage />} /> {/* ✅ Route added */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

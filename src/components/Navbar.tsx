@@ -15,7 +15,6 @@ const Navbar = () => {
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "Wall Upload", href: "/wall-upload" },
-    { name: "AR Solutions", href: "/ar-solutions" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];

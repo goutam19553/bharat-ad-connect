@@ -24,7 +24,7 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
       <div className="relative">
         {adSpace.type === "Digital LED Flying Drones" ? (
           <video
-            src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback.mp4" // Replace with your actual drone ad video URL
+            src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback~2 (1).mp4" // Replace with your actual drone ad video URL
             controls
             autoPlay
             loop

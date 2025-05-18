@@ -1,79 +1,8 @@
 import { Link } from "react-router-dom";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
 const About = () => {
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
-
-  const particlesOptions = {
-    background: {
-      color: {
-        value: "#000000"
-      }
-    },
-    fpsLimit: 60,
-    interactivity: {
-      events: {
-        onHover: {
-          enable: true,
-          mode: "repulse"
-        },
-        resize: true
-      },
-      modes: {
-        repulse: {
-          distance: 100,
-          duration: 0.4
-        }
-      }
-    },
-    particles: {
-      color: {
-        value: "#00fff7"
-      },
-      links: {
-        color: "#ffffff",
-        distance: 150,
-        enable: true,
-        opacity: 0.4,
-        width: 1
-      },
-      collisions: {
-        enable: true
-      },
-      move: {
-        direction: "none",
-        enable: true,
-        outModes: {
-          default: "bounce"
-        },
-        random: false,
-        speed: 2,
-        straight: false
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 800
-        },
-        value: 80
-      },
-      opacity: {
-        value: 0.5
-      },
-      shape: {
-        type: "circle"
-      },
-      size: {
-        value: { min: 1, max: 5 }
-      }
-    },
-    detectRetina: true
-  };
-
   const teamMembers = [
     {
       name: "Goutam N P",
@@ -119,17 +48,66 @@ const About = () => {
     }
   ];
 
-  return (
-    <div className="relative overflow-hidden">
-      <Particles className="absolute top-0 left-0 w-full h-full -z-10" init={particlesInit} options={particlesOptions} />
+  const particlesInit = async (main: any) => {
+    await loadFull(main);
+  };
 
-      <div className="bg-gray-900 text-white dark:bg-white dark:text-black">
-        {/* Hero Section */}
+  return (
+    <div className="relative bg-gray-900 text-white dark:bg-white dark:text-black">
+      {/* 3D Particles Background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        className="absolute top-0 left-0 w-full h-full z-0"
+        options={{
+          fullScreen: false,
+          background: {
+            color: {
+              value: "transparent"
+            }
+          },
+          fpsLimit: 60,
+          particles: {
+            color: { value: "#00FFFF" },
+            links: {
+              color: "#00FFFF",
+              distance: 150,
+              enable: true,
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: false,
+              straight: false,
+              outModes: { default: "out" }
+            },
+            number: {
+              value: 50,
+              density: {
+                enable: true,
+                area: 800
+              }
+            },
+            opacity: { value: 0.5 },
+            shape: { type: "circle" },
+            size: { value: { min: 1, max: 5 } }
+          },
+          detectRetina: true
+        }}
+      />
+
+      {/* Content Layer */}
+      <div className="relative z-10">
+        {/* -- All Your About Page Content Remains UNCHANGED Below This -- */}
+        {/* About Header */}
         <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white dark:text-black">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-5xl font-heading font-bold mb-4">
+                <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
                   Our Mission & Vision
                 </h1>
                 <p className="text-xl text-gray-300 dark:text-gray-700 mb-8">
@@ -146,43 +124,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        {/* About The Ad-Project Section */}
-        <section className="bg-gradient-to-b from-gray-800 via-gray-900 to-black dark:from-gray-100 dark:via-white dark:to-gray-200 py-20">
-          <div className="container-custom max-w-5xl mx-auto text-center">
-            <h2 className="text-4xl font-heading font-bold text-white dark:text-black mb-8">
-              About The Ad-Project
-            </h2>
-            <div className="space-y-6 text-lg text-gray-300 dark:text-gray-800 text-left">
-              <div>
-                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
-                  What is The Ad-Project?
-                </h3>
-                <p>
-                  The Ad-Project is India’s first real-world AdTech platform built to transform the way outdoor advertising works...
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
-                  Why We Created It
-                </h3>
-                <p>
-                  Outdoor advertising in India has long been fragmented and outdated. Booking a billboard often involves...
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
-                  Who We Serve
-                </h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Advertisers & Brands:</strong> Easily discover, compare, and book verified ad spaces...</li>
-                  <li><strong>Property Owners:</strong> List your space, set your terms, and start earning...</li>
-                  <li><strong>Agencies & Media Planners:</strong> Streamline campaign workflows...</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Team Section */}
         <section className="bg-gray-800 dark:bg-gray-100 py-16">

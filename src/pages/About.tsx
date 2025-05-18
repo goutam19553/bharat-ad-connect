@@ -1,6 +1,79 @@
 import { Link } from "react-router-dom";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import { useCallback } from "react";
 
 const About = () => {
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
+
+  const particlesOptions = {
+    background: {
+      color: {
+        value: "#000000"
+      }
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "repulse"
+        },
+        resize: true
+      },
+      modes: {
+        repulse: {
+          distance: 100,
+          duration: 0.4
+        }
+      }
+    },
+    particles: {
+      color: {
+        value: "#00fff7"
+      },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.4,
+        width: 1
+      },
+      collisions: {
+        enable: true
+      },
+      move: {
+        direction: "none",
+        enable: true,
+        outModes: {
+          default: "bounce"
+        },
+        random: false,
+        speed: 2,
+        straight: false
+      },
+      number: {
+        density: {
+          enable: true,
+          area: 800
+        },
+        value: 80
+      },
+      opacity: {
+        value: 0.5
+      },
+      shape: {
+        type: "circle"
+      },
+      size: {
+        value: { min: 1, max: 5 }
+      }
+    },
+    detectRetina: true
+  };
+
   const teamMembers = [
     {
       name: "Goutam N P",
@@ -47,172 +120,107 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-gray-900 text-white dark:bg-white dark:text-black">
-      {/* About Header */}
-      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white dark:text-black">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                Our Mission & Vision
-              </h1>
-              <p className="text-xl text-gray-300 dark:text-gray-700 mb-8">
-                Revolutionizing outdoor advertising in India through technology, data, and innovation
-              </p>
-            </div>
-            <div className="hidden lg:block">
-              <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Gov.png" 
-                alt="Team collaboration" 
-                className="rounded-xl shadow-xl"
-              />
+    <div className="relative overflow-hidden">
+      <Particles className="absolute top-0 left-0 w-full h-full -z-10" init={particlesInit} options={particlesOptions} />
+
+      <div className="bg-gray-900 text-white dark:bg-white dark:text-black">
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white dark:text-black">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-5xl font-heading font-bold mb-4">
+                  Our Mission & Vision
+                </h1>
+                <p className="text-xl text-gray-300 dark:text-gray-700 mb-8">
+                  Revolutionizing outdoor advertising in India through technology, data, and innovation
+                </p>
+              </div>
+              <div className="hidden lg:block">
+                <img 
+                  src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Gov.png" 
+                  alt="Team collaboration" 
+                  className="rounded-xl shadow-xl"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Our Story */}
-      <section className="section bg-gray-800 dark:bg-gray-100">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-heading font-bold mb-6 text-white dark:text-black">
-                Our Story
-              </h2>
-              <div className="space-y-4 text-gray-400 dark:text-gray-800">
+
+        {/* About The Ad-Project Section */}
+        <section className="bg-gradient-to-b from-gray-800 via-gray-900 to-black dark:from-gray-100 dark:via-white dark:to-gray-200 py-20">
+          <div className="container-custom max-w-5xl mx-auto text-center">
+            <h2 className="text-4xl font-heading font-bold text-white dark:text-black mb-8">
+              About The Ad-Project
+            </h2>
+            <div className="space-y-6 text-lg text-gray-300 dark:text-gray-800 text-left">
+              <div>
+                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
+                  What is The Ad-Project?
+                </h3>
                 <p>
-                  Aura-Ad was founded in 2023 with a simple mission: to transform the fragmented outdoor 
-                  advertising industry in India through digital innovation and technology.
-                </p>
-                <p>
-                  Our founders, Goutam P & Zeeshan M, spent 15 years in traditional outdoor advertising and saw firsthand 
-                  the inefficiencies and missed opportunities in the market. Advertisers struggled to find and 
-                  evaluate ad spaces, while property owners had no reliable way to monetize their valuable spaces.
-                </p>
-                <p>
-                  By bringing together a team of experts in technology, marketing, and government relations, 
-                  Aura-Ad was born as a comprehensive solution connecting advertisers with premium ad spaces 
-                  across India.
-                </p>
-                <p>
-                  Today, we're proud to offer innovative tools like AR preview technology and AI-powered design 
-                  recommendations that are transforming the industry, while creating value for both advertisers 
-                  and ad space owners.
+                  The Ad-Project is India’s first real-world AdTech platform built to transform the way outdoor advertising works...
                 </p>
               </div>
-              
-              <div className="mt-6">
-                <Link to="/contact" className="btn-primary">
-                  Get in Touch
-                </Link>
-              </div>
-            </div>
-            
-            <div className="space-y-8">
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
-                <h3 className="text-2xl font-heading font-semibold mb-3">Our Mission</h3>
-                <p className="text-gray-300 dark:text-gray-700">
-                  To create India's most efficient and innovative outdoor advertising marketplace, connecting 
-                  advertisers with prime spaces through cutting-edge technology and data-driven insights.
+              <div>
+                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
+                  Why We Created It
+                </h3>
+                <p>
+                  Outdoor advertising in India has long been fragmented and outdated. Booking a billboard often involves...
                 </p>
               </div>
-              
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
-                <h3 className="text-2xl font-heading font-semibold mb-3">Our Vision</h3>
-                <p className="text-gray-300 dark:text-gray-700">
-                  To be the definitive platform for outdoor advertising in India, transforming how businesses 
-                  connect with their audiences in the physical world through smart, data-driven solutions.
-                </p>
-              </div>
-              
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
-                <h3 className="text-2xl font-heading font-semibold mb-3">Our Values</h3>
-                <ul className="space-y-2 text-gray-300 dark:text-gray-700">
-                  <li className="flex items-start">
-                    <svg className="h-6 w-6 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Innovation in every solution we provide</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-6 w-6 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Transparency in all our dealings and transactions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-6 w-6 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Excellence in customer service and support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-6 w-6 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Data-driven decision making for optimal results</span>
-                  </li>
+              <div>
+                <h3 className="text-2xl font-semibold text-bharat-teal dark:text-bharat-navy mb-2">
+                  Who We Serve
+                </h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><strong>Advertisers & Brands:</strong> Easily discover, compare, and book verified ad spaces...</li>
+                  <li><strong>Property Owners:</strong> List your space, set your terms, and start earning...</li>
+                  <li><strong>Agencies & Media Planners:</strong> Streamline campaign workflows...</li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Team Members Section */}
-      <section className="bg-gray-800 dark:bg-gray-100 py-16">
-        <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
-            Meet Our Team
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-gray-300 dark:text-gray-700 mb-2">
-                  {member.position}
-                </p>
-                <p className="text-gray-400 dark:text-gray-800">
-                  {member.bio}
-                </p>
-              </div>
-            ))}
+        {/* Team Section */}
+        <section className="bg-gray-800 dark:bg-gray-100 py-16">
+          <div className="container-custom">
+            <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+              Meet Our Team
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
+                  <img src={member.image} alt={member.name} className="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+                  <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">{member.name}</h3>
+                  <p className="text-gray-300 dark:text-gray-700 mb-2">{member.position}</p>
+                  <p className="text-gray-400 dark:text-gray-800">{member.bio}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Partners Section */}
-      <section className="bg-gray-800 dark:bg-gray-100 py-16">
-        <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
-            Our Partners
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {partners.map((partner, index) => (
-              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
-                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
-                  {partner.name}
-                </h3>
-                <p className="text-gray-300 dark:text-gray-700 mb-2">
-                  {partner.type}
-                </p>
-                <p className="text-gray-400 dark:text-gray-800">
-                  {partner.description}
-                </p>
-              </div>
-            ))}
+        {/* Partners Section */}
+        <section className="bg-gray-800 dark:bg-gray-100 py-16">
+          <div className="container-custom">
+            <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+              Our Partners
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+              {partners.map((partner, index) => (
+                <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
+                  <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">{partner.name}</h3>
+                  <p className="text-gray-300 dark:text-gray-700 mb-2">{partner.type}</p>
+                  <p className="text-gray-400 dark:text-gray-800">{partner.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Rest of the sections remain unchanged */}
+        </section>
+      </div>
     </div>
   );
 };

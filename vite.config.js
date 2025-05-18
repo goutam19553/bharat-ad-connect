@@ -3,9 +3,9 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 export default defineConfig({
-    base: "/",
+  base: "/",
   server: {
-    host: "::",
+    host: "0.0.0.0",
     port: 8080,
   },
   plugins: [react()],
@@ -15,21 +15,11 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      "@supabase/supabase-js",
-      "framer-motion",
-    ],
+    include: ["@supabase/supabase-js", "framer-motion"],
   },
   build: {
     commonjsOptions: {
-      include: [
-        /node_modules/,
-        "@supabase/supabase-js",
-        "framer-motion",
-      ],
-    },
-    rollupOptions: {
-      external: [],
+      include: [/node_modules/, "@supabase/supabase-js", "framer-motion"],
     },
   },
 });

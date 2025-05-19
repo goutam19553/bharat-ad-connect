@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class", // Enables dark mode via class on <html> or <body>
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -36,13 +36,10 @@ const config: Config = {
         muted: "var(--muted)",
         accent: "var(--accent)",
         destructive: "var(--destructive)",
-        border: "var(--border)",        // <-- keeps your existing border color variable
+        border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
-
-        // Add a 'border' color specifically for border-border class if needed
-        // You can customize this color if the CSS expects a different value
-        border: "#e5e7eb",  
+        border: "#e5e7eb",
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
@@ -57,57 +54,68 @@ const config: Config = {
         md: "1rem",
       },
       keyframes: {
-  "accordion-down": {
-    from: { height: "0" },
-    to: { height: "var(--radix-accordion-content-height)" },
-  },
-  "accordion-up": {
-    from: { height: "var(--radix-accordion-content-height)" },
-    to: { height: "0" },
-  },
-  "fade-in": {
-    "0%": { opacity: "0" },
-    "100%": { opacity: "1" },
-  },
-  "fade-up": {
-    "0%": { opacity: "0", transform: "translateY(10px)" },
-    "100%": { opacity: "1", transform: "translateY(0)" },
-  },
-  "spin-slow": {
-    from: { transform: "rotate(0deg)" },
-    to: { transform: "rotate(360deg)" },
-  },
-  bounce: {
-    "0%, 100%": {
-      transform: "translateY(0)",
-      animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
-    },
-    "50%": {
-      transform: "translateY(-25%)",
-      animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
-    },
-  },
-  "3d-tilt": {
-    "0%, 100%": {
-      transform: "rotateX(0deg) rotateY(0deg) scale(1)",
-      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-    },
-    "50%": {
-      transform: "rotateX(8deg) rotateY(8deg) scale(1.05)",
-      boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
-    },
-  },
-},
-animation: {
-  "accordion-down": "accordion-down 0.2s ease-out",
-  "accordion-up": "accordion-up 0.2s ease-out",
-  "fade-in": "fade-in 0.5s ease-out",
-  "fade-up": "fade-up 0.5s ease-out",
-  "spin-slow": "spin-slow 5s linear infinite",
-  spin: "spin 1s linear infinite",
-  bounce: "bounce 1s infinite",
-  "3d-tilt": "3d-tilt 4s ease-in-out infinite",
-},
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        bounce: {
+          "0%, 100%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+          },
+          "50%": {
+            transform: "translateY(-25%)",
+            animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+          },
+        },
+        "3d-tilt": {
+          "0%, 100%": {
+            transform: "rotateX(0deg) rotateY(0deg) scale(1)",
+            boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+          },
+          "50%": {
+            transform: "rotateX(8deg) rotateY(8deg) scale(1.05)",
+            boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
+          },
+        },
+        glasspop: {
+          "0%, 100%": {
+            transform: "scale(1)",
+            boxShadow: "0 5px 30px rgba(0,0,0,0.25)",
+          },
+          "50%": {
+            transform: "scale(1.03)",
+            boxShadow: "0 8px 35px rgba(124,58,237,0.4)",
+          },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
+        "fade-up": "fade-up 0.5s ease-out",
+        "spin-slow": "spin-slow 5s linear infinite",
+        spin: "spin 1s linear infinite",
+        bounce: "bounce 1s infinite",
+        "3d-tilt": "3d-tilt 4s ease-in-out infinite",
+        glasspop: "glasspop 6s ease-in-out infinite",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

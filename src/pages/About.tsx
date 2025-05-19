@@ -81,17 +81,17 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-gray-400">
                 <p>
-                  Aura-Ad was founded in 2023 with a simple mission: to transform the fragmented outdoor 
+                  The Ad-Project was founded in 2024 with a simple mission: to transform the fragmented outdoor 
                   advertising industry in India through digital innovation and technology.
                 </p>
                 <p>
-                  Our founders, Goutam P & Zeeshan M, spent 15 years in traditional outdoor advertising and saw firsthand 
+                  Our founders spent 15 years in traditional outdoor advertising and saw firsthand 
                   the inefficiencies and missed opportunities in the market. Advertisers struggled to find and 
                   evaluate ad spaces, while property owners had no reliable way to monetize their valuable spaces.
                 </p>
                 <p>
                   By bringing together a team of experts in technology, marketing, and government relations, 
-                  Aura-Ad was born as a comprehensive solution connecting advertisers with premium ad spaces 
+                  The Ad-Project was born as a comprehensive solution connecting advertisers with premium ad spaces 
                   across India.
                 </p>
                 <p>

@@ -222,13 +222,15 @@ const Index = () => {
 
 {/* Political Campaign Button */}
 <div className="w-full flex justify-center mb-10">
-  <Link to="/political-campaign" className="group perspective-[1000px] relative z-10">
-    <button className="relative px-8 py-4 text-lg font-bold text-white rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 transition-transform duration-300 transform group-hover:scale-105 group-hover:-rotate-x-6 group-hover:rotate-y-6 shadow-xl animate-3d-tilt">
+  <Link to="/political-campaign" className="group relative">
+    <button className="relative z-10 px-10 py-4 text-white font-semibold text-lg rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_5px_30px_rgba(0,0,0,0.25)] transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:shadow-[0_10px_40px_rgba(124,58,237,0.5)] group-hover:border-white/20 animate-glasspop">
       🗳️ Political Campaign Support
-      <span className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-30 blur-xl group-hover:opacity-60 transition duration-300"></span>
+      <span className="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></span>
     </button>
   </Link>
 </div>
+
+
       
       {/* AI & AR Section */}
       <section className="section bg-white dark:bg-gray-800">

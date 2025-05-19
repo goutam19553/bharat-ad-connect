@@ -57,55 +57,57 @@ const config: Config = {
         md: "1rem",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "fade-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "spin-slow": {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
-        },
-        bounce: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-            animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
-          },
-          "50%": {
-            transform: "translateY(-25%)",
-            animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
-          },
-        },
-
-        // Custom politics animation keyframes
-        politics: {
-          "0%, 100%": { transform: "rotateX(0deg) rotateY(0deg)" },
-          "50%": { transform: "rotateX(5deg) rotateY(5deg)" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.5s ease-out",
-        "fade-up": "fade-up 0.5s ease-out",
-        "spin-slow": "spin-slow 5s linear infinite",
-        spin: "spin 1s linear infinite",
-        bounce: "bounce 1s infinite",
-
-        // Custom politics animation
-        politics: "politics 6s ease-in-out infinite",
-      },
+  "accordion-down": {
+    from: { height: "0" },
+    to: { height: "var(--radix-accordion-content-height)" },
+  },
+  "accordion-up": {
+    from: { height: "var(--radix-accordion-content-height)" },
+    to: { height: "0" },
+  },
+  "fade-in": {
+    "0%": { opacity: "0" },
+    "100%": { opacity: "1" },
+  },
+  "fade-up": {
+    "0%": { opacity: "0", transform: "translateY(10px)" },
+    "100%": { opacity: "1", transform: "translateY(0)" },
+  },
+  "spin-slow": {
+    from: { transform: "rotate(0deg)" },
+    to: { transform: "rotate(360deg)" },
+  },
+  bounce: {
+    "0%, 100%": {
+      transform: "translateY(0)",
+      animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+    },
+    "50%": {
+      transform: "translateY(-25%)",
+      animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+    },
+  },
+  "3d-tilt": {
+    "0%, 100%": {
+      transform: "rotateX(0deg) rotateY(0deg) scale(1)",
+      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+    },
+    "50%": {
+      transform: "rotateX(8deg) rotateY(8deg) scale(1.05)",
+      boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
+    },
+  },
+},
+animation: {
+  "accordion-down": "accordion-down 0.2s ease-out",
+  "accordion-up": "accordion-up 0.2s ease-out",
+  "fade-in": "fade-in 0.5s ease-out",
+  "fade-up": "fade-up 0.5s ease-out",
+  "spin-slow": "spin-slow 5s linear infinite",
+  spin: "spin 1s linear infinite",
+  bounce: "bounce 1s infinite",
+  "3d-tilt": "3d-tilt 4s ease-in-out infinite",
+},
     },
   },
   plugins: [require("tailwindcss-animate")],

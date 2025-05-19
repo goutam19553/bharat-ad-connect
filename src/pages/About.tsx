@@ -47,16 +47,16 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-gray-900 text-white dark:bg-white dark:text-black">
+    <div className="bg-gray-900 text-white">
       {/* About Header */}
-      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white dark:text-black">
+      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
                 Our Mission & Vision
               </h1>
-              <p className="text-xl text-gray-300 dark:text-gray-700 mb-8">
+              <p className="text-xl text-gray-300 mb-8">
                 Revolutionizing outdoor advertising in India through technology, data, and innovation
               </p>
             </div>
@@ -72,14 +72,14 @@ const About = () => {
       </div>
       
       {/* Our Story */}
-      <section className="section bg-gray-800 dark:bg-gray-100">
+      <section className="section bg-gray-800">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-heading font-bold mb-6 text-white dark:text-black">
+              <h2 className="text-3xl font-heading font-bold mb-6 text-white">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-400 dark:text-gray-800">
+              <div className="space-y-4 text-gray-400">
                 <p>
                   Aura-Ad was founded in 2023 with a simple mission: to transform the fragmented outdoor 
                   advertising industry in India through digital innovation and technology.
@@ -109,25 +109,25 @@ const About = () => {
             </div>
             
             <div className="space-y-8">
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-2xl font-heading font-semibold mb-3">Our Mission</h3>
-                <p className="text-gray-300 dark:text-gray-700">
+                <p className="text-gray-300">
                   To create India's most efficient and innovative outdoor advertising marketplace, connecting 
                   advertisers with prime spaces through cutting-edge technology and data-driven insights.
                 </p>
               </div>
               
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-2xl font-heading font-semibold mb-3">Our Vision</h3>
-                <p className="text-gray-300 dark:text-gray-700">
+                <p className="text-gray-300">
                   To be the definitive platform for outdoor advertising in India, transforming how businesses 
                   connect with their audiences in the physical world through smart, data-driven solutions.
                 </p>
               </div>
               
-              <div className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg">
+              <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-2xl font-heading font-semibold mb-3">Our Values</h3>
-                <ul className="space-y-2 text-gray-300 dark:text-gray-700">
+                <ul className="space-y-2 text-gray-300">
                   <li className="flex items-start">
                     <svg className="h-6 w-6 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -160,26 +160,26 @@ const About = () => {
       </section>
 
       {/* Team Members Section */}
-      <section className="bg-gray-800 dark:bg-gray-100 py-16">
+      <section className="bg-gray-800 py-16">
         <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+          <h2 className="text-3xl font-heading font-bold text-white mb-12">
             Meet Our Team
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
+              <div key={index} className="bg-gray-700 p-6 rounded-lg text-center">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
                 />
-                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
+                <h3 className="text-2xl font-heading font-semibold text-white mb-2">
                   {member.name}
                 </h3>
-                <p className="text-gray-300 dark:text-gray-700 mb-2">
+                <p className="text-gray-300 mb-2">
                   {member.position}
                 </p>
-                <p className="text-gray-400 dark:text-gray-800">
+                <p className="text-gray-400">
                   {member.bio}
                 </p>
               </div>
@@ -189,21 +189,21 @@ const About = () => {
       </section>
 
       {/* Partners Section */}
-      <section className="bg-gray-800 dark:bg-gray-100 py-16">
+      <section className="bg-gray-800 py-16">
         <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white dark:text-black mb-12">
+          <h2 className="text-3xl font-heading font-bold text-white mb-12">
             Our Partners
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {partners.map((partner, index) => (
-              <div key={index} className="bg-gray-700 dark:bg-gray-300 p-6 rounded-lg text-center">
-                <h3 className="text-2xl font-heading font-semibold text-white dark:text-black mb-2">
+              <div key={index} className="bg-gray-700 p-6 rounded-lg text-center">
+                <h3 className="text-2xl font-heading font-semibold text-white mb-2">
                   {partner.name}
                 </h3>
-                <p className="text-gray-300 dark:text-gray-700 mb-2">
+                <p className="text-gray-300 mb-2">
                   {partner.type}
                 </p>
-                <p className="text-gray-400 dark:text-gray-800">
+                <p className="text-gray-400">
                   {partner.description}
                 </p>
               </div>
@@ -211,8 +211,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Rest of the sections remain unchanged */}
     </div>
   );
 };

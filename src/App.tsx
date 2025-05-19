@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,7 +17,7 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
-const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage")); // ✅ Added
+const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage"));
 
 const queryClient = new QueryClient();
 
@@ -74,13 +74,18 @@ const GovernmentSupportSection = () => {
 };
 
 const App = () => {
+  // ✅ Force dark mode by default
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <BrowserRouter>
           <ScrollToTop />
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
@@ -91,7 +96,7 @@ const App = () => {
                       <>
                         <Index />
                         <EarnMoneySection />
-                        <GovernmentSupportSection /> {/* ✅ Added to homepage */}
+                        <GovernmentSupportSection />
                       </>
                     )}
                   />
@@ -102,7 +107,7 @@ const App = () => {
                   <Route path="/wall-upload" element={<WallUpload />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/government-support" element={<GovernmentSupportPage />} /> {/* ✅ Route added */}
+                  <Route path="/government-support" element={<GovernmentSupportPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

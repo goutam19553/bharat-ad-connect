@@ -93,36 +93,37 @@ const config: Config = {
             boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
           },
         },
-        neonPulse: {
+        shimmer: {
+          "0%": { backgroundPosition: "-700px 0" },
+          "100%": { backgroundPosition: "700px 0" },
+        },
+        "glow-radial": {
           "0%, 100%": {
-            transform: "scale(1)",
-            boxShadow: "0 0 8px #7f5af0, 0 0 20px #7f5af0, 0 0 30px #7f5af0",
+            boxShadow: "0 0 0 rgba(255,255,255,0)",
           },
           "50%": {
-            transform: "scale(1.05)",
-            boxShadow: "0 0 12px #00f0ff, 0 0 24px #00f0ff, 0 0 36px #00f0ff",
+            boxShadow: "0 0 60px 20px rgba(0, 255, 255, 0.4)",
           },
         },
-        liquidMove: {
-          "0%, 100%": {
-            transform: "translateX(0) translateY(0)",
-          },
-          "50%": {
-            transform: "translateX(5px) translateY(-3px)",
-          },
+        "swipe-glow-left": {
+          "0%": { transform: "translateX(100%)", opacity: 0 },
+          "50%": { opacity: 1 },
+          "100%": { transform: "translateX(-100%)", opacity: 0 },
         },
-        glitchHorizontal: {
-          "0%": { transform: "translateX(0px)" },
-          "20%": { transform: "translateX(-3px)" },
-          "40%": { transform: "translateX(3px)" },
-          "60%": { transform: "translateX(-2px)" },
-          "80%": { transform: "translateX(2px)" },
-          "100%": { transform: "translateX(0px)" },
+        "swipe-glow-right": {
+          "0%": { transform: "translateX(-100%)", opacity: 0 },
+          "50%": { opacity: 1 },
+          "100%": { transform: "translateX(100%)", opacity: 0 },
         },
-        glitchLine: {
-          "0%": { transform: "translateY(-50%) scaleX(0.2)" },
-          "50%": { transform: "translateY(-50%) scaleX(1)" },
-          "100%": { transform: "translateY(-50%) scaleX(0.2)" },
+        "swipe-glow-up": {
+          "0%": { transform: "translateY(100%)", opacity: 0 },
+          "50%": { opacity: 1 },
+          "100%": { transform: "translateY(-100%)", opacity: 0 },
+        },
+        "swipe-glow-down": {
+          "0%": { transform: "translateY(-100%)", opacity: 0 },
+          "50%": { opacity: 1 },
+          "100%": { transform: "translateY(100%)", opacity: 0 },
         },
       },
       animation: {
@@ -134,10 +135,12 @@ const config: Config = {
         spin: "spin 1s linear infinite",
         bounce: "bounce 1s infinite",
         "3d-tilt": "3d-tilt 4s ease-in-out infinite",
-        neonPulse: "neonPulse 4s ease-in-out infinite",
-        liquidMove: "liquidMove 6s ease-in-out infinite",
-        glitchHorizontal: "glitchHorizontal 2.5s infinite ease-in-out",
-        glitchLine: "glitchLine 1.5s infinite ease-in-out",
+        shimmer: "shimmer 2s infinite linear",
+        "glow-radial": "glow-radial 2.5s ease-in-out infinite",
+        "swipe-glow-left": "swipe-glow-left 3s infinite linear",
+        "swipe-glow-right": "swipe-glow-right 3s infinite linear",
+        "swipe-glow-up": "swipe-glow-up 3s infinite linear",
+        "swipe-glow-down": "swipe-glow-down 3s infinite linear",
       },
     },
   },

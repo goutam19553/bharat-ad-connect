@@ -223,25 +223,28 @@ const Index = () => {
 {/* Political Campaign Button */}
 <div className="flex justify-center items-center py-10">
   <button className="relative px-8 py-4 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold text-lg overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out">
+    
     {/* Swipe Glow Effect */}
     <span className="absolute inset-0 bg-white/10 blur-xl opacity-0 group-hover:opacity-100 animate-swipe-glow-right pointer-events-none rounded-xl"></span>
     
-    {/* Button Text */}
-    <span className="relative z-10">🚀 Political Campaign Support</span>
-  </button>
-</div>
-
-
     {/* Glass Shine / Hologram effect */}
     <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff10] to-[#00fff55e] rounded-xl pointer-events-none"></span>
-
+    
     {/* Cyberpunk Glitch Effect */}
     <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
       <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
       <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
     </span>
+    
+    {/* Button Text with shimmer */}
+    <span className="relative z-10 overflow-hidden">
+      <span className="relative">🚀 Political Campaign Support</span>
+      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+    </span>
+    
   </button>
 </div>
+
 
 
       

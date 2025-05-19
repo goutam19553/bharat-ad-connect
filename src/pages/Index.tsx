@@ -222,13 +222,35 @@ const Index = () => {
 
 {/* Political Campaign Button */}
 <div className="w-full flex justify-center mb-10">
-  <Link to="/political-campaign" className="relative group perspective z-10">
-    <button className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full shadow-2xl transition-transform duration-300 transform group-hover:scale-105 group-hover:rotate-x-6 group-hover:rotate-y-6 animate-politics">
+  <Link to="/political-campaign" className="relative z-10">
+    <button
+      className="
+        px-10 py-4
+        text-lg font-semibold text-white
+        bg-bharat-saffron
+        rounded-xl
+        shadow-lg
+        transition
+        transform
+        duration-300
+        ease-in-out
+        hover:scale-[1.05]
+        hover:shadow-2xl
+        active:translate-y-[2px]
+        active:shadow-inner
+        focus:outline-none focus:ring-4 focus:ring-bharat-saffron/50
+        "
+      style={{
+        // subtle 3D using box-shadow for depth
+        boxShadow: "0 6px 10px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.1)",
+        // smooth "lift" effect on hover is handled by tailwind utilities above
+      }}
+    >
       🗳️ Political Campaign Support
     </button>
-    <span className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 blur rounded-full opacity-70 group-hover:opacity-100 transition duration-300"></span>
   </Link>
 </div>
+
 
       
       {/* AI & AR Section */}

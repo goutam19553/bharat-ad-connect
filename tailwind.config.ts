@@ -89,6 +89,17 @@ export default {
         bounce: "bounce 1s infinite",
       },
     },
+extend: {
+  keyframes: {
+    politics: {
+      '0%, 100%': { transform: 'rotateX(0deg) rotateY(0deg)' },
+      '50%': { transform: 'rotateX(5deg) rotateY(5deg)' },
+    },
+  },
+  animation: {
+    politics: 'politics 6s ease-in-out infinite',
+  },
+}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

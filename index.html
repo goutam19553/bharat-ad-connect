@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,42 +36,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="transition-colors duration-300 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <!-- Dark Mode Toggle Button (Only one) -->
-    <button
-      id="toggle-dark"
-      class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-4 rounded-full shadow-lg transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-700"
-    >
-      <!-- Sun/Moon icons -->
-      <svg xmlns="http://www.w3.org/2000/svg" class="sun-icon block dark:hidden" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="currentColor" d="M12 2a1 1 0 011 1v2h2a1 1 0 011 1 1 1 0 011-1h2V7a1 1 0 011 1 1 1 0 01-1-1h2a1 1 0 011 1V3a1 1 0 011 1H3a1 1 0 011 1v2h2V7a1 1 0 011 1h2a1 1 0 011-1v4a1 1 0 011 1 1 1 0 01-1-1h-2a1 1 0 01-1-1V3a1 1 0 011 1v1z"/>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" class="moon-icon hidden dark:block" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="currentColor" d="M21 12.1c0-4.6-3.7-8.3-8.3-8.3-1.2 0-2.3.3-3.3.9-.9-3.6-4.1-6.4-7.9-6.4-4.5 0-8.1 3.6-8.1 8.1 0 4.6 3.7 8.3 8.3 8.3 2.7 0 5.1-1.2 6.8-3.1 2.5 1.6 5.8 2.6 9.2 2.2-2.5-1.4-4.1-4-4.1-7.1zm-6.4 5.7c-.9 1.1-2.1 2-3.4 2.5-.7-.6-1.5-1.1-2.3-1.7-.5-.5-.9-1.1-1.3-1.6 1.3-.5 2.5-1.3 3.5-2.4 1.3-.1 2.6-.7 3.6-1.7-.1 2.2-1.7 4.1-3.4 5.3z"/>
-      </svg>
-    </button>
-
+  <body class="transition-colors duration-300 bg-gray-900 text-gray-100">
     <div id="root"></div>
 
     <!-- GPT & App Scripts -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-
-    <!-- Dark Mode Script -->
-    <script>
-      const toggle = document.getElementById("toggle-dark");
-      const html = document.documentElement;
-
-      // Load preference from localStorage
-      if (localStorage.getItem("theme") === "dark") {
-        html.classList.add("dark");
-      }
-
-      toggle.addEventListener("click", () => {
-        html.classList.toggle("dark");
-        const mode = html.classList.contains("dark") ? "dark" : "light";
-        localStorage.setItem("theme", mode); // Save preference to localStorage
-      });
-    </script>
   </body>
 </html>

@@ -20,6 +20,18 @@ const AdSpaces = () => {
       rating: 5,
       featured: true
     },
+   {
+      id: 2,
+      title: "Auto Rickshaw Ad",
+      location: "Anywhere",
+      city: "Anywhere",
+      type: "Rickshaw Full Wrap and screen",
+      size: "10 x 10 feet",
+      price: 1000,
+      image: "",
+      rating: 5,
+      featured: true
+    },
     {
       id: 2,
       title: "Drone Advertising",

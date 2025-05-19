@@ -36,10 +36,9 @@ const config: Config = {
         muted: "var(--muted)",
         accent: "var(--accent)",
         destructive: "var(--destructive)",
-        border: "var(--border)",
+        border: "#e5e7eb",
         input: "var(--input)",
         ring: "var(--ring)",
-        border: "#e5e7eb",
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
@@ -94,14 +93,22 @@ const config: Config = {
             boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
           },
         },
-        glasspop: {
+        neonPulse: {
           "0%, 100%": {
             transform: "scale(1)",
-            boxShadow: "0 5px 30px rgba(0,0,0,0.25)",
+            boxShadow: "0 0 8px #7f5af0, 0 0 20px #7f5af0, 0 0 30px #7f5af0",
           },
           "50%": {
-            transform: "scale(1.03)",
-            boxShadow: "0 8px 35px rgba(124,58,237,0.4)",
+            transform: "scale(1.05)",
+            boxShadow: "0 0 12px #00f0ff, 0 0 24px #00f0ff, 0 0 36px #00f0ff",
+          },
+        },
+        liquidMove: {
+          "0%, 100%": {
+            transform: "translateX(0) translateY(0)",
+          },
+          "50%": {
+            transform: "translateX(5px) translateY(-3px)",
           },
         },
       },
@@ -114,7 +121,8 @@ const config: Config = {
         spin: "spin 1s linear infinite",
         bounce: "bounce 1s infinite",
         "3d-tilt": "3d-tilt 4s ease-in-out infinite",
-        glasspop: "glasspop 6s ease-in-out infinite",
+        neonPulse: "neonPulse 4s ease-in-out infinite",
+        liquidMove: "liquidMove 6s ease-in-out infinite",
       },
     },
   },

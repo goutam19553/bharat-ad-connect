@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   darkMode: "class", // Enables dark mode via class on <html> or <body>
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -36,9 +36,13 @@ export default {
         muted: "var(--muted)",
         accent: "var(--accent)",
         destructive: "var(--destructive)",
-        border: "var(--border)",
+        border: "var(--border)",        // <-- keeps your existing border color variable
         input: "var(--input)",
         ring: "var(--ring)",
+
+        // Add a 'border' color specifically for border-border class if needed
+        // You can customize this color if the CSS expects a different value
+        border: "#e5e7eb",  
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
@@ -73,10 +77,21 @@ export default {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
-        // Add custom bounce delay for dot animation
         bounce: {
-          "0%, 100%": { transform: "translateY(0)", animationTimingFunction: "cubic-bezier(0.8,0,1,1)" },
-          "50%": { transform: "translateY(-25%)", animationTimingFunction: "cubic-bezier(0,0,0.2,1)" },
+          "0%, 100%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+          },
+          "50%": {
+            transform: "translateY(-25%)",
+            animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+          },
+        },
+
+        // Custom politics animation keyframes
+        politics: {
+          "0%, 100%": { transform: "rotateX(0deg) rotateY(0deg)" },
+          "50%": { transform: "rotateX(5deg) rotateY(5deg)" },
         },
       },
       animation: {
@@ -87,19 +102,13 @@ export default {
         "spin-slow": "spin-slow 5s linear infinite",
         spin: "spin 1s linear infinite",
         bounce: "bounce 1s infinite",
+
+        // Custom politics animation
+        politics: "politics 6s ease-in-out infinite",
       },
     },
-extend: {
-  keyframes: {
-    politics: {
-      '0%, 100%': { transform: 'rotateX(0deg) rotateY(0deg)' },
-      '50%': { transform: 'rotateX(5deg) rotateY(5deg)' },
-    },
-  },
-  animation: {
-    politics: 'politics 6s ease-in-out infinite',
-  },
-}
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
+
+export default config;

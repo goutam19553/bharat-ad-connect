@@ -111,6 +111,19 @@ const config: Config = {
             transform: "translateX(5px) translateY(-3px)",
           },
         },
+        glitchHorizontal: {
+          "0%": { transform: "translateX(0px)" },
+          "20%": { transform: "translateX(-3px)" },
+          "40%": { transform: "translateX(3px)" },
+          "60%": { transform: "translateX(-2px)" },
+          "80%": { transform: "translateX(2px)" },
+          "100%": { transform: "translateX(0px)" },
+        },
+        glitchLine: {
+          "0%": { transform: "translateY(-50%) scaleX(0.2)" },
+          "50%": { transform: "translateY(-50%) scaleX(1)" },
+          "100%": { transform: "translateY(-50%) scaleX(0.2)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -123,6 +136,8 @@ const config: Config = {
         "3d-tilt": "3d-tilt 4s ease-in-out infinite",
         neonPulse: "neonPulse 4s ease-in-out infinite",
         liquidMove: "liquidMove 6s ease-in-out infinite",
+        glitchHorizontal: "glitchHorizontal 2.5s infinite ease-in-out",
+        glitchLine: "glitchLine 1.5s infinite ease-in-out",
       },
     },
   },

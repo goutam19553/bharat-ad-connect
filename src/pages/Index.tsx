@@ -223,12 +223,16 @@ const Index = () => {
 {/* Political Campaign Button */}
 <div className="w-full flex justify-center mb-10">
   <Link to="/political-campaign" className="group relative">
-    <button className="relative z-10 px-10 py-4 text-white font-semibold text-lg rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_5px_30px_rgba(0,0,0,0.25)] transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:shadow-[0_10px_40px_rgba(124,58,237,0.5)] group-hover:border-white/20 animate-glasspop">
-      🗳️ Political Campaign Support
-      <span className="absolute inset-0 z-[-1] rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></span>
+    <button className="relative z-10 px-10 py-4 text-white font-bold text-lg rounded-2xl border border-[#7f5af0] bg-[#1c1c1c] shadow-[0_0_10px_#7f5af0] transition-all duration-300 ease-in-out animate-neonPulse group-hover:scale-105 group-hover:shadow-[0_0_25px_#00f0ff]">
+      <span className="relative z-10">🛸 Political Campaign Support</span>
+      {/* Glowing Liquid Overlay */}
+      <span className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-br from-purple-500/20 via-blue-400/30 to-cyan-300/20 blur-md opacity-70 animate-liquidMove"></span>
+      {/* Extra Neon Border Glow */}
+      <span className="absolute -inset-[3px] rounded-2xl bg-gradient-to-r from-[#7f5af0] to-[#00f0ff] opacity-20 blur-md pointer-events-none"></span>
     </button>
   </Link>
 </div>
+
 
 
       

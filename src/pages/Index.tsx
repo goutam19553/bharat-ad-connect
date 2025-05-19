@@ -220,6 +220,17 @@ const Index = () => {
         </div>
       </section>
 
+{/* Political Campaign Button */}
+<div className="w-full flex justify-center mb-10">
+  <Link to="/political-campaign" className="relative group perspective z-10">
+    <button className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full shadow-2xl transition-transform duration-300 transform group-hover:scale-105 group-hover:rotate-x-6 group-hover:rotate-y-6 animate-politics">
+      🗳️ Political Campaign Support
+    </button>
+    <span className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 blur rounded-full opacity-70 group-hover:opacity-100 transition duration-300"></span>
+  </Link>
+</div>
+
+      
       {/* AI & AR Section */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">

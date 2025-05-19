@@ -52,96 +52,69 @@ const config: Config = {
       fontSize: {
         md: "1rem",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "fade-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "spin-slow": {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
-        },
-        bounce: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-            animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
-          },
-          "50%": {
-            transform: "translateY(-25%)",
-            animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
-          },
-        },
-        "3d-tilt": {
-          "0%, 100%": {
-            transform: "rotateX(0deg) rotateY(0deg) scale(1)",
-            boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-          },
-          "50%": {
-            transform: "rotateX(8deg) rotateY(8deg) scale(1.05)",
-            boxShadow: "0 15px 30px rgba(0, 0, 0, 0.3)",
-          },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-700px 0" },
-          "100%": { backgroundPosition: "700px 0" },
-        },
-        "glow-radial": {
-          "0%, 100%": {
-            boxShadow: "0 0 0 rgba(255,255,255,0)",
-          },
-          "50%": {
-            boxShadow: "0 0 60px 20px rgba(0, 255, 255, 0.4)",
-          },
-        },
-        "swipe-glow-left": {
-          "0%": { transform: "translateX(100%)", opacity: 0 },
-          "50%": { opacity: 1 },
-          "100%": { transform: "translateX(-100%)", opacity: 0 },
-        },
-        "swipe-glow-right": {
-          "0%": { transform: "translateX(-100%)", opacity: 0 },
-          "50%": { opacity: 1 },
-          "100%": { transform: "translateX(100%)", opacity: 0 },
-        },
-        "swipe-glow-up": {
-          "0%": { transform: "translateY(100%)", opacity: 0 },
-          "50%": { opacity: 1 },
-          "100%": { transform: "translateY(-100%)", opacity: 0 },
-        },
-        "swipe-glow-down": {
-          "0%": { transform: "translateY(-100%)", opacity: 0 },
-          "50%": { opacity: 1 },
-          "100%": { transform: "translateY(100%)", opacity: 0 },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.5s ease-out",
-        "fade-up": "fade-up 0.5s ease-out",
-        "spin-slow": "spin-slow 5s linear infinite",
-        spin: "spin 1s linear infinite",
-        bounce: "bounce 1s infinite",
-        "3d-tilt": "3d-tilt 4s ease-in-out infinite",
-        shimmer: "shimmer 2s infinite linear",
-        "glow-radial": "glow-radial 2.5s ease-in-out infinite",
-        "swipe-glow-left": "swipe-glow-left 3s infinite linear",
-        "swipe-glow-right": "swipe-glow-right 3s infinite linear",
-        "swipe-glow-up": "swipe-glow-up 3s infinite linear",
-        "swipe-glow-down": "swipe-glow-down 3s infinite linear",
-      },
+     @keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes swipe-glow {
+  0% {
+    transform: translateX(-100%) translateY(100%);
+  }
+  50% {
+    transform: translateX(100%) translateY(-100%);
+  }
+  100% {
+    transform: translateX(300%) translateY(-300%);
+  }
+}
+.animate-swipe-glow {
+  animation: swipe-glow 2s linear infinite;
+}
+
+@keyframes glitch-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.animate-glitch-horizontal {
+  animation: glitch-horizontal 1.5s infinite ease-in-out;
+}
+
+@keyframes glitch-line {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-glitch-line {
+  animation: glitch-line 2s infinite;
+}
+
     },
   },
   plugins: [require("tailwindcss-animate")],

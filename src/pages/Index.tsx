@@ -213,7 +213,7 @@ const Index = () => {
       {/* Political Campaign Support Button */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="flex justify-center items-center py-10">
-          <a href="https://your-redirect-link.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
             <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
               <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
               <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>

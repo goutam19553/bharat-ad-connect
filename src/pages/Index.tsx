@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import BrandSlider from "@/components/BrandSlider";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -138,12 +138,12 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero without WallUpload */}
+      {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
-      {/* Benefits Section */}
+      {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">
@@ -155,7 +155,6 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Advertisers */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -168,13 +167,10 @@ const Index = () => {
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">
-                  For Advertisers
-                </Link>
+                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
               </div>
             </div>
 
-            {/* Owners */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -187,9 +183,7 @@ const Index = () => {
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">
-                  For Ad Space Owners
-                </Link>
+                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
               </div>
             </div>
           </div>
@@ -205,90 +199,48 @@ const Index = () => {
               We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredAdSpaces.map((adSpace) => (
               <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
             ))}
           </div>
-
           <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">
-              View All Ad Spaces
-            </Link>
+            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
           </div>
         </div>
       </section>
 
-{/* Political Campaign Button Section */}
-<section className="section bg-white dark:bg-gray-800">
-  <div className="flex justify-center items-center py-10">
-    <a
-      href="https://your-redirect-link.com" // ⬅️ Change this to your desired link
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
-
-        {/* Radial Glow on Hover */}
-        <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
-
-        {/* Swipe Glow (All Directions: Diagonal Shine) */}
-        <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
-
-        {/* Glass Shine Layer */}
-        <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-
-        {/* Cyberpunk Glitch Effects */}
-        <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-          <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
-          <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
-        </span>
-
-        {/* Button Text with shimmer */}
-        <span className="relative z-10 overflow-hidden">
-          <span className="relative">🚀 Political Campaign Support</span>
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
-        </span>
-
-      </button>
-    </a>
-  </div>
-</section>
-
-
-
-      
-      {/* AI & AR Section */}
+      {/* Political Campaign Support Button */}
       <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">AI & AR-Powered Ad Experience</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Preview your ads with AR technology and let AI suggest the best designs based on audience and location data.
-            </p>
-          </div>
-
-          <AIDesignDemo />
-          <FootTrafficDemo />
+        <div className="flex justify-center items-center py-10">
+          <a href="https://your-redirect-link.com" target="_blank" rel="noopener noreferrer">
+            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
+              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
+              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
+                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
+                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
+              </span>
+              <span className="relative z-10 overflow-hidden">
+                <span className="relative">🚀 Political Campaign Support</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+              </span>
+            </button>
+          </a>
         </div>
       </section>
 
-       {/* Brand Partnerships */}
-      <section className="section bg-gray-100 dark:bg-gray-900 py-8">
-        <BrandSlider />
-      </section>
+      {/* AI/AR Design Demos */}
+      <AIDesignDemo />
+      <FootTrafficDemo />
 
-      {/* Contact Section */}
-      <section className="section bg-gray-50 dark:bg-gray-800 py-8">
+      {/* Brands Slider */}
+      <BrandSlider />
+
+      {/* Contact Form */}
+      <section className="section bg-gray-100 dark:bg-gray-900">
         <div className="container-custom">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Have questions or need assistance? Reach out to us today!
-            </p>
-          </div>
-
           <ContactForm />
         </div>
       </section>

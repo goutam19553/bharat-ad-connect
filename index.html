@@ -17,13 +17,12 @@
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Link to your locally built Tailwind CSS file -->
-    <link href="/dist/output.css" rel="stylesheet" />
-
-    <!-- Supabase CDN -->
+    <!-- Supabase CDN - fixed import for createClient -->
     <script type="module">
-      import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
-      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'your-anon-key');
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE');
+
       async function fetchData() {
         const { data, error } = await supabase.from('wall-spaces').select('*');
         if (error) {
@@ -32,8 +31,12 @@
           console.log('Data:', data);
         }
       }
+
       fetchData();
     </script>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body class="transition-colors duration-300 bg-gray-900 text-gray-100">

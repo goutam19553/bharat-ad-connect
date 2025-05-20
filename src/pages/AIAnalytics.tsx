@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const AIAnalytics = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.replace('https://neww-coral.vercel.app/');
+      window.location.replace('https://adproject2.vercel.app//');
     }, 3000); // 3s to let animation shine
     return () => clearTimeout(timer);
   }, []);
@@ -29,7 +29,7 @@ const AIAnalytics = () => {
           <div className="face bottom"></div>
         </div>
       </div>
-      <p style={{ marginTop: '30px', fontSize: '18px' }}>Redirecting to AI Analytics...</p>
+      <p style={{ marginTop: '30px', fontSize: '18px' }}>Welcome to AI & AR Analytics...</p>
 
       <style>{`
         .cube-loader {

@@ -29,6 +29,17 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // Move these out of `theme` so you can do `bg-background`
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        muted: "var(--muted)",
+        accent: "var(--accent)",
+        destructive: "var(--destructive)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+
         bharat: {
           green: "#00A651",
           saffron: "#FF9933",
@@ -38,17 +49,6 @@ const config: Config = {
           darkgray: "#333333",
           darkBackground: "#121212",
           darkText: "#f5f5f5",
-        },
-        theme: {
-          background: "var(--background)",
-          foreground: "var(--foreground)",
-          primary: "var(--primary)",
-          secondary: "var(--secondary)",
-          muted: "var(--muted)",
-          accent: "var(--accent)",
-          destructive: "var(--destructive)",
-          input: "var(--input)",
-          ring: "var(--ring)",
         },
         border: "#e5e7eb",
       },

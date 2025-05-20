@@ -98,9 +98,7 @@ const config: Config = {
           "100%": { backgroundPosition: "700px 0" },
         },
         "glow-radial": {
-          "0%, 100%": {
-            boxShadow: "0 0 0 rgba(255,255,255,0)",
-          },
+          "0%, 100%": { boxShadow: "0 0 0 rgba(255,255,255,0)" },
           "50%": {
             boxShadow: "0 0 60px 20px rgba(0, 255, 255, 0.4)",
           },

@@ -13,20 +13,19 @@ const Hero = () => {
 
   return (
     <>
-     {/* 3D Cube Spinner */}
-{isLoading && (
-  <div className="loader-container">
-    <div className="cube-spinner">
-      <div className="face front"></div>
-      <div className="face back"></div>
-      <div className="face left"></div>
-      <div className="face right"></div>
-      <div className="face top"></div>
-      <div className="face bottom"></div>
-    </div>
-  </div>
-)}
-
+      {/* 3D Cube Spinner */}
+      {isLoading && (
+        <div className="loader-container">
+          <div className="cube-spinner">
+            <div className="front"></div>
+            <div className="back"></div>
+            <div className="left"></div>
+            <div className="right"></div>
+            <div className="top"></div>
+            <div className="bottom"></div>
+          </div>
+        </div>
+      )}
 
       <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         {/* 🔥 Video Background with Poster */}

@@ -15,15 +15,14 @@ const Hero = () => {
   return (
     <>
       {/* ✨ 3D Glowing Cubes Spinner */}
-      {isLoading && (
-        <div className="spinner-wrapper">
-          <div className="scene">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className={`cube cube${i + 1}`}></div>
-            ))}
-          </div>
-        </div>
-      )}
+     {isLoading && (
+  <div className="liquid-loader-wrapper">
+    <div className="liquid-drop"></div>
+    <div className="liquid-drop delay-1"></div>
+    <div className="liquid-drop delay-2"></div>
+  </div>
+)}
+
 
       <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         <video

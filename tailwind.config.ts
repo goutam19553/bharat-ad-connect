@@ -158,5 +158,9 @@ const config: Config = {
   },
   plugins: [require("tailwindcss-animate")],
 };
-
+extend: {
+  animation: {
+    'spin-fast': 'spin 0.7s linear infinite',
+  }
+}
 export default config;

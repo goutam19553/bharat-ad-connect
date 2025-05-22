@@ -89,7 +89,7 @@ const GovernmentSupportPage = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 py-20">
+    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-20">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6">

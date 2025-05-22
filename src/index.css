@@ -308,3 +308,17 @@
   0%   { transform: translateX(-100vw); }
   100% { transform: translateX(100vw); }
 }
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate3d(1, 1, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 0, 360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+

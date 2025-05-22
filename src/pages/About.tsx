@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const About = () => {
 
   const Spinner3D = () => (
-  <div className="flex justify-center items-center h-32">
-    <div className="w-16 h-16 animate-spin-slow rounded-full border-8 border-t-bharat-teal border-b-transparent border-l-bharat-teal border-r-transparent shadow-xl" />
-  </div>
-);
-  
+    <div className="flex justify-center items-center h-32 mb-12">
+      <div className="w-16 h-16 animate-spin-slow rounded-full border-8 border-t-bharat-teal border-b-transparent border-l-bharat-teal border-r-transparent shadow-xl" />
+    </div>
+  );
+
   const teamMembers = [
     {
       name: "Goutam N P",
@@ -66,6 +66,8 @@ const About = () => {
               <p className="text-xl text-gray-300 mb-8">
                 Revolutionizing outdoor advertising in India through technology, data, and innovation
               </p>
+              {/* Place the Spinner here for a nice effect */}
+              <Spinner3D />
             </div>
             <div className="hidden lg:block">
               <img 

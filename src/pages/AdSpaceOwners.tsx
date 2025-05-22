@@ -30,22 +30,22 @@ const AdSpaceOwners = () => {
     {
       title: "Billboards & Hoardings",
       description: "Large format advertising spaces on highways, buildings, and high-visibility areas.",
-      image: "https://source.unsplash.com/photo-1527576539890-dfa815648363"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/1ad.png"
     },
     {
       title: "Digital Screens",
       description: "LED and LCD screens in commercial areas, malls, and high-traffic locations.",
-      image: "https://source.unsplash.com/photo-1487958449943-2429e8be8625"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/2ad.png"
     },
     {
       title: "Building Walls & Facades",
       description: "Unused exterior walls and building facades in urban areas.",
-      image: "https://source.unsplash.com/photo-1493397212122-2b85dda8106b"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/3ad.png"
     },
     {
       title: "Retail & Mall Spaces",
       description: "Ad spaces in shopping centers, retail environments, and commercial complexes.",
-      image: "https://source.unsplash.com/photo-1506744038136-46273834b3fb"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/4ad.png"
     }
   ];
 

@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Ad Spaces", href: "/ad-spaces" },
-    { name: "AI Analytics", href: "ai-analytics" },
+    { name: "AI Analytics", href: "/ai-analytics" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
     { name: "Wall Upload", href: "/wall-upload" },
@@ -31,6 +31,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -46,7 +50,7 @@ const Navbar = () => {
           : "bg-transparent py-4 dark:bg-transparent dark:text-white"
       }`}
     >
-      <div className="container-custom">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
@@ -58,12 +62,12 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center gap-2">
+          <div className="hidden md:flex md:items-center gap-2 flex-wrap">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-3 py-2 mx-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === item.href
                     ? "text-bharat-saffron font-semibold"
                     : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
@@ -73,7 +77,6 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
@@ -86,8 +89,10 @@ const Navbar = () => {
               )}
             </button>
 
-            <Link to="/contact" className="ml-2 btn-primary">
-              Get Started
+            <Link to="/contact">
+              <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-md hover:bg-bharat-saffron transition">
+                Get Started
+              </button>
             </Link>
           </div>
 
@@ -117,13 +122,13 @@ const Navbar = () => {
       {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg animate-fade-in dark:bg-gray-800">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="px-4 pt-3 pb-4 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                className={`block px-4 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
                     : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron dark:text-white dark:hover:bg-gray-700"
@@ -135,7 +140,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="block w-full text-center px-3 py-2 btn-primary"
+              className="block w-full text-center px-4 py-2 mt-2 bg-bharat-green text-white font-semibold rounded-md hover:bg-bharat-saffron transition"
             >
               Get Started
             </Link>

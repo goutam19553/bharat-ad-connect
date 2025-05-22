@@ -29,7 +29,6 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Move these out of `theme` so you can do `bg-background`
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
@@ -39,7 +38,6 @@ const config: Config = {
         destructive: "var(--destructive)",
         input: "var(--input)",
         ring: "var(--ring)",
-
         bharat: {
           green: "#00A651",
           saffron: "#FF9933",
@@ -153,14 +151,11 @@ const config: Config = {
         "swipe-glow-right": "swipe-glow-right 3s infinite linear",
         "swipe-glow-up": "swipe-glow-up 3s infinite linear",
         "swipe-glow-down": "swipe-glow-down 3s infinite linear",
+        "spin-fast": "spin 0.7s linear infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
-extend: {
-  animation: {
-    'spin-fast': 'spin 0.7s linear infinite',
-  }
-}
+
 export default config;

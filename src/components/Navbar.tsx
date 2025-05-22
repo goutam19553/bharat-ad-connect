@@ -14,7 +14,6 @@ const Navbar = () => {
     { name: "AI Analytics", href: "/ai-analytics" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
-    { name: "Wall Upload", href: "/wall-upload" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -24,9 +23,7 @@ const Navbar = () => {
     setTheme(savedTheme);
     document.documentElement.classList.toggle("dark", savedTheme === "dark");
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -46,82 +43,76 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
         scrolled
-          ? "bg-white shadow-md py-2 dark:bg-gray-800 dark:text-white"
+          ? "bg-white shadow-md py-2 dark:bg-gray-900 dark:text-white"
           : "bg-transparent py-4 dark:bg-transparent dark:text-white"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <span className="text-2xl font-heading font-bold text-bharat-green dark:text-white">
-                The Ad<span className="text-bharat-saffron">-Project</span>
-              </span>
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold font-heading text-bharat-green dark:text-white">
+          The Ad<span className="text-bharat-saffron">-Project</span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-4">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname === item.href
+                  ? "text-bharat-saffron font-semibold"
+                  : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
+              }`}
+            >
+              {item.name}
             </Link>
-          </div>
+          ))}
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center gap-2 flex-wrap">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === item.href
-                    ? "text-bharat-saffron font-semibold"
-                    : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? (
+              <Moon className="h-5 w-5 text-gray-700" />
+            ) : (
+              <Sun className="h-5 w-5 text-yellow-400" />
+            )}
+          </button>
 
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-              aria-label="Toggle Theme"
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5 text-gray-700" />
-              ) : (
-                <Sun className="h-5 w-5 text-yellow-400" />
-              )}
+          <Link to="/contact">
+            <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-full hover:bg-bharat-saffron transition">
+              Get Started
             </button>
+          </Link>
+        </div>
 
-            <Link to="/contact">
-              <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-md hover:bg-bharat-saffron transition">
-                Get Started
-              </button>
-            </Link>
-          </div>
-
-          {/* Mobile Nav Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-              aria-label="Toggle Theme"
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5 text-gray-700" />
-              ) : (
-                <Sun className="h-5 w-5 text-yellow-400" />
-              )}
-            </button>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+        {/* Mobile Nav Button */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? (
+              <Moon className="h-5 w-5 text-gray-700" />
+            ) : (
+              <Sun className="h-5 w-5 text-yellow-400" />
+            )}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg animate-fade-in dark:bg-gray-800">
+        <div className="md:hidden bg-white dark:bg-gray-800 shadow-lg animate-fade-in">
           <div className="px-4 pt-3 pb-4 space-y-2">
             {navigation.map((item) => (
               <Link
@@ -152,3 +143,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+    

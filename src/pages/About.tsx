@@ -1,12 +1,64 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const About = () => {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // Simulate loading delay (replace with real data fetch if needed)
+    const timer = setTimeout(() => setLoading(false), 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // 3D rotating cube spinner — looks cool and modern
   const Spinner3D = () => (
-    <div className="flex justify-center items-center h-32 mb-12">
-      <div className="w-16 h-16 animate-spin-slow rounded-full border-8 border-t-bharat-teal border-b-transparent border-l-bharat-teal border-r-transparent shadow-xl" />
+    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 z-50">
+      <div className="w-20 h-20 perspective">
+        <div className="cube">
+          <div className="face front bg-bharat-teal" />
+          <div className="face back bg-bharat-navy" />
+          <div className="face right bg-bharat-teal/80" />
+          <div className="face left bg-bharat-teal/80" />
+          <div className="face top bg-bharat-teal/60" />
+          <div className="face bottom bg-bharat-teal/60" />
+        </div>
+      </div>
+
+      {/* Tailwind doesn't support 3D cube by default, so add styles below */}
+      <style>{`
+        .perspective {
+          perspective: 800px;
+        }
+        .cube {
+          width: 80px;
+          height: 80px;
+          position: relative;
+          transform-style: preserve-3d;
+          animation: spinCube 1.8s linear infinite;
+        }
+        .face {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          opacity: 0.9;
+          border: 2px solid #14b8a6; /* bharat-teal */
+        }
+        .front  { transform: translateZ(40px); }
+        .back   { transform: rotateY(180deg) translateZ(40px); }
+        .right  { transform: rotateY(90deg) translateZ(40px); }
+        .left   { transform: rotateY(-90deg) translateZ(40px); }
+        .top    { transform: rotateX(90deg) translateZ(40px); }
+        .bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+        @keyframes spinCube {
+          0%   { transform: rotateX(0deg) rotateY(0deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+      `}</style>
     </div>
   );
+
+  if (loading) return <Spinner3D />;
 
   const teamMembers = [
     {
@@ -66,8 +118,6 @@ const About = () => {
               <p className="text-xl text-gray-300 mb-8">
                 Revolutionizing outdoor advertising in India through technology, data, and innovation
               </p>
-              {/* Place the Spinner here for a nice effect */}
-              <Spinner3D />
             </div>
             <div className="hidden lg:block">
               <img 
@@ -180,17 +230,12 @@ const About = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                  loading="lazy"
                 />
-                <h3 className="text-2xl font-heading font-semibold text-white mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-gray-300 mb-2">
-                  {member.position}
-                </p>
-                <p className="text-gray-400">
-                  {member.bio}
-                </p>
+                <h3 className="text-xl font-semibold text-white">{member.name}</h3>
+                <p className="text-sm uppercase tracking-wide text-bharat-teal font-bold mb-2">{member.position}</p>
+                <p className="text-gray-300 text-sm">{member.bio}</p>
               </div>
             ))}
           </div>
@@ -198,28 +243,32 @@ const About = () => {
       </section>
 
       {/* Partners Section */}
-      <section className="bg-gray-800 py-16">
+      <section className="bg-gray-700 py-16">
         <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white mb-12">
+          <h2 className="text-3xl font-heading font-bold text-white mb-12 text-center">
             Our Partners
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {partners.map((partner, index) => (
-              <div key={index} className="bg-gray-700 p-6 rounded-lg text-center">
-                <h3 className="text-2xl font-heading font-semibold text-white mb-2">
-                  {partner.name}
-                </h3>
-                <p className="text-gray-300 mb-2">
-                  {partner.type}
-                </p>
-                <p className="text-gray-400">
-                  {partner.description}
-                </p>
+          <div className="max-w-5xl mx-auto space-y-8">
+            {partners.map((partner, idx) => (
+              <div key={idx} className="bg-gray-800 rounded-lg p-8 shadow-lg">
+                <h3 className="text-2xl font-semibold text-bharat-teal mb-2">{partner.name}</h3>
+                <p className="uppercase text-xs font-bold tracking-wider text-gray-400 mb-4">{partner.type}</p>
+                <p className="text-gray-300">{partner.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Footer CTA */}
+      <div className="bg-bharat-navy/90 py-12 text-center">
+        <h3 className="text-2xl font-heading font-bold text-white mb-4">
+          Interested in partnering with us?
+        </h3>
+        <Link to="/contact" className="btn-primary">
+          Contact Us
+        </Link>
+      </div>
     </div>
   );
 };

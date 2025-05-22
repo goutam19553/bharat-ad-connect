@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
 const About = () => {
+
+  const Spinner3D = () => (
+  <div className="flex justify-center items-center h-32">
+    <div className="w-16 h-16 animate-spin-slow rounded-full border-8 border-t-bharat-teal border-b-transparent border-l-bharat-teal border-r-transparent shadow-xl" />
+  </div>
+);
+  
   const teamMembers = [
     {
       name: "Goutam N P",

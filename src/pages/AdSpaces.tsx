@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchFilter from "@/components/SearchFilter";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import { MapPin } from "lucide-react";
@@ -6,7 +6,15 @@ import { MapPin } from "lucide-react";
 const AdSpaces = () => {
   const [filters, setFilters] = useState({});
   const [view, setView] = useState<"grid" | "map">("grid");
-  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // simulate loading for 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
+
   const adSpacesData: AdSpaceProps[] = [
     {
       id: 1,
@@ -20,7 +28,7 @@ const AdSpaces = () => {
       rating: 5,
       featured: true
     },
-   {
+    {
       id: 2,
       title: "Auto Rickshaw Ad",
       location: "Anywhere",
@@ -126,10 +134,19 @@ const AdSpaces = () => {
 
   const filterAdSpaces = (filters: any) => {
     setFilters(filters);
-    // In a real application, this would filter the data based on the selected filters
-    // For this demo, we're just setting the filters state
     console.log("Applying filters:", filters);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-white dark:bg-gray-900">
+        <div className="relative w-16 h-16">
+          <div className="absolute w-full h-full border-4 border-t-transparent border-b-transparent border-bharat-saffron rounded-full animate-spin" />
+          <div className="absolute top-1 left-1 right-1 bottom-1 border-4 border-t-transparent border-b-transparent border-bharat-teal rounded-full animate-spin-slow" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -224,7 +241,6 @@ const AdSpaces = () => {
               <p className="text-lg text-center py-12 text-gray-800 dark:text-gray-300">
                 Map view is under development. Please use the grid view to explore ad spaces.
               </p>
-              {/* In a real application, we would integrate a map here */}
             </div>
           )}
         </div>

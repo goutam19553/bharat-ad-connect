@@ -54,7 +54,7 @@ const steps = [
   },
 ];
 
-// Bounce animation for icons
+// Animations
 const bounceAnimation = `
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -62,7 +62,6 @@ const bounceAnimation = `
   }
 `;
 
-// Dash animation for lines
 const dashAnimation = `
   @keyframes dashMove {
     to {
@@ -75,7 +74,7 @@ export default function HowItWorks() {
   return (
     <section
       style={{
-        backgroundColor: "#111",
+        backgroundColor: "#0f0f0f", // Updated background to match site theme
         padding: "40px 20px",
         overflowX: "auto",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
@@ -121,7 +120,6 @@ export default function HowItWorks() {
                 zIndex: 10,
               }}
             >
-              {/* Icon with bounce */}
               <div
                 style={{
                   width: 64,
@@ -166,8 +164,6 @@ export default function HowItWorks() {
               </p>
 
               {/* Connecting lines */}
-
-              {/* Horizontal line to next step */}
               {i < steps.length - 1 && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -181,13 +177,7 @@ export default function HowItWorks() {
                   }}
                 >
                   <defs>
-                    <linearGradient
-                      id={`gradH${i}`}
-                      x1="0"
-                      y1="0"
-                      x2="1"
-                      y2="0"
-                    >
+                    <linearGradient id={`gradH${i}`} x1="0" y1="0" x2="1" y2="0">
                       <stop offset="0%" stopColor="#ec4899" />
                       <stop offset="50%" stopColor="#8b5cf6" />
                       <stop offset="100%" stopColor="#3b82f6" />
@@ -207,7 +197,6 @@ export default function HowItWorks() {
                 </svg>
               )}
 
-              {/* Vertical connecting line from odd to even step */}
               {i < steps.length - 1 && !isEven && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -221,13 +210,7 @@ export default function HowItWorks() {
                   }}
                 >
                   <defs>
-                    <linearGradient
-                      id={`gradV${i}`}
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
+                    <linearGradient id={`gradV${i}`} x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#ec4899" />
                       <stop offset="50%" stopColor="#8b5cf6" />
                       <stop offset="100%" stopColor="#3b82f6" />
@@ -247,7 +230,6 @@ export default function HowItWorks() {
                 </svg>
               )}
 
-              {/* Vertical connecting line from even to odd step */}
               {i < steps.length - 1 && isEven && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

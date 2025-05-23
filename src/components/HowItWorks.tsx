@@ -55,21 +55,21 @@ const steps = [
 ];
 
 // Bounce animation for icons
-const bounceAnimation = 
+const bounceAnimation = `
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-;
+`;
 
 // Dash animation for lines
-const dashAnimation = 
+const dashAnimation = `
   @keyframes dashMove {
     to {
       stroke-dashoffset: -20;
     }
   }
-;
+`;
 
 export default function HowItWorks() {
   return (
@@ -185,7 +185,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={gradH${i}}
+                      id={`gradH${i}`}
                       x1="0"
                       y1="0"
                       x2="1"
@@ -201,7 +201,7 @@ export default function HowItWorks() {
                     y1="2"
                     x2="50"
                     y2="2"
-                    stroke={url(#gradH${i})}
+                    stroke={`url(#gradH${i})`}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"
@@ -225,7 +225,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={gradV${i}}
+                      id={`gradV${i}`}
                       x1="0"
                       y1="0"
                       x2="0"
@@ -241,7 +241,7 @@ export default function HowItWorks() {
                     y1="0"
                     x2="2"
                     y2="68"
-                    stroke={url(#gradV${i})}
+                    stroke={`url(#gradV${i})`}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"
@@ -265,7 +265,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={gradVDown${i}}
+                      id={`gradVDown${i}`}
                       x1="0"
                       y1="0"
                       x2="0"
@@ -281,7 +281,7 @@ export default function HowItWorks() {
                     y1="0"
                     x2="2"
                     y2="36"
-                    stroke={url(#gradVDown${i})}
+                    stroke={`url(#gradVDown${i})`}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"

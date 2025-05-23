@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
 import ARPreview from "./ARPreview";
 
@@ -24,7 +23,7 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
       <div className="relative">
         {adSpace.type === "Digital LED Flying Drones" ? (
           <video
-            src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback~2 (1).mp4" // Replace with your actual drone ad video URL
+            src="https://github.com/goutam19553/Startup-adtech/raw/refs/heads/main/public/videoplayback~2 (1).mp4"
             controls
             autoPlay
             loop
@@ -57,16 +56,24 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
 
         <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
           <MapPin className="h-4 w-4 text-bharat-teal mr-1" />
-          <p className="text-sm truncate">{adSpace.location}, {adSpace.city}</p>
+          <p className="text-sm truncate">
+            {adSpace.location}, {adSpace.city}
+          </p>
         </div>
 
         <div className="mt-3 flex items-center justify-between">
-          <p className="text-sm text-gray-500 dark:text-gray-400">Size: {adSpace.size}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Size: {adSpace.size}
+          </p>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-4 h-4 ${i < adSpace.rating ? "text-yellow-500" : "text-gray-300 dark:text-gray-600"}`}
+                className={`w-4 h-4 ${
+                  i < adSpace.rating
+                    ? "text-yellow-500"
+                    : "text-gray-300 dark:text-gray-600"
+                }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -78,7 +85,10 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
 
         <div className="mt-4 border-t dark:border-gray-700 pt-4 flex items-center justify-between">
           <p className="font-heading font-bold text-lg text-bharat-navy dark:text-white">
-            ₹{adSpace.price.toLocaleString('en-IN')}<span className="text-xs text-gray-500 dark:text-gray-400 font-normal">/month</span>
+            ₹{adSpace.price.toLocaleString("en-IN")}
+            <span className="text-xs text-gray-500 dark:text-gray-400 font-normal">
+              /month
+            </span>
           </p>
           <div className="flex space-x-2">
             <button
@@ -87,21 +97,20 @@ const AdSpaceCard = ({ adSpace }: { adSpace: AdSpaceProps }) => {
             >
               AR Preview
             </button>
-            <Link
-              to={`/ad-spaces/${adSpace.id}`}
+            <button
+              onClick={() =>
+                alert("🚧 Coming Soon – This feature is under development!")
+              }
               className="btn-primary py-1 px-3 text-sm flex items-center"
             >
               Details <ArrowRight className="ml-1 h-4 w-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
 
       {showARPreview && (
-        <ARPreview
-          adSpace={adSpace}
-          onClose={() => setShowARPreview(false)}
-        />
+        <ARPreview adSpace={adSpace} onClose={() => setShowARPreview(false)} />
       )}
     </div>
   );

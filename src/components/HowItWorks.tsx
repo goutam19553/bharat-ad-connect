@@ -54,7 +54,6 @@ const steps = [
   },
 ];
 
-// Animations
 const bounceAnimation = `
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -74,7 +73,7 @@ export default function HowItWorks() {
   return (
     <section
       style={{
-        backgroundColor: "#0F172A", // Updated to match your website background
+        backgroundColor: "#0F172A",
         padding: "40px 20px",
         overflowX: "auto",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
@@ -163,7 +162,7 @@ export default function HowItWorks() {
                 {step.description}
               </p>
 
-              {/* Connecting lines */}
+              {/* Horizontal line */}
               {i < steps.length - 1 && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -171,9 +170,9 @@ export default function HowItWorks() {
                     position: "absolute",
                     top: isEven ? 32 : 132,
                     left: 180,
-                    width: 50,
+                    width: 60,
                     height: 4,
-                    zIndex: 5,
+                    zIndex: 1,
                   }}
                 >
                   <defs>
@@ -186,7 +185,7 @@ export default function HowItWorks() {
                   <line
                     x1="0"
                     y1="2"
-                    x2="50"
+                    x2="60"
                     y2="2"
                     stroke={`url(#gradH${i})`}
                     strokeWidth="3"
@@ -197,16 +196,17 @@ export default function HowItWorks() {
                 </svg>
               )}
 
+              {/* Vertical connector */}
               {i < steps.length - 1 && !isEven && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   style={{
                     position: "absolute",
                     top: 4,
-                    left: 230,
+                    left: 240,
                     width: 4,
-                    height: 68,
-                    zIndex: 5,
+                    height: 100,
+                    zIndex: 1,
                   }}
                 >
                   <defs>
@@ -220,7 +220,7 @@ export default function HowItWorks() {
                     x1="2"
                     y1="0"
                     x2="2"
-                    y2="68"
+                    y2="100"
                     stroke={`url(#gradV${i})`}
                     strokeWidth="3"
                     strokeDasharray="6 6"
@@ -236,20 +236,14 @@ export default function HowItWorks() {
                   style={{
                     position: "absolute",
                     top: 68,
-                    left: 230,
+                    left: 240,
                     width: 4,
-                    height: 36,
-                    zIndex: 5,
+                    height: 64,
+                    zIndex: 1,
                   }}
                 >
                   <defs>
-                    <linearGradient
-                      id={`gradVDown${i}`}
-                      x1="0"
-                      y1="0"
-                      x2="0"
-                      y2="1"
-                    >
+                    <linearGradient id={`gradVDown${i}`} x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#ec4899" />
                       <stop offset="50%" stopColor="#8b5cf6" />
                       <stop offset="100%" stopColor="#3b82f6" />
@@ -259,7 +253,7 @@ export default function HowItWorks() {
                     x1="2"
                     y1="0"
                     x2="2"
-                    y2="36"
+                    y2="64"
                     stroke={`url(#gradVDown${i})`}
                     strokeWidth="3"
                     strokeDasharray="6 6"

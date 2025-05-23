@@ -74,7 +74,7 @@ export default function HowItWorks() {
   return (
     <section
       style={{
-        backgroundColor: "#0f0f0f", // Updated background to match site theme
+        backgroundColor: "#0F172A", // Updated to match your website background
         padding: "40px 20px",
         overflowX: "auto",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",

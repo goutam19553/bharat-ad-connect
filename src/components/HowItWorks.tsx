@@ -121,7 +121,7 @@ export default function HowItWorks() {
               style={{
                 flex: "0 0 180px",
                 position: "relative",
-                top: isEven ? 0 : 100,
+                top: isEven ? 0 : 140,
                 textAlign: "center",
                 color: "black",
                 zIndex: 10,

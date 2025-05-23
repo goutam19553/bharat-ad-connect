@@ -1,255 +1,242 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Hero from "@/components/Hero";
-import ContactForm from "@/components/ContactForm";
-import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
-import AIDesignDemo from "@/components/AIDesignDemo";
-import FootTrafficDemo from "@/components/FootTrafficDemo";
-import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import HowItWorks from "@/components/HowItWorks";  // <-- Added import
+import {
+  FaUserAlt,
+  FaNewspaper,
+  FaSlidersH,
+  FaWallet,
+  FaGlobe,
+  FaPlayCircle,
+} from "react-icons/fa";
+import { MdOutlineAutoGraph } from "react-icons/md";
 
-const Index = () => {
-  const featuredAdSpaces: AdSpaceProps[] = [
-    {
-      id: 1,
-      title: "Indian Cricket Stadium",
-      location: "M.Chinnaswamy Stadium",
-      city: "Bengaluru",
-      type: "Stadium",
-      size: "60 x 20 feet",
-      price: 250000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Promotional Space",
-      location: "IT Park Manyata Tech Park",
-      city: "Bangalore",
-      type: "Space Ad",
-      size: "10 x 10 feet",
-      price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Exterior Train Branding",
-      location: "Mumbai Local Train",
-      city: "Mumbai",
-      type: "Transit",
-      size: "5 x 8 feet",
-      price: 80000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Prime Billboard - MG Road",
-      location: "MG Road",
-      city: "Bengaluru",
-      type: "Billboard",
-      size: "30 x 15 feet",
-      price: 45000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
-      rating: 5,
-      featured: true,
-    },
-    {
-      id: 5,
-      title: "Drone Advertising",
-      location: "Anywhere",
-      city: "Anywhere",
-      type: "Digital LED Flying Drones",
-      size: "20 x 10 feet",
-      price: 8000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Metro Station Panels",
-      location: "Rajiv Chowk Metro",
-      city: "New Delhi",
-      type: "Transit",
-      size: "15 x 8 feet",
-      price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
-      rating: 4,
-      featured: true,
-    },
-  ];
+const steps = [
+  {
+    icon: <FaUserAlt />,
+    title: "Sign Up & Explore",
+    description:
+      "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
+  },
+  {
+    icon: <FaNewspaper />,
+    title: "Upload Ad & Details",
+    description:
+      "Submit your creative design, select target demographics, and input your campaign goals.",
+  },
+  {
+    icon: <FaSlidersH />,
+    title: "Preview & Customize",
+    description:
+      "Use our AI & AR tools to preview your ad on walls, hoardings, and digital kiosks in real environments.",
+  },
+  {
+    icon: <FaWallet />,
+    title: "Budget Campaign Suggestion",
+    description:
+      "Our platform provides smart package suggestions to match your budget and maximize ROI.",
+  },
+  {
+    icon: <MdOutlineAutoGraph />,
+    title: "Launch Across India",
+    description:
+      "Deploy your campaign across cities using our printing, installation & tracking network.",
+  },
+  {
+    icon: <FaGlobe />,
+    title: "Track & Grow",
+    description:
+      "Monitor reach, engagement & foot traffic analytics on your dashboard. Optimize for better ROI.",
+  },
+  {
+    icon: <FaPlayCircle />,
+    title: "Your Ad is Ready!",
+    description:
+      "Sit back and watch your campaign perform across India in real-time on your dashboard.",
+  },
+];
 
-  const advertiserBenefits = [
-    {
-      icon: <MapPin className="h-8 w-8 text-bharat-saffron" />,
-      title: "Prime Locations",
-      description: "Access to exclusive premium ad spaces across major Indian cities.",
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-bharat-saffron" />,
-      title: "AR Preview",
-      description: "See exactly how your ad will look before making an investment.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-saffron" />,
-      title: "AI-Powered Design",
-      description: "Get intelligent design recommendations based on location and audience.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />,
-      title: "Traffic Analysis",
-      description: "Make data-driven decisions with our foot traffic analysis.",
-    },
-  ];
+const bounceAnimation = `
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+`;
 
-  const ownerBenefits = [
-    {
-      icon: <Building className="h-8 w-8 text-bharat-navy" />,
-      title: "Maximize Revenue",
-      description: "List your ad spaces and connect with quality advertisers.",
-    },
-    {
-      icon: <Award className="h-8 w-8 text-bharat-navy" />,
-      title: "Verified Advertisers",
-      description: "We verify all advertisers to ensure quality partnerships.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />,
-      title: "Data Insights",
-      description: "Access analytics about your space's performance and value.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-navy" />,
-      title: "Seamless Management",
-      description: "Easy-to-use platform for managing your ad inventory.",
-    },
-  ];
+const dashAnimation = `
+  @keyframes dashMove {
+    to {
+      stroke-dashoffset: -100;
+    }
+  }
+`;
 
+export default function HowItWorks() {
   return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
-        <Hero />
+    <section
+      style={{
+        background:
+          "linear-gradient(to bottom right, var(--bharat-saffron), rgba(15,23,42,0.9))",
+        padding: "40px 20px",
+        overflowX: "auto",
+        color: "white",
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      }}
+    >
+      <style>{bounceAnimation}</style>
+      <style>{dashAnimation}</style>
+
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: 28,
+          fontWeight: "700",
+          marginBottom: 40,
+        }}
+      >
+        How It Works
+      </h2>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 80,
+          position: "relative",
+          width: steps.length * 240,
+          minWidth: "100%",
+          paddingBottom: 150,
+        }}
+      >
+        {steps.map((step, i) => {
+          const isEven = i % 2 === 0;
+
+          return (
+            <div
+              key={i}
+              style={{
+                flex: "0 0 180px",
+                position: "relative",
+                top: isEven ? 0 : 100,
+                textAlign: "center",
+                zIndex: 2,
+              }}
+            >
+              <div
+                style={{
+                  width: 64,
+                  height: 64,
+                  margin: "0 auto 16px",
+                  borderRadius: "50%",
+                  background:
+                    "linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  animation: "bounce 2.5s ease-in-out infinite",
+                  boxShadow:
+                    "0 0 10px rgba(236,72,153,0.6), 0 0 15px rgba(139,92,246,0.6), 0 0 20px rgba(59,130,246,0.6)",
+                }}
+              >
+                {React.cloneElement(step.icon, {
+                  size: 32,
+                  color: "#fff",
+                })}
+              </div>
+
+              <h3 style={{ fontWeight: 600, fontSize: 16, marginBottom: 8 }}>
+                {step.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: 13,
+                  color: "#ddd",
+                  lineHeight: 1.4,
+                  minHeight: 72,
+                }}
+              >
+                {step.description}
+              </p>
+
+              {/* CONNECTING LINES */}
+              {i < steps.length - 1 && (
+                <svg
+                  style={{
+                    position: "absolute",
+                    top: isEven ? 32 : 132,
+                    left: 180,
+                    width: 100,
+                    height: 100,
+                    overflow: "visible",
+                    zIndex: 1,
+                  }}
+                >
+                  <defs>
+                    <linearGradient id={`grad${i}`} x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#ec4899" />
+                      <stop offset="50%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#3b82f6" />
+                    </linearGradient>
+                  </defs>
+
+                  {isEven ? (
+                    <>
+                      {/* Horizontal line */}
+                      <line
+                        x1="0"
+                        y1="2"
+                        x2="60"
+                        y2="2"
+                        stroke={`url(#grad${i})`}
+                        strokeWidth="3"
+                        strokeDasharray="6 6"
+                        strokeLinecap="round"
+                        style={{ animation: "dashMove 2s linear infinite" }}
+                      />
+                      {/* Vertical drop */}
+                      <line
+                        x1="60"
+                        y1="2"
+                        x2="60"
+                        y2="100"
+                        stroke={`url(#grad${i})`}
+                        strokeWidth="3"
+                        strokeDasharray="6 6"
+                        strokeLinecap="round"
+                        style={{ animation: "dashMove 2s linear infinite" }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      {/* Vertical rise */}
+                      <line
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="-100"
+                        stroke={`url(#grad${i})`}
+                        strokeWidth="3"
+                        strokeDasharray="6 6"
+                        strokeLinecap="round"
+                        style={{ animation: "dashMove 2s linear infinite" }}
+                      />
+                      {/* Horizontal line */}
+                      <line
+                        x1="0"
+                        y1="-100"
+                        x2="60"
+                        y2="-100"
+                        stroke={`url(#grad${i})`}
+                        strokeWidth="3"
+                        strokeDasharray="6 6"
+                        strokeLinecap="round"
+                        style={{ animation: "dashMove 2s linear infinite" }}
+                      />
+                    </>
+                  )}
+                </svg>
+              )}
+            </div>
+          );
+        })}
       </div>
-
-      {/* How It Works Section - ADDED */}
-      <HowItWorks />
-
-      {/* Benefits */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners across India through our
-              innovative digital marketplace powered by AI and AR technology.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {ownerBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Ad Spaces */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace) => (
-              <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Political Campaign Support Button */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="flex justify-center items-center py-10">
-          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
-              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
-              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
-                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
-              </span>
-              <span className="relative z-10 overflow-hidden">
-                <span className="relative">🚀 Political Campaign Support</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
-              </span>
-            </button>
-          </a>
-        </div>
-      </section>
-
-      {/* AI/AR Design Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
-
-      {/* Brands Slider */}
-      <BrandSlider />
-
-      {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900">
-        <div className="container-custom">
-          <ContactForm />
-        </div>
-      </section>
-    </div>
+    </section>
   );
-};
-
-export default Index;
+}

@@ -3,42 +3,43 @@ import { Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: "/icons/signup.gif",  // Added a proper icon filename here
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png", // User icon
     title: "Sign Up & Explore",
     description:
       "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
   },
   {
-    icon: "/icons/upload.gif",
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png", // Upload icon
     title: "Upload Ad & Details",
     description:
       "Submit your creative design, select target demographics, and input your campaign goals.",
   },
   {
-    icon: "/icons/preview.gif",
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/visible.png", // Eye/preview icon
     title: "Preview & Customize",
     description:
       "Use our AI & AR tools to preview your ad on walls, hoardings, and digital kiosks in real environments.",
   },
   {
-    icon: "/icons/budget.gif",
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/money-bag-euro.png", // Budget/money icon
     title: "Budget Campaign Suggestion",
     description:
       "Our platform provides smart package suggestions to match your budget and maximize ROI.",
   },
   {
-    icon: "/icons/launch.gif",
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/rocket.png", // Rocket/launch icon
     title: "Launch Across India",
     description:
       "Deploy your campaign across cities using our printing, installation & tracking network.",
   },
   {
-    icon: "/icons/track.gif",
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/combo-chart--v1.png", // Chart/track icon
     title: "Track & Grow",
     description:
       "Monitor reach, engagement & foot traffic analytics on your dashboard. Optimize for better ROI.",
   },
 ];
+
 
 export default function HowItWorksSection() {
   return (

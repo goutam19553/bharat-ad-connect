@@ -55,21 +55,21 @@ const steps = [
 ];
 
 // Bounce animation for icons
-const bounceAnimation = `
+const bounceAnimation = 
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-`;
+;
 
 // Dash animation for lines
-const dashAnimation = `
+const dashAnimation = 
   @keyframes dashMove {
     to {
       stroke-dashoffset: -20;
     }
   }
-`;
+;
 
 export default function HowItWorks() {
   return (
@@ -85,7 +85,6 @@ export default function HowItWorks() {
       <style>{dashAnimation}</style>
 
       <h2
-        className="dark:text-white"
         style={{
           color: "black",
           textAlign: "center",
@@ -93,6 +92,7 @@ export default function HowItWorks() {
           fontWeight: "700",
           marginBottom: 40,
         }}
+        className="dark:text-white"
       >
         How It Works
       </h2>
@@ -105,10 +105,6 @@ export default function HowItWorks() {
           width: steps.length * 210,
           minWidth: "100%",
           paddingBottom: 150,
-          // Added responsive width for mobile scrolling
-          overflowX: "auto",
-          scrollbarWidth: "thin",
-          scrollbarColor: "#8b5cf6 #ddd",
         }}
       >
         {steps.map((step, i) => {
@@ -117,15 +113,15 @@ export default function HowItWorks() {
           return (
             <div
               key={i}
-              className="dark:text-gray-300"
               style={{
                 flex: "0 0 180px",
                 position: "relative",
-                top: isEven ? 0 : 140,
+                top: isEven ? 0 : 100,
                 textAlign: "center",
                 color: "black",
                 zIndex: 10,
               }}
+              className="dark:text-gray-300"
             >
               {/* Icon with bounce */}
               <div
@@ -156,20 +152,18 @@ export default function HowItWorks() {
                   fontSize: 16,
                   marginBottom: 8,
                   minHeight: 48,
-                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 }}
               >
                 {step.title}
               </h3>
               <p
-                className="dark:text-white"
                 style={{
-                  fontSize: 14,
-                  color: "#fff", // white subtext in light and dark modes
+                  fontSize: 13,
+                  color: "#555",
                   lineHeight: 1.4,
                   minHeight: 72,
-                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 }}
+                className="dark:text-gray-400"
               >
                 {step.description}
               </p>
@@ -191,7 +185,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={`gradH${i}`}
+                      id={gradH${i}}
                       x1="0"
                       y1="0"
                       x2="1"
@@ -207,7 +201,7 @@ export default function HowItWorks() {
                     y1="2"
                     x2="50"
                     y2="2"
-                    stroke={`url(#gradH${i})`}
+                    stroke={url(#gradH${i})}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"
@@ -231,7 +225,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={`gradV${i}`}
+                      id={gradV${i}}
                       x1="0"
                       y1="0"
                       x2="0"
@@ -247,7 +241,7 @@ export default function HowItWorks() {
                     y1="0"
                     x2="2"
                     y2="68"
-                    stroke={`url(#gradV${i})`}
+                    stroke={url(#gradV${i})}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"
@@ -271,7 +265,7 @@ export default function HowItWorks() {
                 >
                   <defs>
                     <linearGradient
-                      id={`gradVDown${i}`}
+                      id={gradVDown${i}}
                       x1="0"
                       y1="0"
                       x2="0"
@@ -287,7 +281,7 @@ export default function HowItWorks() {
                     y1="0"
                     x2="2"
                     y2="36"
-                    stroke={`url(#gradVDown${i})`}
+                    stroke={url(#gradVDown${i})}
                     strokeWidth="3"
                     strokeDasharray="6 6"
                     strokeLinecap="round"

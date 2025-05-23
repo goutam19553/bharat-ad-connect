@@ -40,13 +40,12 @@ const steps = [
   },
 ];
 
-
 export default function HowItWorksSection() {
   return (
-    <section className="relative bg-black py-20 px-4 overflow-hidden">
+    <section className="relative bg-white dark:bg-gray-800 py-20 px-4 overflow-hidden">
       <div className="absolute inset-0 bg-[url('/background-pattern.svg')] bg-cover bg-center opacity-10 blur-md" />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-800/10 to-blue-800/10 pointer-events-none" />
-      <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
+      <h2 className="text-black dark:text-white text-4xl font-bold text-center mb-16 z-10 relative">
         How It Works
       </h2>
       <div className="relative flex justify-center mb-12 z-10">
@@ -85,10 +84,10 @@ export default function HowItWorksSection() {
                   />
                 </div>
               </motion.div>
-              <h3 className="text-white text-xl font-semibold mt-6 mb-2">
+              <h3 className="text-black dark:text-white text-xl font-semibold mt-6 mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-300 text-sm max-w-xs">
+              <p className="text-gray-700 dark:text-gray-300 text-sm max-w-xs">
                 {step.description}
               </p>
               {index < steps.length - 1 && (

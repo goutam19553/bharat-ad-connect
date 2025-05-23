@@ -3,13 +3,13 @@ import { Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png", // User icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png", // 
     title: "Sign Up & Explore",
     description:
       "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png", // Upload icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png", // 
     title: "Upload Ad & Details",
     description:
       "Submit your creative design, select target demographics, and input your campaign goals.",

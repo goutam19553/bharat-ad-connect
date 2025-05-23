@@ -7,6 +7,7 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
+import HowItWorks from "@/components/HowItWorks";  // <-- Added import
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -142,6 +143,9 @@ const Index = () => {
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
+
+      {/* How It Works Section - ADDED */}
+      <HowItWorks />
 
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">

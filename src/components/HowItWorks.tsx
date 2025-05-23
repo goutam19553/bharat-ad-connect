@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import Image from "next/image";
 
 const steps = [
   {
-    icon: "/icons/",
+    icon: "/icons/signup.gif",  // Added a proper icon filename here
     title: "Sign Up & Explore",
     description:
       "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
@@ -76,7 +75,13 @@ export default function HowItWorksSection() {
                 className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
               >
                 <div className="bg-black border-4 border-dashed border-white w-24 h-24 flex items-center justify-center rounded-full">
-                  <Image src={step.icon} alt={step.title} width={48} height={48} className="rounded-full animate-pulse" />
+                  <img
+                    src={step.icon}
+                    alt={step.title}
+                    width={48}
+                    height={48}
+                    className="rounded-full animate-pulse"
+                  />
                 </div>
               </motion.div>
               <h3 className="text-white text-xl font-semibold mt-6 mb-2">

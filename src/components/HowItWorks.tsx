@@ -85,6 +85,7 @@ export default function HowItWorks() {
       <style>{dashAnimation}</style>
 
       <h2
+        className="dark:text-white"
         style={{
           color: "black",
           textAlign: "center",
@@ -92,7 +93,6 @@ export default function HowItWorks() {
           fontWeight: "700",
           marginBottom: 40,
         }}
-        className="dark:text-white"
       >
         How It Works
       </h2>
@@ -105,6 +105,10 @@ export default function HowItWorks() {
           width: steps.length * 210,
           minWidth: "100%",
           paddingBottom: 150,
+          // Added responsive width for mobile scrolling
+          overflowX: "auto",
+          scrollbarWidth: "thin",
+          scrollbarColor: "#8b5cf6 #ddd",
         }}
       >
         {steps.map((step, i) => {
@@ -113,6 +117,7 @@ export default function HowItWorks() {
           return (
             <div
               key={i}
+              className="dark:text-gray-300"
               style={{
                 flex: "0 0 180px",
                 position: "relative",
@@ -121,7 +126,6 @@ export default function HowItWorks() {
                 color: "black",
                 zIndex: 10,
               }}
-              className="dark:text-gray-300"
             >
               {/* Icon with bounce */}
               <div
@@ -152,18 +156,20 @@ export default function HowItWorks() {
                   fontSize: 16,
                   marginBottom: 8,
                   minHeight: 48,
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 }}
               >
                 {step.title}
               </h3>
               <p
+                className="dark:text-white"
                 style={{
-                  fontSize: 13,
-                  color: "#555",
+                  fontSize: 14,
+                  color: "#fff", // white subtext in light and dark modes
                   lineHeight: 1.4,
                   minHeight: 72,
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 }}
-                className="dark:text-gray-400"
               >
                 {step.description}
               </p>

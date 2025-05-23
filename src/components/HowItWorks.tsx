@@ -3,37 +3,37 @@ import { Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png", // 
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png",
     title: "Sign Up & Explore",
     description:
       "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png", // 
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png",
     title: "Upload Ad & Details",
     description:
       "Submit your creative design, select target demographics, and input your campaign goals.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/visible.png", // Eye/preview icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/visible.png",
     title: "Preview & Customize",
     description:
       "Use our AI & AR tools to preview your ad on walls, hoardings, and digital kiosks in real environments.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/money-bag-euro.png", // Budget/money icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/money-bag-euro.png",
     title: "Budget Campaign Suggestion",
     description:
       "Our platform provides smart package suggestions to match your budget and maximize ROI.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/rocket.png", // Rocket/launch icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/rocket.png",
     title: "Launch Across India",
     description:
       "Deploy your campaign across cities using our printing, installation & tracking network.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/combo-chart--v1.png", // Chart/track icon
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/combo-chart--v1.png",
     title: "Track & Grow",
     description:
       "Monitor reach, engagement & foot traffic analytics on your dashboard. Optimize for better ROI.",
@@ -42,10 +42,10 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="relative bg-white dark:bg-gray-900 py-20 px-4 overflow-hidden">
+    <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
       <div className="absolute inset-0 bg-[url('/background-pattern.svg')] bg-cover bg-center opacity-10 blur-md" />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-800/10 to-blue-800/10 pointer-events-none" />
-      <h2 className="text-black dark:text-white text-4xl font-bold text-center mb-16 z-10 relative">
+      <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
         How It Works
       </h2>
       <div className="relative flex justify-center mb-12 z-10">
@@ -53,7 +53,7 @@ export default function HowItWorksSection() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, type: "spring" }}
-          className="absolute top-[-40px] text-purple-500 animate-ping"
+          className="absolute top-[-40px] text-purple-400 animate-ping"
         >
           <Sparkles size={48} />
         </motion.div>
@@ -84,10 +84,10 @@ export default function HowItWorksSection() {
                   />
                 </div>
               </motion.div>
-              <h3 className="text-black dark:text-white text-xl font-semibold mt-6 mb-2">
+              <h3 className="text-white text-xl font-semibold mt-6 mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm max-w-xs">
+              <p className="text-gray-300 text-sm max-w-xs">
                 {step.description}
               </p>
               {index < steps.length - 1 && (

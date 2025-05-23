@@ -145,7 +145,10 @@ const Index = () => {
       </div>
 
       {/* How It Works Section - ADDED */}
-      <HowItWorks />
+      <section className="section bg-white dark:bg-gray-800">
+       <HowItWorks />
+       </section>
+
 
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">

@@ -41,7 +41,10 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden">
+    <section
+      className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden"
+      style={{ minHeight: '600px' }}  // <-- Added this for height
+    >
       {/* 3D Particles Background */}
       <Particles
         id="tsparticles"
@@ -50,14 +53,14 @@ export default function HowItWorks() {
           fullScreen: { enable: false },
           background: { color: '#1f2937' },
           particles: {
-            number: { value: 80, density: { enable: true, value_area: 800 } },
-            color: { value: '#ffffff' },
+            number: { value: 30 },
+            color: { value: '#00ff00' },
             shape: { type: 'circle' },
-            opacity: { value: 0.3 },
-            size: { value: 3 },
+            opacity: { value: 0.7 },
+            size: { value: 5 },
             move: {
               enable: true,
-              speed: 1.2,
+              speed: 2,
               direction: 'none',
               random: false,
               straight: false,
@@ -66,6 +69,7 @@ export default function HowItWorks() {
           },
         }}
         className="absolute inset-0 z-0"
+        style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)' }} // <-- Debug background
       />
 
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 z-10 relative">

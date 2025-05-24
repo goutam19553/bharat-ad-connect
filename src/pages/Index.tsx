@@ -144,12 +144,7 @@ const Index = () => {
         <Hero />
       </div>
 
-      {/* How It Works Section - ADDED */}
-      <section className="section bg-white dark:bg-gray-800">
-       <HowItWorks />
-       </section>
-
-
+   
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
@@ -241,6 +236,11 @@ const Index = () => {
       {/* AI/AR Design Demos */}
       <AIDesignDemo />
       <FootTrafficDemo />
+
+         {/* How It Works Section - ADDED */}
+      <section className="section bg-white dark:bg-gray-800">
+       <HowItWorks />
+       </section>
 
       {/* Brands Slider */}
       <BrandSlider />

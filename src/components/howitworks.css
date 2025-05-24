@@ -27,12 +27,10 @@
 @keyframes growLine {
   from {
     width: 0;
-    height: 0;
     opacity: 0;
   }
   to {
     width: var(--line-width, 50px);
-    height: var(--line-height, 2px);
     opacity: 1;
   }
 }
@@ -44,67 +42,33 @@
   position: relative;
 }
 
-/* Horizontal connector line */
+/* Horizontal connector line - dotted */
 .connector-horizontal {
   position: absolute;
   top: 50%;
   left: 50%;
   height: 2px;
-  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  width: 100%;
+  max-width: 320px;
+  background: none;
+  border-top: 3px dotted #8b5cf6; /* Purple dotted line */
   animation: growLine 0.6s ease-out forwards;
-  transform: translateX(0);
+  transform: translateX(-50%);
   opacity: 0;
   animation-fill-mode: forwards;
   animation-name: growLine;
   animation-duration: 0.6s;
   animation-timing-function: ease-out;
-}
-
-/* Vertical connector line */
-.connector-vertical {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2px;
-  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
-  animation: growLine 0.6s ease-out forwards;
-  transform: translateY(0);
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation-name: growLine;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-out;
-}
-
-/* Horizontal line expands width */
-.connector-horizontal {
-  --line-width: 50px;
-  --line-height: 2px;
-}
-
-/* Vertical line expands height */
-.connector-vertical {
-  --line-width: 2px;
-  --line-height: 50px;
 }
 
 /* Delay animations for lines */
 .connector-horizontal.delay-1 {
   animation-delay: 0.3s;
 }
-.connector-vertical.delay-1 {
-  animation-delay: 0.3s;
-}
 .connector-horizontal.delay-2 {
   animation-delay: 0.6s;
 }
-.connector-vertical.delay-2 {
-  animation-delay: 0.6s;
-}
 .connector-horizontal.delay-3 {
-  animation-delay: 0.9s;
-}
-.connector-vertical.delay-3 {
   animation-delay: 0.9s;
 }
 
@@ -123,7 +87,9 @@
   position: relative;
   z-index: 10;
   transition: box-shadow 0.3s ease;
+  /* Removed blinking/pulsing */
 }
+
 .step-number:hover {
   box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
 }

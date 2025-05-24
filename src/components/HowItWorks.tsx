@@ -73,37 +73,56 @@ export default function HowItWorks() {
       </h2>
 
       <div className="relative max-w-6xl mx-auto z-10 how-it-works-container">
-        {/* Vertical Line */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500 z-0" />
-
-        <div className="space-y-28 relative z-10">
+        <div className="space-y-36 relative z-10">
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={cn(
-                how-it-works-step delay-${index + 1},
-                'flex flex-col md:flex-row items-center md:items-start gap-8',
-                index % 2 === 0
-                  ? 'md:flex-row-reverse text-right'
-                  : 'md:flex-row text-left'
+            <div key={index} className="relative">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className={cn(
+                  `how-it-works-step delay-${index + 1}`,
+                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-4',
+                  'transform-gpu perspective-[1000px]',
+                  index % 2 === 0
+                    ? 'md:flex-row-reverse text-right'
+                    : 'md:flex-row text-left'
+                )}
+              >
+                <div className="w-full md:w-1/2 px-4">
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-4">
+                    {index + 1}. {step.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-300">
+                    {step.description}
+                  </p>
+                </div>
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-bold flex items-center justify-center shadow-xl scale-110 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] transition-shadow duration-300">
+                  {index + 1}
+                </div>
+              </motion.div>
+
+              {/* Curved SVG connector */}
+              {index < steps.length - 1 && (
+                <svg
+                  viewBox="0 0 300 200"
+                  className="how-it-works-connector"
+                  style={{ top: `100%`, marginTop: '10px' }}
+                >
+                  <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#3b82f6" />
+                      <stop offset="100%" stopColor="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M 0 0 Q 150 200 300 0"
+                    className="curve-path"
+                  />
+                </svg>
               )}
-            >
-              <div className="w-full md:w-1/2 px-4">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-                  {index + 1}. {step.title}
-                </h3>
-                <p className="text-base md:text-lg text-gray-300">
-                  {step.description}
-                </p>
-              </div>
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-bold flex items-center justify-center shadow-xl transform scale-110">
-                {index + 1}
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import { useCallback } from 'react';
-import './howitworks.css';
 
 const steps = [
   {
@@ -41,14 +40,14 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="relative py-20 px-4 md:px-16 bg-gray-900 text-white overflow-visible">
+    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-visible">
       {/* Background Particles */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           fullScreen: { enable: false },
-          background: { color: '#111827' },
+          background: { color: '#1e293b' }, // gray-800 hex code
           particles: {
             number: { value: 70 },
             color: { value: '#ffffff' },
@@ -90,7 +89,7 @@ export default function HowItWorks() {
                 viewport={{ once: true }}
                 className={cn(
                   'group transition-transform duration-300 ease-in-out transform-gpu hover:scale-[1.04] hover:rotate-1 perspective-[1000px]',
-                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-6 rounded-3xl bg-gradient-to-br from-gray-800/80 to-gray-900/70 shadow-xl backdrop-blur-md',
+                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-6 rounded-3xl bg-gradient-to-br from-gray-700/80 to-gray-800/70 shadow-xl backdrop-blur-md',
                   index % 2 === 0
                     ? 'md:flex-row-reverse text-right'
                     : 'md:flex-row text-left'

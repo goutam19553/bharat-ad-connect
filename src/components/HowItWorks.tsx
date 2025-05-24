@@ -2,6 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
+import { useCallback } from 'react';
+import './howitworks.css';
 
 const steps = [
   {
@@ -32,13 +36,43 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const particlesInit = useCallback(async (engine: any) => {
+    await loadFull(engine);
+  }, []);
+
   return (
-    <section className="relative py-20 px-4 md:px-16 bg-[#0f0f0f] text-white">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden">
+      {/* 3D Particles Background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          fullScreen: { enable: false },
+          background: { color: '#1f2937' },
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#ffffff' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.3 },
+            size: { value: 3 },
+            move: {
+              enable: true,
+              speed: 1.2,
+              direction: 'none',
+              random: false,
+              straight: false,
+              outModes: 'out',
+            },
+          },
+        }}
+        className="absolute inset-0 z-0"
+      />
+
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 z-10 relative">
         How It Works
       </h2>
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-6xl mx-auto z-10 how-it-works-container">
         {/* Vertical Line */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500 z-0" />
 
@@ -46,11 +80,12 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className={cn(
+                `how-it-works-step delay-${index + 1}`,
                 'flex flex-col md:flex-row items-center md:items-start gap-8',
                 index % 2 === 0
                   ? 'md:flex-row-reverse text-right'

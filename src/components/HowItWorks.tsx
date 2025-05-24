@@ -1,105 +1,90 @@
-import { motion } from "framer-motion";
-import {
-  Star,
-  Newspaper,
-  Sliders,
-  Globe,
-  PlayCircle,
-} from "lucide-react";
+// File: HowItWorks3D.tsx
+
+import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Html, Float, Stars } from '@react-three/drei';
+import './howitworks.css'; // Custom animation and SVG styles
 
 const steps = [
   {
-    icon: <Star className="w-10 h-10 text-white" />,
-    title: "Discover Unique Ad Spaces",
-    description:
-      "Choose from a wide range of wall spaces across India using our real-time map. Filter by location, visibility, foot traffic & more.",
+    title: 'Sign Up & Customize',
+    icon: '⭐',
+    text: 'Create your account and customize your ad profile with preferences and goals.',
   },
   {
-    icon: <Newspaper className="w-10 h-10 text-white" />,
-    title: "Upload Your Campaign",
-    description:
-      "Upload your ad image or video and preview it directly on the wall using our AI + AR tools. No graphic designer required!",
+    title: 'Upload Wall Info',
+    icon: '📄',
+    text: 'Upload your wall or hoarding images with dimensions, location, and features.',
   },
   {
-    icon: <Sliders className="w-10 h-10 text-white" />,
-    title: "Customize Your Ad Settings",
-    description:
-      "Select duration, start/end dates, and budgets. Our platform helps optimize your ad placement using AI analytics.",
+    title: 'Preview Your Ad',
+    icon: '🎛️',
+    text: 'Use our smart editor to preview your ad using AR tools and mockups.',
   },
   {
-    icon: <Globe className="w-10 h-10 text-white" />,
-    title: "Connect with Local Partners",
-    description:
-      "We connect you with verified wall owners, local print & install partners, and handle government permissions if required.",
+    title: 'Collaborate & Launch',
+    icon: '🌐',
+    text: 'Coordinate with printing partners, installation teams, and tracking tools.',
   },
   {
-    icon: <PlayCircle className="w-10 h-10 text-white" />,
-    title: "Launch and Monitor",
-    description:
-      "Track your ad campaign in real-time with analytics, reach estimates, and visual proof. No more blind spending!",
+    title: 'Your Ad is Live!',
+    icon: '📺',
+    text: 'Your ad is now live and viewable with real-time analytics and feedback.',
   },
 ];
 
-export default function HowItWorks() {
-  return (
-    <section className="w-full px-6 py-16 bg-black text-white">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-          How It Works
-        </h2>
+type StepSphereProps = {
+  icon: string;
+  title: string;
+  text: string;
+  index: number;
+};
 
-        <div className="flex flex-col items-center gap-20 relative">
-          {steps.map((step, index) => {
-            const isUp = index % 2 === 0;
-
-            return (
-              <div key={index} className="w-full flex justify-center relative">
-                {/* Step Content */}
-                <div
-                  className={`flex flex-col items-center text-center max-w-md ${
-                    isUp ? "mt-0 mb-20" : "mt-20 mb-0"
-                  }`}
-                >
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="rounded-full p-6 border-4 bg-gradient-to-br from-black via-gray-900 to-black shadow-xl border-gradient-to-r from-pink-500 to-purple-600"
-                  >
-                    {step.icon}
-                  </motion.div>
-                  <h3 className="font-bold text-xl mt-4 mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Connector Line */}
-                {index < steps.length - 1 && (
-                  <motion.div
-                    initial={{ height: 0 }}
-                    whileInView={{ height: 80 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className={`absolute left-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-600 ${
-                      isUp ? "top-full" : "bottom-full"
-                    }`}
-                  />
-                )}
-              </div>
-            );
-          })}
-
-          {/* Final Message */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mt-10 text-center"
-          >
-            YOUR AD IS READY!
-          </motion.div>
+const StepSphere: React.FC<StepSphereProps> = ({ icon, title, text, index }) => (
+  <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+    <mesh position={[index * 4 - 8, index % 2 === 0 ? 2 : -2, 0]}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial color="#9333ea" emissive="#a855f7" emissiveIntensity={0.4} />
+      <Html center>
+        <div className="text-white text-center w-48">
+          <div className="text-4xl">{icon}</div>
+          <h3 className="font-bold mt-2">{title}</h3>
+          <p className="text-sm mt-1">{text}</p>
         </div>
-      </div>
-    </section>
+      </Html>
+    </mesh>
+  </Float>
+);
+
+const HowItWorks3D: React.FC = () => {
+  return (
+    <div className="relative h-[200vh] bg-black">
+      <Canvas camera={{ position: [0, 0, 12], fov: 60 }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[0, 5, 5]} intensity={1} />
+        <OrbitControls enableZoom={false} />
+        <Stars radius={50} depth={30} count={2000} factor={4} fade />
+
+        {steps.map((step, index) => (
+          <StepSphere key={index} {...step} index={index} />
+        ))}
+      </Canvas>
+
+      {/* SVG Curved Connectors */}
+      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1400 400">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ec4899" />
+            <stop offset="100%" stopColor="#8b5cf6" />
+          </linearGradient>
+        </defs>
+
+        <path id="connector1" d="M 100 100 C 250 30, 350 170, 500 100" stroke="url(#grad)" strokeWidth="3" fill="none" />
+        <path id="connector2" d="M 500 100 C 650 30, 750 170, 900 100" stroke="url(#grad)" strokeWidth="3" fill="none" />
+        <path id="connector3" d="M 900 100 C 1050 30, 1150 170, 1300 100" stroke="url(#grad)" strokeWidth="3" fill="none" />
+      </svg>
+    </div>
   );
-}
+};
+
+export default HowItWorks3D;

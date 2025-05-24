@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import { useCallback } from 'react';
+import './howitworks.css';
 
 const steps = [
   {
@@ -40,14 +41,14 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-visible">
+    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden">
       {/* Background Particles */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           fullScreen: { enable: false },
-          background: { color: '#1e293b' }, // gray-800 hex code
+          background: { color: '#1f2937' }, // Tailwind's gray-800 hex is #1f2937
           particles: {
             number: { value: 70 },
             color: { value: '#ffffff' },
@@ -88,8 +89,8 @@ export default function HowItWorks() {
                 }}
                 viewport={{ once: true }}
                 className={cn(
-                  'group transition-transform duration-300 ease-in-out transform-gpu hover:scale-[1.04] hover:rotate-1 perspective-[1000px]',
-                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-6 rounded-3xl bg-gradient-to-br from-gray-700/80 to-gray-800/70 shadow-xl backdrop-blur-md',
+                  'group transition-transform duration-300 ease-in-out transform-gpu hover:scale-[1.02] hover:rotate-1 perspective-[1000px]',
+                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-4 rounded-2xl',
                   index % 2 === 0
                     ? 'md:flex-row-reverse text-right'
                     : 'md:flex-row text-left'
@@ -97,22 +98,22 @@ export default function HowItWorks() {
               >
                 {/* Content */}
                 <div className="w-full md:w-1/2 px-4">
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-white drop-shadow-lg">
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-white">
                     {index + 1}. {step.title}
                   </h3>
-                  <p className="text-base md:text-lg text-gray-300 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-300">
                     {step.description}
                   </p>
                 </div>
 
-                {/* Animated Circle */}
+                {/* Animated Circle without blinking */}
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   whileInView={{ scale: 1.2, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.2, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+                  transition={{ duration: 0.6, delay: index * 0.2, ease: 'easeInOut' }}
                   className="relative w-16 h-16 flex items-center justify-center text-white text-xl font-bold rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl"
                 >
-                  <div className="absolute animate-pulse w-20 h-20 rounded-full bg-purple-600 opacity-40 z-0 blur-xl" />
+                  {/* No blinking/pulsing div */}
                   <div className="relative z-10">{index + 1}</div>
                 </motion.div>
               </motion.div>
@@ -165,13 +166,7 @@ export default function HowItWorks() {
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 1.2, ease: 'easeInOut' }}
                     />
-                    {/* Glowing dots on start and end */}
-                    <circle cx="0" cy="10" r="5" fill="#8b5cf6" opacity="0.4">
-                      <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="320" cy="10" r="5" fill="#3b82f6" opacity="0.4">
-                      <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
-                    </circle>
+                    {/* Removed glowing circles for no blinking */}
                   </svg>
                 </motion.div>
               )}

@@ -1,116 +1,105 @@
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import {
+  Star,
+  Newspaper,
+  Sliders,
+  Globe,
+  PlayCircle,
+} from "lucide-react";
 
 const steps = [
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png",
-    title: "Sign Up & Explore",
+    icon: <Star className="w-10 h-10 text-white" />,
+    title: "Discover Unique Ad Spaces",
     description:
-      "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
+      "Choose from a wide range of wall spaces across India using our real-time map. Filter by location, visibility, foot traffic & more.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png",
-    title: "Upload Ad & Details",
+    icon: <Newspaper className="w-10 h-10 text-white" />,
+    title: "Upload Your Campaign",
     description:
-      "Submit your creative design, select target demographics, and input your campaign goals.",
+      "Upload your ad image or video and preview it directly on the wall using our AI + AR tools. No graphic designer required!",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/visible.png",
-    title: "Preview & Customize",
+    icon: <Sliders className="w-10 h-10 text-white" />,
+    title: "Customize Your Ad Settings",
     description:
-      "Use our AI & AR tools to preview your ad on walls, hoardings, and digital kiosks in real environments.",
+      "Select duration, start/end dates, and budgets. Our platform helps optimize your ad placement using AI analytics.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/money-bag-euro.png",
-    title: "Budget Campaign Suggestion",
+    icon: <Globe className="w-10 h-10 text-white" />,
+    title: "Connect with Local Partners",
     description:
-      "Our platform provides smart package suggestions to match your budget and maximize ROI.",
+      "We connect you with verified wall owners, local print & install partners, and handle government permissions if required.",
   },
   {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/rocket.png",
-    title: "Launch Across India",
+    icon: <PlayCircle className="w-10 h-10 text-white" />,
+    title: "Launch and Monitor",
     description:
-      "Deploy your campaign across cities using our printing, installation & tracking network.",
-  },
-  {
-    icon: "https://img.icons8.com/ios-filled/50/ffffff/combo-chart--v1.png",
-    title: "Track & Grow",
-    description:
-      "Monitor reach, engagement & foot traffic analytics on your dashboard. Optimize for better ROI.",
+      "Track your ad campaign in real-time with analytics, reach estimates, and visual proof. No more blind spending!",
   },
 ];
 
-export default function HowItWorksSection() {
+export default function HowItWorks() {
   return (
-    <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
-      {/* Removed background pattern and gradient overlays */}
+    <section className="w-full px-6 py-16 bg-black text-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
+          How It Works
+        </h2>
 
-      <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
-        How It Works
-      </h2>
+        <div className="flex flex-col items-center gap-20 relative">
+          {steps.map((step, index) => {
+            const isUp = index % 2 === 0;
 
-      <div className="relative flex justify-center mb-12 z-10">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1, type: "spring" }}
-          className="absolute top-[-40px] text-purple-400 animate-ping"
-        >
-          <Sparkles size={48} />
-        </motion.div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex md:flex-row flex-nowrap md:justify-between md:overflow-visible overflow-x-auto gap-12 px-4 pb-6 scrollbar-thin scrollbar-thumb-purple-500">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.3 }}
-              className="flex flex-col items-center text-center min-w-[250px] md:min-w-0 relative"
-            >
-              <motion.div
-              className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
+            return (
+              <div key={index} className="w-full flex justify-center relative">
+                {/* Step Content */}
+                <div
+                  className={`flex flex-col items-center text-center max-w-md ${
+                    isUp ? "mt-0 mb-20" : "mt-20 mb-0"
+                  }`}
                 >
-
-                <div className="bg-black border-4 border-dashed border-white w-24 h-24 flex items-center justify-center rounded-full">
-                  <img
-                    src={step.icon}
-                    alt={step.title}
-                    width={48}
-                    height={48}
-                    className="rounded-full animate-pulse"
-                  />
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="rounded-full p-6 border-4 bg-gradient-to-br from-black via-gray-900 to-black shadow-xl border-gradient-to-r from-pink-500 to-purple-600"
+                  >
+                    {step.icon}
+                  </motion.div>
+                  <h3 className="font-bold text-xl mt-4 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-              </motion.div>
-              <h3 className="text-white text-xl font-semibold mt-6 mb-2">
-                {step.title}
-              </h3>
-              <p className="text-gray-300 text-sm max-w-xs">
-                {step.description}
-              </p>
-              {index < steps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 1 }}
-                  className="hidden md:block absolute right-[-50%] top-12 w-full border-t-2 border-dotted border-purple-500"
-                ></motion.div>
-              )}
-            </motion.div>
-          ))}
+
+                {/* Connector Line */}
+                {index < steps.length - 1 && (
+                  <motion.div
+                    initial={{ height: 0 }}
+                    whileInView={{ height: 80 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className={`absolute left-1/2 w-1 bg-gradient-to-b from-pink-500 to-purple-600 ${
+                      isUp ? "top-full" : "bottom-full"
+                    }`}
+                  />
+                )}
+              </div>
+            );
+          })}
+
+          {/* Final Message */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mt-10 text-center"
+          >
+            YOUR AD IS READY!
+          </motion.div>
         </div>
       </div>
-
-      <motion.h3
-        className="text-4xl text-center font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent mt-16 animate-bounce z-10 relative"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        YOUR AD IS READY!
-      </motion.h3>
     </section>
   );
 }

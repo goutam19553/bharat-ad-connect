@@ -71,11 +71,9 @@ export default function HowItWorksSection() {
               className="flex flex-col items-center text-center min-w-[250px] md:min-w-0 relative"
             >
               <motion.div
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
-              >
+              className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
+                >
+
                 <div className="bg-black border-4 border-dashed border-white w-24 h-24 flex items-center justify-center rounded-full">
                   <img
                     src={step.icon}

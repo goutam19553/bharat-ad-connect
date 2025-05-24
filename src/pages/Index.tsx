@@ -138,12 +138,13 @@ const Index = () => {
   ];
 
   return (
-    <div className="bg-gray-800">
+    <div>
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
+   
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
@@ -219,53 +220,34 @@ const Index = () => {
               <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
               <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
               <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none"></span>
-              Political Campaigns & Events
+              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
+                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
+                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
+              </span>
+              <span className="relative z-10 overflow-hidden">
+                <span className="relative">🚀 Political Campaign Support</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+              </span>
             </button>
           </a>
         </div>
       </section>
 
-      {/* AI Design Demo */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <h2 className="text-3xl font-bold mb-6 text-center">AI Powered Design Tool</h2>
-          <p className="text-lg mb-8 text-center max-w-3xl mx-auto">
-            Generate stunning, location-specific ad creatives automatically with AI design suggestions.
-          </p>
-          <AIDesignDemo />
-        </div>
-      </section>
+      {/* AI/AR Design Demos */}
+      <AIDesignDemo />
+      <FootTrafficDemo />
 
-      {/* Foot Traffic Demo */}
+         {/* How It Works Section - ADDED */}
       <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <h2 className="text-3xl font-bold mb-6 text-center">Foot Traffic Data Analysis</h2>
-          <p className="text-lg mb-8 text-center max-w-3xl mx-auto">
-            Analyze pedestrian traffic patterns to optimize your advertising locations.
-          </p>
-          <FootTrafficDemo />
-        </div>
-      </section>
+       <HowItWorks />
+       </section>
 
-      {/* Brand Slider */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <h2 className="text-3xl font-bold mb-12 text-center">Trusted By Leading Brands</h2>
-          <BrandSlider />
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <HowItWorks />
-        </div>
-      </section>
+      {/* Brands Slider */}
+      <BrandSlider />
 
       {/* Contact Form */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom max-w-3xl">
+      <section className="section bg-gray-100 dark:bg-gray-900">
+        <div className="container-custom">
           <ContactForm />
         </div>
       </section>

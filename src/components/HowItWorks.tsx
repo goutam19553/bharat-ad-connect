@@ -41,10 +41,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section
-      className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden"
-      style={{ minHeight: '600px' }}  // <-- Added this for height
-    >
+    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden">
       {/* 3D Particles Background */}
       <Particles
         id="tsparticles"
@@ -53,14 +50,14 @@ export default function HowItWorks() {
           fullScreen: { enable: false },
           background: { color: '#1f2937' },
           particles: {
-            number: { value: 30 },
-            color: { value: '#00ff00' },
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#ffffff' },
             shape: { type: 'circle' },
-            opacity: { value: 0.7 },
-            size: { value: 5 },
+            opacity: { value: 0.3 },
+            size: { value: 3 },
             move: {
               enable: true,
-              speed: 2,
+              speed: 1.2,
               direction: 'none',
               random: false,
               straight: false,
@@ -69,7 +66,6 @@ export default function HowItWorks() {
           },
         }}
         className="absolute inset-0 z-0"
-        style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)' }} // <-- Debug background
       />
 
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 z-10 relative">
@@ -89,7 +85,7 @@ export default function HowItWorks() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className={cn(
-                `how-it-works-step delay-${index + 1}`,
+                how-it-works-step delay-${index + 1},
                 'flex flex-col md:flex-row items-center md:items-start gap-8',
                 index % 2 === 0
                   ? 'md:flex-row-reverse text-right'

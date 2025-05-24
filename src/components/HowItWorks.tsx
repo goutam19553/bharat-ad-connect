@@ -41,24 +41,43 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section className="relative py-20 px-4 md:px-16 bg-gray-800 text-white overflow-hidden">
-      {/* Background Particles */}
+    <section className="relative py-24 px-4 md:px-16 bg-gray-900 text-white overflow-hidden backdrop-blur-xl">
+      {/* 3D Orbital Particle Background */}
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           fullScreen: { enable: false },
-          background: { color: '#1f2937' }, // Tailwind's gray-800 hex is #1f2937
+          background: { color: '#0f172a' },
           particles: {
-            number: { value: 70 },
+            number: { value: 100 },
             color: { value: '#ffffff' },
-            opacity: { value: 0.15 },
-            size: { value: 2 },
+            links: {
+              enable: true,
+              color: '#ffffff',
+              distance: 120,
+              opacity: 0.3,
+              width: 1,
+            },
             move: {
               enable: true,
               speed: 1,
               direction: 'none',
-              outModes: 'out',
+              outModes: { default: 'bounce' },
+              random: true,
+              straight: false,
+            },
+            size: { value: 1.5 },
+            opacity: { value: 0.3 },
+            shape: { type: 'circle' },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: 'repulse' },
+              resize: true,
+            },
+            modes: {
+              repulse: { distance: 100, duration: 0.4 },
             },
           },
         }}
@@ -68,7 +87,7 @@ export default function HowItWorks() {
       <motion.h2
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1 }}
         viewport={{ once: true }}
         className="text-4xl md:text-5xl font-extrabold text-center mb-20 z-10 relative"
       >
@@ -78,99 +97,52 @@ export default function HowItWorks() {
       <div className="relative max-w-6xl mx-auto z-10">
         <div className="space-y-48 relative">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <motion.div
-                initial={{ opacity: 0, y: 60, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.2,
-                  ease: 'easeOut',
-                }}
-                viewport={{ once: true }}
-                className={cn(
-                  'group transition-transform duration-300 ease-in-out transform-gpu hover:scale-[1.02] hover:rotate-1 perspective-[1000px]',
-                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-4 rounded-2xl',
-                  index % 2 === 0
-                    ? 'md:flex-row-reverse text-right'
-                    : 'md:flex-row text-left'
-                )}
-              >
-                {/* Content */}
-                <div className="w-full md:w-1/2 px-4">
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-white">
-                    {index + 1}. {step.title}
-                  </h3>
-                  <p className="text-base md:text-lg text-gray-300">
-                    {step.description}
-                  </p>
-                </div>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 80, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 1,
+                delay: index * 0.2,
+                ease: 'easeOut',
+              }}
+              viewport={{ once: true }}
+              className={cn(
+                'group transition-all duration-300 backdrop-blur-md bg-white/10 ring-1 ring-white/10 shadow-xl rounded-2xl transform-gpu hover:scale-[1.02]',
+                'flex flex-col md:flex-row items-center md:items-start gap-8 px-6 py-10',
+                index % 2 === 0
+                  ? 'md:flex-row-reverse text-right'
+                  : 'md:flex-row text-left'
+              )}
+            >
+              {/* Text Content */}
+              <div className="w-full md:w-1/2 px-2 md:px-6">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-white">
+                  {index + 1}. {step.title}
+                </h3>
+                <p className="text-base md:text-lg text-gray-300">
+                  {step.description}
+                </p>
+              </div>
 
-                {/* Animated Circle without blinking */}
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1.2, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.2, ease: 'easeInOut' }}
-                  className="relative w-16 h-16 flex items-center justify-center text-white text-xl font-bold rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl"
-                >
-                  {/* No blinking/pulsing div */}
-                  <div className="relative z-10">{index + 1}</div>
-                </motion.div>
+              {/* Circle Step Icon */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1.2, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="relative w-16 h-16 flex items-center justify-center text-white text-xl font-bold rounded-full bg-gradient-to-br from-indigo-500 to-purple-700 shadow-2xl"
+              >
+                <div className="z-10">{index + 1}</div>
               </motion.div>
 
-              {/* Dotted Line Connectors */}
-              {index < steps.length - 1 && (
-                <motion.div
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: index * 0.3, ease: 'easeInOut' }}
-                  viewport={{ once: true }}
-                  className={cn(
-                    'absolute left-1/2 -translate-x-1/2 w-[320px] h-10 flex items-center justify-center',
-                    index % 2 === 0 ? 'top-full translate-y-3' : 'top-full -translate-y-3'
-                  )}
-                >
-                  <svg
-                    width="320"
-                    height="20"
-                    viewBox="0 0 320 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <defs>
-                      <pattern
-                        id="dottedPattern"
-                        x="0"
-                        y="0"
-                        width="10"
-                        height="10"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <circle cx="2" cy="5" r="1.5" fill="#8b5cf6" />
-                      </pattern>
-                      <linearGradient id={`lineGradient${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#3b82f6" />
-                        <stop offset="100%" stopColor="#8b5cf6" />
-                      </linearGradient>
-                    </defs>
-                    <motion.line
-                      x1="0"
-                      y1="10"
-                      x2="320"
-                      y2="10"
-                      stroke={`url(#lineGradient${index})`}
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeDasharray="5 15"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1.2, ease: 'easeInOut' }}
-                    />
-                    {/* Removed glowing circles for no blinking */}
-                  </svg>
-                </motion.div>
-              )}
-            </div>
+              {/* Scroll-triggered Nebula Aura */}
+              <motion.div
+                className="absolute -top-16 -left-16 w-96 h-96 rounded-full bg-purple-500 opacity-20 blur-3xl"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.3 }}
+                transition={{ duration: 1.5, ease: 'easeOut' }}
+              />
+            </motion.div>
           ))}
         </div>
       </div>

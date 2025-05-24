@@ -1,5 +1,16 @@
 /* howitworks.css */
 
+/* Background color for the entire section */
+.how-it-works-container {
+  background-color: #1f2937; /* Tailwind's gray-800 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem;
+  position: relative;
+}
+
 /* Keyframes for fadeInUp animation */
 @keyframes fadeInUp {
   from {
@@ -16,39 +27,14 @@
 @keyframes growLine {
   from {
     width: 0;
+    height: 0;
     opacity: 0;
   }
   to {
-    width: 50px;
+    width: var(--line-width, 50px);
+    height: var(--line-height, 2px);
     opacity: 1;
   }
-}
-
-/* Ping pulse animation for the glowing circles */
-@keyframes ping {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Slow ping animation utility */
-.animate-ping-slow {
-  animation: ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-/* Container styling */
-.how-it-works-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  position: relative;
 }
 
 /* Step wrapper */
@@ -58,84 +44,86 @@
   position: relative;
 }
 
-/* Connector line */
-.step-connector {
+/* Horizontal connector line */
+.connector-horizontal {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
   height: 2px;
   background: linear-gradient(to right, #3b82f6, #8b5cf6);
   animation: growLine 0.6s ease-out forwards;
+  transform: translateX(0);
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: growLine;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
 }
 
-/* Left/right positioning */
-.step-left .step-connector {
-  left: 50%;
-  width: 50px;
-  border-radius: 0 4px 4px 0;
-}
-.step-right .step-connector {
-  right: 50%;
-  width: 50px;
-  border-radius: 4px 0 0 4px;
-}
-
-/* Delays for staggered animation */
-.how-it-works-step.delay-1 { animation-delay: 0.2s; }
-.how-it-works-step.delay-2 { animation-delay: 0.4s; }
-.how-it-works-step.delay-3 { animation-delay: 0.6s; }
-.how-it-works-step.delay-4 { animation-delay: 0.8s; }
-.how-it-works-step.delay-5 { animation-delay: 1s; }
-
-/* Additional styling from new component */
-
-/* Circle pulse wrapper */
-.pulse-ring {
+/* Vertical connector line */
+.connector-vertical {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  animation: growLine 0.6s ease-out forwards;
+  transform: translateY(0);
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: growLine;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+}
+
+/* Horizontal line expands width */
+.connector-horizontal {
+  --line-width: 50px;
+  --line-height: 2px;
+}
+
+/* Vertical line expands height */
+.connector-vertical {
+  --line-width: 2px;
+  --line-height: 50px;
+}
+
+/* Delay animations for lines */
+.connector-horizontal.delay-1 {
+  animation-delay: 0.3s;
+}
+.connector-vertical.delay-1 {
+  animation-delay: 0.3s;
+}
+.connector-horizontal.delay-2 {
+  animation-delay: 0.6s;
+}
+.connector-vertical.delay-2 {
+  animation-delay: 0.6s;
+}
+.connector-horizontal.delay-3 {
+  animation-delay: 0.9s;
+}
+.connector-vertical.delay-3 {
+  animation-delay: 0.9s;
+}
+
+/* Number circle styling */
+.step-number {
+  width: 3rem;
+  height: 3rem;
   border-radius: 9999px;
-  background-color: #3b82f6;
-  opacity: 0.2;
-  animation: ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-  z-index: 0;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.3s ease;
 }
-
-/* Card hover perspective and scaling */
-.perspective-1000px {
-  perspective: 1000px;
-}
-
-/* Hover tilt effect */
-.group:hover .tilt-card {
-  transform: rotateX(3deg) rotateY(5deg) scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-/* Base card transform for smooth GPU animations */
-.tilt-card {
-  transition: transform 0.3s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Text glow on titles */
-.text-glow {
-  text-shadow:
-    0 0 5px #8b5cf6,
-    0 0 10px #8b5cf6,
-    0 0 20px #8b5cf6,
-    0 0 30px #3b82f6;
-}
-
-/* Animated SVG path */
-.animated-path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: draw 1.2s ease forwards;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+.step-number:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
 }

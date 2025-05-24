@@ -1,40 +1,88 @@
 /* howitworks.css */
 
-/* For SVG curved path animation */
-#connector1,
-#connector2
-#connector3{
-stroke-dasharray: 1000;
-stroke-dashoffset: 1000;
-animation: drawPath 3s forwards ease-in-out;
-animation-delay: 0.5s;
+/* Container section for the 3D How It Works component */
+.howitworks3d-section {
+  position: relative;
+  height: 600px; /* fixed height for good desktop fit */
+  max-width: 1000px;
+  margin: 3rem auto;
+  background-color: #000000; /* black background for contrast */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
 }
 
-@keyframes drawPath {
-to {
-stroke-dashoffset: 0;
-}
-}
-
-/* Text styling inside spheres */
-canvas .text-white {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-color: #ffffff;
-text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+/* Make the Canvas fill the container */
+.howitworks3d-section canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-/* Smooth scroll for parallax effect */
-body {
-scroll-behavior: smooth;
+/* SVG connectors style */
+.howitworks3d-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* so it doesn't block mouse interaction */
+  z-index: 1;
 }
 
-/* Optional: make sure canvas is responsive and z-stacked properly */
-canvas {
-z-index: 10;
-position: relative;
+/* Sphere HTML overlay content */
+.howitworks-sphere-content {
+  color: white;
+  width: 190px;
+  padding: 10px;
+  background: rgba(40, 10, 60, 0.7);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  pointer-events: auto; /* to allow interaction if needed */
 }
 
-/* Disable pointer events for SVG lines so they don’t block canvas interactions */
-svg {
-pointer-events: none;
+/* Emoji/Icon style */
+.howitworks-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Title inside sphere */
+.howitworks-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Description text */
+.howitworks-text {
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-align: center;
+  color: #ddd;
+}
+
+/* Optional: Responsive tweaks for smaller screens */
+@media (max-width: 768px) {
+  .howitworks3d-section {
+    height: 450px;
+    max-width: 95vw;
+  }
+  .howitworks-sphere-content {
+    width: 140px;
+    font-size: 0.75rem;
+  }
+  .howitworks-icon {
+    font-size: 2rem;
+  }
+  .howitworks-title {
+    font-size: 1rem;
+  }
+  .howitworks-text {
+    font-size: 0.7rem;
+  }
 }

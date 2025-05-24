@@ -2,7 +2,8 @@
 
 /* For SVG curved path animation */
 #connector1,
-#connector2 {
+#connector2
+#connector3{
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: drawPath 3s forwards ease-in-out;

@@ -1,0 +1,40 @@
+/* howitworks.css */
+
+/* For SVG curved path animation */
+#connector1,
+#connector2
+#connector3{
+stroke-dasharray: 1000;
+stroke-dashoffset: 1000;
+animation: drawPath 3s forwards ease-in-out;
+animation-delay: 0.5s;
+}
+
+@keyframes drawPath {
+to {
+stroke-dashoffset: 0;
+}
+}
+
+/* Text styling inside spheres */
+canvas .text-white {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #ffffff;
+text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Smooth scroll for parallax effect */
+body {
+scroll-behavior: smooth;
+}
+
+/* Optional: make sure canvas is responsive and z-stacked properly */
+canvas {
+z-index: 10;
+position: relative;
+}
+
+/* Disable pointer events for SVG lines so they don’t block canvas interactions */
+svg {
+pointer-events: none;
+}

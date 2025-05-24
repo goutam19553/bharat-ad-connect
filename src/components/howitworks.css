@@ -12,16 +12,7 @@
   }
 }
 
-/* Container styling */
-.how-it-works-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-/* Common animation styling */
+/* Fade-in animation for each step */
 .how-it-works-step {
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
@@ -31,19 +22,53 @@
 .how-it-works-step.delay-1 {
   animation-delay: 0.2s;
 }
-
 .how-it-works-step.delay-2 {
   animation-delay: 0.4s;
 }
-
 .how-it-works-step.delay-3 {
   animation-delay: 0.6s;
 }
-
 .how-it-works-step.delay-4 {
   animation-delay: 0.8s;
 }
-
 .how-it-works-step.delay-5 {
   animation-delay: 1s;
+}
+
+/* Layout container */
+.how-it-works-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Curved SVG connector styling */
+.how-it-works-connector {
+  position: absolute;
+  left: 50%;
+  width: 300px;
+  height: 200px;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Curved path animation */
+.curve-path {
+  fill: none;
+  stroke: url(#lineGradient);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw 1.5s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }

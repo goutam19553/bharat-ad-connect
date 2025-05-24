@@ -12,30 +12,19 @@
   }
 }
 
-/* Fade-in animation for each step */
-.how-it-works-step {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
+/* Keyframe for line expansion animation */
+@keyframes growLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 50px;
+    opacity: 1;
+  }
 }
 
-/* Optional delays for staggered appearance */
-.how-it-works-step.delay-1 {
-  animation-delay: 0.2s;
-}
-.how-it-works-step.delay-2 {
-  animation-delay: 0.4s;
-}
-.how-it-works-step.delay-3 {
-  animation-delay: 0.6s;
-}
-.how-it-works-step.delay-4 {
-  animation-delay: 0.8s;
-}
-.how-it-works-step.delay-5 {
-  animation-delay: 1s;
-}
-
-/* Layout container */
+/* Container styling */
 .how-it-works-container {
   display: flex;
   flex-direction: column;
@@ -45,30 +34,38 @@
   position: relative;
 }
 
-/* Curved SVG connector styling */
-.how-it-works-connector {
+/* Step wrapper */
+.how-it-works-step {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  position: relative;
+}
+
+/* Connector line */
+.step-connector {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  animation: growLine 0.6s ease-out forwards;
+}
+
+/* Left/right positioning */
+.step-left .step-connector {
   left: 50%;
-  width: 300px;
-  height: 200px;
-  transform: translateX(-50%);
-  z-index: 0;
-  pointer-events: none;
+  width: 50px;
+  border-radius: 0 4px 4px 0;
+}
+.step-right .step-connector {
+  right: 50%;
+  width: 50px;
+  border-radius: 4px 0 0 4px;
 }
 
-/* Curved path animation */
-.curve-path {
-  fill: none;
-  stroke: url(#lineGradient);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: draw 1.5s ease forwards;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+/* Delays for staggered animation */
+.how-it-works-step.delay-1 { animation-delay: 0.2s; }
+.how-it-works-step.delay-2 { animation-delay: 0.4s; }
+.how-it-works-step.delay-3 { animation-delay: 0.6s; }
+.how-it-works-step.delay-4 { animation-delay: 0.8s; }
+.how-it-works-step.delay-5 { animation-delay: 1s; }

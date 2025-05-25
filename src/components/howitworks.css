@@ -1,11 +1,49 @@
 /* HowItWorks.css */
 
-/* IMPORTANT: The 'body' styles have been removed from here.
-   Global body styles should be in your main/global CSS file (e.g., src/index.css or src/App.css).
-   Ensure your body's background-color is set to 'transparent' there for the 3D background to be visible.
+/* IMPORTANT: Global 'body' styles and generic 'canvas' rules have been REMOVED from here.
+   - Body styles (like font-family, background-color, color, overflow-x) should be in your main/global CSS file
+     (e.g., src/index.css or src/App.css).
+   - The 3D background's positioning and styling (for #webgl-background and its canvas) are now
+     handled exclusively by src/components/ThreeJsBackground/ThreeJsBackground.css.
 */
 
-/* The #webgl-background styles have also been moved to ThreeJsBackground.css */
+/* For SVG curved path animation (if still used within HowItWorks, otherwise consider moving/removing) */
+#connector1,
+#connector2, /* Corrected comma separation */
+#connector3 {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 3s forwards ease-in-out;
+  animation-delay: 0.5s;
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Text styling inside spheres (if specific to HowItWorks) */
+/* If this is for a canvas rendered by Three.js outside this component, move it to a global style or ThreeJsBackground.css */
+/* Removed generic 'canvas' rule. If '.text-white' is used within this component AND needs canvas-specific styling,
+   it would need to target a specific canvas element or class within HowItWorks, not a generic canvas.
+   For Three.js generated text, styles are often applied directly via Three.js materials/fonts.
+*/
+/* canvas .text-white { } rule has been removed as it targets a generic canvas and could interfere. */
+
+/* Smooth scroll for parallax effect - this is a global behavior and should be in index.css/App.css */
+/* body {
+  scroll-behavior: smooth;
+} */ /* THIS RULE HAS BEEN COMMENTED OUT/REMOVED TO PREVENT GLOBAL OVERRIDES */
+
+
+/* Disable pointer events for SVG lines so they don’t block canvas interactions (if SVGs are specific to HowItWorks) */
+svg {
+  pointer-events: none;
+}
+
+
+/* --- Styles specific to the content of the HowItWorks section below --- */
 
 .content-container {
     position: relative;
@@ -13,6 +51,8 @@
     padding: 2rem;
     max-width: 90%;
     margin: 0 auto;
+    /* If this container also has a background, ensure it's transparent or rgba() */
+    /* background-color: rgba(31, 41, 55, 0.7); /* Example: semi-transparent dark background */
 }
 
 h1 {

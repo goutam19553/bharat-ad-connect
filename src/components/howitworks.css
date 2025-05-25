@@ -42,6 +42,11 @@ svg {
   pointer-events: none;
 }
 
+/* ===== NEW: Prevent horizontal overflow on HowItWorks section wrapper ===== */
+.no-horizontal-overflow {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 /* --- Styles specific to the content of the HowItWorks section below --- */
 

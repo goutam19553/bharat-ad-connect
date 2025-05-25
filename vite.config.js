@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
@@ -15,15 +15,11 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      "@supabase/supabase-js",
-      "framer-motion",
-      "3d-force-graph" // ✅ force pre-bundling
-    ],
+    include: ["@supabase/supabase-js", "framer-motion"],
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/, "@supabase/supabase-js", "framer-motion", "3d-force-graph"],
+      include: [/node_modules/, "@supabase/supabase-js", "framer-motion"],
     },
   },
 });

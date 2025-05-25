@@ -145,10 +145,7 @@ const Index = () => {
         <Hero />
       </div>
 
-      {/* Billboard 3D Model */}
-     <div className="bg-gray-800 py-10">
-      <BillboardModel />
-        </div>
+     
    
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
@@ -247,6 +244,11 @@ const Index = () => {
        <HowItWorks />
        </section>
 
+ {/* Billboard 3D Model */}
+     <div className="bg-gray-800 py-10">
+      <BillboardModel />
+        </div>
+      
       {/* Brands Slider */}
       <BrandSlider />
 

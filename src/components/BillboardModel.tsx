@@ -7,7 +7,7 @@ import { useCursor } from '@react-three/drei'
 import { useState } from 'react'
 
 function Billboard({ onClick }: { onClick: () => void }) {
-  const { scene } = useGLTF('/models/lowpoly_billboard.glb')
+  const { scene } = useGLTF('/low-poly_billboard.glb')
   const [hovered, setHovered] = useState(false)
   useCursor(hovered)
 

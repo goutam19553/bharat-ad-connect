@@ -1,85 +1,212 @@
-/* howitworks.css */
+/* HowItWorks.css */
 
-/* Container & layout */
-.how-it-works-container {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(145deg, #0f172a, #1e293b);
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-color: #1f2937; /* Gray 800 */
+    color: #e0e0e0; /* Light text color */
 }
 
-/* Optional 3D/parallax float effects */
-.how-it-works-container .floating-object {
-  animation: float 6s ease-in-out infinite;
+#webgl-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Send to background */
+    opacity: 0.7; /* Slightly transparent */
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.content-container {
+    position: relative;
+    z-index: 1; /* Ensure content is above background */
+    padding: 2rem;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
-/* Parallax background tweaks */
-#tsparticles {
-  pointer-events: none;
-  opacity: 0.7;
+h1 {
+    font-size: 4.5rem; /* Made bigger as requested */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5rem; /* Adjusted margin for larger size */
+    background: linear-gradient(90deg, #8a2be2, #00ffff); /* Gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.5); /* Subtle glow */
 }
 
-/* Step container enhancements */
+.step-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem; /* Space between steps */
+    position: relative;
+}
+
 .step-card {
-  backdrop-filter: blur(16px);
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  transition: transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.08); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem; /* More rounded */
+    padding: 2.5rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .step-card:hover {
-  transform: scale(1.02) rotate(1deg);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2); /* Subtle blue glow on hover */
 }
 
-/* Icon styles */
-.step-icon {
-  font-size: 3rem;
-  color: #818cf8;
-  margin-bottom: 1rem;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .how-it-works-container {
-    padding: 4rem 1.25rem;
-  }
-
-  .step-card {
-    flex-direction: column;
-    text-align: left;
-    gap: 1.25rem;
-  }
-
-  .step-icon {
+.step-number-circle {
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #8a2be2, #00ffff); /* Gradient for number circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2.5rem;
-  }
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Stronger glow */
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Smooth fade-in animation for cards (if not using Framer Motion) */
-@keyframes fadeSlideUp {
-  0% {
+.step-card:hover .step-number-circle {
+    transform: scale(1.1);
+}
+
+.step-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #00ffff; /* Accent color for headings */
+    margin-bottom: 0.8rem;
+}
+
+.step-content h2 i {
+    font-size: 1.8rem; /* Adjust icon size */
+    color: #c0c0c0; /* Muted icon color */
+}
+
+.step-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+}
+
+/* Specific line positioning for vertical connection - now dotted */
+.line-vertical {
+    width: 4px;
+    height: 0; /* Will animate height */
+    left: 50%;
+    transform: translateX(-50%);
+    /* top and bottom will be set by JS dynamically */
+    /* Using repeating-linear-gradient for dotted effect */
+    background: repeating-linear-gradient(to bottom,
+        #8a2be2 0px, /* Start of dot color 1 */
+        #00ffff 4px, /* Transition to dot color 2, 4px long dot */
+        transparent 4px, /* Start of transparent gap */
+        transparent 12px /* End of transparent gap, total 12px repeat cycle */
+    );
     opacity: 0;
-    transform: translateY(60px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    border-radius: 0; /* No border-radius for a dotted line */
+    z-index: -1; /* Behind the cards */
 }
 
-.step-card-animate {
-  animation: fadeSlideUp 0.8s ease forwards;
+.final-message {
+    font-size: 4rem; /* Big and impactful */
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8rem; /* Space from last step */
+    margin-bottom: 8rem; /* Space from bottom */
+    background: linear-gradient(90deg, #00ffff, #8a2be2); /* Reversed gradient for variety */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Stronger glow */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Slide up effect */
+}
+
+.slogan-section {
+    margin-top: 6rem;
+    text-align: center;
+    color: #c0c0c0;
+    margin-bottom: 5rem; /* Add margin at the bottom */
+}
+
+.slogan-section h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #00ffff; /* Accent color for slogans */
+}
+
+.slogan-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem; /* Adjusted for mobile */
+        margin-bottom: 3rem;
+    }
+
+    .step-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .step-number-circle {
+        min-width: 60px;
+        min-height: 60px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .step-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .step-content p {
+        font-size: 1rem;
+    }
+
+    .step-wrapper {
+        margin-bottom: 3rem;
+    }
+
+    /* Adjust vertical line positioning for smaller screens */
+    .line-vertical {
+        left: 50%; /* Keep centered */
+    }
+
+    .final-message {
+        font-size: 2.5rem; /* Adjusted for mobile */
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .slogan-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .slogan-section p {
+        font-size: 0.95rem;
+    }
 }

@@ -28,15 +28,19 @@ export default function BillboardModel() {
     // router.push('/book-wall-space')
   }
 
-  return (
-    <div className="w-full h-[800px] bg-gray-800"> {/* <- Changed background and height */}
-      <Canvas camera={{ position: [5, 2, 5], fov: 40 }}>
-        <ambientLight intensity={1} />
-        <Stage environment="city" intensity={0.6}>
-          <Billboard onClick={handleClick} />
-        </Stage>
-        <OrbitControls enablePan enableZoom enableRotate autoRotate />
-      </Canvas>
-    </div>
-  )
-}
+ return (
+  <div className="w-full h-[800px] bg-gray-800">
+    <Canvas camera={{ position: [0, 3, 6], fov: 40 }}>
+      <ambientLight intensity={1} />
+      <Stage environment="city" intensity={0.6]}>
+        <Billboard onClick={handleClick} />
+      </Stage>
+      <OrbitControls 
+        enablePan={false} 
+        enableZoom 
+        enableRotate={false} 
+        target={[0, 1.5, 0]} // focus on middle of the billboard
+      />
+    </Canvas>
+  </div>
+)

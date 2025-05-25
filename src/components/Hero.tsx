@@ -104,7 +104,7 @@ const Hero = () => {
               to="/ai-analytics"
               className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
             >
-              AI & AR Experience
+             👉AI & AR Experience👈
             </Link>
           </div>
         </div>

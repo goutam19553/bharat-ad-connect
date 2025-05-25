@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import FlyingDrone from "./FlyingDrone"; // Adjust path if needed
+
 
 const steps = [
   {
@@ -44,10 +44,7 @@ const steps = [
 export default function HowItWorksSection() {
   return (
     <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
-      {/* Flying Drone - positioned absolutely */}
-      <div className="absolute top-10 right-10 w-48 h-48 z-20 pointer-events-none">
-        <FlyingDrone />
-      </div>
+   
 
       <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
         How It Works

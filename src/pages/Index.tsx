@@ -1,263 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Hero from "@/components/Hero";
-import BillboardModel from "@/components/BillboardModel";
-import ContactForm from "@/components/ContactForm";
-import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
-import AIDesignDemo from "@/components/AIDesignDemo";
-import FootTrafficDemo from "@/components/FootTrafficDemo";
-import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import HowItWorks from "@/components/HowItWorks";  // <-- Added import
+'use client'
 
-const Index = () => {
-  const featuredAdSpaces: AdSpaceProps[] = [
-    {
-      id: 1,
-      title: "Indian Cricket Stadium",
-      location: "M.Chinnaswamy Stadium",
-      city: "Bengaluru",
-      type: "Stadium",
-      size: "60 x 20 feet",
-      price: 250000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Promotional Space",
-      location: "IT Park Manyata Tech Park",
-      city: "Bangalore",
-      type: "Space Ad",
-      size: "10 x 10 feet",
-      price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Exterior Train Branding",
-      location: "Mumbai Local Train",
-      city: "Mumbai",
-      type: "Transit",
-      size: "5 x 8 feet",
-      price: 80000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Prime Billboard - MG Road",
-      location: "MG Road",
-      city: "Bengaluru",
-      type: "Billboard",
-      size: "30 x 15 feet",
-      price: 45000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
-      rating: 5,
-      featured: true,
-    },
-    {
-      id: 5,
-      title: "Drone Advertising",
-      location: "Anywhere",
-      city: "Anywhere",
-      type: "Digital LED Flying Drones",
-      size: "20 x 10 feet",
-      price: 8000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Metro Station Panels",
-      location: "Rajiv Chowk Metro",
-      city: "New Delhi",
-      type: "Transit",
-      size: "15 x 8 feet",
-      price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
-      rating: 4,
-      featured: true,
-    },
-  ];
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { OrbitControls, useGLTF, Stage, useCursor } from '@react-three/drei'
+import { useRef, useState } from 'react'
+import * as THREE from 'three'
 
-  const advertiserBenefits = [
-    {
-      icon: <MapPin className="h-8 w-8 text-bharat-saffron" />,
-      title: "Prime Locations",
-      description: "Access to exclusive premium ad spaces across major Indian cities.",
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-bharat-saffron" />,
-      title: "AR Preview",
-      description: "See exactly how your ad will look before making an investment.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-saffron" />,
-      title: "AI-Powered Design",
-      description: "Get intelligent design recommendations based on location and audience.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />,
-      title: "Traffic Analysis",
-      description: "Make data-driven decisions with our foot traffic analysis.",
-    },
-  ];
-
-  const ownerBenefits = [
-    {
-      icon: <Building className="h-8 w-8 text-bharat-navy" />,
-      title: "Maximize Revenue",
-      description: "List your ad spaces and connect with quality advertisers.",
-    },
-    {
-      icon: <Award className="h-8 w-8 text-bharat-navy" />,
-      title: "Verified Advertisers",
-      description: "We verify all advertisers to ensure quality partnerships.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />,
-      title: "Data Insights",
-      description: "Access analytics about your space's performance and value.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-navy" />,
-      title: "Seamless Management",
-      description: "Easy-to-use platform for managing your ad inventory.",
-    },
-  ];
+function Billboard({ onClick }: { onClick: () => void }) {
+  const { scene } = useGLTF('/low-poly_billboard_pack.glb')
+  const [hovered, setHovered] = useState(false)
+  useCursor(hovered)
 
   return (
-    <div>
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
-        <Hero />
-      </div>
+    <primitive
+      object={scene}
+      scale={1.5}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      onClick={onClick}
+    />
+  )
+}
 
-      {/* Billboard 3D Model */}
-      <div className="bg-gray-800 py-10">
-      <BillboardModel />
-      </div>
-   
-      {/* Benefits */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners across India through our
-              innovative digital marketplace powered by AI and AR technology.
-            </p>
-          </div>
+function AnimatedCamera() {
+  const { camera } = useThree()
+  const clockRef = useRef(0)
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
-              </div>
-            </div>
+  useFrame((state, delta) => {
+    clockRef.current += delta
+    const t = clockRef.current
 
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {ownerBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    // Rotation around Y-axis
+    const radius = 5 + Math.sin(t * 0.5) * 1 // Zoom in and out effect
+    const angle = (Math.PI * t * 0.2) % Math.PI // Rotate 180 degrees max
+    camera.position.x = radius * Math.sin(angle)
+    camera.position.z = radius * Math.cos(angle)
+    camera.lookAt(0, 1, 0)
+  })
 
-      {/* Featured Ad Spaces */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace) => (
-              <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
-          </div>
-        </div>
-      </section>
+  return null
+}
 
-      {/* Political Campaign Support Button */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="flex justify-center items-center py-10">
-          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
-              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
-              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
-                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
-              </span>
-              <span className="relative z-10 overflow-hidden">
-                <span className="relative">🚀 Political Campaign Support</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
-              </span>
-            </button>
-          </a>
-        </div>
-      </section>
+export default function BillboardModel() {
+  const handleClick = () => {
+    alert('You clicked the billboard! 🚀')
+  }
 
-      {/* AI/AR Design Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
-
-         {/* How It Works Section - ADDED */}
-      <section className="section bg-white dark:bg-gray-800">
-       <HowItWorks />
-       </section>
-
-      {/* Brands Slider */}
-      <BrandSlider />
-
-      {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900">
-        <div className="container-custom">
-          <ContactForm />
-        </div>
-      </section>
+  return (
+    <div className="w-full h-[500px] bg-black">
+      <Canvas camera={{ position: [5, 2, 5], fov: 40 }}>
+        <ambientLight intensity={1} />
+        <Stage environment="city" intensity={0.6}>
+          <Billboard onClick={handleClick} />
+        </Stage>
+        <AnimatedCamera />
+        {/* Optional: Remove or disable manual controls */}
+        {/* <OrbitControls enablePan={false} enableZoom={false} enableRotate={false} /> */}
+      </Canvas>
     </div>
-  );
-};
-
-export default Index;
+  )
+}

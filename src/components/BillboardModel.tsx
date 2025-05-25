@@ -1,62 +1,60 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF, Stage } from '@react-three/drei'
-import { useCursor } from '@react-three/drei'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { OrbitControls, useGLTF, Stage, useCursor } from '@react-three/drei'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 
-function RotatingBillboard({ index, delay }: { index: number; delay: number }) {
+function Billboard({ onClick }: { onClick: () => void }) {
   const { scene } = useGLTF('/low-poly_billboard_pack.glb')
-  const meshRef = useRef<THREE.Object3D>(null)
   const [hovered, setHovered] = useState(false)
   useCursor(hovered)
 
-  useFrame(({ clock }) => {
-    const mesh = meshRef.current
-    if (!mesh) return
-
-    const t = clock.getElapsedTime()
-
-    // Circle rotation path
-    const radius = 3
-    const angle = t * 0.5 + index * (Math.PI * 2 / 3)
-    mesh.position.x = Math.cos(angle) * radius
-    mesh.position.z = Math.sin(angle) * radius
-    mesh.position.y = 0
-
-    // Smooth zoom effect (scale up one by one)
-    const timeSinceStart = t - delay
-    const targetScale = timeSinceStart > 0 ? 1.5 : 0.5
-    const currentScale = mesh.scale.x
-    const lerpScale = THREE.MathUtils.lerp(currentScale, targetScale, 0.05)
-    mesh.scale.set(lerpScale, lerpScale, lerpScale)
-
-    // Billboard facing center (look at origin)
-    mesh.lookAt(0, 0, 0)
-  })
-
   return (
     <primitive
-      ref={meshRef}
-      object={scene.clone()}
+      object={scene}
+      scale={1.5}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
+      onClick={onClick}
     />
   )
 }
 
+function AnimatedCamera() {
+  const { camera } = useThree()
+  const clockRef = useRef(0)
+
+  useFrame((state, delta) => {
+    clockRef.current += delta
+    const t = clockRef.current
+
+    // Rotation around Y-axis
+    const radius = 5 + Math.sin(t * 0.5) * 1 // Zoom in and out effect
+    const angle = (Math.PI * t * 0.2) % Math.PI // Rotate 180 degrees max
+    camera.position.x = radius * Math.sin(angle)
+    camera.position.z = radius * Math.cos(angle)
+    camera.lookAt(0, 1, 0)
+  })
+
+  return null
+}
+
 export default function BillboardModel() {
+  const handleClick = () => {
+    alert('You clicked the billboard! 🚀')
+  }
+
   return (
-    <div className="w-full h-[600px] bg-gray-800">
-      <Canvas camera={{ position: [0, 4, 10], fov: 50 }}>
-        <ambientLight intensity={1.5} />
-        <Stage environment="city" intensity={0.8}>
-          <RotatingBillboard index={0} delay={0} />
-          <RotatingBillboard index={1} delay={2} />
-          <RotatingBillboard index={2} delay={4} />
+    <div className="w-full h-[500px] bg-black">
+      <Canvas camera={{ position: [5, 2, 5], fov: 40 }}>
+        <ambientLight intensity={1} />
+        <Stage environment="city" intensity={0.6}>
+          <Billboard onClick={handleClick} />
         </Stage>
-        <OrbitControls enablePan={false} enableZoom={false} enableRotate autoRotate />
+        <AnimatedCamera />
+        {/* Optional: Remove or disable manual controls */}
+        {/* <OrbitControls enablePan={false} enableZoom={false} enableRotate={false} /> */}
       </Canvas>
     </div>
   )

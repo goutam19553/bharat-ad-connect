@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import FlyingDrone from "./components/FlyingDrone"; // Adjust path if needed
+import FlyingDrone from "./FlyingDrone"; // Adjust path if needed
 
 const steps = [
   {

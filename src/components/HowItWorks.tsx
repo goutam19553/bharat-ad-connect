@@ -1,151 +1,116 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import { useCallback } from 'react';
-import './howitworks.css';
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 const steps = [
   {
-    title: 'Sign Up & Set Goals',
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/user.png",
+    title: "Sign Up & Explore",
     description:
-      'Create an advertiser account, choose ad type (wall, hoarding, transit, drone, etc.), and define your goals like location, budget & duration.',
+      "Create an account, browse ad spaces on the interactive map, and find locations by city, footfall, and more.",
   },
   {
-    title: 'Browse & Select Ad Spaces',
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/upload.png",
+    title: "Upload Ad & Details",
     description:
-      'Explore ad spaces on an interactive map. Filter by city, foot traffic, ratings. Preview in AR or 360° before booking.',
+      "Submit your creative design, select target demographics, and input your campaign goals.",
   },
   {
-    title: 'Upload Your Ad Creatives',
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/visible.png",
+    title: "Preview & Customize",
     description:
-      'Upload image/video creatives. Use our Ad Preview Tool to simulate your ad in real-world formats, walls, hoardings, and vehicles.',
+      "Use our AI & AR tools to preview your ad on walls, hoardings, and digital kiosks in real environments.",
   },
   {
-    title: 'Confirm & Pay',
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/money-bag-euro.png",
+    title: "Budget Campaign Suggestion",
     description:
-      'Get a clear summary, projected reach, and make secure payments. Instantly receive invoice & campaign dashboard access.',
+      "Our platform provides smart package suggestions to match your budget and maximize ROI.",
   },
   {
-    title: 'Track, Analyze & Optimize',
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/rocket.png",
+    title: "Launch Across India",
     description:
-      'Use heatmaps & AI analytics to monitor performance. Pause/edit campaigns, download reports, and boost ROI with AI suggestions.',
+      "Deploy your campaign across cities using our printing, installation & tracking network.",
+  },
+  {
+    icon: "https://img.icons8.com/ios-filled/50/ffffff/combo-chart--v1.png",
+    title: "Track & Grow",
+    description:
+      "Monitor reach, engagement & foot traffic analytics on your dashboard. Optimize for better ROI.",
   },
 ];
 
-export default function HowItWorks() {
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadFull(engine);
-  }, []);
-
+export default function HowItWorksSection() {
   return (
-    <section className="relative py-24 px-4 md:px-16 bg-gray-900 text-white overflow-hidden backdrop-blur-xl">
-      {/* 3D Orbital Particle Background */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          background: { color: '#0f172a' },
-          particles: {
-            number: { value: 100 },
-            color: { value: '#ffffff' },
-            links: {
-              enable: true,
-              color: '#ffffff',
-              distance: 120,
-              opacity: 0.3,
-              width: 1,
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: 'none',
-              outModes: { default: 'bounce' },
-              random: true,
-              straight: false,
-            },
-            size: { value: 1.5 },
-            opacity: { value: 0.3 },
-            shape: { type: 'circle' },
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: 'repulse' },
-              resize: true,
-            },
-            modes: {
-              repulse: { distance: 100, duration: 0.4 },
-            },
-          },
-        }}
-        className="absolute inset-0 z-0"
-      />
+    <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
+      {/* Removed background pattern and gradient overlays */}
 
-      <motion.h2
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-extrabold text-center mb-20 z-10 relative"
-      >
+      <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
         How It Works
-      </motion.h2>
+      </h2>
 
-      <div className="relative max-w-6xl mx-auto z-10">
-        <div className="space-y-48 relative">
+      <div className="relative flex justify-center mb-12 z-10">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1, type: "spring" }}
+          className="absolute top-[-40px] text-purple-400 animate-ping"
+        >
+          <Sparkles size={48} />
+        </motion.div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex md:flex-row flex-nowrap md:justify-between md:overflow-visible overflow-x-auto gap-12 px-4 pb-6 scrollbar-thin scrollbar-thumb-purple-500">
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 80, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 1,
-                delay: index * 0.2,
-                ease: 'easeOut',
-              }}
-              viewport={{ once: true }}
-              className={cn(
-                'group transition-all duration-300 backdrop-blur-md bg-white/10 ring-1 ring-white/10 shadow-xl rounded-2xl transform-gpu hover:scale-[1.02]',
-                'flex flex-col md:flex-row items-center md:items-start gap-8 px-6 py-10',
-                index % 2 === 0
-                  ? 'md:flex-row-reverse text-right'
-                  : 'md:flex-row text-left'
-              )}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.3 }}
+              className="flex flex-col items-center text-center min-w-[250px] md:min-w-0 relative"
             >
-              {/* Text Content */}
-              <div className="w-full md:w-1/2 px-2 md:px-6">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-white">
-                  {index + 1}. {step.title}
-                </h3>
-                <p className="text-base md:text-lg text-gray-300">
-                  {step.description}
-                </p>
-              </div>
-
-              {/* Circle Step Icon */}
               <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1.2, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="relative w-16 h-16 flex items-center justify-center text-white text-xl font-bold rounded-full bg-gradient-to-br from-indigo-500 to-purple-700 shadow-2xl"
-              >
-                <div className="z-10">{index + 1}</div>
+              className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
+                >
+
+                <div className="bg-black border-4 border-dashed border-white w-24 h-24 flex items-center justify-center rounded-full">
+                  <img
+                    src={step.icon}
+                    alt={step.title}
+                    width={48}
+                    height={48}
+                    className="rounded-full animate-pulse"
+                  />
+                </div>
               </motion.div>
-
-              {/* Scroll-triggered Nebula Aura */}
-              <motion.div
-                className="absolute -top-16 -left-16 w-96 h-96 rounded-full bg-purple-500 opacity-20 blur-3xl"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.3 }}
-                transition={{ duration: 1.5, ease: 'easeOut' }}
-              />
+              <h3 className="text-white text-xl font-semibold mt-6 mb-2">
+                {step.title}
+              </h3>
+              <p className="text-gray-300 text-sm max-w-xs">
+                {step.description}
+              </p>
+              {index < steps.length - 1 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 1 }}
+                  className="hidden md:block absolute right-[-50%] top-12 w-full border-t-2 border-dotted border-purple-500"
+                ></motion.div>
+              )}
             </motion.div>
           ))}
         </div>
       </div>
+
+      <motion.h3
+        className="text-4xl text-center font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent mt-16 animate-bounce z-10 relative"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        YOUR AD IS READY!
+      </motion.h3>
     </section>
   );
 }

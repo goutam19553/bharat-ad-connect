@@ -7,7 +7,8 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import HowItWorks from "@/components/HowItWorks";  // <-- Added import
+import HowItWorks from "@/components/HowItWorks";
+import Background from "@/components/Background"; // ✅ Import the background here
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -19,8 +20,7 @@ const Index = () => {
       type: "Stadium",
       size: "60 x 20 feet",
       price: 250000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
       rating: 4,
       featured: true,
     },
@@ -32,8 +32,7 @@ const Index = () => {
       type: "Space Ad",
       size: "10 x 10 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
       rating: 4,
       featured: true,
     },
@@ -45,8 +44,7 @@ const Index = () => {
       type: "Transit",
       size: "5 x 8 feet",
       price: 80000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
       rating: 4,
       featured: true,
     },
@@ -58,8 +56,7 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
       rating: 5,
       featured: true,
     },
@@ -71,8 +68,7 @@ const Index = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
       rating: 4,
       featured: true,
     },
@@ -84,8 +80,7 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
     },
@@ -139,12 +134,16 @@ const Index = () => {
 
   return (
     <div>
+      {/* Background Layer */}
+      <div className="absolute top-0 left-0 w-full h-screen -z-10 overflow-hidden">
+        <Background />
+      </div>
+
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
-   
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
@@ -212,45 +211,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Political Campaign Support Button */}
-      <section className="section bg-white dark:bg-gray-800">
-        <div className="flex justify-center items-center py-10">
-          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
-              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
-              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
-                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
-              </span>
-              <span className="relative z-10 overflow-hidden">
-                <span className="relative">🚀 Political Campaign Support</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
-              </span>
-            </button>
-          </a>
-        </div>
-      </section>
-
-      {/* AI/AR Design Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
-
-         {/* How It Works Section - ADDED */}
-      <section className="section bg-white dark:bg-gray-800">
-       <HowItWorks />
-       </section>
-
-      {/* Brands Slider */}
-      <BrandSlider />
-
-      {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900">
-        <div className="container-custom">
-          <ContactForm />
-        </div>
-      </section>
+      {/* Add more sections below as needed */}
     </div>
   );
 };

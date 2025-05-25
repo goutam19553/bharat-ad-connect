@@ -1,4 +1,3 @@
- // components/BillboardModel.tsx
 'use client'
 
 import { Canvas } from '@react-three/fiber'
@@ -30,7 +29,7 @@ export default function BillboardModel() {
   }
 
   return (
-    <div className="w-full h-[500px] bg-black">
+    <div className="w-full h-[800px] bg-gray-800"> {/* <- Changed background and height */}
       <Canvas camera={{ position: [5, 2, 5], fov: 40 }}>
         <ambientLight intensity={1} />
         <Stage environment="city" intensity={0.6}>

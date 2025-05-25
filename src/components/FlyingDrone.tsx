@@ -6,7 +6,7 @@ import * as THREE from "three";
 type GLTFResult = ReturnType<typeof useGLTF>;
 
 function DroneModel() {
-  const gltf = useGLTF("/flying-drone.glb") as GLTFResult;
+  const gltf = useGLTF("/flying_drone.glb") as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
   // Animate floating and rotation

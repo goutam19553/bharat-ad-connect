@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "@/components/Hero";
+import BillboardModel from "@/components/BillboardModel";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
@@ -144,6 +145,10 @@ const Index = () => {
         <Hero />
       </div>
 
+      {/* Billboard 3D Model */}
+      <div className="bg-black py-10">
+        <BillboardModel />
+      </div>
    
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">

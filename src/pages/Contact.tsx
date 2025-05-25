@@ -58,8 +58,7 @@ const Contact = () => {
                     <h3 className="font-heading font-semibold text-lg dark:text-white">Phone</h3>
                     <p className="text-gray-600 dark:text-gray-300">
                       <a href="tel:+918050853225" className="hover:text-bharat-saffron dark:hover:text-bharat-saffron">+91 80508 53225</a><br />
-                      <a href="tel:+919008404456" className="hover:text-bharat-saffron dark:hover:text-bharat-saffron">+91 9008404456</a>
-                    </p>
+                      </p>
                   </div>
                 </div>
                 

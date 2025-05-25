@@ -1,21 +1,11 @@
 /* HowItWorks.css */
 
-body {
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    background-color: #1f2937; /* Gray 800 */
-    color: #e0e0e0; /* Light text color */
-}
+/* IMPORTANT: The 'body' styles have been removed from here.
+   Global body styles should be in your main/global CSS file (e.g., src/index.css or src/App.css).
+   Ensure your body's background-color is set to 'transparent' there for the 3D background to be visible.
+*/
 
-#webgl-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Send to background */
-    opacity: 0.7; /* Slightly transparent */
-}
+/* The #webgl-background styles have also been moved to ThreeJsBackground.css */
 
 .content-container {
     position: relative;

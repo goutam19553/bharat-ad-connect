@@ -1,9 +1,16 @@
-/* howitworks.css */
+/* HowItWorks.css */
 
-/* For SVG curved path animation */
+/* IMPORTANT: Global 'body' styles and generic 'canvas' rules have been REMOVED from here.
+   - Body styles (like font-family, background-color, color, overflow-x) should be in your main/global CSS file
+     (e.g., src/index.css or src/App.css).
+   - The 3D background's positioning and styling (for #webgl-background and its canvas) are now
+     handled exclusively by src/components/ThreeJsBackground/ThreeJsBackground.css.
+*/
+
+/* For SVG curved path animation (if still used within HowItWorks, otherwise consider moving/removing) */
 #connector1,
-#connector2
-#connector3{
+#connector2, /* Corrected comma separation */
+#connector3 {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: drawPath 3s forwards ease-in-out;
@@ -16,25 +23,220 @@
   }
 }
 
-/* Text styling inside spheres */
-canvas .text-white {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-}
+/* Text styling inside spheres (if specific to HowItWorks) */
+/* If this is for a canvas rendered by Three.js outside this component, move it to a global style or ThreeJsBackground.css */
+/* Removed generic 'canvas' rule. If '.text-white' is used within this component AND needs canvas-specific styling,
+   it would need to target a specific canvas element or class within HowItWorks, not a generic canvas.
+   For Three.js generated text, styles are often applied directly via Three.js materials/fonts.
+*/
+/* canvas .text-white { } rule has been removed as it targets a generic canvas and could interfere. */
 
-/* Smooth scroll for parallax effect */
-body {
+/* Smooth scroll for parallax effect - this is a global behavior and should be in index.css/App.css */
+/* body {
   scroll-behavior: smooth;
-}
+} */ /* THIS RULE HAS BEEN COMMENTED OUT/REMOVED TO PREVENT GLOBAL OVERRIDES */
 
-/* Optional: make sure canvas is responsive and z-stacked properly */
-canvas {
-  z-index: 10;
-  position: relative;
-}
 
-/* Disable pointer events for SVG lines so they don’t block canvas interactions */
+/* Disable pointer events for SVG lines so they don’t block canvas interactions (if SVGs are specific to HowItWorks) */
 svg {
   pointer-events: none;
+}
+
+
+/* --- Styles specific to the content of the HowItWorks section below --- */
+
+.content-container {
+    position: relative;
+    z-index: 1; /* Ensure content is above background */
+    padding: 2rem;
+    max-width: 90%;
+    margin: 0 auto;
+    /* If this container also has a background, ensure it's transparent or rgba() */
+    /* background-color: rgba(31, 41, 55, 0.7); /* Example: semi-transparent dark background */
+}
+
+h1 {
+    font-size: 4.5rem; /* Made bigger as requested */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5rem; /* Adjusted margin for larger size */
+    background: linear-gradient(90deg, #8a2be2, #00ffff); /* Gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.5); /* Subtle glow */
+}
+
+.step-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem; /* Space between steps */
+    position: relative;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.08); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem; /* More rounded */
+    padding: 2.5rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.step-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2); /* Subtle blue glow on hover */
+}
+
+.step-number-circle {
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #8a2be2, #00ffff); /* Gradient for number circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Stronger glow */
+    transition: transform 0.3s ease-in-out;
+}
+
+.step-card:hover .step-number-circle {
+    transform: scale(1.1);
+}
+
+.step-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #00ffff; /* Accent color for headings */
+    margin-bottom: 0.8rem;
+}
+
+.step-content h2 i {
+    font-size: 1.8rem; /* Adjust icon size */
+    color: #c0c0c0; /* Muted icon color */
+}
+
+.step-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+}
+
+/* Specific line positioning for vertical connection - now dotted */
+.line-vertical {
+    width: 4px;
+    height: 0; /* Will animate height */
+    left: 50%;
+    transform: translateX(-50%);
+    /* top and bottom will be set by JS dynamically */
+    /* Using repeating-linear-gradient for dotted effect */
+    background: repeating-linear-gradient(to bottom,
+        #8a2be2 0px, /* Start of dot color 1 */
+        #00ffff 4px, /* Transition to dot color 2, 4px long dot */
+        transparent 4px, /* Start of transparent gap */
+        transparent 12px /* End of transparent gap, total 12px repeat cycle */
+    );
+    opacity: 0;
+    border-radius: 0; /* No border-radius for a dotted line */
+    z-index: -1; /* Behind the cards */
+}
+
+.final-message {
+    font-size: 4rem; /* Big and impactful */
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8rem; /* Space from last step */
+    margin-bottom: 8rem; /* Space from bottom */
+    background: linear-gradient(90deg, #00ffff, #8a2be2); /* Reversed gradient for variety */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Stronger glow */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Slide up effect */
+}
+
+.slogan-section {
+    margin-top: 6rem;
+    text-align: center;
+    color: #c0c0c0;
+    margin-bottom: 5rem; /* Add margin at the bottom */
+}
+
+.slogan-section h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #00ffff; /* Accent color for slogans */
+}
+
+.slogan-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem; /* Adjusted for mobile */
+        margin-bottom: 3rem;
+    }
+
+    .step-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .step-number-circle {
+        min-width: 60px;
+        min-height: 60px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .step-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .step-content p {
+        font-size: 1rem;
+    }
+
+    .step-wrapper {
+        margin-bottom: 3rem;
+    }
+
+    /* Adjust vertical line positioning for smaller screens */
+    .line-vertical {
+        left: 50%; /* Keep centered */
+    }
+
+    .final-message {
+        font-size: 2.5rem; /* Adjusted for mobile */
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .slogan-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .slogan-section p {
+        font-size: 0.95rem;
+    }
 }

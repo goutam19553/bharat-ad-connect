@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -18,19 +18,18 @@ function DroneModel() {
     ref.current.rotation.y = Math.sin(t) * 0.5;
   });
 
-  // Optional: Make materials transparent
-  React.useEffect(() => {
+  // Make materials transparent once on mount
+  useEffect(() => {
     gltf.scene.traverse((child) => {
       // @ts-ignore
       if (child.material) {
-        // We cast material to THREE.Material & THREE.MeshStandardMaterial to access transparent & opacity safely
         const mat = child.material as THREE.Material & {
           transparent?: boolean;
           opacity?: number;
           depthWrite?: boolean;
         };
         mat.transparent = true;
-        mat.opacity = 0.7; // adjust transparency here
+        mat.opacity = 0.7;
         mat.depthWrite = false;
       }
     });
@@ -41,9 +40,13 @@ function DroneModel() {
 
 export default function FlyingDrone() {
   return (
-    <Canvas camera={{ position: [0, 1, 3], fov: 50 }}>
+    <Canvas
+      camera={{ position: [0, 1, 3], fov: 50 }}
+      style={{ width: "100%", height: "100%" }}
+      shadows
+    >
       <ambientLight intensity={0.5} />
-      <directionalLight position={[2, 5, 2]} intensity={1} />
+      <directionalLight position={[2, 5, 2]} intensity={1} castShadow />
       <DroneModel />
       <OrbitControls enableZoom={false} enablePan={false} />
     </Canvas>

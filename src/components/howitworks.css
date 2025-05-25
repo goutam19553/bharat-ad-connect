@@ -1,136 +1,204 @@
-/* howitworks.css */
+/* Container and section */
+.how-it-works-section {
+  position: relative;
+  background-color: #1f2937; /* Tailwind gray-800 */
+  color: white;
+  padding: 5rem 1rem 4rem; /* py-20 px-4 */
+  overflow: hidden;
+  font-family: system-ui, sans-serif;
+}
 
-/* Section container styling */
-.how-it-works-container {
-  background-color: #1f2937; /* Tailwind's gray-800 */
+/* Title */
+.how-it-works-title {
+  color: white;
+  font-size: 2.5rem; /* text-4xl */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem; /* mb-16 */
+  position: relative;
+  z-index: 10;
+}
+
+/* Sparkles container */
+.sparkles-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem; /* mb-12 */
+  z-index: 10;
+}
+
+.sparkles-icon {
+  position: absolute;
+  top: -40px;
+  color: #a78bfa; /* purple-400 */
+  animation: ping 1.5s infinite;
+  /* Scale handled by JS animation */
+}
+
+/* Main steps wrapper */
+.steps-wrapper {
+  max-width: 112rem; /* max-w-7xl ~ 1120px */
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Steps container - flex scroll on small */
+.steps-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 3rem; /* gap-12 */
+  padding: 0 1rem 1.5rem; /* px-4 pb-6 */
+  scrollbar-width: thin;
+  scrollbar-color: #a78bfa transparent;
+  justify-content: center;
+}
+
+.steps-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.steps-container::-webkit-scrollbar-thumb {
+  background-color: #a78bfa;
+  border-radius: 3px;
+}
+
+/* On medium and larger, flex-wrap and justify between */
+@media (min-width: 768px) {
+  .steps-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-x: visible;
+  }
+}
+
+/* Single step */
+.step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  padding: 2rem;
+  text-align: center;
+  min-width: 250px;
   position: relative;
-  overflow: hidden;
+  flex-shrink: 0; /* prevent shrinking */
 }
 
-/* Keyframes */
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+@media (min-width: 768px) {
+  .step {
+    min-width: auto;
+    flex-shrink: initial;
   }
 }
 
-@keyframes growLine {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-  to {
-    width: var(--line-width, 50px);
-    opacity: 1;
-  }
+/* Gradient border circle */
+.step-gradient-border {
+  background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%);
+  padding: 0.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
 }
 
-@keyframes rotateOrbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Inner black dashed border circle */
+.step-icon-wrapper {
+  background-color: black;
+  border: 4px dashed white;
+  width: 6rem;  /* 24 * 0.25rem */
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
 }
 
-/* Step wrapper animation */
-.how-it-works-step {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
-  position: relative;
-}
-
-/* Dotted connector line */
-.connector-horizontal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 2px;
-  width: 100%;
-  max-width: 320px;
-  background: none;
-  border-top: 3px dotted #8b5cf6;
-  animation: growLine 0.6s ease-out forwards;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation-fill-mode: forwards;
-}
-
-.connector-horizontal.delay-1 {
-  animation-delay: 0.3s;
-}
-.connector-horizontal.delay-2 {
-  animation-delay: 0.6s;
-}
-.connector-horizontal.delay-3 {
-  animation-delay: 0.9s;
-}
-
-/* Numbered circle badge */
-.step-number {
-  width: 3rem;
+/* Icon image */
+.step-icon {
+  width: 3rem; /* 48px */
   height: 3rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  animation: pulse 2s infinite;
+}
+
+/* Step title */
+.step-title {
   color: white;
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Step description */
+.step-description {
+  color: #d1d5db; /* text-gray-300 */
+  font-size: 0.875rem; /* text-sm */
+  max-width: 20rem; /* max-w-xs */
+}
+
+/* Dotted line between steps on md+ */
+.step-line {
+  position: absolute;
+  top: 3rem; /* top-12 */
+  right: -50%;
+  width: 100%;
+  border-top: 2px dotted #a78bfa; /* border-purple-500 */
+  display: none;
+  z-index: 5;
+}
+
+@media (min-width: 768px) {
+  .step-line {
+    display: block;
+  }
+}
+
+/* Final call to action text */
+.final-cta {
+  font-size: 2.5rem; /* text-4xl */
+  text-align: center;
   font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  margin-top: 4rem;
+  background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bounce 2s infinite;
   position: relative;
   z-index: 10;
-  transition: box-shadow 0.3s ease;
 }
 
-.step-number:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+/* Animations */
+
+/* Pulse animation for icon */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
 }
 
-/* === Custom Additions === */
-
-/* Orbital spinning background elements (used optionally for floating icons/stars) */
-.orbit-circle {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  animation: rotateOrbit 60s linear infinite;
-  pointer-events: none;
+/* Ping animation for sparkles */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
-/* Nebula scroll glow blob */
-.nebula-glow {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
-  filter: blur(80px);
-  opacity: 0.3;
-  z-index: 0;
-}
-
-/* Glassmorphism effect for step cards */
-.glass-card {
-  backdrop-filter: blur(24px);
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.glass-card:hover {
-  transform: scale(1.02);
+/* Bounce for final CTA */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

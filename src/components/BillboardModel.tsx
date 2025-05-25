@@ -6,32 +6,34 @@ import { useCursor } from '@react-three/drei'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 
-function DancingBillboard({ index, delay }: { index: number; delay: number }) {
+function RotatingBillboard({ index, delay }: { index: number; delay: number }) {
   const { scene } = useGLTF('/low-poly_billboard_pack.glb')
   const meshRef = useRef<THREE.Object3D>(null)
   const [hovered, setHovered] = useState(false)
   useCursor(hovered)
-
-  const [startTime] = useState(() => Date.now() + delay * 1000)
 
   useFrame(({ clock }) => {
     const mesh = meshRef.current
     if (!mesh) return
 
     const t = clock.getElapsedTime()
-    const active = Date.now() >= startTime
 
-    if (active) {
-      mesh.rotation.x = Math.sin(t * 2 + index) * 0.5
-      mesh.rotation.y = Math.cos(t * 2 + index * 1.5) * 1.2
-      mesh.rotation.z = Math.sin(t * 3 + index) * 0.8
+    // Circle rotation path
+    const radius = 3
+    const angle = t * 0.5 + index * (Math.PI * 2 / 3)
+    mesh.position.x = Math.cos(angle) * radius
+    mesh.position.z = Math.sin(angle) * radius
+    mesh.position.y = 0
 
-      const scale = 1.5 + Math.sin(t * 2 + index) * 0.3
-      mesh.scale.set(scale, scale, scale)
+    // Smooth zoom effect (scale up one by one)
+    const timeSinceStart = t - delay
+    const targetScale = timeSinceStart > 0 ? 1.5 : 0.5
+    const currentScale = mesh.scale.x
+    const lerpScale = THREE.MathUtils.lerp(currentScale, targetScale, 0.05)
+    mesh.scale.set(lerpScale, lerpScale, lerpScale)
 
-      mesh.position.y = Math.sin(t * 5 + index) * 0.5
-      mesh.position.x = Math.cos(t * 3 + index) * 0.5
-    }
+    // Billboard facing center (look at origin)
+    mesh.lookAt(0, 0, 0)
   })
 
   return (
@@ -47,14 +49,14 @@ function DancingBillboard({ index, delay }: { index: number; delay: number }) {
 export default function BillboardModel() {
   return (
     <div className="w-full h-[600px] bg-gray-800">
-      <Canvas camera={{ position: [8, 4, 10], fov: 50 }}>
-        <ambientLight intensity={2} />
-        <Stage environment="city" intensity={1}>
-          <DancingBillboard index={0} delay={0} />
-          <DancingBillboard index={1} delay={1} />
-          <DancingBillboard index={2} delay={2} />
+      <Canvas camera={{ position: [0, 4, 10], fov: 50 }}>
+        <ambientLight intensity={1.5} />
+        <Stage environment="city" intensity={0.8}>
+          <RotatingBillboard index={0} delay={0} />
+          <RotatingBillboard index={1} delay={2} />
+          <RotatingBillboard index={2} delay={4} />
         </Stage>
-        <OrbitControls enablePan={true} enableZoom={false} enableRotate={true} autoRotate />
+        <OrbitControls enablePan={false} enableZoom={false} enableRotate autoRotate />
       </Canvas>
     </div>
   )

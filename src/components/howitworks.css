@@ -49,6 +49,7 @@
   z-index: 2;
 }
 
+/* Horizontal dashed connector */
 .connector-horizontal {
   position: absolute;
   top: 50%;
@@ -74,6 +75,7 @@
   animation-delay: 0.9s;
 }
 
+/* Step number */
 .step-number {
   width: 3rem;
   height: 3rem;
@@ -108,7 +110,7 @@
   transform: scale(1.02);
 }
 
-/* Nebula glow */
+/* Nebula background glow */
 .nebula-glow {
   position: absolute;
   width: 400px;
@@ -120,7 +122,7 @@
   z-index: 0;
 }
 
-/* Orbital elements */
+/* Orbit dashed circle */
 .orbit-circle {
   position: absolute;
   border-radius: 50%;
@@ -130,7 +132,7 @@
   z-index: 1;
 }
 
-/* Constellation SVG line style */
+/* Curved constellation path line */
 .constellation-line {
   stroke: #8b5cf6;
   stroke-width: 2;
@@ -144,7 +146,7 @@
   }
 }
 
-/* Parallax starfield */
+/* Starfield */
 .starfield {
   position: absolute;
   top: 0;
@@ -165,6 +167,10 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }

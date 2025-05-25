@@ -4,6 +4,9 @@ import * as THREE from 'three'; // Import Three.js
 import { gsap } from 'gsap'; // Import gsap
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger
 
+// IMPORTANT: Ensure this line is present and the path is correct relative to this file.
+import './HowItWorks.css'; // <--- This line imports the CSS for the component
+
 // Register GSAP plugins once
 gsap.registerPlugin(ScrollTrigger);
 

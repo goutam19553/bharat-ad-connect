@@ -1,157 +1,136 @@
-'use client';
+/* howitworks.css */
 
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import { useCallback } from 'react';
-import './howitworks.css';
+/* Section container styling */
+.how-it-works-container {
+  background-color: #1f2937; /* Tailwind's gray-800 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
 
-const steps = [
-  {
-    title: 'Sign Up & Set Goals',
-    description:
-      'Create an advertiser account, choose ad type (wall, hoarding, transit, drone, etc.), and define your goals like location, budget & duration.',
-  },
-  {
-    title: 'Browse & Select Ad Spaces',
-    description:
-      'Explore ad spaces on an interactive map. Filter by city, foot traffic, ratings. Preview in AR or 360° before booking.',
-  },
-  {
-    title: 'Upload Your Ad Creatives',
-    description:
-      'Upload image/video creatives. Use our Ad Preview Tool to simulate your ad in real-world formats, walls, hoardings, and vehicles.',
-  },
-  {
-    title: 'Confirm & Pay',
-    description:
-      'Get a clear summary, projected reach, and make secure payments. Instantly receive invoice & campaign dashboard access.',
-  },
-  {
-    title: 'Track, Analyze & Optimize',
-    description:
-      'Use heatmaps & AI analytics to monitor performance. Pause/edit campaigns, download reports, and boost ROI with AI suggestions.',
-  },
-];
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-export default function HowItWorks() {
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadFull(engine);
-  }, []);
+@keyframes growLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: var(--line-width, 50px);
+    opacity: 1;
+  }
+}
 
-  return (
-    <section className="relative py-20 px-4 md:px-16 bg-gray-900 text-white overflow-hidden">
-      {/* Background Particles */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          background: { color: '#111827' },
-          particles: {
-            number: { value: 70 },
-            color: { value: '#ffffff' },
-            opacity: { value: 0.15 },
-            size: { value: 2 },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: 'none',
-              outModes: 'out',
-            },
-          },
-        }}
-        className="absolute inset-0 z-0"
-      />
+@keyframes rotateOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-      <motion.h2
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-extrabold text-center mb-20 z-10 relative"
-      >
-        How It Works
-      </motion.h2>
+/* Step wrapper animation */
+.how-it-works-step {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  position: relative;
+}
 
-      <div className="relative max-w-6xl mx-auto z-10">
-        <div className="space-y-48 relative">
-          {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <motion.div
-                initial={{ opacity: 0, y: 60, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.2,
-                  ease: 'easeOut',
-                }}
-                viewport={{ once: true }}
-                className={cn(
-                  'group transition-transform duration-300 ease-in-out transform-gpu hover:scale-[1.02] hover:rotate-1 perspective-[1000px]',
-                  'flex flex-col md:flex-row items-center md:items-start gap-8 px-4 py-4 rounded-2xl',
-                  index % 2 === 0
-                    ? 'md:flex-row-reverse text-right'
-                    : 'md:flex-row text-left'
-                )}
-              >
-                {/* Content */}
-                <div className="w-full md:w-1/2 px-4">
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-white">
-                    {index + 1}. {step.title}
-                  </h3>
-                  <p className="text-base md:text-lg text-gray-300">
-                    {step.description}
-                  </p>
-                </div>
+/* Dotted connector line */
+.connector-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 2px;
+  width: 100%;
+  max-width: 320px;
+  background: none;
+  border-top: 3px dotted #8b5cf6;
+  animation: growLine 0.6s ease-out forwards;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
 
-                {/* Animated Circle */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1.1, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="relative w-16 h-16 flex items-center justify-center text-white text-xl font-bold rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg"
-                >
-                  <div className="absolute animate-ping-slow w-full h-full rounded-full bg-blue-500 opacity-20 z-0" />
-                  <div className="relative z-10">{index + 1}</div>
-                </motion.div>
-              </motion.div>
+.connector-horizontal.delay-1 {
+  animation-delay: 0.3s;
+}
+.connector-horizontal.delay-2 {
+  animation-delay: 0.6s;
+}
+.connector-horizontal.delay-3 {
+  animation-delay: 0.9s;
+}
 
-              {/* SVG Connector */}
-              {index < steps.length - 1 && (
-                <motion.svg
-                  viewBox="0 0 300 200"
-                  className={cn(
-                    'absolute w-[300px] h-[200px] left-1/2 -translate-x-1/2',
-                    index % 2 === 0 ? 'rotate-180 top-full' : 'top-full'
-                  )}
-                  initial="hidden"
-                  whileInView="visible"
-                  transition={{ duration: 1, delay: index * 0.25 }}
-                  viewport={{ once: true }}
-                >
-                  <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#3b82f6" />
-                      <stop offset="100%" stopColor="#8b5cf6" />
-                    </linearGradient>
-                  </defs>
-                  <motion.path
-                    d="M 0 0 Q 150 200 300 0"
-                    stroke="url(#lineGradient)"
-                    strokeWidth="3"
-                    fill="none"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.2, ease: 'easeInOut' }}
-                  />
-                </motion.svg>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+/* Numbered circle badge */
+.step-number {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.3s ease;
+}
+
+.step-number:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+}
+
+/* === Custom Additions === */
+
+/* Orbital spinning background elements (used optionally for floating icons/stars) */
+.orbit-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  animation: rotateOrbit 60s linear infinite;
+  pointer-events: none;
+}
+
+/* Nebula scroll glow blob */
+.nebula-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+  filter: blur(80px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Glassmorphism effect for step cards */
+.glass-card {
+  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.02);
 }

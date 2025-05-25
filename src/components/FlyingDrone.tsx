@@ -9,36 +9,30 @@ function DroneModel() {
   const gltf = useGLTF("/flying_drone.glb") as GLTFResult;
   const ref = useRef<THREE.Group>(null);
 
-  const flightDuration = 6; // seconds to fly from right to text
-  const orbitRadius = 0.7; // radius of circle around text
-  const orbitHeight = 0.7; // fixed height of orbit
+  // Orbit parameters
+  const orbitRadiusX = 3; // wide ellipse radius X
+  const orbitRadiusZ = 2; // ellipse radius Z
+  const orbitHeight = 1; // flight height
+  const orbitSpeed = 0.3; // slow speed
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = clock.getElapsedTime();
 
-    if (t < flightDuration) {
-      // Fly right to left (x: 3 to 0)
-      const progress = t / flightDuration;
-      ref.current.position.x = 3 - 3 * progress;
-      ref.current.position.y = 1 + Math.sin(t * 5) * 0.2; // bobbing while flying
-      ref.current.position.z = 0;
-      ref.current.rotation.y = Math.sin(t * 2) * 0.3;
-    } else {
-      // Orbit around text at (0, 0, 0) in XZ plane
-      const orbitTime = t - flightDuration;
-      const angle = orbitTime * 1.5; // radians per second, adjust speed here
+    const angle = t * orbitSpeed;
 
-      ref.current.position.x = Math.cos(angle) * orbitRadius;
-      ref.current.position.z = Math.sin(angle) * orbitRadius;
-      ref.current.position.y = orbitHeight + Math.sin(t * 5) * 0.1; // gentle up/down bobbing
+    // Elliptical orbit around origin (0,0,0)
+    ref.current.position.x = Math.cos(angle) * orbitRadiusX;
+    ref.current.position.z = Math.sin(angle) * orbitRadiusZ;
+    ref.current.position.y = orbitHeight + Math.sin(t * 3) * 0.2; // gentle up/down
 
-      // Make drone face forward along the tangent of the orbit
-      ref.current.rotation.y = -angle + Math.PI / 2; 
-    }
+    // Rotate drone to face the movement direction
+    const dx = -Math.sin(angle) * orbitRadiusX;
+    const dz = Math.cos(angle) * orbitRadiusZ;
+    ref.current.rotation.y = Math.atan2(dz, dx) - Math.PI / 2;
   });
 
-  // Optional: Make materials transparent
+  // Make materials transparent (optional)
   React.useEffect(() => {
     gltf.scene.traverse((child) => {
       // @ts-ignore
@@ -49,7 +43,7 @@ function DroneModel() {
           depthWrite?: boolean;
         };
         mat.transparent = true;
-        mat.opacity = 0.7; // adjust transparency here
+        mat.opacity = 0.7;
         mat.depthWrite = false;
       }
     });
@@ -60,7 +54,7 @@ function DroneModel() {
 
 export default function FlyingDrone() {
   return (
-    <Canvas camera={{ position: [0, 1.5, 3], fov: 50 }}>
+    <Canvas camera={{ position: [0, 3, 7], fov: 50 }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[2, 5, 2]} intensity={1} />
       <DroneModel />

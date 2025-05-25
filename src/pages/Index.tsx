@@ -146,8 +146,8 @@ const Index = () => {
       </div>
 
       {/* Billboard 3D Model */}
-      <div className="bg-black py-10">
-        <BillboardModel />
+      <div className="bg-gray-800 py-10">
+      <BillboardModel />
       </div>
    
       {/* Benefits */}

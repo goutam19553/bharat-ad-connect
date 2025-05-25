@@ -8,7 +8,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-import Background from "@/components/Background"; // ✅ Import the background here
+import Background from "@/components/Background3D"; // ✅ Import the background here
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import { Points, PointMaterial, useTexture } from '@react-three/drei';
+import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import ForceGraph3D from '3d-force-graph';
 
@@ -30,14 +30,41 @@ const ParticleField = () => {
   );
 };
 
-const Nebula = () => {
-  const texture = useTexture('/nebula.png'); // Add a faint transparent nebula image in public folder
-  return (
-    <mesh position={[0, 0, -100]}>
-      <planeGeometry args={[300, 300]} />
-      <meshBasicMaterial map={texture} transparent opacity={0.08} />
-    </mesh>
-  );
+const NebulaVolume = () => {
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    if (groupRef.current) {
+      groupRef.current.rotation.y = t * 0.01;
+      groupRef.current.children.forEach((child, i) => {
+        child.rotation.x = t * 0.02 * (i + 1);
+        child.rotation.y = t * 0.015 * (i + 1);
+      });
+    }
+  });
+
+  const layers = Array.from({ length: 5 }).map((_, i) => {
+    const scale = 20 + i * 4;
+    const opacity = 0.05 + i * 0.03;
+    return (
+      <mesh key={i}>
+        <sphereGeometry args={[scale, 32, 32]} />
+        <meshStandardMaterial
+          color={new THREE.Color('#00ffff')}
+          transparent
+          opacity={opacity}
+          roughness={1}
+          metalness={0}
+          emissive={'#00ffff'}
+          emissiveIntensity={0.4 + i * 0.2}
+          side={THREE.BackSide}
+        />
+      </mesh>
+    );
+  });
+
+  return <group ref={groupRef}>{layers}</group>;
 };
 
 const ForceConstellation = () => {
@@ -70,18 +97,18 @@ const ForceConstellation = () => {
 export default function Background3D() {
   return (
     <div className="fixed inset-0 z-[-10] pointer-events-none">
-      {/* WebGL Canvas for stars + nebula + bloom */}
+      {/* WebGL Canvas */}
       <Canvas camera={{ position: [0, 0, 50], fov: 75 }}>
         <color attach="background" args={['#01010f']} />
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={0.5} />
         <ParticleField />
-        <Nebula />
+        <NebulaVolume />
         <EffectComposer>
-          <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.9} intensity={1.5} />
+          <Bloom intensity={2} luminanceThreshold={0} luminanceSmoothing={0.7} />
         </EffectComposer>
       </Canvas>
 
-      {/* DOM Layer ForceGraph (constellation lines) */}
+      {/* DOM-based constellation lines */}
       <ForceConstellation />
     </div>
   );

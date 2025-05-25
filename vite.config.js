@@ -15,11 +15,18 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["@supabase/supabase-js", "framer-motion"],
+    include: [
+      "@supabase/supabase-js",
+      "framer-motion"
+    ],
   },
   build: {
     commonjsOptions: {
       include: [/node_modules/, "@supabase/supabase-js", "framer-motion"],
+    },
+    rollupOptions: {
+      // Optional: externalize heavy 3D libs to avoid build issues
+      external: ["3d-force-graph"],
     },
   },
 });

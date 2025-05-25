@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import FlyingDrone from "./components/FlyingDrone"; // Adjust path if needed
 
 const steps = [
   {
@@ -43,7 +44,10 @@ const steps = [
 export default function HowItWorksSection() {
   return (
     <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
-      {/* Removed background pattern and gradient overlays */}
+      {/* Flying Drone - positioned absolutely */}
+      <div className="absolute top-10 right-10 w-48 h-48 z-20 pointer-events-none">
+        <FlyingDrone />
+      </div>
 
       <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">
         How It Works
@@ -70,10 +74,7 @@ export default function HowItWorksSection() {
               transition={{ delay: index * 0.3 }}
               className="flex flex-col items-center text-center min-w-[250px] md:min-w-0 relative"
             >
-              <motion.div
-              className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40"
-                >
-
+              <motion.div className="bg-gradient-to-r from-pink-500 to-purple-600 p-1 rounded-full shadow-2xl shadow-purple-700/40">
                 <div className="bg-black border-4 border-dashed border-white w-24 h-24 flex items-center justify-center rounded-full">
                   <img
                     src={step.icon}
@@ -87,9 +88,7 @@ export default function HowItWorksSection() {
               <h3 className="text-white text-xl font-semibold mt-6 mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-300 text-sm max-w-xs">
-                {step.description}
-              </p>
+              <p className="text-gray-300 text-sm max-w-xs">{step.description}</p>
               {index < steps.length - 1 && (
                 <motion.div
                   initial={{ opacity: 0 }}

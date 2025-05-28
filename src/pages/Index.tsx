@@ -8,6 +8,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";  // <-- Added import
+import { motion } from "framer-motion";
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -92,50 +93,71 @@ const Index = () => {
   ];
 
   const advertiserBenefits = [
-    {
-      icon: <MapPin className="h-8 w-8 text-bharat-saffron" />,
-      title: "Prime Locations",
-      description: "Access to exclusive premium ad spaces across major Indian cities.",
+  { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
+  { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
+  { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
+  { icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />, title: "Traffic Analysis", description: "Make data-driven decisions with our foot traffic analysis." },
+];
+
+const ownerBenefits = [
+  { icon: <Building className="h-8 w-8 text-bharat-navy" />, title: "Maximize Revenue", description: "List your ad spaces and connect with quality advertisers." },
+  { icon: <Award className="h-8 w-8 text-bharat-navy" />, title: "Verified Advertisers", description: "We verify all advertisers to ensure quality partnerships." },
+  { icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />, title: "Data Insights", description: "Access analytics about your space's performance and value." },
+  { icon: <Zap className="h-8 w-8 text-bharat-navy" />, title: "Seamless Management", description: "Easy-to-use platform for managing your ad inventory." },
+];
+
+const cardFlyInVariants = {
+  initial: (custom) => ({
+    x: custom.x,
+    y: custom.y,
+    rotate: custom.rotate,
+    scale: 0.8,
+    opacity: 0,
+  }),
+  animate: {
+    x: 0,
+    y: 0,
+    rotate: 0,
+    scale: 1,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 700,
+      damping: 30,
+      mass: 1,
     },
-    {
-      icon: <Eye className="h-8 w-8 text-bharat-saffron" />,
-      title: "AR Preview",
-      description: "See exactly how your ad will look before making an investment.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-saffron" />,
-      title: "AI-Powered Design",
-      description: "Get intelligent design recommendations based on location and audience.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />,
-      title: "Traffic Analysis",
-      description: "Make data-driven decisions with our foot traffic analysis.",
-    },
+  },
+};
+
+export default function AnimatedCards() {
+  // Generate some random offscreen positions and rotations for the "throw" effect
+  const randomPositions = [
+    { x: -300, y: -200, rotate: -30 },
+    { x: 300, y: -150, rotate: 25 },
+    { x: -250, y: 200, rotate: 40 },
+    { x: 250, y: 250, rotate: -35 },
   ];
 
-  const ownerBenefits = [
-    {
-      icon: <Building className="h-8 w-8 text-bharat-navy" />,
-      title: "Maximize Revenue",
-      description: "List your ad spaces and connect with quality advertisers.",
-    },
-    {
-      icon: <Award className="h-8 w-8 text-bharat-navy" />,
-      title: "Verified Advertisers",
-      description: "We verify all advertisers to ensure quality partnerships.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />,
-      title: "Data Insights",
-      description: "Access analytics about your space's performance and value.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-navy" />,
-      title: "Seamless Management",
-      description: "Easy-to-use platform for managing your ad inventory.",
-    },
-  ];
+  return (
+    <div className="flex flex-wrap gap-6 justify-center p-8">
+      {advertiserBenefits.map((benefit, i) => (
+        <motion.div
+          key={benefit.title}
+          className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full cursor-pointer"
+          custom={randomPositions[i % randomPositions.length]}
+          variants={cardFlyInVariants}
+          initial="initial"
+          animate="animate"
+          whileHover={{ scale: 1.05, rotate: 2 }}
+        >
+          <div>{benefit.icon}</div>
+          <h3 className="text-lg font-semibold mt-4">{benefit.title}</h3>
+          <p className="text-gray-600 mt-2">{benefit.description}</p>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
 
   return (
     <div>

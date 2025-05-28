@@ -26,9 +26,6 @@ const EarnMoneySection = () => {
   const navigate = useNavigate();
 
   return (
-    // Note: This component has its own specific backgrounds (bg-white/dark:bg-gray-900).
-    // Ensure these are transparent or visually work with the Vanta background if you want it to show through here too.
-    // If you want the Vanta background to show through, you'd change `dark:bg-gray-900` to a transparent variant like `dark:bg-transparent` or `dark:bg-gray-900/50`.
     <section className="earn-money-section text-center my-16 bg-white dark:bg-gray-900 py-20 px-6 overflow-hidden">
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-6">
@@ -38,7 +35,7 @@ const EarnMoneySection = () => {
           You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
         </p>
         <button
-          onClick={() => navigate("/wall-upload")}
+          onClick={() => navigate("/wall-upload")} 
           className="px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105 animate-pulse"
         >
           Upload Now
@@ -54,9 +51,6 @@ const GovernmentSupportSection = () => {
 
   return (
     <section className="my-20 px-6">
-      {/* This section specifically uses bg-[#1B3A4B]. If you want the Vanta background to show through here,
-          you'd need to make this background transparent or semi-transparent.
-          For example: `bg-[#1B3A4B]/80` or `bg-transparent` if the design allows. */}
       <div className="bg-[#1B3A4B] text-white rounded-xl shadow-lg px-6 py-10 md:flex md:items-center md:justify-between">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#FDCB6E] mb-2">
@@ -91,8 +85,7 @@ const App = () => {
         <Toaster />
         <BrowserRouter>
           <ScrollToTop />
-          {/* 👇 REMOVED dark:bg-black FROM THIS LINE */}
-          <div className="flex flex-col min-h-screen bg-white text-black dark:text-white transition-colors duration-300">
+          <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
             <Navbar />
             <main className="flex-grow">
               <Suspense fallback={<div className="text-center py-10">Loading...</div>}>

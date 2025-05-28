@@ -1,99 +1,33 @@
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import React, { useEffect, useRef } from "react";
+import WAVES from "vanta/dist/vanta.waves.min";
 
 export default function AnimatedBackground() {
-  // Initialize tsparticles engine with all features
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
+  const vantaRef = useRef(null);
+  const vantaEffect = useRef(null);
+
+  useEffect(() => {
+    if (!vantaEffect.current) {
+      vantaEffect.current = WAVES({
+        el: vantaRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x00bcd4,         // primary wave color (cyan)
+        waveHeight: 20.0,
+        waveSpeed: 1.0,
+        shininess: 50.0,
+        zoom: 1,
+        backgroundColor: 0x0a0e23, // dark blue background (hex 0a0e23)
+      });
+    }
+    return () => {
+      if (vantaEffect.current) vantaEffect.current.destroy();
+    };
   }, []);
 
-  return (
-    <div className="absolute inset-0 -z-10">
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: {
-            color: "#0a0e23", // Dark blue background
-          },
-          fpsLimit: 60, // Max FPS
-          interactivity: {
-            events: {
-              onHover: {
-                enable: true,
-                mode: "grab", // Grab effect on hover
-              },
-              resize: true,
-            },
-            modes: {
-              grab: {
-                distance: 140,
-                links: {
-                  opacity: 0.9,
-                  color: "#ff4081", // Pinkish link color on hover
-                },
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: ["#00bcd4", "#ff4081", "#00ff94"], // Multiple colors for animation
-              animation: {
-                enable: true,
-                speed: 20, // Speed of color animation
-                sync: false,
-              },
-            },
-            links: {
-              color: "#00bcd4", // Default link color
-              distance: 130,
-              enable: true,
-              opacity: 0.5,
-              width: 1.5,
-              triangles: {
-                enable: false, // No triangle shapes between particles
-              },
-            },
-            collisions: {
-              enable: false, // Particles don't bounce on collision
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outModes: {
-                default: "bounce",
-              },
-              random: false,
-              speed: 1,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 60, // Number of particles
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 1, max: 4 },
-              animation: {
-                enable: true,
-                speed: 3, // Speed of size pulsing animation
-                minimumValue: 1,
-                sync: false,
-              },
-            },
-          },
-          detectRetina: true, // Adjust for retina displays
-        }}
-      />
-    </div>
-  );
+  return <div ref={vantaRef} className="absolute inset-0 -z-10 w-full h-full" />;
 }

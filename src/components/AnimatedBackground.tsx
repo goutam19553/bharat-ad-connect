@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 import WAVES from "vanta/dist/vanta.waves.min";
 
 export default function AnimatedBackground() {
-  const vantaRef = useRef(null);
-  const vantaEffect = useRef(null);
+  const vantaRef = useRef<HTMLDivElement | null>(null);
+  const vantaEffect = useRef<any>(null);
 
   useEffect(() => {
-    if (!vantaEffect.current) {
+    if (!vantaEffect.current && vantaRef.current) {
       vantaEffect.current = WAVES({
         el: vantaRef.current,
+        THREE: THREE,           // Pass THREE explicitly here
         mouseControls: true,
         touchControls: true,
         gyroControls: false,

@@ -7,7 +7,8 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import HowItWorks from "@/components/HowItWorks";  // <-- Added import
+import HowItWorks from "@/components/HowItWorks";
+import AnimatedBackground from "@/components/AnimatedBackground"; // ✅ Import added
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -19,8 +20,7 @@ const Index = () => {
       type: "Stadium",
       size: "60 x 20 feet",
       price: 250000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
       rating: 4,
       featured: true,
     },
@@ -32,8 +32,7 @@ const Index = () => {
       type: "Space Ad",
       size: "10 x 10 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
       rating: 4,
       featured: true,
     },
@@ -45,8 +44,7 @@ const Index = () => {
       type: "Transit",
       size: "5 x 8 feet",
       price: 80000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
       rating: 4,
       featured: true,
     },
@@ -58,8 +56,7 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
       rating: 5,
       featured: true,
     },
@@ -71,8 +68,7 @@ const Index = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
       rating: 4,
       featured: true,
     },
@@ -84,8 +80,7 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
     },
@@ -138,14 +133,17 @@ const Index = () => {
   ];
 
   return (
-    <div>
+    <div className="relative overflow-hidden">
+      {/* 🌌 Animated Background */}
+      <div className="absolute inset-0 -z-10">
+        <AnimatedBackground />
+      </div>
+
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
 
-     
-   
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
@@ -213,7 +211,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Political Campaign Support Button */}
+      {/* Political Campaign Button */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="flex justify-center items-center py-10">
           <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
@@ -234,17 +232,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AI/AR Design Demos */}
+      {/* AI/AR Demos */}
       <AIDesignDemo />
       <FootTrafficDemo />
 
-         {/* How It Works Section - ADDED */}
+      {/* How It Works */}
       <section className="section bg-white dark:bg-gray-800">
-       <HowItWorks />
-       </section>
+        <HowItWorks />
+      </section>
 
-     
-      {/* Brands Slider */}
+      {/* Brand Slider */}
       <BrandSlider />
 
       {/* Contact Form */}

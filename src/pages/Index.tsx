@@ -8,7 +8,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-import AnimatedBackground from "@/components/AnimatedBackground"; // ✅ Import added
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -133,131 +133,149 @@ const Index = () => {
   ];
 
   return (
+    // The main container for the Index page.
+    // 'relative' is crucial for 'absolute' children.
+    // 'overflow-hidden' prevents scrollbars from the background animation.
+    // 'min-h-screen' ensures it always takes full height.
+    // 'text-white' ensures main text is visible on the dark background.
     <div className="relative overflow-hidden min-h-screen text-white">
-      {/* 3D Animated Background */}
+      {/* 3D Animated Background - This should be positioned behind everything */}
+      {/* 'absolute inset-0' makes it cover the entire parent container (which is 'relative') */}
+      {/* '-z-10' places it far behind all other content */}
       <div className="absolute inset-0 -z-10">
         <AnimatedBackground />
       </div>
 
-      {/* Hero Section - Remove bg-gradient, keep relative for stacking */}
-      <div className="relative">
+      {/* Main content wrapper with a positive z-index */}
+      {/* This ensures all content within this div is stacked above the background */}
+      {/* We use 'relative z-10' to create a new stacking context above -z-10 */}
+      <div className="relative z-10">
+        {/* Hero Section */}
         <Hero />
-      </div>
 
-      {/* Benefits - Remove background colors, add padding and text color */}
-      <section className="section">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transforming Outdoor Advertising in India
-            </h2>
-            <p className="text-lg max-w-3xl mx-auto text-white/90">
-              Bharat-Ad connects advertisers with ad space owners across India
-              through our innovative digital marketplace powered by AI and AR
-              technology.
-            </p>
-          </div>
+        {/* Benefits Section */}
+        <section className="section">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Transforming Outdoor Advertising in India
+              </h2>
+              <p className="text-lg max-w-3xl mx-auto text-white/90">
+                Bharat-Ad connects advertisers with ad space owners across India
+                through our innovative digital marketplace powered by AI and AR
+                technology.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
-                For Advertisers
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
-                  >
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p>{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
                   For Advertisers
-                </Link>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {advertiserBenefits.map((benefit, index) => (
+                    <div
+                      key={index}
+                      // Semi-transparent background with blur for readability over the animation
+                      className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
+                    >
+                      <div className="mb-4">{benefit.icon}</div>
+                      <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
+                      <p className="text-white/80">{benefit.description}</p> {/* Use text-white/80 for description */}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center md:text-left">
+                  <Link to="/advertisers" className="btn-primary">
+                    For Advertisers
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
-                For Ad Space Owners
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {ownerBenefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
-                  >
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p>{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
                   For Ad Space Owners
-                </Link>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {ownerBenefits.map((benefit, index) => (
+                    <div
+                      key={index}
+                      // Semi-transparent background with blur for readability over the animation
+                      className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
+                    >
+                      <div className="mb-4">{benefit.icon}</div>
+                      <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
+                      <p className="text-white/80">{benefit.description}</p> {/* Use text-white/80 for description */}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center md:text-left">
+                  <Link to="/ad-space-owners" className="btn-secondary">
+                    For Ad Space Owners
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Featured Ad Spaces - Remove background */}
-      <section className="section">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Advanced OOH Campaign Planner
-            </h2>
-            <p className="text-lg max-w-3xl mx-auto text-white/90">
-              We help streamline OOH Ad-campaign planning with advanced tools and
-              proprietary data insights for precise media placement.
-            </p>
+        {/* Featured Ad Spaces */}
+        <section className="section">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Advanced OOH Campaign Planner
+              </h2>
+              <p className="text-lg max-w-3xl mx-auto text-white/90">
+                We help streamline OOH Ad-campaign planning with advanced tools and
+                proprietary data insights for precise media placement.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredAdSpaces.map((adSpace) => (
+                // AdSpaceCard needs its own background (e.g., bg-white/10) if not already styled
+                <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
+              ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Link to="/ad-spaces" className="btn-primary">
+                View All Ad Spaces
+              </Link>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace) => (
-              <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">
-              View All Ad Spaces
+        </section>
+
+        {/* Political Campaign Button */}
+        <section className="section">
+          <div className="flex justify-center items-center py-10">
+            <Link
+              to="/government-support"
+              className="px-8 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105"
+            >
+              Political Campaigns and Government Support
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Political Campaign Button - no bg changes needed, keep as is */}
-      <section className="section">
-        <div className="flex justify-center items-center py-10">
-          {/* Button content unchanged */}
-        </div>
-      </section>
+        {/* AI/AR Demos - ensure these components handle their own transparent backgrounds */}
+        <AIDesignDemo />
+        <FootTrafficDemo />
 
-      {/* AI/AR Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
+        {/* How It Works */}
+        <section className="section">
+          <HowItWorks />
+        </section>
 
-      {/* How It Works - Remove background */}
-      <section className="section">
-        <HowItWorks />
-      </section>
+        {/* Brand Slider */}
+        <BrandSlider />
 
-      {/* Brand Slider */}
-      <BrandSlider />
-
-      {/* Contact Form - Remove background */}
-      <section className="section">
-        <div className="container-custom">
-          <ContactForm />
-        </div>
-      </section>
+        {/* Contact Form - ensure this component handles its own transparent background */}
+        <section className="section">
+          <div className="container-custom">
+            <ContactForm />
+          </div>
+        </section>
+      </div> {/* End of main content wrapper with z-10 */}
     </div>
   );
 };

@@ -3,19 +3,19 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 export default function AnimatedBackground() {
-  // Initialize tsparticles engine with loadFull
-  const particlesInit = useCallback(async (engine: any) => {
+  const particlesInit = useCallback(async (engine) => {
+    // Loads tsparticles bundle with all features
     await loadFull(engine);
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10"> {/* Use fixed so it covers full viewport */}
+    <div className="absolute inset-0 -z-10">
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           background: {
-            color: "#0a0e23", // dark navy background
+            color: "#0a0e23",
           },
           fpsLimit: 60,
           interactivity: {

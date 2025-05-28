@@ -10,7 +10,7 @@ export default function AnimatedBackground() {
     if (!vantaEffect.current && vantaRef.current) {
       vantaEffect.current = WAVES({
         el: vantaRef.current,
-        THREE: THREE,           // Pass THREE explicitly here
+        THREE: THREE,
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
@@ -18,12 +18,12 @@ export default function AnimatedBackground() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x00bcd4,         // primary wave color (cyan)
+        color: 0x00bcd4,
         waveHeight: 20.0,
         waveSpeed: 1.0,
         shininess: 50.0,
         zoom: 1,
-        backgroundColor: 0x0a0e23, // dark blue background (hex 0a0e23)
+        backgroundColor: 0x0a0e23,
       });
     }
     return () => {
@@ -31,5 +31,18 @@ export default function AnimatedBackground() {
     };
   }, []);
 
-  return <div ref={vantaRef} className="absolute inset-0 -z-10 w-full h-full" />;
+  return (
+    <div
+      ref={vantaRef}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: -10,
+        pointerEvents: "none", // So that background doesn't block clicks
+      }}
+    />
+  );
 }

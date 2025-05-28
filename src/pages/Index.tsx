@@ -92,7 +92,7 @@ const Index = () => {
     },
   ];
 
-  const advertiserBenefits = [
+ const advertiserBenefits = [
   { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
   { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
   { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
@@ -107,7 +107,7 @@ const ownerBenefits = [
 ];
 
 const cardFlyInVariants = {
-  initial: (custom) => ({
+  initial: (custom: { x: number; y: number; rotate: number }) => ({
     x: custom.x,
     y: custom.y,
     rotate: custom.rotate,
@@ -129,15 +129,15 @@ const cardFlyInVariants = {
   },
 };
 
-export default function AnimatedCards() {
-  // Generate some random offscreen positions and rotations for the "throw" effect
-  const randomPositions = [
-    { x: -300, y: -200, rotate: -30 },
-    { x: 300, y: -150, rotate: 25 },
-    { x: -250, y: 200, rotate: 40 },
-    { x: 250, y: 250, rotate: -35 },
-  ];
+const randomPositions = [
+  { x: -300, y: -200, rotate: -30 },
+  { x: 300, y: -150, rotate: 25 },
+  { x: -250, y: 200, rotate: 40 },
+  { x: 250, y: 250, rotate: -35 },
+];
 
+// AnimatedCards Component
+function AnimatedCards() {
   return (
     <div className="flex flex-wrap gap-6 justify-center p-8">
       {advertiserBenefits.map((benefit, i) => (
@@ -159,6 +159,8 @@ export default function AnimatedCards() {
   );
 }
 
+// Main page component
+export default function Index() {
   return (
     <div>
       {/* Hero Section */}
@@ -166,8 +168,6 @@ export default function AnimatedCards() {
         <Hero />
       </div>
 
-     
-   
       {/* Benefits */}
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
@@ -182,15 +182,8 @@ export default function AnimatedCards() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
+              {/* Replace static grid with animated cards here */}
+              <AnimatedCards />
               <div className="mt-6 text-center md:text-left">
                 <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
               </div>

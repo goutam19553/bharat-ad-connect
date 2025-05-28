@@ -7,8 +7,7 @@ import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
-import HowItWorks from "@/components/HowItWorks";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import HowItWorks from "@/components/HowItWorks";  // <-- Added import
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -20,7 +19,8 @@ const Index = () => {
       type: "Stadium",
       size: "60 x 20 feet",
       price: 250000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
       rating: 4,
       featured: true,
     },
@@ -32,7 +32,8 @@ const Index = () => {
       type: "Space Ad",
       size: "10 x 10 feet",
       price: 25000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
       rating: 4,
       featured: true,
     },
@@ -44,7 +45,8 @@ const Index = () => {
       type: "Transit",
       size: "5 x 8 feet",
       price: 80000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
       rating: 4,
       featured: true,
     },
@@ -56,7 +58,8 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
       rating: 5,
       featured: true,
     },
@@ -68,7 +71,8 @@ const Index = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
       rating: 4,
       featured: true,
     },
@@ -80,7 +84,8 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      image:
+        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
     },
@@ -133,149 +138,121 @@ const Index = () => {
   ];
 
   return (
-    // The main container for the Index page.
-    // 'relative' is crucial for 'absolute' children.
-    // 'overflow-hidden' prevents scrollbars from the background animation.
-    // 'min-h-screen' ensures it always takes full height.
-    // 'text-white' ensures main text is visible on the dark background.
-    <div className="relative overflow-hidden min-h-screen text-white">
-      {/* 3D Animated Background - This should be positioned behind everything */}
-      {/* 'absolute inset-0' makes it cover the entire parent container (which is 'relative') */}
-      {/* '-z-10' places it far behind all other content */}
-      <div className="absolute inset-0 -z-10">
-        <AnimatedBackground />
+    <div>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+        <Hero />
       </div>
 
-      {/* Main content wrapper with a positive z-index */}
-      {/* This ensures all content within this div is stacked above the background */}
-      {/* We use 'relative z-10' to create a new stacking context above -z-10 */}
-      <div className="relative z-10">
-        {/* Hero Section */}
-        <Hero />
+     
+   
+      {/* Benefits */}
+      <section className="section bg-white dark:bg-gray-800">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Bharat-Ad connects advertisers with ad space owners across India through our
+              innovative digital marketplace powered by AI and AR technology.
+            </p>
+          </div>
 
-        {/* Benefits Section */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Transforming Outdoor Advertising in India
-              </h2>
-              <p className="text-lg max-w-3xl mx-auto text-white/90">
-                Bharat-Ad connects advertisers with ad space owners across India
-                through our innovative digital marketplace powered by AI and AR
-                technology.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {advertiserBenefits.map((benefit, index) => (
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                    <div className="mb-4">{benefit.icon}</div>
+                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 text-center md:text-left">
+                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
-                  For Advertisers
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {advertiserBenefits.map((benefit, index) => (
-                    <div
-                      key={index}
-                      // Semi-transparent background with blur for readability over the animation
-                      className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                      <p className="text-white/80">{benefit.description}</p> {/* Use text-white/80 for description */}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center md:text-left">
-                  <Link to="/advertisers" className="btn-primary">
-                    For Advertisers
-                  </Link>
-                </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {ownerBenefits.map((benefit, index) => (
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                    <div className="mb-4">{benefit.icon}</div>
+                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
+                  </div>
+                ))}
               </div>
-
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
-                  For Ad Space Owners
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {ownerBenefits.map((benefit, index) => (
-                    <div
-                      key={index}
-                      // Semi-transparent background with blur for readability over the animation
-                      className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                      <p className="text-white/80">{benefit.description}</p> {/* Use text-white/80 for description */}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center md:text-left">
-                  <Link to="/ad-space-owners" className="btn-secondary">
-                    For Ad Space Owners
-                  </Link>
-                </div>
+              <div className="mt-6 text-center md:text-left">
+                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Featured Ad Spaces */}
-        <section className="section">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Advanced OOH Campaign Planner
-              </h2>
-              <p className="text-lg max-w-3xl mx-auto text-white/90">
-                We help streamline OOH Ad-campaign planning with advanced tools and
-                proprietary data insights for precise media placement.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredAdSpaces.map((adSpace) => (
-                // AdSpaceCard needs its own background (e.g., bg-white/10) if not already styled
-                <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Link to="/ad-spaces" className="btn-primary">
-                View All Ad Spaces
-              </Link>
-            </div>
+      {/* Featured Ad Spaces */}
+      <section className="section bg-gray-50 dark:bg-gray-800">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
+            </p>
           </div>
-        </section>
-
-        {/* Political Campaign Button */}
-        <section className="section">
-          <div className="flex justify-center items-center py-10">
-            <Link
-              to="/government-support"
-              className="px-8 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105"
-            >
-              Political Campaigns and Government Support
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredAdSpaces.map((adSpace) => (
+              <AdSpaceCard key={adSpace.id} adSpace={adSpace} />
+            ))}
           </div>
-        </section>
-
-        {/* AI/AR Demos - ensure these components handle their own transparent backgrounds */}
-        <AIDesignDemo />
-        <FootTrafficDemo />
-
-        {/* How It Works */}
-        <section className="section">
-          <HowItWorks />
-        </section>
-
-        {/* Brand Slider */}
-        <BrandSlider />
-
-        {/* Contact Form - ensure this component handles its own transparent background */}
-        <section className="section">
-          <div className="container-custom">
-            <ContactForm />
+          <div className="mt-10 text-center">
+            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
           </div>
-        </section>
-      </div> {/* End of main content wrapper with z-10 */}
+        </div>
+      </section>
+
+      {/* Political Campaign Support Button */}
+      <section className="section bg-white dark:bg-gray-800">
+        <div className="flex justify-center items-center py-10">
+          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
+              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
+              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
+                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
+                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
+              </span>
+              <span className="relative z-10 overflow-hidden">
+                <span className="relative">🚀 Political Campaign Support</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+              </span>
+            </button>
+          </a>
+        </div>
+      </section>
+
+      {/* AI/AR Design Demos */}
+      <AIDesignDemo />
+      <FootTrafficDemo />
+
+         {/* How It Works Section - ADDED */}
+      <section className="section bg-white dark:bg-gray-800">
+       <HowItWorks />
+       </section>
+
+     
+      {/* Brands Slider */}
+      <BrandSlider />
+
+      {/* Contact Form */}
+      <section className="section bg-gray-100 dark:bg-gray-900">
+        <div className="container-custom">
+          <ContactForm />
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -8,6 +9,20 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const Index = () => {
   const featuredAdSpaces: AdSpaceProps[] = [
@@ -19,8 +34,7 @@ const Index = () => {
       type: "Stadium",
       size: "60 x 20 feet",
       price: 250000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
       rating: 4,
       featured: true,
     },
@@ -32,8 +46,7 @@ const Index = () => {
       type: "Space Ad",
       size: "10 x 10 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
       rating: 4,
       featured: true,
     },
@@ -45,8 +58,7 @@ const Index = () => {
       type: "Transit",
       size: "5 x 8 feet",
       price: 80000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
       rating: 4,
       featured: true,
     },
@@ -58,8 +70,7 @@ const Index = () => {
       type: "Billboard",
       size: "30 x 15 feet",
       price: 45000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
       rating: 5,
       featured: true,
     },
@@ -71,8 +82,7 @@ const Index = () => {
       type: "Digital LED Flying Drones",
       size: "20 x 10 feet",
       price: 8000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
       rating: 4,
       featured: true,
     },
@@ -84,84 +94,25 @@ const Index = () => {
       type: "Transit",
       size: "15 x 8 feet",
       price: 25000,
-      image:
-        "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
     },
   ];
 
   const advertiserBenefits = [
-    {
-      icon: <MapPin className="h-8 w-8 text-bharat-saffron" />,
-      title: "Prime Locations",
-      description: "Access to exclusive premium ad spaces across major Indian cities.",
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-bharat-saffron" />,
-      title: "AR Preview",
-      description: "See exactly how your ad will look before making an investment.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-saffron" />,
-      title: "AI-Powered Design",
-      description: "Get intelligent design recommendations based on location and audience.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />,
-      title: "Traffic Analysis",
-      description: "Make data-driven decisions with our foot traffic analysis.",
-    },
+    { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
+    { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
+    { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
+    { icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />, title: "Traffic Analysis", description: "Make data-driven decisions with our foot traffic analysis." },
   ];
 
   const ownerBenefits = [
-    {
-      icon: <Building className="h-8 w-8 text-bharat-navy" />,
-      title: "Maximize Revenue",
-      description: "List your ad spaces and connect with quality advertisers.",
-    },
-    {
-      icon: <Award className="h-8 w-8 text-bharat-navy" />,
-      title: "Verified Advertisers",
-      description: "We verify all advertisers to ensure quality partnerships.",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />,
-      title: "Data Insights",
-      description: "Access analytics about your space's performance and value.",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-bharat-navy" />,
-      title: "Seamless Management",
-      description: "Easy-to-use platform for managing your ad inventory.",
-    },
+    { icon: <Building className="h-8 w-8 text-bharat-navy" />, title: "Maximize Revenue", description: "List your ad spaces and connect with quality advertisers." },
+    { icon: <Award className="h-8 w-8 text-bharat-navy" />, title: "Verified Advertisers", description: "We verify all advertisers to ensure quality partnerships." },
+    { icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />, title: "Data Insights", description: "Access analytics about your space's performance and value." },
+    { icon: <Zap className="h-8 w-8 text-bharat-navy" />, title: "Seamless Management", description: "Easy-to-use platform for managing your ad inventory." },
   ];
-
-  // Animate cards on scroll using Intersection Observer
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = Number(entry.target.getAttribute("data-id"));
-            if (!visibleCards.includes(id)) {
-              setVisibleCards((prev) => [...prev, id]);
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const cards = document.querySelectorAll(".adspace-card");
-    cards.forEach((card) => observer.observe(card));
-
-    return () => {
-      cards.forEach((card) => observer.unobserve(card));
-    };
-  }, [visibleCards]);
 
   return (
     <div>
@@ -174,57 +125,60 @@ const Index = () => {
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transforming Outdoor Advertising in India
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners across India through our
-              innovative digital marketplace powered by AI and AR technology.
+              Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {/* Advertisers */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {advertiserBenefits.map((benefit, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    custom={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
                     className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg"
                   >
                     <div className="mb-4">{benefit.icon}</div>
                     <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
                     <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">
-                  For Advertisers
-                </Link>
+                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
               </div>
             </div>
 
+            {/* Ad Space Owners */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
-                For Ad Space Owners
-              </h3>
+              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {ownerBenefits.map((benefit, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    custom={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
                     className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg"
                   >
                     <div className="mb-4">{benefit.icon}</div>
                     <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
                     <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">
-                  For Ad Space Owners
-                </Link>
+                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
               </div>
             </div>
           </div>
@@ -241,60 +195,70 @@ const Index = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace) => (
-              <div
+            {featuredAdSpaces.map((adSpace, index) => (
+              <motion.div
                 key={adSpace.id}
-                data-id={adSpace.id}
-                className={`adspace-card transform transition duration-500 ease-in-out rounded-lg cursor-pointer
-                  ${visibleCards.includes(adSpace.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
-                  hover:scale-105 hover:shadow-2xl`}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
               >
-                <AdSpaceCard {...adSpace} />
-              </div>
+                <AdSpaceCard adSpace={adSpace} />
+              </motion.div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Link to="/ad-space-list" className="btn-primary">
-              View All Ad Spaces
-            </Link>
+          <div className="mt-10 text-center">
+            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
           </div>
         </div>
       </section>
-
-      {/* AI Design Demo */}
+      
+  {/* Political Campaign Support Button */}
       <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <AIDesignDemo />
+        <div className="flex justify-center items-center py-10">
+          <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <button className="relative px-10 py-5 my-6 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
+              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
+              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
+              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
+                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
+                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
+              </span>
+              <span className="relative z-10 overflow-hidden">
+                <span className="relative">🚀 Political Campaign Support</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+              </span>
+            </button>
+          </a>
         </div>
       </section>
 
-      {/* Foot Traffic Demo */}
-      <section className="section bg-gray-50 dark:bg-gray-700">
-        <div className="container-custom">
-          <FootTrafficDemo />
-        </div>
-      </section>
+      {/* AI/AR Design Demos */}
+      <AIDesignDemo />
+      <FootTrafficDemo />
 
-      {/* Brand Slider */}
+         {/* How It Works Section - ADDED */}
       <section className="section bg-white dark:bg-gray-800">
-        <div className="container-custom">
-          <BrandSlider />
-        </div>
-      </section>
+       <HowItWorks />
+       </section>
 
-      {/* How It Works */}
-      <section className="section bg-gradient-to-br from-bharat-navy to-bharat-saffron text-white">
-        <div className="container-custom">
-          <HowItWorks />
-        </div>
-      </section>
+     
+      {/* Brands Slider */}
+      <BrandSlider />
 
       {/* Contact Form */}
-      <section className="section bg-white dark:bg-gray-900">
+      <section className="section bg-gray-100 dark:bg-gray-900">
         <div className="container-custom">
           <ContactForm />
         </div>
       </section>
+    </div>
+  );
+};
+
+export default Index;
     </div>
   );
 };

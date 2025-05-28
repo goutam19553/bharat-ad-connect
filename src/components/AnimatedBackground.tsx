@@ -3,8 +3,8 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 export default function AnimatedBackground() {
+  // Initialize tsparticles engine with all features
   const particlesInit = useCallback(async (engine) => {
-    // Loads tsparticles bundle with all features
     await loadFull(engine);
   }, []);
 
@@ -15,14 +15,14 @@ export default function AnimatedBackground() {
         init={particlesInit}
         options={{
           background: {
-            color: "#0a0e23",
+            color: "#0a0e23", // Dark blue background
           },
-          fpsLimit: 60,
+          fpsLimit: 60, // Max FPS
           interactivity: {
             events: {
               onHover: {
                 enable: true,
-                mode: "grab",
+                mode: "grab", // Grab effect on hover
               },
               resize: true,
             },
@@ -30,24 +30,33 @@ export default function AnimatedBackground() {
               grab: {
                 distance: 140,
                 links: {
-                  opacity: 0.7,
+                  opacity: 0.9,
+                  color: "#ff4081", // Pinkish link color on hover
                 },
               },
             },
           },
           particles: {
             color: {
-              value: "#00bcd4",
+              value: ["#00bcd4", "#ff4081", "#00ff94"], // Multiple colors for animation
+              animation: {
+                enable: true,
+                speed: 20, // Speed of color animation
+                sync: false,
+              },
             },
             links: {
-              color: "#00bcd4",
+              color: "#00bcd4", // Default link color
               distance: 130,
               enable: true,
               opacity: 0.5,
               width: 1.5,
+              triangles: {
+                enable: false, // No triangle shapes between particles
+              },
             },
             collisions: {
-              enable: false,
+              enable: false, // Particles don't bounce on collision
             },
             move: {
               direction: "none",
@@ -64,7 +73,7 @@ export default function AnimatedBackground() {
                 enable: true,
                 area: 800,
               },
-              value: 60,
+              value: 60, // Number of particles
             },
             opacity: {
               value: 0.5,
@@ -74,9 +83,15 @@ export default function AnimatedBackground() {
             },
             size: {
               value: { min: 1, max: 4 },
+              animation: {
+                enable: true,
+                speed: 3, // Speed of size pulsing animation
+                minimumValue: 1,
+                sync: false,
+              },
             },
           },
-          detectRetina: true,
+          detectRetina: true, // Adjust for retina displays
         }}
       />
     </div>

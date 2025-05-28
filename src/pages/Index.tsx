@@ -148,19 +148,27 @@ const Index = () => {
       <section className="section">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Transforming Outdoor Advertising in India
+            </h2>
             <p className="text-lg max-w-3xl mx-auto text-white/90">
-              Bharat-Ad connects advertisers with ad space owners across India through our
-              innovative digital marketplace powered by AI and AR technology.
+              Bharat-Ad connects advertisers with ad space owners across India
+              through our innovative digital marketplace powered by AI and AR
+              technology.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
+                For Advertisers
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {advertiserBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-white/10 p-5 rounded-lg">
+                  <div
+                    key={index}
+                    className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
+                  >
                     <div className="mb-4">{benefit.icon}</div>
                     <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
                     <p>{benefit.description}</p>
@@ -168,15 +176,22 @@ const Index = () => {
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
+                <Link to="/advertisers" className="btn-primary">
+                  For Advertisers
+                </Link>
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
+                For Ad Space Owners
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {ownerBenefits.map((benefit, index) => (
-                  <div key={index} className="bg-white/10 p-5 rounded-lg">
+                  <div
+                    key={index}
+                    className="bg-white/10 p-5 rounded-lg backdrop-blur-sm"
+                  >
                     <div className="mb-4">{benefit.icon}</div>
                     <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
                     <p>{benefit.description}</p>
@@ -184,7 +199,9 @@ const Index = () => {
                 ))}
               </div>
               <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
+                <Link to="/ad-space-owners" className="btn-secondary">
+                  For Ad Space Owners
+                </Link>
               </div>
             </div>
           </div>
@@ -195,9 +212,12 @@ const Index = () => {
       <section className="section">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Advanced OOH Campaign Planner
+            </h2>
             <p className="text-lg max-w-3xl mx-auto text-white/90">
-              We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
+              We help streamline OOH Ad-campaign planning with advanced tools and
+              proprietary data insights for precise media placement.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -206,7 +226,9 @@ const Index = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
+            <Link to="/ad-spaces" className="btn-primary">
+              View All Ad Spaces
+            </Link>
           </div>
         </div>
       </section>

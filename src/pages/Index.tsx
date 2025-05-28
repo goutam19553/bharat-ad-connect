@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from "react-router-dom";
 import { AdSpaceCard } from '@/components/ad-space-card';
 import { adSpaces } from '@/data/adSpaces';
 import { benefits } from '@/data/benefits';

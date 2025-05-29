@@ -69,7 +69,7 @@ const About = () => {
     },
     {
       name: "Zeeshan M",
-      position: "CRM",
+      position: "CMO",
       bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
       image:""
     },

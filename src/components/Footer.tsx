@@ -60,7 +60,7 @@ const Footer = () => {
               <li><Link to="/contact" className="text-gray-300 hover:text-bharat-saffron">Custom Solutions</Link></li>
               <li>
                 <a 
-                  href="https://example.com/drone-ads" 
+                  href="https://droneads.netlify.app/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-gray-300 hover:text-bharat-saffron"

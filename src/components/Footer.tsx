@@ -108,7 +108,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-bharat-saffron mr-2 mt-0.5" />
                 <span className="text-gray-300">
-                  123 Innovation Park, <br />
+                  Innovation Park, <br />
                   Belagavi, Karnataka 590001
                 </span>
               </li>

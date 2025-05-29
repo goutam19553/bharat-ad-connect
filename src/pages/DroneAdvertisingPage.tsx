@@ -2,7 +2,9 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, Sparkles } from "@react-three/drei";
-import DroneModel from "@/components/3d/DroneModel";
+// Remove DroneModel import since we are doing lightweight swarm now
+// import DroneModel from "@/components/3d/DroneModel";
+import { SwarmDrones } from "@/components/3d/SwarmDrones";
 
 export default function DroneAdvertisingPage(): JSX.Element {
   return (
@@ -18,11 +20,11 @@ export default function DroneAdvertisingPage(): JSX.Element {
       </section>
 
       <section className="w-full h-[500px]">
-        <Canvas camera={{ position: [0, 2, 5] }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[2, 5, 2]} intensity={1} />
+        <Canvas camera={{ position: [0, 2, 10], fov: 50 }}>
+          <ambientLight intensity={0.3} />
+          <directionalLight position={[5, 10, 7]} intensity={1} />
           <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
-          <DroneModel />
+          <SwarmDrones />
           <Sparkles count={40} speed={1.5} size={4} color="#00ffff" opacity={1} scale={[5, 5, 5]} />
           <OrbitControls enableZoom={true} />
         </Canvas>

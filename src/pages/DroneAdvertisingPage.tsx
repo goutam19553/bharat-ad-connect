@@ -1,76 +1,142 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars, Sparkles } from "@react-three/drei";
-// Remove DroneModel import since we are doing lightweight swarm now
-// import DroneModel from "@/components/3d/DroneModel";
-import { SwarmDrones } from "@/components/3d/SwarmDrones";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 export default function DroneAdvertisingPage(): JSX.Element {
   return (
-    <div className="bg-[#0f0f0f] text-slate-200 min-h-screen">
-      <section className="p-10 text-center">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-indigo-500 text-transparent bg-clip-text">
+    <div className="bg-[#0f0f0f] text-slate-200 min-h-screen flex flex-col relative overflow-hidden">
+      
+      {/* Subtle animated gradient background */}
+      <div 
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-tr from-cyan-900 via-indigo-900 to-purple-900 opacity-30 animate-gradient-background"
+        style={{ backgroundSize: "400% 400%" }}
+      />
+      
+      <header className="p-12 text-center max-w-4xl mx-auto">
+        <motion.h1
+          className="text-5xl font-extrabold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-500 text-transparent bg-clip-text shimmer"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           Illuminate Your Brand with Drone Advertising
-        </h1>
-        <p className="text-lg max-w-3xl mx-auto">
-          Experience the future of marketing with dazzling drone light shows that mesmerize your audience and
-          elevate your brand into the skies.
-        </p>
-      </section>
+        </motion.h1>
+        <motion.p
+          className="text-xl leading-relaxed max-w-3xl mx-auto text-slate-300"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          variants={fadeUp}
+        >
+          Take your marketing to new heights with mesmerizing drone light shows that captivate audiences and create unforgettable brand experiences. Engage customers like never before with technology that blends creativity, innovation, and sustainability.
+        </motion.p>
+      </header>
 
-      <section className="w-full h-[500px]">
-        <Canvas camera={{ position: [0, 2, 10], fov: 50 }}>
-          <ambientLight intensity={0.3} />
-          <directionalLight position={[5, 10, 7]} intensity={1} />
-          <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
-          <SwarmDrones />
-          <Sparkles count={40} speed={1.5} size={4} color="#00ffff" opacity={1} scale={[5, 5, 5]} />
-          <OrbitControls enableZoom={true} />
-        </Canvas>
-      </section>
+      <main className="flex-grow max-w-5xl mx-auto px-6 space-y-16">
+        {[
+          {
+            title: "Why Choose Drone Advertising?",
+            content: (
+              <ul className="list-disc list-inside text-slate-300 space-y-2 text-lg">
+                <li>Create unforgettable visual spectacles that captivate and inspire</li>
+                <li>Eco-friendly and silent alternative to traditional fireworks</li>
+                <li>Ideal for launches, festivals, brand activations, and celebrations</li>
+                <li>Integrate interactive elements like skyborne QR codes and augmented reality</li>
+              </ul>
+            ),
+          },
+          {
+            title: "Meet BotLab Dynamics — Leaders in Drone Light Innovation",
+            content: (
+              <p className="text-slate-300 text-lg leading-relaxed">
+                BotLab Dynamics crafts breathtaking drone shows tailored for both indoor and outdoor venues. Combining cutting-edge technology with artistic storytelling, they deliver immersive experiences that spark awe and engagement.
+              </p>
+            ),
+          },
+          {
+            title: "Success Stories",
+            content: (
+              <ul className="list-disc list-inside text-slate-300 space-y-2 text-lg">
+                <li><strong>Mahindra Lifespaces:</strong> Aerial QR codes seamlessly linking to Metaverse experiences</li>
+                <li><strong>Mercedes Maybach & Godrej Properties:</strong> Customized drone shows reflecting luxury branding</li>
+                <li><strong>Amaravati Drone Summit 2024:</strong> World record with 5,500 synchronized drones</li>
+              </ul>
+            ),
+          },
+          {
+            title: "Affordable Brilliance",
+            content: (
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Starting at just ₹10 lakhs for a 100-drone show, our drone advertising solutions combine spectacular visual impact with cost-effective pricing — making high-tech brand experiences accessible for events of any scale.
+              </p>
+            ),
+          },
+        ].map(({ title, content }, i) => (
+          <motion.section
+            key={title}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+            variants={fadeUp}
+            transition={{ delay: i * 0.3 }}
+          >
+            <h2 className="text-3xl font-semibold text-yellow-400 mb-4">{title}</h2>
+            {content}
+          </motion.section>
+        ))}
 
-      <section className="p-10 grid gap-8 max-w-5xl mx-auto">
-        <div>
-          <h2 className="text-2xl font-semibold text-yellow-400">Why Choose Drone Advertising?</h2>
-          <ul className="list-disc list-inside mt-4 text-slate-300">
-            <li>Unforgettable visual experiences that leave lasting impressions</li>
-            <li>Eco-friendly and noise-free alternative to fireworks</li>
-            <li>Perfect for product launches, events, and celebrations</li>
-            <li>Interactive features like QR codes in the sky</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-yellow-400">BotLab Dynamics: Pioneers in Drone Light Shows</h2>
-          <p className="mt-2 text-slate-300">
-            BotLab Dynamics delivers breathtaking outdoor and indoor drone performances tailored to your needs. Their technology-powered storytelling creates immersive, awe-inspiring shows.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-yellow-400">Success Stories</h2>
-          <ul className="list-disc list-inside mt-4 text-slate-300">
-            <li>Mahindra Lifespaces: Aerial QR codes for Metaverse integration</li>
-            <li>Mercedes Maybach, Godrej Properties: Brand-aligned light shows</li>
-            <li>Amaravati Drone Summit 2024: World-record 5,500 drone display</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-yellow-400">Affordable Brilliance</h2>
-          <p className="mt-2 text-slate-300">
-            Starting at just ₹10 lakhs for a 100-drone show, our offerings are not only spectacular but also cost-effective.
-          </p>
-        </div>
-
-        <div className="text-center">
-          <Button className="text-lg px-8 py-4 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-500 hover:to-indigo-600 text-black font-semibold shadow-lg hover:shadow-yellow-400/30 transition duration-300">
-            Book a Drone Show
+        <motion.section 
+          className="text-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <Button className="text-lg px-10 py-4 bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-500 hover:to-indigo-600 text-black font-semibold rounded-lg shadow-lg hover:shadow-yellow-400/40 transition duration-300 transform hover:scale-105">
+            Book Your Drone Show Today
           </Button>
-        </div>
-      </section>
+        </motion.section>
+      </main>
+
+      <footer className="p-6 text-center text-slate-500 text-sm">
+        &copy; {new Date().getFullYear()} BotLab Dynamics. All rights reserved.
+      </footer>
+
+      {/* Additional CSS animations */}
+      <style jsx>{`
+        .shimmer {
+          background-size: 200% 200%;
+          animation: shimmer 4s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        @keyframes gradient-background {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+        .animate-gradient-background {
+          animation: gradient-background 15s ease infinite;
+        }
+      `}</style>
     </div>
   );
 }
-

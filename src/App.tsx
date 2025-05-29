@@ -26,30 +26,6 @@ const EarnMoneySection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="earn-money-section text-center my-16 bg-white dark:bg-gray-900 py-20 px-6 overflow-hidden">
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-6">
-          Got an Empty Wall? Start Earning Today
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
-        </p>
-        <button
-          onClick={() => navigate("/wall-upload")} 
-          className="px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black text-lg font-semibold rounded-full shadow-xl transform transition-transform duration-300 hover:scale-105 animate-pulse"
-        >
-          Upload Now
-        </button>
-      </div>
-    </section>
-  );
-};
-
-// 👇 New "Government Support" section
-const GovernmentSupportSection = () => {
-  const navigate = useNavigate();
-
-  return (
     <section className="earn-money-section text-center bg-white dark:bg-gray-900 py-20 px-6 overflow-hidden mb-0">
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-6">

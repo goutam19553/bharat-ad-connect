@@ -121,7 +121,7 @@ const About = () => {
             </div>
             <div className="hidden lg:block">
               <img 
-                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Gov.png" 
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Startup-India-Logo1-02.png" 
                 alt="Team collaboration" 
                 className="rounded-xl shadow-xl"
               />

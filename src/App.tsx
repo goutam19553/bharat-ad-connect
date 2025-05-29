@@ -50,7 +50,7 @@ const GovernmentSupportSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="my-20 px-6">
+    <section className="my-20 px-6 dark:bg-gray-900 py-20 px-6 overflow-hidden">
       <div className="bg-[#1B3A4B] text-white rounded-xl shadow-lg px-6 py-10 md:flex md:items-center md:justify-between">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#FDCB6E] mb-2">

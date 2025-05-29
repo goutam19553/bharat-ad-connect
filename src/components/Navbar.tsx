@@ -14,6 +14,7 @@ const Navbar = () => {
     { name: "AI Analytics", href: "/ai-analytics" },
     { name: "Advertisers", href: "/advertisers" },
     { name: "Ad Space Owners", href: "/ad-space-owners" },
+    { name: "Drone Advertising", href: "/drone-advertising" },  // <-- Added here
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
@@ -143,4 +144,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-    

@@ -18,7 +18,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
 const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage"));
-const DroneAdvertising = lazy(() => import("./pages/DroneAdvertising")); 
+const DroneAdvertisingPage = lazy(() => import("./pages/DroneAdvertisingPage")); 
 
 const queryClient = new QueryClient();
 
@@ -109,7 +109,7 @@ const App = () => {
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/government-support" element={<GovernmentSupportPage />} />
-                  <Route path="/drone-advertising" element={<DroneAdvertising />} />
+                  <Route path="/drone-advertising" element={<DroneAdvertisingPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

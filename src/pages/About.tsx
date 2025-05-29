@@ -69,9 +69,9 @@ const About = () => {
     },
     {
       name: "Zeeshan M",
-      position: "DIRECTOR",
+      position: "CRM",
       bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
-      image:"https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/WhatsApp%20Image%202025-04-21%20at%2014.18.03.jpeg"
+      image:""
     },
     {
       name: "Priya Patel ",

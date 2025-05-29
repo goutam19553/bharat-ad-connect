@@ -13,7 +13,7 @@ const Footer = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill="#0f172a" // Ensure this matches your bg-bharat-navy
+          fill="#0f172a"
           d="M0,96L48,80C96,64,192,32,288,42.7C384,53,480,107,576,122.7C672,139,768,117,864,117.3C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
         />
       </svg>
@@ -58,6 +58,16 @@ const Footer = () => {
               <li><Link to="/advertisers" className="text-gray-300 hover:text-bharat-saffron">Foot Traffic Analysis</Link></li>
               <li><Link to="/ad-space-owners" className="text-gray-300 hover:text-bharat-saffron">List Your Ad Space</Link></li>
               <li><Link to="/contact" className="text-gray-300 hover:text-bharat-saffron">Custom Solutions</Link></li>
+              <li>
+                <a 
+                  href="https://example.com/drone-ads" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-bharat-saffron"
+                >
+                  Drone Advertisement
+                </a>
+              </li>
             </ul>
           </div>
 

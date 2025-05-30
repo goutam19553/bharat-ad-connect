@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  LineChart, Line, BarChart, Bar, XAxis, YAxis,
+  CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
 
 const FootTrafficDemo = () => {
   const [activeTab, setActiveTab] = useState("daily");
@@ -35,12 +38,12 @@ const FootTrafficDemo = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
-      <div className="bg-bharat-navy text-white p-6">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl ring-1 ring-black/5 backdrop-blur-sm">
+      <div className="bg-bharat-navy text-white p-6 rounded-t-2xl">
         <h3 className="text-2xl font-heading font-bold">Foot Traffic Analysis</h3>
         <p className="mt-2 text-gray-100">Make data-driven decisions with our advanced foot traffic analysis for any location.</p>
       </div>
-      
+
       <div className="border-b dark:border-gray-700">
         <div className="flex">
           {["daily", "weekly", "demographic"].map(tab => (
@@ -60,7 +63,7 @@ const FootTrafficDemo = () => {
           ))}
         </div>
       </div>
-      
+
       <div className="p-6">
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="w-full lg:w-2/3">
@@ -131,11 +134,11 @@ const FootTrafficDemo = () => {
               )}
             </div>
           </div>
-          
+
           <div className="w-full lg:w-1/3">
             <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 h-full">
               <h4 className="font-heading font-semibold text-bharat-navy dark:text-bharat-saffron mb-3">Location Insights</h4>
-              
+
               <div className="space-y-4">
                 {[
                   { label: "Peak Visibility", value: 92, color: "green-500" },
@@ -153,7 +156,7 @@ const FootTrafficDemo = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-6 border-t border-gray-300 dark:border-gray-700 pt-4">
                 <h5 className="font-medium text-gray-800 dark:text-white mb-2">Key Takeaways</h5>
                 <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">

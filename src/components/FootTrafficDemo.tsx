@@ -256,11 +256,9 @@ const FootTrafficDemo = () => {
     .group-hover\\:animate-swipe-glow {
       animation: swipe-glow 0.8s ease-in-out infinite;
     }
-  `}</style>
-</div>
-
-    </div>
-  );
+ `}</style>
+  </div> {/* This closes the top-level wrapper */}
+);       {/* This ends the return() */}
 };
 
 export default FootTrafficDemo;

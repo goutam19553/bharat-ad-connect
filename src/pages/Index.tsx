@@ -117,15 +117,16 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
-        <Hero />
-      </div>
+    {/* Hero Section */}
+    <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+      <Hero />
+    </div>
 
-
-  <div className="relative">
-    <PlexusBackground />
-
+    {/* Plexus Background outside Hero */}
+    <div className="relative">
+      <PlexusBackground />
+    </div>
+      
      {/* Benefits */}
 <div className="relative z-0 bg-gray-800">
   {/* Plexus background placed absolutely behind content */}

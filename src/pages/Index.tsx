@@ -127,12 +127,12 @@ const Index = () => {
     <PlexusBackground />
 
      {/* Benefits */}
-<div className="relative z-10">
+<div className="relative z-0 bg-gray-800">
   {/* Plexus background placed absolutely behind content */}
-  <PlexusBackground className="absolute inset-0 -z-10 opacity-50" />
-  
-  <section className="section bg-transparent dark:bg-transparent">
-    <div className="container-custom relative z-20">
+  <PlexusBackground className="absolute inset-0 -z-10 opacity-60" />
+
+  <section className="section bg-transparent">
+    <div className="container-custom relative z-10">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Transforming Outdoor Advertising in India</h2>
         <p className="text-lg text-gray-200 max-w-3xl mx-auto">

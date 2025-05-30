@@ -126,71 +126,74 @@ const Index = () => {
   <div className="relative">
     <PlexusBackground />
 
-      {/* Benefits */}
-    <div className="relative z-10">
-     <section className="px-6 dark:bg-gray-900 py-20 overflow-hidden mt-0">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
-            </p>
+     {/* Benefits */}
+<div className="relative z-10">
+  {/* Plexus background placed absolutely behind content */}
+  <PlexusBackground className="absolute inset-0 -z-10 opacity-50" />
+  
+  <section className="section bg-transparent dark:bg-transparent">
+    <div className="container-custom relative z-20">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Transforming Outdoor Advertising in India</h2>
+        <p className="text-lg text-gray-200 max-w-3xl mx-auto">
+          Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        {/* Advertisers */}
+        <div>
+          <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Advertisers</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {advertiserBenefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
+              >
+                <div className="mb-4">{benefit.icon}</div>
+                <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
+                <p className="text-gray-300">{benefit.description}</p>
+              </motion.div>
+            ))}
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {/* Advertisers */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Advertisers</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {advertiserBenefits.map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    custom={index}
-                    variants={fadeInUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg"
-                  >
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
-              </div>
-            </div>
-
-            {/* Ad Space Owners */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-center md:text-left">For Ad Space Owners</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {ownerBenefits.map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    custom={index}
-                    variants={fadeInUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg"
-                  >
-                    <div className="mb-4">{benefit.icon}</div>
-                    <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="mt-6 text-center md:text-left">
-                <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
-              </div>
-            </div>
+          <div className="mt-6 text-center md:text-left">
+            <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
           </div>
         </div>
-      </section>
 
+        {/* Ad Space Owners */}
+        <div>
+          <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Ad Space Owners</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {ownerBenefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
+              >
+                <div className="mb-4">{benefit.icon}</div>
+                <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
+                <p className="text-gray-300">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-6 text-center md:text-left">
+            <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
       {/* Featured Ad Spaces */}
       <section className="section bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">

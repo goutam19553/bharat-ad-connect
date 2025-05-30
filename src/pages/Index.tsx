@@ -284,10 +284,8 @@ const Index = () => {
     </div>
      </div>
     </section>
-      </div>
-      </div>
-    </div>
-  );
+  </div>
+);
 };
 
 export default Index;

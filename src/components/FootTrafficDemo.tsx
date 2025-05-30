@@ -143,6 +143,34 @@ const FootTrafficDemo = () => {
             </div>
           </div>
 
+          <div className="w-full flex justify-center mt-10">
+  <a 
+    href="https://your-dashboard-link.com" // Replace with your actual link
+    className="relative px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white font-bold rounded-2xl shadow-xl hover:shadow-[0_0_30px_10px_rgba(255,0,100,0.6)] transition-all duration-300 ease-in-out overflow-hidden group"
+  >
+    <span className="absolute inset-0 bg-white opacity-10 blur-lg animate-pulse rounded-2xl"></span>
+    <span className="relative z-10 text-lg tracking-wide flex items-center gap-2">
+      🚀 Go to Dashboard
+    </span>
+    <span className="absolute -bottom-1 left-1/2 w-[120%] h-1 bg-white opacity-30 group-hover:animate-swipe-glow blur-sm"></span>
+  </a>
+</div>
+
+<style jsx>{`
+  @keyframes swipe-glow {
+    0% {
+      transform: translateX(-60%);
+    }
+    100% {
+      transform: translateX(60%);
+    }
+  }
+  .group-hover\\:animate-swipe-glow {
+    animation: swipe-glow 0.8s ease-in-out infinite;
+  }
+`}</style>
+
+          
           <div className="w-full lg:w-1/3">
             <div className="bg-white dark:bg-gray-900 rounded-lg p-4 h-full">
               <h4 className="font-heading font-semibold text-bharat-navy dark:text-bharat-saffron mb-3">

@@ -254,21 +254,8 @@ const Index = () => {
       </section>
 
     {/* AI/AR Design Demos */}
-<section className="section bg-gray-50 dark:bg-gray-800">
-  <div
-    className="container-custom rounded-xl shadow-lg p-6"
-    style={{ backgroundColor: '#ffffff', color: '#000000' }}
-  >
-    <AIDesignDemo />
-  </div>
-  <div
-    className="container-custom rounded-xl shadow-lg p-6 mt-6"
-    style={{ backgroundColor: '#ffffff', color: '#000000' }}
-  >
-    <FootTrafficDemo />
-  </div>
-</section>
-
+      <AIDesignDemo />
+      <FootTrafficDemo />
 
          {/* How It Works Section - ADDED */}
 <div className="relative z-0 bg-gray-800">

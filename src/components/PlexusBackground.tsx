@@ -17,64 +17,68 @@ const PlexusBackground = () => {
     let height = (canvas.height = window.innerHeight);
 
     let particles: { x: number; y: number; vx: number; vy: number }[] = [];
-    const num = 120;
+    const num = 60; // optimized particle count
 
     for (let i = 0; i < num; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
       });
     }
 
-    let maxDist = 100; // default line connection distance
+    let maxDist = 80;
 
-    function draw() {
+    let lastTime = 0;
+    const fps = 30;
+    const interval = 1000 / fps;
+
+    function draw(now: number) {
       if (!ctx) return;
+      requestAnimationFrame(draw);
+
+      const elapsed = now - lastTime;
+      if (elapsed < interval) return;
+      lastTime = now;
+
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p, i) => {
         p.x += p.vx;
         p.y += p.vy;
-
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
         ctx.fillStyle = "#00fff5";
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#00fff5";
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
-          let dx = p.x - particles[j].x;
-          let dy = p.y - particles[j].y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < maxDist) {
+          const dx = p.x - particles[j].x;
+          const dy = p.y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          const dynamicDist = mouseNear ? 130 : maxDist;
+          if (dist < dynamicDist) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 245, ${1 - dist / maxDist})`;
-            ctx.lineWidth = 0.7;
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = "#00fff5";
+            ctx.strokeStyle = `rgba(0, 255, 245, ${1 - dist / dynamicDist})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
       });
-
-      requestAnimationFrame(draw);
     }
 
-    draw();
+    requestAnimationFrame(draw);
 
     const resize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
-
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, [mouseNear]);
@@ -86,35 +90,21 @@ const PlexusBackground = () => {
 
       if (scrolled !== hasScrolled) {
         setHasScrolled(scrolled);
-
-        if (scrolled) {
-          controls.start({
-            opacity: 1,
-            y: 0,
-            transition: { duration: 1.4, ease: "easeOut" },
-          });
-        } else {
-          controls.start({
-            opacity: 0,
-            y: 40,
-            transition: { duration: 1, ease: "easeInOut" },
-          });
-        }
+        controls.start({
+          opacity: scrolled ? 1 : 0,
+          y: scrolled ? 0 : 40,
+          transition: { duration: 1.2, ease: "easeOut" },
+        });
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientY } = e;
-      if (clientY > window.innerHeight / 3) {
-        setMouseNear(true); // expand mesh
-      } else {
-        setMouseNear(false); // return to default
-      }
+      setMouseNear(clientY > window.innerHeight / 2);
     };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);

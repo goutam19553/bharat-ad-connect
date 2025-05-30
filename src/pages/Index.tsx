@@ -128,7 +128,7 @@ const Index = () => {
 
       {/* Benefits */}
     <div className="relative z-10">
-      <section className="section bg-white dark:bg-gray-800">
+     <section className="px-6 dark:bg-gray-900 py-20 overflow-hidden mt-0">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Transforming Outdoor Advertising in India</h2>

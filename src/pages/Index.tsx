@@ -117,16 +117,15 @@ const Index = () => {
 
   return (
     <div>
-    {/* Hero Section */}
-    <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
-      <Hero />
-    </div>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+        <Hero />
+      </div>
 
-    {/* Plexus Background outside Hero */}
-    <div className="relative">
-      <PlexusBackground />
-    </div>
-      
+
+  <div className="relative">
+    <PlexusBackground />
+
      {/* Benefits */}
 <div className="relative z-0 bg-gray-800">
   {/* Plexus background placed absolutely behind content */}
@@ -254,7 +253,7 @@ const Index = () => {
         </div>
       </section>
 
-    {/* AI/AR Design Demos */}
+      {/* AI/AR Design Demos */}
       <AIDesignDemo />
       <FootTrafficDemo />
 
@@ -274,18 +273,15 @@ const Index = () => {
       <BrandSlider />
 
       {/* Contact Form */}
-<section className="section bg-gray-100 dark:bg-gray-900">
-  <div className="container-custom">
-    <div
-      className="rounded-xl shadow-lg p-6"
-      style={{ backgroundColor: '#ffffff', color: '#000000' }}
-    >
-      <ContactForm />
+      <section className="section bg-gray-100 dark:bg-gray-900">
+        <div className="container-custom">
+          <ContactForm />
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
-     </div>
-    </section>
-  </div>
-);
+  );
 };
 
 export default Index;

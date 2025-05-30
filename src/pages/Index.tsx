@@ -9,6 +9,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
+import PlexusBackground from "@/components/PlexusBackground";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -121,7 +122,12 @@ const Index = () => {
         <Hero />
       </div>
 
+
+  <div className="relative">
+    <PlexusBackground />
+
       {/* Benefits */}
+    <div className="relative z-10">
       <section className="section bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="text-center mb-12">

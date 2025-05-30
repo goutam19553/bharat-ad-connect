@@ -195,33 +195,42 @@ const Index = () => {
   </section>
   
       {/* Featured Ad Spaces */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredAdSpaces.map((adSpace, index) => (
-              <motion.div
-                key={adSpace.id}
-                custom={index}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <AdSpaceCard adSpace={adSpace} />
-              </motion.div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">View All Ad Spaces</Link>
-          </div>
-        </div>
-      </section>
+<section className="section relative bg-gray-50 dark:bg-gray-800">
+  {/* PlexusBackground canvas is assumed outside or above this section with z-index -1 or 0 */}
+
+  <div className="container-custom relative z-10">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
+      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {featuredAdSpaces.map((adSpace, index) => (
+        <motion.div
+          key={adSpace.id}
+          custom={index}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6"
+          // solid background, no transparency
+        >
+          <AdSpaceCard adSpace={adSpace} />
+        </motion.div>
+      ))}
+    </div>
+
+    <div className="mt-10 text-center">
+      <Link to="/ad-spaces" className="btn-primary">
+        View All Ad Spaces
+      </Link>
+    </div>
+  </div>
+</section>
+
       
   {/* Political Campaign Support Button */}
       <section className="section bg-white dark:bg-gray-800">

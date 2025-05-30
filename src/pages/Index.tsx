@@ -253,9 +253,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AI/AR Design Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
+     {/* AI/AR Design Demos */}
+<section className="section bg-gray-50 dark:bg-gray-800">
+  <div className="container-custom bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6">
+    <AIDesignDemo />
+  </div>
+  <div className="container-custom bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 mt-6">
+    <FootTrafficDemo />
+  </div>
+</section>
+
 
          {/* How It Works Section - ADDED */}
 <div className="relative z-0 bg-gray-800">

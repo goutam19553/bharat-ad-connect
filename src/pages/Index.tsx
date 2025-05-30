@@ -258,7 +258,7 @@ const Index = () => {
       <HowItWorks />
     </div>
   </section>
-
+</div>
      
       {/* Brands Slider */}
       <BrandSlider />

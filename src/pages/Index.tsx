@@ -249,9 +249,15 @@ const Index = () => {
       <FootTrafficDemo />
 
          {/* How It Works Section - ADDED */}
-      <section className="section bg-white dark:bg-gray-800">
-       <HowItWorks />
-       </section>
+<div className="relative z-0 bg-gray-800">
+  {/* Plexus background placed absolutely behind content */}
+  <PlexusBackground className="absolute inset-0 -z-10 opacity-60" />
+
+  <section className="section bg-transparent">
+    <div className="container-custom relative z-10">
+      <HowItWorks />
+    </div>
+  </section>
 
      
       {/* Brands Slider */}

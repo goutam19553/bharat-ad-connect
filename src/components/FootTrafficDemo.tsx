@@ -195,70 +195,35 @@ const FootTrafficDemo = () => {
         </div>
 
         {/* ✅ BUTTON SECTION BELOW GRAPH */}
-        <div className="w-full flex justify-center mt-10 relative">
+        <div className="w-full flex justify-center mt-10">
   <a 
-    href="https://your-dashboard-link.com" // Replace with your link
+    href="https://your-dashboard-link.com" // Replace with your actual link
     className="relative px-8 py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-[0_0_25px_#ff9933] border border-bharat-saffron hover:border-white transition-all duration-300 ease-in-out overflow-hidden group"
   >
-    {/* Inner saffron glow */}
     <span className="absolute inset-0 bg-bharat-saffron opacity-10 blur-lg animate-pulse rounded-2xl"></span>
-
-    {/* Swipe glow effect */}
-    <span className="absolute -bottom-1 left-1/2 w-[120%] h-1 bg-bharat-saffron opacity-40 group-hover:animate-swipe-glow blur-sm"></span>
-
-    {/* Button content */}
     <span className="relative z-10 text-lg tracking-wide flex items-center gap-2">
       ⚡ Go to Dashboard
     </span>
-
-    {/* Spark particles */}
-    <span className="spark absolute w-1 h-1 bg-bharat-saffron rounded-full animate-spark1" />
-    <span className="spark absolute w-1 h-1 bg-white rounded-full animate-spark2" />
-    <span className="spark absolute w-1 h-1 bg-bharat-saffron rounded-full animate-spark3" />
+    <span className="absolute -bottom-1 left-1/2 w-[120%] h-1 bg-bharat-saffron opacity-40 group-hover:animate-swipe-glow blur-sm"></span>
   </a>
+</div>
 
-  <style jsx>{`
-    @keyframes swipe-glow {
-      0% { transform: translateX(-60%); }
-      100% { transform: translateX(60%); }
+<style jsx>{`
+  @keyframes swipe-glow {
+    0% {
+      transform: translateX(-60%);
     }
-
-    @keyframes spark1 {
-      0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(50px, -30px) scale(0.5); opacity: 0; }
+    100% {
+      transform: translateX(60%);
     }
-
-    @keyframes spark2 {
-      0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(-40px, 20px) scale(0.5); opacity: 0; }
-    }
-
-    @keyframes spark3 {
-      0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      100% { transform: translate(30px, 40px) scale(0.5); opacity: 0; }
-    }
-
-    .animate-spark1 {
-      animation: spark1 1.5s infinite ease-in-out;
-      top: 50%; left: 50%;
-    }
-
-    .animate-spark2 {
-      animation: spark2 2s infinite ease-in-out;
-      top: 40%; left: 60%;
-    }
-
-    .animate-spark3 {
-      animation: spark3 1.8s infinite ease-in-out;
-      top: 60%; left: 45%;
-    }
-
-    .group-hover\\:animate-swipe-glow {
-      animation: swipe-glow 0.8s ease-in-out infinite;
-    }
- `}</style>
-  </div> {/* This closes the top-level wrapper */}
-);       {/* This ends the return() */}
+  }
+  .group-hover\\:animate-swipe-glow {
+    animation: swipe-glow 0.8s ease-in-out infinite;
+  }
+`}</style>
+      </div>
+    </div>
+  );
 };
 
 export default FootTrafficDemo;

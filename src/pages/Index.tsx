@@ -253,12 +253,18 @@ const Index = () => {
         </div>
       </section>
 
-     {/* AI/AR Design Demos */}
+    {/* AI/AR Design Demos */}
 <section className="section bg-gray-50 dark:bg-gray-800">
-  <div className="container-custom bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6">
+  <div
+    className="container-custom rounded-xl shadow-lg p-6"
+    style={{ backgroundColor: '#ffffff', color: '#000000' }}
+  >
     <AIDesignDemo />
   </div>
-  <div className="container-custom bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 mt-6">
+  <div
+    className="container-custom rounded-xl shadow-lg p-6 mt-6"
+    style={{ backgroundColor: '#ffffff', color: '#000000' }}
+  >
     <FootTrafficDemo />
   </div>
 </section>
@@ -280,12 +286,17 @@ const Index = () => {
       <BrandSlider />
 
       {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900">
-        <div className="container-custom">
-          <ContactForm />
-            </div>
-          </section>
-        </div>
+<section className="section bg-gray-100 dark:bg-gray-900">
+  <div className="container-custom">
+    <div
+      className="rounded-xl shadow-lg p-6"
+      style={{ backgroundColor: '#ffffff', color: '#000000' }}
+    >
+      <ContactForm />
+    </div>
+     </div>
+    </section>
+      </div>
       </div>
     </div>
   );

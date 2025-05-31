@@ -67,25 +67,7 @@ const About = () => {
       bio: "Former marketing executive with 5 years experience in outdoor & tech advertising across major Indian markets.",
       image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/IMG_20241203_093333%7E2.jpg"
     },
-    {
-      name: "Zeeshan M",
-      position: "Co-founder",
-      bio: "Ads Specialist with previous experience leading tech teams at major Indian startups.",
-      image:""
-    },
-    {
-      name: "Priya Patel ",
-      position: "Head of Partnerships",
-      bio: "Former government liaison with extensive experience in public-private partnerships across India.",
-      image: "https://source.unsplash.com/photo-1472099645785-5658abf4ff4e"
-    },
-    {
-      name: "Anjali Singh",
-      position: "Chief Marketing Officer",
-      bio: "Digital marketing expert specialized in building marketplaces and two-sided platforms.",
-      image: "https://source.unsplash.com/photo-1573497019940-1c28c88b4f3e"
-    }
-  ];
+     ];
 
   const partners = [
     {
@@ -219,28 +201,45 @@ const About = () => {
       </section>
 
       {/* Team Members Section */}
-      <section className="bg-gray-800 py-16">
-        <div className="container-custom">
-          <h2 className="text-3xl font-heading font-bold text-white mb-12">
-            Meet Our Team
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-700 p-6 rounded-lg text-center">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                  loading="lazy"
-                />
-                <h3 className="text-xl font-semibold text-white">{member.name}</h3>
-                <p className="text-sm uppercase tracking-wide text-bharat-teal font-bold mb-2">{member.position}</p>
-                <p className="text-gray-300 text-sm">{member.bio}</p>
-              </div>
-            ))}
-          </div>
+      <section className="bg-gray-800 py-20">
+  <div className="container-custom">
+    <h2 className="text-4xl font-heading font-bold text-white mb-16 text-center">
+      Meet Our Director
+    </h2>
+
+    <div className="flex justify-center">
+      <div className="bg-gradient-to-br from-bharat-navy via-gray-900 to-bharat-teal p-1 rounded-2xl animate-glow border-4 border-bharat-teal shadow-lg transition-transform duration-500 hover:scale-105 group">
+        <div className="bg-gray-900 p-8 rounded-2xl text-center max-w-3xl">
+          <img
+            src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/IMG_20241203_093333%7E2.jpg"
+            alt="Goutam N P"
+            className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-bharat-teal shadow-md transition-all duration-500 group-hover:rotate-3"
+          />
+          <h3 className="text-3xl font-bold text-white mb-2">Goutam N P</h3>
+          <p className="text-sm uppercase tracking-wider text-bharat-teal font-semibold mb-4">Director</p>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            Former marketing executive with 5 years of experience in outdoor & tech advertising across major Indian markets.
+            A visionary leader driving digital transformation in traditional advertising.
+          </p>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+
+  {/* Animation Styles */}
+  <style>
+    {`
+      .animate-glow {
+        box-shadow: 0 0 20px #14b8a6, 0 0 40px #14b8a6aa;
+        transition: box-shadow 0.4s ease-in-out;
+      }
+      .animate-glow:hover {
+        box-shadow: 0 0 30px #14b8a6, 0 0 60px #14b8a6cc;
+      }
+    `}
+  </style>
+</section>
+
 
       {/* Partners Section */}
       <section className="bg-gray-700 py-16">

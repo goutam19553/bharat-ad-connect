@@ -6,117 +6,177 @@ const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const controls = useAnimation();
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [mouseNear, setMouseNear] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile device
+    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    let particles: { x: number; y: number; vx: number; vy: number }[] = [];
-    const num = 60; // optimized particle count
-
-    for (let i = 0; i < num; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-      });
+    // Particle class for better organization
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      
+      constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 1.5 + 1;
+        this.color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // Bounce off edges
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
     }
 
-    let maxDist = 80;
+    // Create particles
+    const particles: Particle[] = [];
+    const particleCount = isMobile ? 40 : 80; // Fewer particles on mobile
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(
+        new Particle(
+          Math.random() * width,
+          Math.random() * height
+        )
+      );
+    }
 
+    // Animation variables
+    let animationId: number;
     let lastTime = 0;
-    const fps = 30;
+    const fps = 60;
     const interval = 1000 / fps;
 
-    function draw(now: number) {
-      if (!ctx) return;
-      requestAnimationFrame(draw);
+    // Mouse effect variables
+    const mouseRadius = 150;
+    const mouseEffectStrength = 0.2;
 
+    const animate = (now: number) => {
+      animationId = requestAnimationFrame(animate);
+      
       const elapsed = now - lastTime;
       if (elapsed < interval) return;
       lastTime = now;
 
-      ctx.clearRect(0, 0, width, height);
+      // Clear canvas with a subtle fade effect
+      ctx.fillStyle = 'rgba(10, 10, 20, 0.1)';
+      ctx.fillRect(0, 0, width, height);
 
+      // Update and draw particles
       particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = "#00fff5";
-        ctx.fill();
-
+        // Mouse interaction
+        if (!isMobile) {
+          const dx = p.x - mousePosition.x;
+          const dy = p.y - mousePosition.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouseRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force = (mouseRadius - distance) / mouseRadius * mouseEffectStrength;
+            p.vx += Math.cos(angle) * force;
+            p.vy += Math.sin(angle) * force;
+          }
+        }
+        
+        p.update();
+        p.draw(ctx);
+        
+        // Draw connections
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = p.x - particles[j].x;
-          const dy = p.y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          const dynamicDist = mouseNear ? 130 : maxDist;
-          if (dist < dynamicDist) {
+          const other = particles[j];
+          const dx = p.x - other.x;
+          const dy = p.y - other.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          const maxDistance = isMobile ? 100 : 150;
+          if (distance < maxDistance) {
+            const opacity = 1 - distance / maxDistance;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 245, ${1 - dist / dynamicDist})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineTo(other.x, other.y);
+            ctx.strokeStyle = `rgba(0, 255, 245, ${opacity * 0.7})`;
+            ctx.lineWidth = opacity * 1.5;
             ctx.stroke();
           }
         }
       });
-    }
+    };
 
-    requestAnimationFrame(draw);
+    animate(performance.now());
 
-    const resize = () => {
+    // Handle resize
+    const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, [mouseNear]);
 
-  useEffect(() => {
+    // Handle mouse movement
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    // Handle scroll
     const handleScroll = () => {
-      const triggerPoint = 400;
-      const scrolled = window.scrollY > triggerPoint;
-
+      const scrolled = window.scrollY > 400;
       if (scrolled !== hasScrolled) {
         setHasScrolled(scrolled);
         controls.start({
-          opacity: scrolled ? 1 : 0,
-          y: scrolled ? 0 : 40,
+          opacity: scrolled ? 1 : 0.3,
           transition: { duration: 1.2, ease: "easeOut" },
         });
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientY } = e;
-      setMouseNear(clientY > window.innerHeight / 2);
-    };
+    window.addEventListener('resize', handleResize);
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    window.addEventListener('scroll', handleScroll);
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousemove", handleMouseMove);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [controls, hasScrolled]);
+  }, [mousePosition, isMobile, controls, hasScrolled]);
 
   return (
     <motion.canvas
       ref={canvasRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0 }}
       animate={controls}
-      className="fixed inset-0 z-0 pointer-events-none opacity-30"
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ opacity: 0.3 }}
     />
   );
 };

@@ -53,29 +53,7 @@ const GovernmentSupportPage = () => {
     ],
   };
 
-  const taxCollectionHelpData = {
-    labels: ["Ad A", "Ad B", "Ad C"],
-    datasets: [
-      {
-        label: "Tax in ₹ Cr",
-        data: [5, 12, 8],
-        backgroundColor: "#FDCB6E",
-      },
-    ],
-  };
-
-  const cityTaxRecoveryData = {
-    labels: ["Mumbai", "Delhi", "Bangalore", "Ahmedabad", "Chennai"],
-    datasets: [
-      {
-        label: "Recovered Tax (₹ Cr)",
-        data: [22, 18, 25, 12, 15],
-        backgroundColor: "#FDCB6E",
-      },
-    ],
-  };
-
-  const chartOptions = {
+  const barOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -84,110 +62,114 @@ const GovernmentSupportPage = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-24">
+    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-20">
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto text-center mb-16">
+      <div className="max-w-6xl mx-auto text-center mb-20">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6">
-          Digitizing Outdoor Advertising for a Smarter Bharat
+          The Ad Project: India's First B2G AdTech Infrastructure
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          We're transforming public advertising into a powerful tool for governance. Our AI-powered platform helps city bodies track, tax, and manage ad spaces with real-time dashboards — reducing illegal ads, increasing civic revenue, and aligning with Smart City and Digital India missions.
+          We're pioneering a nation-wide government-first platform for regulating, managing, and monetizing physical advertisement spaces. Our system empowers civic bodies to eliminate illegal ads, automate tax collection, and track city-wide ad campaigns through a unified, AI-powered dashboard — all while promoting green materials and transparency.
         </p>
       </div>
 
-      {/* Benefits Section */}
+      {/* Why It Matters */}
+      <div className="max-w-6xl mx-auto text-center mb-20">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Why This Platform is Critical</h2>
+        <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Currently, India lacks a digital infrastructure that bridges municipal governance with traditional ad spaces. Hoardings, wall ads, kiosks, and flex boards operate with minimal oversight — leading to lost taxes, public clutter, and misuse during elections. The Ad Project is the first digital backbone for cities to plan, approve, tax, and audit all outdoor ads in one place.
+        </p>
+      </div>
+
+      {/* Key Government Benefits */}
       <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
         {[
           {
-            title: "🚫 Stop Illegal Hoardings",
-            desc: "AI detects and reports unauthorized ads across cities — reducing visual clutter, political misuse, and tax leakage.",
+            title: "🎯 Centralized Ad Visibility",
+            desc: "Every approved ad — location, vendor, duration — tracked in real-time on a centralized government dashboard.",
           },
           {
-            title: "💰 Increase Municipal Revenue",
-            desc: "Our billing engine automates ad fee calculations based on verified durations, sizes, and city zones. Every rupee is accounted for.",
+            title: "📜 Automated Tax Collection",
+            desc: "Our AI engine calculates tax and license fees dynamically based on size, duration, and geo-zones.",
           },
           {
-            title: "📊 Real-Time Visibility",
-            desc: "Administrators can track all campaigns, locations, and ad vendors on a live map with tax status and expiry alerts.",
+            title: "🚫 Eliminate Illegal Hoardings",
+            desc: "AI + Image recognition flags unauthorized ads with GPS-tagged proof and enforcement alerts.",
           },
           {
-            title: "📍 Geo-Fenced Planning",
-            desc: "Allocate permitted ad zones, enforce rules, and plan smarter placements based on footfall and traffic data.",
+            title: "📍 Smart City Integration",
+            desc: "Seamless integration into Smart City portals and municipal ERP systems, customized per region.",
           },
           {
-            title: "🤝 Fully Integratable",
-            desc: "White-label dashboards can plug directly into Smart City portals, state ad departments, or municipal revenue systems.",
+            title: "🧾 Real-Time Reports & Audits",
+            desc: "City administrators receive downloadable reports for tax collection, zone utilization, and vendor activity.",
           },
-        ].map((feature, i) => (
-          <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-            <h2 className="text-xl font-bold text-[#FDCB6E] mb-2">{feature.title}</h2>
-            <p>{feature.desc}</p>
+          {
+            title: "🌱 Eco-Friendly Mandates",
+            desc: "Mandate fabric-based ad materials. Monitor adoption rates to enforce green city campaigns.",
+          },
+        ].map((item, idx) => (
+          <div key={idx} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
+            <h3 className="text-xl font-semibold text-[#FDCB6E] mb-2">{item.title}</h3>
+            <p>{item.desc}</p>
           </div>
         ))}
       </div>
 
-      {/* Collaboration Steps */}
+      {/* Tax and Revenue Section */}
       <div className="max-w-6xl mx-auto mt-24 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
-          🛠️ How Government Will Work With Us
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+          ₹2,000+ Cr Revenue Potential — Reclaim What's Lost
         </h2>
-        <div className="grid gap-8 md:grid-cols-4 text-left">
+        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          India's tier-1 and tier-2 cities have lost over ₹2,000 Crores to unauthorized outdoor advertising over the past decade. Our platform ensures every campaign is pre-approved, billed, and audited.
+        </p>
+      </div>
+
+      {/* Charts Section */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 mt-20">
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 h-[350px] shadow-lg">
+          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📅 Monthly Revenue Trends</h2>
+          <Line data={monthlyRevenueData} options={barOptions} />
+        </div>
+        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 h-[350px] shadow-lg">
+          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📊 Annual Tax Collection Growth</h2>
+          <Bar data={annualRevenueData} options={barOptions} />
+        </div>
+      </div>
+
+      {/* How It Works for Governments */}
+      <div className="mt-28 max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-6">🛠️ How Governments Use The Platform</h2>
+        <div className="grid gap-6 text-left md:grid-cols-3">
           {[
-            { title: "1. MoU & Onboarding", desc: "We sign a mutual agreement and onboard your municipality or smart city team." },
-            { title: "2. Survey & Map", desc: "We help you map existing ad locations using AI, drones, or physical data." },
-            { title: "3. AI Dashboard Access", desc: "Your admin team gets access to live data, violations, and billing tools." },
-            { title: "4. Monitor & Collect", desc: "You monitor compliance, manage zones, and automatically collect ad taxes via our engine." },
-          ].map((step, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-              <h3 className="font-bold text-[#FDCB6E] text-lg mb-2">{step.title}</h3>
-              <p className="text-gray-700 dark:text-gray-300">{step.desc}</p>
+            "1. Government signs up and verifies city jurisdiction.",
+            "2. Geo-zones and permissions are uploaded for all ad locations.",
+            "3. Vendors submit ad requests with duration, size, type.",
+            "4. AI engine calculates fees + flags non-compliance.",
+            "5. Campaigns go live with tracking & expiry monitoring.",
+            "6. Real-time tax reports and auto-audits are shared with authorities.",
+          ].map((step, i) => (
+            <div key={i} className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+              <p className="font-medium text-gray-700 dark:text-gray-200">{step}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Impact Section */}
-      <div className="max-w-5xl mx-auto mt-24 text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          📈 Unlock ₹2,000+ Crores in Lost Revenue
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-6">
-          Cities like Bangalore have lost over ₹2,000 Cr to unauthorized hoardings in the past decade. Our technology ensures such revenue doesn’t slip through the cracks again.
-        </p>
-      </div>
-
-      {/* Data Visualization */}
-      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mt-16">
-        {[
-          { title: "📅 Monthly Revenue Trends", data: monthlyRevenueData },
-          { title: "📊 Yearly Tax Uplift", data: annualRevenueData },
-          { title: "💡 Ad-Wise Tax Intelligence", data: taxCollectionHelpData },
-          { title: "🏙️ City-Wise Recovery Boost", data: cityTaxRecoveryData },
-        ].map((chart, i) => (
-          <div
-            key={i}
-            className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-xl backdrop-blur-md"
-            style={{ height: "350px" }}
-          >
-            <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">{chart.title}</h2>
-            <Bar data={chart.data} options={chartOptions} />
-          </div>
-        ))}
-      </div>
-
-      {/* CTA */}
+      {/* Final CTA */}
       <div className="mt-24 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Join Us in Transforming Urban Governance
+          Digitize Your City's Ad Infrastructure Today
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          Partner with us to digitize your city's ad infrastructure, increase civic trust, and enable data-driven governance.
+          Partner with The Ad Project to bring full transparency, revenue assurance, and digital intelligence to your municipality's outdoor advertising strategy.
         </p>
         <a
           href="/contact"
           className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
         >
-          Contact Government Team →
+          Schedule Government Demo →
         </a>
       </div>
     </div>

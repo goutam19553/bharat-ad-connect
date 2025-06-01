@@ -119,19 +119,19 @@ const GovernmentSupportPage = () => {
         ))}
       </div>
 
-      {/* Final CTA */}
+      {/* Call to Action */}
       <div className="mt-24 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Partner with The Ad Project for Smarter City Governance
+          Join Us in Transforming Urban Governance
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          From ad visibility to revenue recovery — The Ad Project is your city's all-in-one B2G solution for outdoor media regulation.
+          Partner with us to digitize your city's ad infrastructure, increase civic trust, and enable data-driven governance.
         </p>
         <a
           href="/contact"
           className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
         >
-          Contact our Government Team →
+          Contact Government Team →
         </a>
       </div>
     </div>

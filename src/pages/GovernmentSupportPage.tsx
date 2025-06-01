@@ -64,32 +64,27 @@ const GovernmentSupportPage = () => {
     ],
   };
 
-  const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
-    animation: {
-      duration: 1200,
-      easing: "easeInOutQuart",
-    },
-    plugins: {
-      legend: { display: false },
-    },
+  const cityTaxRecoveryData = {
+    labels: ["Mumbai", "Delhi", "Bangalore", "Ahmedabad", "Chennai"],
+    datasets: [
+      {
+        label: "Recovered Tax (₹ Cr)",
+        data: [22, 18, 25, 12, 15],
+        backgroundColor: "#FDCB6E",
+      },
+    ],
   };
 
-  const barOptions = {
+  const chartOptions = {
     responsive: true,
-    maintainAspectRatio: true,
-    animation: {
-      duration: 1000,
-      easing: "easeOutBounce",
-    },
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
     },
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-20">
+    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-24">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6">
@@ -131,8 +126,28 @@ const GovernmentSupportPage = () => {
         ))}
       </div>
 
-      {/* Potential Impact */}
-      <div className="max-w-5xl mx-auto mt-20 text-center">
+      {/* Collaboration Steps */}
+      <div className="max-w-6xl mx-auto mt-24 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
+          🛠️ How Government Will Work With Us
+        </h2>
+        <div className="grid gap-8 md:grid-cols-4 text-left">
+          {[
+            { title: "1. MoU & Onboarding", desc: "We sign a mutual agreement and onboard your municipality or smart city team." },
+            { title: "2. Survey & Map", desc: "We help you map existing ad locations using AI, drones, or physical data." },
+            { title: "3. AI Dashboard Access", desc: "Your admin team gets access to live data, violations, and billing tools." },
+            { title: "4. Monitor & Collect", desc: "You monitor compliance, manage zones, and automatically collect ad taxes via our engine." },
+          ].map((step, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+              <h3 className="font-bold text-[#FDCB6E] text-lg mb-2">{step.title}</h3>
+              <p className="text-gray-700 dark:text-gray-300">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Impact Section */}
+      <div className="max-w-5xl mx-auto mt-24 text-center">
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
           📈 Unlock ₹2,000+ Crores in Lost Revenue
         </h2>
@@ -143,23 +158,24 @@ const GovernmentSupportPage = () => {
 
       {/* Data Visualization */}
       <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mt-16">
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📅 Monthly Revenue Trends</h2>
-          <Line data={monthlyRevenueData} options={lineOptions} />
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📊 Yearly Tax Uplift</h2>
-          <Bar data={annualRevenueData} options={barOptions} />
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg md:col-span-2">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">💡 Ad-Wise Tax Intelligence</h2>
-          <Bar data={taxCollectionHelpData} options={barOptions} />
-        </div>
+        {[
+          { title: "📅 Monthly Revenue Trends", data: monthlyRevenueData },
+          { title: "📊 Yearly Tax Uplift", data: annualRevenueData },
+          { title: "💡 Ad-Wise Tax Intelligence", data: taxCollectionHelpData },
+          { title: "🏙️ City-Wise Recovery Boost", data: cityTaxRecoveryData },
+        ].map((chart, i) => (
+          <div
+            key={i}
+            className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-xl backdrop-blur-md"
+            style={{ height: "350px" }}
+          >
+            <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">{chart.title}</h2>
+            <Bar data={chart.data} options={chartOptions} />
+          </div>
+        ))}
       </div>
 
-      {/* Call to Action */}
+      {/* CTA */}
       <div className="mt-24 text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
           Join Us in Transforming Urban Governance

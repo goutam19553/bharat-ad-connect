@@ -1,112 +1,77 @@
 // components/PlexusBackground.tsx
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const controls = useAnimation();
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if mobile device
-    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
-    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Set canvas size
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Particle class for better organization
+    // Configuration
+    const config = {
+      particleCount: 35,
+      maxDistance: 120,
+      particleSize: 1,
+      lineOpacity: 0.15,
+      baseColor: "rgba(100, 200, 255, 0.8)",
+      movementFactor: 0.2
+    };
+
+    // Particle class
     class Particle {
       x: number;
       y: number;
       vx: number;
       vy: number;
       size: number;
-      color: string;
       
-      constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 1.5 + 1;
-        this.color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * config.movementFactor;
+        this.vy = (Math.random() - 0.5) * config.movementFactor;
+        this.size = config.particleSize;
       }
       
       update() {
+        // Boundary check with gentle bounce
+        if (this.x < 0 || this.x > width) this.vx *= -0.8;
+        if (this.y < 0 || this.y > height) this.vy *= -0.8;
+        
         this.x += this.vx;
         this.y += this.vy;
-        
-        // Bounce off edges
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
       }
       
       draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = config.baseColor;
         ctx.fill();
       }
     }
 
     // Create particles
     const particles: Particle[] = [];
-    const particleCount = isMobile ? 40 : 80; // Fewer particles on mobile
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(
-        new Particle(
-          Math.random() * width,
-          Math.random() * height
-        )
-      );
+    for (let i = 0; i < config.particleCount; i++) {
+      particles.push(new Particle());
     }
 
-    // Animation variables
+    // Animation loop
     let animationId: number;
-    let lastTime = 0;
-    const fps = 60;
-    const interval = 1000 / fps;
-
-    // Mouse effect variables
-    const mouseRadius = 150;
-    const mouseEffectStrength = 0.2;
-
-    const animate = (now: number) => {
-      animationId = requestAnimationFrame(animate);
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
       
-      const elapsed = now - lastTime;
-      if (elapsed < interval) return;
-      lastTime = now;
-
-      // Clear canvas with a subtle fade effect
-      ctx.fillStyle = 'rgba(10, 10, 20, 0.1)';
-      ctx.fillRect(0, 0, width, height);
-
       // Update and draw particles
       particles.forEach((p, i) => {
-        // Mouse interaction
-        if (!isMobile) {
-          const dx = p.x - mousePosition.x;
-          const dy = p.y - mousePosition.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < mouseRadius) {
-            const angle = Math.atan2(dy, dx);
-            const force = (mouseRadius - distance) / mouseRadius * mouseEffectStrength;
-            p.vx += Math.cos(angle) * force;
-            p.vy += Math.sin(angle) * force;
-          }
-        }
-        
         p.update();
         p.draw(ctx);
         
@@ -117,21 +82,21 @@ const PlexusBackground = () => {
           const dy = p.y - other.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          const maxDistance = isMobile ? 100 : 150;
-          if (distance < maxDistance) {
-            const opacity = 1 - distance / maxDistance;
+          if (distance < config.maxDistance) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(0, 255, 245, ${opacity * 0.7})`;
-            ctx.lineWidth = opacity * 1.5;
+            ctx.strokeStyle = `rgba(100, 200, 255, ${config.lineOpacity * (1 - distance/config.maxDistance)})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
       });
+      
+      animationId = requestAnimationFrame(animate);
     };
 
-    animate(performance.now());
+    animate();
 
     // Handle resize
     const handleResize = () => {
@@ -139,44 +104,20 @@ const PlexusBackground = () => {
       height = canvas.height = window.innerHeight;
     };
 
-    // Handle mouse movement
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    // Handle scroll
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 400;
-      if (scrolled !== hasScrolled) {
-        setHasScrolled(scrolled);
-        controls.start({
-          opacity: scrolled ? 1 : 0.3,
-          transition: { duration: 1.2, ease: "easeOut" },
-        });
-      }
-    };
-
     window.addEventListener('resize', handleResize);
-    if (!isMobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-    window.addEventListener('scroll', handleScroll);
-
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
     };
-  }, [mousePosition, isMobile, controls, hasScrolled]);
+  }, []);
 
   return (
     <motion.canvas
       ref={canvasRef}
       initial={{ opacity: 0 }}
-      animate={controls}
+      animate={{ opacity: 0.3 }}
+      transition={{ duration: 2 }}
       className="fixed inset-0 z-0 pointer-events-none"
-      style={{ opacity: 0.3 }}
     />
   );
 };

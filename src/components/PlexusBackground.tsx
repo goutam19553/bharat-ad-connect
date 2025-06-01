@@ -6,13 +6,8 @@ const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const controls = useAnimation();
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if mobile device
-    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
-    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -59,7 +54,7 @@ const PlexusBackground = () => {
 
     // Create particles
     const particles: Particle[] = [];
-    const particleCount = isMobile ? 40 : 80; // Fewer particles on mobile
+    const particleCount = 60; // Fixed particle count
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(
@@ -76,10 +71,6 @@ const PlexusBackground = () => {
     const fps = 60;
     const interval = 1000 / fps;
 
-    // Mouse effect variables
-    const mouseRadius = 150;
-    const mouseEffectStrength = 0.2;
-
     const animate = (now: number) => {
       animationId = requestAnimationFrame(animate);
       
@@ -93,20 +84,6 @@ const PlexusBackground = () => {
 
       // Update and draw particles
       particles.forEach((p, i) => {
-        // Mouse interaction
-        if (!isMobile) {
-          const dx = p.x - mousePosition.x;
-          const dy = p.y - mousePosition.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < mouseRadius) {
-            const angle = Math.atan2(dy, dx);
-            const force = (mouseRadius - distance) / mouseRadius * mouseEffectStrength;
-            p.vx += Math.cos(angle) * force;
-            p.vy += Math.sin(angle) * force;
-          }
-        }
-        
         p.update();
         p.draw(ctx);
         
@@ -117,7 +94,7 @@ const PlexusBackground = () => {
           const dy = p.y - other.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          const maxDistance = isMobile ? 100 : 150;
+          const maxDistance = 120;
           if (distance < maxDistance) {
             const opacity = 1 - distance / maxDistance;
             ctx.beginPath();
@@ -139,11 +116,6 @@ const PlexusBackground = () => {
       height = canvas.height = window.innerHeight;
     };
 
-    // Handle mouse movement
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     // Handle scroll
     const handleScroll = () => {
       const scrolled = window.scrollY > 400;
@@ -157,18 +129,14 @@ const PlexusBackground = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    if (!isMobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [mousePosition, isMobile, controls, hasScrolled]);
+  }, [controls, hasScrolled]);
 
   return (
     <motion.canvas

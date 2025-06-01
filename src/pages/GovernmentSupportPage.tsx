@@ -157,21 +157,21 @@ const GovernmentSupportPage = () => {
         </div>
       </div>
 
-      {/* Final CTA */}
-      <div className="mt-24 text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Digitize Your City's Ad Infrastructure Today
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          Partner with The Ad Project to bring full transparency, revenue assurance, and digital intelligence to your municipality's outdoor advertising strategy.
-        </p>
-        <a
-          href="/contact"
-          className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
-        >
-          Schedule Government Demo →
-        </a>
-      </div>
+  {/* Final CTA */}
+<div className="mt-24 text-center">
+  <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+    Digitize Your City's Ad Infrastructure Today
+  </h2>
+  <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
+    Partner with The Ad Project to bring full transparency, revenue assurance, and digital intelligence to your municipality's outdoor advertising strategy.
+  </p>
+  <a
+    href="/contact"
+    className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
+  >
+    Contact our Government Team →
+  </a>
+</div>
     </div>
   );
 };

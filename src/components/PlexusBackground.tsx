@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,32 +13,33 @@ const PlexusBackground = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas size
+    // Set initial canvas size
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let height = (canvas.height = window.innerHeight * 2); // Double height for scrolling
 
     // Configuration
     const config = {
       particleCount: 60,
       particleSize: 1.5,
-      lineColor: "rgba(0, 255, 245, 0.5)", // Cyan color
+      lineColor: "rgba(0, 255, 245, 0.5)",
       lineWidth: 0.7,
       maxDistance: 120,
       movementSpeed: 0.3
     };
 
-    // Create particles
+    // Create particles distributed through the extended height
     const particles = Array.from({ length: config.particleCount }, () => ({
       x: Math.random() * width,
-      y: Math.random() * height,
+      y: Math.random() * height, // Spread through extended height
       vx: (Math.random() - 0.5) * config.movementSpeed,
-      vy: (Math.random() - 0.5) * config.movementSpeed
+      vy: (Math.random() - 0.5) * config.movementSpeed,
+      size: Math.random() * 1.5 + 1
     }));
 
     // Animation loop
     let animationId: number;
     const animate = () => {
-      // Set gray-800 background (rgb(31, 41, 55))
+      // Clear with dark background
       ctx.fillStyle = 'rgb(31, 41, 55)';
       ctx.fillRect(0, 0, width, height);
 
@@ -53,7 +55,7 @@ const PlexusBackground = () => {
 
         // Draw particle
         ctx.beginPath();
-        ctx.arc(p.x, p.y, config.particleSize, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = config.lineColor;
         ctx.fill();
 
@@ -84,7 +86,7 @@ const PlexusBackground = () => {
     // Handle resize
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      height = canvas.height = window.innerHeight * 2; // Maintain extended height
     };
 
     window.addEventListener('resize', handleResize);
@@ -95,13 +97,15 @@ const PlexusBackground = () => {
   }, []);
 
   return (
-    <motion.canvas
-      ref={canvasRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.7 }}
-      transition={{ duration: 2 }}
-      className="absolute inset-0 z-0 w-full h-full"
-    />
+    <div ref={containerRef} className="absolute inset-0 -z-10 h-[200%]">
+      <motion.canvas
+        ref={canvasRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 w-full h-full"
+      />
+    </div>
   );
 };
 

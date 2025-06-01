@@ -122,7 +122,7 @@ const GovernmentSupportPage = () => {
           ₹2,000+ Cr Revenue Potential — Reclaim What's Lost
         </h2>
         <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          India's tier-1 and tier-2 cities have lost over ₹2,000 Crores to unauthorized outdoor advertising over the past decade. Our platform ensures every campaign is pre-approved, billed, and audited.
+          Bangalore alone has lost over ₹2,000 Crores in outdoor advertising revenue due to unregulated system and unauthorized placements. The Ad Project puts an end to this leakage with full AI-powered oversight and digital tax intelligence.
         </p>
       </div>
 

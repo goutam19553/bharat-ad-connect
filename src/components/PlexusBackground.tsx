@@ -1,111 +1,183 @@
 // components/PlexusBackground.tsx
-import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile device
+    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set initial canvas size
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight * 2); // Double height for scrolling
+    let height = (canvas.height = window.innerHeight);
 
-    // Configuration
-    const config = {
-      particleCount: 60,
-      particleSize: 1.5,
-      lineColor: "rgba(0, 255, 245, 0.5)",
-      lineWidth: 0.7,
-      maxDistance: 120,
-      movementSpeed: 0.3
-    };
+    // Particle class for better organization
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      
+      constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 1.5 + 1;
+        this.color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // Bounce off edges
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
 
-    // Create particles distributed through the extended height
-    const particles = Array.from({ length: config.particleCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height, // Spread through extended height
-      vx: (Math.random() - 0.5) * config.movementSpeed,
-      vy: (Math.random() - 0.5) * config.movementSpeed,
-      size: Math.random() * 1.5 + 1
-    }));
+    // Create particles
+    const particles: Particle[] = [];
+    const particleCount = isMobile ? 40 : 80; // Fewer particles on mobile
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(
+        new Particle(
+          Math.random() * width,
+          Math.random() * height
+        )
+      );
+    }
 
-    // Animation loop
+    // Animation variables
     let animationId: number;
-    const animate = () => {
-      // Clear with dark background
-      ctx.fillStyle = 'rgb(31, 41, 55)';
+    let lastTime = 0;
+    const fps = 60;
+    const interval = 1000 / fps;
+
+    // Mouse effect variables
+    const mouseRadius = 150;
+    const mouseEffectStrength = 0.2;
+
+    const animate = (now: number) => {
+      animationId = requestAnimationFrame(animate);
+      
+      const elapsed = now - lastTime;
+      if (elapsed < interval) return;
+      lastTime = now;
+
+      // Clear canvas with a subtle fade effect
+      ctx.fillStyle = 'rgba(10, 10, 20, 0.1)';
       ctx.fillRect(0, 0, width, height);
 
       // Update and draw particles
       particles.forEach((p, i) => {
-        // Update position
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Bounce off edges
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = config.lineColor;
-        ctx.fill();
-
+        // Mouse interaction
+        if (!isMobile) {
+          const dx = p.x - mousePosition.x;
+          const dy = p.y - mousePosition.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouseRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force = (mouseRadius - distance) / mouseRadius * mouseEffectStrength;
+            p.vx += Math.cos(angle) * force;
+            p.vy += Math.sin(angle) * force;
+          }
+        }
+        
+        p.update();
+        p.draw(ctx);
+        
         // Draw connections
         for (let j = i + 1; j < particles.length; j++) {
           const other = particles[j];
           const dx = p.x - other.x;
           const dy = p.y - other.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < config.maxDistance) {
-            const opacity = 1 - distance / config.maxDistance;
+          
+          const maxDistance = isMobile ? 100 : 150;
+          if (distance < maxDistance) {
+            const opacity = 1 - distance / maxDistance;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(0, 255, 245, ${opacity * 0.5})`;
-            ctx.lineWidth = config.lineWidth;
+            ctx.strokeStyle = `rgba(0, 255, 245, ${opacity * 0.7})`;
+            ctx.lineWidth = opacity * 1.5;
             ctx.stroke();
           }
         }
       });
-
-      animationId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(performance.now());
 
     // Handle resize
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight * 2; // Maintain extended height
+      height = canvas.height = window.innerHeight;
+    };
+
+    // Handle mouse movement
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    // Handle scroll
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 400;
+      if (scrolled !== hasScrolled) {
+        setHasScrolled(scrolled);
+        controls.start({
+          opacity: scrolled ? 1 : 0.3,
+          transition: { duration: 1.2, ease: "easeOut" },
+        });
+      }
     };
 
     window.addEventListener('resize', handleResize);
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [mousePosition, isMobile, controls, hasScrolled]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 -z-10 h-[200%]">
-      <motion.canvas
-        ref={canvasRef}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ duration: 2 }}
-        className="absolute inset-0 w-full h-full"
-      />
-    </div>
+    <motion.canvas
+      ref={canvasRef}
+      initial={{ opacity: 0 }}
+      animate={controls}
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ opacity: 0.3 }}
+    />
   );
 };
 

@@ -130,7 +130,248 @@ const AdSpaces = () => {
       image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%206_5_11zon.jpg",
       rating: 3
     }
-  ];
+   {
+    id: 10,
+    title: "Building Wrap - Connaught Place",
+    location: "Connaught Place",
+    city: "Delhi",
+    type: "Building Wrap",
+    size: "60 x 40 feet",
+    price: 60000,
+    image: "https://www.hmgraphicspvtltd.com/images/building-wrap.jpg",
+    rating: 4,
+    featured: true
+  },
+  {
+    id: 11,
+    title: "Office Elevator Screen - Manyata Tech Park",
+    location: "Manyata Tech Park",
+    city: "Bengaluru",
+    type: "Digital Screen",
+    size: "2 x 3 feet",
+    price: 5000,
+    image: "https://www.digitalsignage.net/wp-content/uploads/2015/03/Elevator-Digital-Signage.jpg",
+    rating: 4
+  },
+
+  // 🚗 Vehicle Branding
+  {
+    id: 12,
+    title: "Cab Wrap Advertising - Mumbai",
+    location: "Mumbai",
+    city: "Mumbai",
+    type: "Vehicle",
+    size: "Full Wrap",
+    price: 7000,
+    image: "https://adsoncabs.com/wp-content/uploads/2023/09/slider_image_11.jpg",
+    rating: 5,
+    featured: true
+  },
+  {
+    id: 13,
+    title: "Delivery Van Branding - Delhi",
+    location: "Delhi",
+    city: "Delhi",
+    type: "Vehicle",
+    size: "Side Panels",
+    price: 8000,
+    image: "https://www.buymediaspace.com/images/mobile-van-advertising.jpg",
+    rating: 4
+  },
+
+  // 🏬 Retail & Point of Sale
+  {
+    id: 14,
+    title: "In-Store Digital Kiosk - Big Bazaar",
+    location: "Koramangala",
+    city: "Bengaluru",
+    type: "Retail",
+    size: "6 x 4 feet",
+    price: 10000,
+    image: "https://www.digitalsignagetoday.com/wp-content/uploads/2020/01/retail-kiosk.jpg",
+    rating: 4
+  },
+  {
+    id: 15,
+    title: "Supermarket Checkout Display - Reliance Fresh",
+    location: "Andheri",
+    city: "Mumbai",
+    type: "Retail",
+    size: "3 x 2 feet",
+    price: 5000,
+    image: "https://www.popinshop.com/images/checkout-display.jpg",
+    rating: 3
+  },
+
+  // 🏥 Institutional Ads
+  {
+    id: 16,
+    title: "Hospital Waiting Area Screen - Apollo Hospitals",
+    location: "Greams Road",
+    city: "Chennai",
+    type: "Institutional",
+    size: "5 x 3 feet",
+    price: 12000,
+    image: "https://www.digitalsignagetoday.com/wp-content/uploads/2020/01/hospital-waiting-area.jpg",
+    rating: 4
+  },
+  {
+    id: 17,
+    title: "University Campus Billboard - Delhi University",
+    location: "North Campus",
+    city: "Delhi",
+    type: "Institutional",
+    size: "20 x 10 feet",
+    price: 20000,
+    image: "https://www.universitybillboards.com/images/campus-billboard.jpg",
+    rating: 4
+  },
+
+  // 🏟️ Event & Experience Based
+  {
+    id: 18,
+    title: "Stadium LED Screen - Eden Gardens",
+    location: "Eden Gardens",
+    city: "Kolkata",
+    type: "Event-Based",
+    size: "40 x 20 feet",
+    price: 75000,
+    image: "https://www.stadiumledscreens.com/images/eden-gardens-led.jpg",
+    rating: 5,
+    featured: true
+  },
+  {
+    id: 19,
+    title: "Cinema Pre-Roll Ad - PVR Cinemas",
+    location: "Phoenix Marketcity",
+    city: "Bengaluru",
+    type: "Event-Based",
+    size: "Full Screen",
+    price: 15000,
+    image: "https://www.pvrcinemas.com/images/pre-roll-ad.jpg",
+    rating: 4
+  },
+
+  // 🏖️ Tourism & Crowd Hotspots
+  {
+    id: 20,
+    title: "Beachside Hoarding - Juhu Beach",
+    location: "Juhu Beach",
+    city: "Mumbai",
+    type: "Tourism",
+    size: "30 x 15 feet",
+    price: 25000,
+    image: "https://www.beachhoardings.com/images/juhu-beach-hoarding.jpg",
+    rating: 4
+  },
+  {
+    id: 21,
+    title: "Pilgrimage Center Wall Wrap - Varanasi",
+    location: "Kashi Vishwanath Temple",
+    city: "Varanasi",
+    type: "Tourism",
+    size: "25 x 10 feet",
+    price: 20000,
+    image: "https://www.pilgrimageads.com/images/varanasi-wall-wrap.jpg",
+    rating: 4
+  },
+
+  // 🏙️ Smart City & Digital Infra
+  {
+    id: 22,
+    title: "Smart Pole Digital Banner - Chennai",
+    location: "Anna Salai",
+    city: "Chennai",
+    type: "Smart City",
+    size: "10 x 5 feet",
+    price: 18000,
+    image: "https://www.tekvihaan.com/images/smart-city-pole.jpg",
+    rating: 5,
+    featured: true
+  },
+  {
+    id: 23,
+    title: "Digital Bus Queue Shelter - Nagpur",
+    location: "Beltarodi",
+    city: "Nagpur",
+    type: "Smart City",
+    size: "12 x 6 feet",
+    price: 15000,
+    image: "https://timesofindia.indiatimes.com/photo/121556072.cms",
+    rating: 4
+  },
+
+  // ✈️ Transit Ad Variants
+  {
+    id: 24,
+    title: "Airport Conveyor Belt Ad - IGI Airport",
+    location: "Terminal 3",
+    city: "Delhi",
+    type: "Transit",
+    size: "20 x 2 feet",
+    price: 22000,
+    image: "https://www.airportads.com/images/conveyor-belt-ad.jpg",
+    rating: 4
+  },
+  {
+    id: 25,
+    title: "Luggage Trolley Branding - Chhatrapati Shivaji Airport",
+    location: "Terminal 2",
+    city: "Mumbai",
+    type: "Transit",
+    size: "3 x 2 feet",
+    price: 5000,
+    image: "https://www.luggagetrolleyads.com/images/mumbai-trolley.jpg",
+    rating: 3
+  },
+
+  // 🧠 Future-Ready & Niche Formats
+  {
+    id: 26,
+    title: "AR-Enabled Wall Ad - Cyber Hub",
+    location: "Cyber Hub",
+    city: "Gurgaon",
+    type: "AR",
+    size: "15 x 10 feet",
+    price: 30000,
+    image: "https://www.aradvertising.com/images/cyber-hub-ar.jpg",
+    rating: 5,
+    featured: true
+  },
+  {
+    id: 27,
+    title: "Eco-Friendly Fabric Banner - Cubbon Park",
+    location: "Cubbon Park",
+    city: "Bengaluru",
+    type: "Eco-Friendly",
+    size: "10 x 5 feet",
+    price: 8000,
+    image: "https://www.ecofabricads.com/images/cubbon-park-banner.jpg",
+    rating: 4
+  },
+  {
+    id: 28,
+    title: "Holographic Display Ad - Select Citywalk",
+    location: "Select Citywalk",
+    city: "Delhi",
+    type: "Premium",
+    size: "6 x 4 feet",
+    price: 40000,
+    image: "https://www.holographicads.com/images/select-citywalk.jpg",
+    rating: 5
+  },
+  {
+    id: 29,
+    title: "Interactive Touch Display - Phoenix Marketcity",
+    location: "Phoenix Marketcity",
+    city: "Mumbai",
+    type: "Premium",
+    size: "5 x 3 feet",
+    price: 25000,
+    image: "https://www.interactivedisplays.com/images/phoenix-marketcity.jpg",
+    rating: 4
+  }
+];
 
   const filterAdSpaces = (filters: any) => {
     setFilters(filters);

@@ -150,7 +150,7 @@ const AdSpaces = () => {
     type: "Digital Screen",
     size: "2 x 3 feet",
     price: 5000,
-    image: "https://www.digitalsignage.net/wp-content/uploads/2015/03/Elevator-Digital-Signage.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/11.png",
     rating: 4
   },
 
@@ -163,7 +163,7 @@ const AdSpaces = () => {
     type: "Vehicle",
     size: "Full Wrap",
     price: 7000,
-    image: "https://adsoncabs.com/wp-content/uploads/2023/09/slider_image_11.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/12.png",
     rating: 5,
     featured: true
   },
@@ -175,7 +175,7 @@ const AdSpaces = () => {
     type: "Vehicle",
     size: "Side Panels",
     price: 8000,
-    image: "https://www.buymediaspace.com/images/mobile-van-advertising.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/13.png",
     rating: 4
   },
 
@@ -188,7 +188,7 @@ const AdSpaces = () => {
     type: "Retail",
     size: "6 x 4 feet",
     price: 10000,
-    image: "https://www.digitalsignagetoday.com/wp-content/uploads/2020/01/retail-kiosk.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/14.png",
     rating: 4
   },
   {
@@ -199,7 +199,7 @@ const AdSpaces = () => {
     type: "Retail",
     size: "3 x 2 feet",
     price: 5000,
-    image: "https://www.popinshop.com/images/checkout-display.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/15.png",
     rating: 3
   },
 
@@ -212,7 +212,7 @@ const AdSpaces = () => {
     type: "Institutional",
     size: "5 x 3 feet",
     price: 12000,
-    image: "https://www.digitalsignagetoday.com/wp-content/uploads/2020/01/hospital-waiting-area.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/16.png",
     rating: 4
   },
   {
@@ -223,7 +223,7 @@ const AdSpaces = () => {
     type: "Institutional",
     size: "20 x 10 feet",
     price: 20000,
-    image: "https://www.universitybillboards.com/images/campus-billboard.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/17.png",
     rating: 4
   },
 
@@ -236,7 +236,7 @@ const AdSpaces = () => {
     type: "Event-Based",
     size: "40 x 20 feet",
     price: 75000,
-    image: "https://www.stadiumledscreens.com/images/eden-gardens-led.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/18.png",
     rating: 5,
     featured: true
   },
@@ -248,7 +248,7 @@ const AdSpaces = () => {
     type: "Event-Based",
     size: "Full Screen",
     price: 15000,
-    image: "https://www.pvrcinemas.com/images/pre-roll-ad.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/19.png",
     rating: 4
   },
 
@@ -261,7 +261,7 @@ const AdSpaces = () => {
     type: "Tourism",
     size: "30 x 15 feet",
     price: 25000,
-    image: "https://www.beachhoardings.com/images/juhu-beach-hoarding.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/20.png",
     rating: 4
   },
   {
@@ -272,7 +272,7 @@ const AdSpaces = () => {
     type: "Tourism",
     size: "25 x 10 feet",
     price: 20000,
-    image: "https://www.pilgrimageads.com/images/varanasi-wall-wrap.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/21.png",
     rating: 4
   },
 
@@ -285,7 +285,7 @@ const AdSpaces = () => {
     type: "Smart City",
     size: "10 x 5 feet",
     price: 18000,
-    image: "https://www.tekvihaan.com/images/smart-city-pole.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/22.png",
     rating: 5,
     featured: true
   },

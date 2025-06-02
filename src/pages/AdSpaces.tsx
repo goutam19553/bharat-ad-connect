@@ -129,7 +129,7 @@ const AdSpaces = () => {
       price: 30000,
       image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ad%20space%206_5_11zon.jpg",
       rating: 3
-    }
+    },
    {
     id: 10,
     title: "Building Wrap - Connaught Place",

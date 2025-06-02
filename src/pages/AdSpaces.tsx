@@ -138,7 +138,7 @@ const AdSpaces = () => {
     type: "Building Wrap",
     size: "60 x 40 feet",
     price: 60000,
-    image: "https://www.hmgraphicspvtltd.com/images/building-wrap.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/10.png",
     rating: 4,
     featured: true
   },

@@ -7,6 +7,8 @@ const AdSpaces = () => {
   const [filters, setFilters] = useState({});
   const [view, setView] = useState<"grid" | "map">("grid");
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -402,6 +404,12 @@ const AdSpaces = () => {
           </p>
         </div>
       </div>
+
+{showPopup && (
+  <div className="fixed top-5 right-5 bg-blue-600 text-white px-4 py-2 rounded shadow-md z-50 animate-fade-in">
+    🔔 More Ad Spaces Loaded!
+  </div>
+)}
       
       {/* Search and Filters Section */}
       <div className="bg-gray-100 dark:bg-gray-800 py-6">
@@ -471,11 +479,18 @@ const AdSpaces = () => {
                 ))}
               </div>
               
-              <div className="mt-8 flex justify-center">
-                <button className="btn-accent">
-                  Load More Ad Spaces
-                </button>
-              </div>
+             <div className="mt-8 flex justify-center">
+  <button
+    className="btn-accent"
+    onClick={() => {
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000); // hides after 3 seconds
+    }}
+  >
+    Load More Ad Spaces
+  </button>
+</div>
+
             </>
           ) : (
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">

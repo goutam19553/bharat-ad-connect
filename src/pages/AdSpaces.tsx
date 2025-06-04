@@ -334,7 +334,7 @@ const AdSpaces = () => {
     type: "AR",
     size: "15 x 10 feet",
     price: 30000,
-    image: "https://www.aradvertising.com/images/cyber-hub-ar.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/26.webp",
     rating: 5,
     featured: true
   },

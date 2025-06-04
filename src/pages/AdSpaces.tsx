@@ -310,7 +310,7 @@ const AdSpaces = () => {
     type: "Transit",
     size: "20 x 2 feet",
     price: 22000,
-    image: "https://www.airportads.com/images/conveyor-belt-ad.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/24.png",
     rating: 4
   },
   {
@@ -321,7 +321,7 @@ const AdSpaces = () => {
     type: "Transit",
     size: "3 x 2 feet",
     price: 5000,
-    image: "https://www.luggagetrolleyads.com/images/mumbai-trolley.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/25.png",
     rating: 3
   },
 
@@ -346,7 +346,7 @@ const AdSpaces = () => {
     type: "Eco-Friendly",
     size: "10 x 5 feet",
     price: 8000,
-    image: "https://www.ecofabricads.com/images/cubbon-park-banner.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/27.png",
     rating: 4
   },
   {
@@ -357,7 +357,7 @@ const AdSpaces = () => {
     type: "Premium",
     size: "6 x 4 feet",
     price: 40000,
-    image: "https://www.holographicads.com/images/select-citywalk.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/28.png",
     rating: 5
   },
   {
@@ -368,7 +368,7 @@ const AdSpaces = () => {
     type: "Premium",
     size: "5 x 3 feet",
     price: 25000,
-    image: "https://www.interactivedisplays.com/images/phoenix-marketcity.jpg",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/29.png",
     rating: 4
   }
 ];

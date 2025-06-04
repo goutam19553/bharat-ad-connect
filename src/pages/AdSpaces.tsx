@@ -38,7 +38,7 @@ const AdSpaces = () => {
       type: "Rickshaw Full Wrap and screen",
       size: "10 x 10 feet",
       price: 1000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/auto.png",
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/auto1.png",
       rating: 5,
       featured: true
     },

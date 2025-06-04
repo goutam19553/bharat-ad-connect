@@ -407,7 +407,7 @@ const AdSpaces = () => {
 
 {showPopup && (
   <div className="fixed top-5 right-5 bg-blue-600 text-white px-4 py-2 rounded shadow-md z-50 animate-fade-in">
-    🔔 More Ad Spaces Loaded!
+    🔔 We are adding some more amazing Ad Spaces for you, Thank You!
   </div>
 )}
       

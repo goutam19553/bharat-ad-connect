@@ -1,4 +1,4 @@
- // components/PlexusBackground.tsx
+// components/PlexusBackground.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
@@ -14,10 +14,10 @@ const PlexusBackground = () => {
 
     const ctx = canvas.getContext("2d");
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let height = (canvas.height = document.body.scrollHeight); // make it scrollable
 
     let particles: { x: number; y: number; vx: number; vy: number }[] = [];
-    const num = 60; // optimized particle count
+    const num = 60;
 
     for (let i = 0; i < num; i++) {
       particles.push({
@@ -77,8 +77,9 @@ const PlexusBackground = () => {
 
     const resize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      height = canvas.height = document.body.scrollHeight;
     };
+
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, [mouseNear]);
@@ -116,7 +117,8 @@ const PlexusBackground = () => {
       ref={canvasRef}
       initial={{ opacity: 0, y: 40 }}
       animate={controls}
-      className="fixed inset-0 z-0 pointer-events-none opacity-30"
+      className="absolute top-0 left-0 w-full z-0 pointer-events-none opacity-30"
+      style={{ height: `${document.body.scrollHeight}px` }}
     />
   );
 };

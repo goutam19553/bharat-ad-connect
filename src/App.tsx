@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import AIAnalytics from "./pages/AIAnalytics";
-import { HumanAIAvatar } from "./components/HumanAIAvatar"; // ✅ Updated import
+import HumanAIAvatar  from "./components/HumanAIAvatar"; // ✅ Updated import
 
 // Lazy-loaded pages
 const AdSpaces = lazy(() => import("./pages/AdSpaces"));

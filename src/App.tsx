@@ -114,12 +114,11 @@ const App = () => {
               </Suspense>
             </main>
 
-          {/* ✅ HumanAIAvatar just above Footer */}
-   <section className="bg-gray-900 py-16 px-8 flex justify-center">
-     <div className="w-full max-w-4xl">
-       <HumanAIAvatar />
-      </div>
-     </section>
+         <section className="bg-gray-900 py-20 px-6 flex justify-center">
+  <div className="w-full max-w-5xl">
+    <HumanAIAvatar />
+  </div>
+</section>
 
 
             <Footer />

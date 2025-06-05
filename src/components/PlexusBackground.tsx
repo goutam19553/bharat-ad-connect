@@ -1,12 +1,13 @@
-// components/PlexusBackground.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const controls = useAnimation();
-  const [hasScrolled, setHasScrolled] = useState(false);
   const [mouseNear, setMouseNear] = useState(false);
+  const [scrollSpeed, setScrollSpeed] = useState(0);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,7 +15,7 @@ const PlexusBackground = () => {
 
     const ctx = canvas.getContext("2d");
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = document.documentElement.scrollHeight); // Use scrollHeight of html root
+    let height = (canvas.height = document.documentElement.scrollHeight);
 
     let particles: { x: number; y: number; vx: number; vy: number }[] = [];
     const num = 60;
@@ -28,7 +29,7 @@ const PlexusBackground = () => {
       });
     }
 
-    let maxDist = 80;
+    let maxDist = 100;
     let lastTime = 0;
     const fps = 30;
     const interval = 1000 / fps;
@@ -43,9 +44,12 @@ const PlexusBackground = () => {
 
       ctx.clearRect(0, 0, width, height);
 
+      ctx.shadowBlur = scrollSpeed * 2 + 4; // glow effect
+      ctx.shadowColor = "#00fff5";
+
       particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * (1 + scrollSpeed * 0.5);
+        p.y += p.vy * (1 + scrollSpeed * 0.5);
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
@@ -59,7 +63,7 @@ const PlexusBackground = () => {
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          const dynamicDist = mouseNear ? 130 : maxDist;
+          const dynamicDist = mouseNear ? 150 : maxDist;
           if (dist < dynamicDist) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
@@ -81,21 +85,25 @@ const PlexusBackground = () => {
 
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
-  }, [mouseNear]);
+  }, [mouseNear, scrollSpeed]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const triggerPoint = 400;
-      const scrolled = window.scrollY > triggerPoint;
+      const newScrollY = window.scrollY;
+      const delta = Math.abs(newScrollY - lastScrollY.current);
+      lastScrollY.current = newScrollY;
 
-      if (scrolled !== hasScrolled) {
-        setHasScrolled(scrolled);
-        controls.start({
-          opacity: scrolled ? 1 : 0,
-          y: scrolled ? 0 : 40,
-          transition: { duration: 1.2, ease: "easeOut" },
-        });
-      }
+      setScrollSpeed(Math.min(delta / 20, 1)); // cap at 1
+
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => setScrollSpeed(0), 150);
+
+      // Animate canvas on scroll
+      controls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+      });
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -109,15 +117,17 @@ const PlexusBackground = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [controls, hasScrolled]);
+  }, [controls]);
 
   return (
     <motion.canvas
       ref={canvasRef}
       initial={{ opacity: 0, y: 40 }}
       animate={controls}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30 z-0"
-      style={{ position: "absolute", top: 0 }}
+      className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"
+      style={{
+        filter: `blur(${scrollSpeed * 2 + 1}px)`,
+      }}
     />
   );
 };

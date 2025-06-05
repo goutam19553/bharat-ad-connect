@@ -7,7 +7,7 @@ const PlexusBackground = () => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight * 2);
+    let height = (canvas.height = document.body.scrollHeight);
 
     const numDots = 120;
     const maxDist = 120;
@@ -21,7 +21,7 @@ const PlexusBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // draw lines between nearby dots
+      // draw lines
       for (let i = 0; i < numDots; i++) {
         for (let j = i + 1; j < numDots; j++) {
           const dx = dots[i].x - dots[j].x;
@@ -48,7 +48,6 @@ const PlexusBackground = () => {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // bounce off edges
         if (dot.x <= 0 || dot.x >= width) dot.vx *= -1;
         if (dot.y <= 0 || dot.y >= height) dot.vy *= -1;
       }
@@ -58,16 +57,19 @@ const PlexusBackground = () => {
 
     animate();
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight * 2;
-    });
+      height = canvas.height = document.body.scrollHeight;
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-[200vh] z-0 pointer-events-none"
+      className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
       style={{ background: "transparent" }}
     />
   );

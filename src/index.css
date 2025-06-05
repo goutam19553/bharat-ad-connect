@@ -323,13 +323,11 @@
 }
 
 html, body {
+  background: transparent;
   margin: 0;
   padding: 0;
-  background: transparent;
-  scroll-behavior: smooth;
-  font-family: 'Inter', sans-serif';
   height: 100%;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
-
 

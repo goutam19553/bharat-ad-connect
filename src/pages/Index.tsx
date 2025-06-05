@@ -191,6 +191,7 @@ const Index = () => {
   </section>
   
       {/* Featured Ad Spaces */}
+{/* Featured Ad Spaces */}
 <section className="section relative bg-gray-50 dark:bg-gray-800">
   {/* PlexusBackground canvas is assumed outside or above this section with z-index -1 or 0 */}
 
@@ -205,14 +206,13 @@ const Index = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {featuredAdSpaces.map((adSpace, index) => (
         <motion.div
-  key={adSpace.id}
-  custom={index}
-  variants={fadeInUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-300 dark:border-gray-700"
-/>
+          key={adSpace.id}
+          custom={index}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-300"
         >
           <AdSpaceCard adSpace={adSpace} />
         </motion.div>

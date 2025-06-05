@@ -5,84 +5,82 @@ const PlexusBackground = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
 
-    const ctx = canvas.getContext("2d");
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = document.body.scrollHeight;
 
-    const columns = Math.floor(width / 20);
-    const drops = new Array(columns).fill(0);
-
-    const colors = [
-      "#00ffea", // electric cyan
-      "#00ffa0", // neon green
-      "#00b3ff", // bright blue
-    ];
-
-    let animationFrameId: number;
+    const dots = Array.from({ length: 80 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2,
+    }));
 
     function draw() {
-      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
 
-      // Gray-700 background with slight transparency for fade effect
-      ctx.fillStyle = "rgba(55, 65, 81, 0.15)"; // #374151 with 15% opacity
-      ctx.fillRect(0, 0, width, height);
+      dots.forEach(dot => {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
 
-      ctx.font = "18px monospace";
+        if (dot.x < 0 || dot.x > width) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > height) dot.vy *= -1;
 
-      for (let i = 0; i < drops.length; i++) {
-        const chars = "01ABCDEF";
-        const text = chars.charAt(Math.floor(Math.random() * chars.length));
-        const color = colors[Math.floor(Math.random() * colors.length)];
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = "#00ffe5";
+        ctx.shadowColor = "#00ffe5";
+        ctx.shadowBlur = 8;
+        ctx.fill();
+      });
 
-        ctx.fillStyle = color;
-        ctx.shadowColor = color;
-        ctx.shadowBlur = 10;
-
-        const x = i * 20;
-        const y = drops[i] * 20;
-
-        ctx.fillText(text, x, y);
-
-        // Slow down the speed: increment drops less often
-        if (y > height && Math.random() > 0.985) drops[i] = 0;
-        else if (Math.random() > 0.7) drops[i]++;
+      // draw lines
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = `rgba(0, 255, 229, ${1 - dist / 100})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
       }
 
-      animationFrameId = requestAnimationFrame(draw);
+      requestAnimationFrame(draw);
     }
 
     draw();
 
-    function onResize() {
+    const onResize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
+      height = canvas.height = document.body.scrollHeight;
+    };
     window.addEventListener("resize", onResize);
 
-    return () => {
-      window.removeEventListener("resize", onResize);
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
-        zIndex: 0,
         width: "100vw",
-        height: "100vh",
+        height: "100%",
+        zIndex: 0,
         pointerEvents: "none",
-        backgroundColor: "#374151", // Tailwind gray-700
       }}
     />
   );
 };
-
 
 export default PlexusBackground;

@@ -48,7 +48,7 @@ const PlexusBackground = () => {
       ctx.shadowBlur = scrollSpeed * 2 + 4;
       ctx.shadowColor = "#00fff5";
 
-      const parallaxOffset = scrollY * 0.4; // scroll parallax multiplier
+      const parallaxOffset = scrollY * 0.4;
 
       particles.forEach((p, i) => {
         p.x += p.vx * (1 + scrollSpeed * 0.5);
@@ -66,7 +66,7 @@ const PlexusBackground = () => {
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = px - (particles[j].x);
+          const dx = px - particles[j].x;
           const dy = py - (particles[j].y - parallaxOffset);
           const dist = Math.sqrt(dx * dx + dy * dy);
 
@@ -91,7 +91,9 @@ const PlexusBackground = () => {
     };
 
     window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
   }, [mouseNear, scrollSpeed, scrollY]);
 
   useEffect(() => {
@@ -120,5 +122,25 @@ const PlexusBackground = () => {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
-      window.removeEventListener("scroll",
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [controls]);
+
+  return (
+    <motion.canvas
+      ref={canvasRef}
+      initial={{ opacity: 0, y: 40 }}
+      animate={controls}
+      className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"
+      style={{
+        filter: `blur(${scrollSpeed * 2 + 1}px)`,
+        transform: `translateY(${scrollY * 0.05}px)`
+      }}
+    />
+  );
+};
+
+export default PlexusBackground;

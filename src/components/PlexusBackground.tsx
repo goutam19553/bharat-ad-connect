@@ -1,65 +1,74 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext("2d")!;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight * 2);
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const numDots = 120;
+    const maxDist = 120;
+    const dots = Array.from({ length: numDots }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+    }));
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight * 2; // allow scroll
-
-    const dots: { x: number; y: number }[] = [];
-    const spacing = 100;
-
-    for (let x = 0; x < width; x += spacing) {
-      for (let y = 0; y < height; y += spacing) {
-        dots.push({ x, y });
-      }
-    }
-
-    const draw = () => {
+    const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.strokeStyle = "rgba(0, 255, 200, 0.15)";
-      ctx.lineWidth = 0.5;
 
-      dots.forEach(dot => {
-        // glowing dot
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0,255,200,0.3)";
-        ctx.fill();
-
-        // connect nearby
-        dots.forEach(other => {
-          const dist = Math.hypot(dot.x - other.x, dot.y - other.y);
-          if (dist > 0 && dist < spacing + 30) {
+      // draw lines between nearby dots
+      for (let i = 0; i < numDots; i++) {
+        for (let j = i + 1; j < numDots; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = `rgba(0, 255, 200, ${1 - dist / maxDist})`;
+            ctx.lineWidth = 0.4;
             ctx.beginPath();
-            ctx.moveTo(dot.x, dot.y);
-            ctx.lineTo(other.x, other.y);
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
+
+      // draw dots
+      for (let dot of dots) {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,255,180,0.6)";
+        ctx.fill();
+
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        // bounce off edges
+        if (dot.x <= 0 || dot.x >= width) dot.vx *= -1;
+        if (dot.y <= 0 || dot.y >= height) dot.vy *= -1;
+      }
+
+      requestAnimationFrame(animate);
     };
 
-    draw();
+    animate();
+
     window.addEventListener("resize", () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight * 2;
-      draw();
     });
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none"
-      style={{ opacity: 0.4 }}
+      className="fixed top-0 left-0 w-full h-[200vh] z-0 pointer-events-none"
+      style={{ background: "transparent" }}
     />
   );
 };

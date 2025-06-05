@@ -14,7 +14,7 @@ const PlexusBackground = () => {
 
     const ctx = canvas.getContext("2d");
     let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = document.body.scrollHeight); // make it scrollable
+    let height = (canvas.height = document.documentElement.scrollHeight); // Use scrollHeight of html root
 
     let particles: { x: number; y: number; vx: number; vy: number }[] = [];
     const num = 60;
@@ -29,7 +29,6 @@ const PlexusBackground = () => {
     }
 
     let maxDist = 80;
-
     let lastTime = 0;
     const fps = 30;
     const interval = 1000 / fps;
@@ -77,7 +76,7 @@ const PlexusBackground = () => {
 
     const resize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = document.body.scrollHeight;
+      height = canvas.height = document.documentElement.scrollHeight;
     };
 
     window.addEventListener("resize", resize);
@@ -117,8 +116,8 @@ const PlexusBackground = () => {
       ref={canvasRef}
       initial={{ opacity: 0, y: 40 }}
       animate={controls}
-      className="absolute top-0 left-0 w-full z-0 pointer-events-none opacity-30"
-      style={{ height: `${document.body.scrollHeight}px` }}
+      className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30 z-0"
+      style={{ position: "absolute", top: 0 }}
     />
   );
 };

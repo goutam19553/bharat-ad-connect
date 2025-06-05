@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import AIAnalytics from "./pages/AIAnalytics";
-import { HumanAvatar } from "./components/HumanAvatar"; // ✅ Avatar import
+import { HumanAIAvatar } from "./components/HumanAIAvatar"; // ✅ Updated import
 
 // Lazy-loaded pages
 const AdSpaces = lazy(() => import("./pages/AdSpaces"));
@@ -114,9 +114,9 @@ const App = () => {
               </Suspense>
             </main>
 
-            {/* ✅ Human Avatar just above Footer */}
+            {/* ✅ HumanAIAvatar just above Footer */}
             <section className="bg-gray-900 py-10">
-              <HumanAvatar />
+              <HumanAIAvatar />
             </section>
 
             <Footer />

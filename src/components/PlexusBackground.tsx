@@ -1,84 +1,65 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 const PlexusBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     let width = canvas.width = window.innerWidth;
-    let height = canvas.height = document.body.scrollHeight;
+    let height = canvas.height = window.innerHeight * 2; // allow scroll
 
-    const dots = Array.from({ length: 80 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-    }));
+    const dots: { x: number; y: number }[] = [];
+    const spacing = 100;
 
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-
-      dots.forEach(dot => {
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-
-        if (dot.x < 0 || dot.x > width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > height) dot.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 1.2, 0, Math.PI * 2);
-        ctx.fillStyle = "#00ffe5";
-        ctx.shadowColor = "#00ffe5";
-        ctx.shadowBlur = 8;
-        ctx.fill();
-      });
-
-      // draw lines
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = `rgba(0, 255, 229, ${1 - dist / 100})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
+    for (let x = 0; x < width; x += spacing) {
+      for (let y = 0; y < height; y += spacing) {
+        dots.push({ x, y });
       }
-
-      requestAnimationFrame(draw);
     }
 
-    draw();
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeStyle = "rgba(0, 255, 200, 0.15)";
+      ctx.lineWidth = 0.5;
 
-    const onResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = document.body.scrollHeight;
+      dots.forEach(dot => {
+        // glowing dot
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,255,200,0.3)";
+        ctx.fill();
+
+        // connect nearby
+        dots.forEach(other => {
+          const dist = Math.hypot(dot.x - other.x, dot.y - other.y);
+          if (dist > 0 && dist < spacing + 30) {
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+        });
+      });
     };
-    window.addEventListener("resize", onResize);
 
-    return () => window.removeEventListener("resize", onResize);
+    draw();
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight * 2;
+      draw();
+    });
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100%",
-        zIndex: 0,
-        pointerEvents: "none",
-      }}
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ opacity: 0.4 }}
     />
   );
 };

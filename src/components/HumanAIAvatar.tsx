@@ -1,7 +1,7 @@
 // src/components/HumanAIAvatar.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Stage, useGLTF } from "@react-three/drei";
+import { Stage, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 const AvatarModel = () => {
@@ -22,15 +22,15 @@ const AvatarModel = () => {
     utterance.onstart = () => setSpeaking(true);
     utterance.onend = () => setSpeaking(false);
 
-    // Play speech
+    // Try to play speech (may be blocked on some browsers)
     speechSynthesis.speak(utterance);
   }, []);
 
-  // Animate the avatar if speaking
+  // Animate avatar if speaking
   useFrame(() => {
     if (speaking && avatarRef.current) {
-      avatarRef.current.rotation.y += 0.002;
-      avatarRef.current.position.y = Math.sin(Date.now() * 0.002) * 0.02;
+      avatarRef.current.rotation.y += 0.005;  // Slightly faster rotation for effect
+      avatarRef.current.position.y = Math.sin(Date.now() * 0.005) * 0.03;
     }
   });
 
@@ -46,7 +46,7 @@ const HumanAIAvatar = () => {
         <Stage environment="city" intensity={0.5}>
           <AvatarModel />
         </Stage>
-        <OrbitControls enableZoom={false} />
+        {/* OrbitControls removed to disable user interaction */}
       </Canvas>
     </div>
   );

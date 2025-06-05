@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import AIAnalytics from "./pages/AIAnalytics";
+import { HumanAvatar } from "./components/HumanAvatar"; // ✅ Avatar import
 
 // Lazy-loaded pages
 const AdSpaces = lazy(() => import("./pages/AdSpaces"));
@@ -19,9 +20,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const WallUpload = lazy(() => import("./pages/WallUpload"));
 const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage"));
 
-const queryClient = new QueryClient();
-
-// 👇 Create the "Earn Money" section as a separate component
+// ✅ "Earn Money" section
 const EarnMoneySection = () => {
   const navigate = useNavigate();
 
@@ -45,7 +44,7 @@ const EarnMoneySection = () => {
   );
 };
 
-// 👇 Updated "Government Support" section
+// ✅ "Government Support" section
 const GovernmentSupportSection = () => {
   const navigate = useNavigate();
 
@@ -72,6 +71,8 @@ const GovernmentSupportSection = () => {
     </section>
   );
 };
+
+const queryClient = new QueryClient();
 
 const App = () => {
   // ✅ Force dark mode by default
@@ -108,10 +109,16 @@ const App = () => {
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/government-support" element={<GovernmentSupportPage />} />
-                   <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
             </main>
+
+            {/* ✅ Human Avatar just above Footer */}
+            <section className="bg-gray-900 py-10">
+              <HumanAvatar />
+            </section>
+
             <Footer />
           </div>
         </BrowserRouter>

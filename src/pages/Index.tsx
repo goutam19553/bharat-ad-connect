@@ -193,8 +193,6 @@ const Index = () => {
       {/* Featured Ad Spaces */}
 {/* Featured Ad Spaces */}
 <section className="section relative bg-gray-50 dark:bg-gray-800">
-  {/* PlexusBackground canvas is assumed outside or above this section with z-index -1 or 0 */}
-
   <div className="container-custom relative z-10">
     <div className="text-center mb-12">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
@@ -212,7 +210,7 @@ const Index = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-300"
+          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl hover:ring-2 hover:ring-purple-400/50 transition duration-300 p-6"
         >
           <AdSpaceCard adSpace={adSpace} />
         </motion.div>

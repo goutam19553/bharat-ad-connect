@@ -321,15 +321,15 @@
 .animate-spin-slow {
   animation: spin-slow 2s linear infinite;
 }
+
 html, body {
   margin: 0;
   padding: 0;
   background: transparent;
   scroll-behavior: smooth;
-  font-family: 'Inter', sans-serif;
-}
-
+  font-family: 'Inter', sans-serif';
   height: 100%;
   overflow-x: hidden;
 }
+
 

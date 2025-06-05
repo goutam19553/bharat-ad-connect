@@ -9,8 +9,9 @@ const PlexusBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = document.body.scrollHeight);
 
-    const numDots = 120;
+    const numDots = 140;
     const maxDist = 120;
+    let hue = 180; // Start with cyan-blue
     const dots = Array.from({ length: numDots }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -19,16 +20,20 @@ const PlexusBackground = () => {
     }));
 
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
+      // Create trailing effect
+      ctx.fillStyle = "rgba(10,10,20,0.1)";
+      ctx.fillRect(0, 0, width, height);
 
-      // draw lines
+      hue = (hue + 0.5) % 360; // Cycle hue for neon effect
+
+      // Draw lines
       for (let i = 0; i < numDots; i++) {
         for (let j = i + 1; j < numDots; j++) {
           const dx = dots[i].x - dots[j].x;
           const dy = dots[i].y - dots[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < maxDist) {
-            ctx.strokeStyle = `rgba(0, 255, 200, ${1 - dist / maxDist})`;
+            ctx.strokeStyle = `hsla(${hue}, 100%, 70%, ${1 - dist / maxDist})`;
             ctx.lineWidth = 0.4;
             ctx.beginPath();
             ctx.moveTo(dots[i].x, dots[i].y);
@@ -38,11 +43,13 @@ const PlexusBackground = () => {
         }
       }
 
-      // draw dots
+      // Draw dots
       for (let dot of dots) {
         ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0,255,180,0.6)";
+        ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${(hue + 180) % 360}, 100%, 60%, 0.8)`;
+        ctx.shadowColor = ctx.fillStyle;
+        ctx.shadowBlur = 4;
         ctx.fill();
 
         dot.x += dot.vx;

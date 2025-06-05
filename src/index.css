@@ -321,38 +321,11 @@
 .animate-spin-slow {
   animation: spin-slow 2s linear infinite;
 }
-/* Aurora glowing gradient background */
-.aurora-gradient {
-  background: radial-gradient(
-      at 20% 40%,
-      rgba(0, 255, 245, 0.2),
-      transparent 60%
-    ),
-    radial-gradient(
-      at 80% 60%,
-      rgba(255, 0, 200, 0.15),
-      transparent 60%
-    ),
-    linear-gradient(
-      120deg,
-      rgba(0, 255, 245, 0.08),
-      rgba(255, 0, 200, 0.08)
-    );
-  background-blend-mode: screen;
-  animation: auroraMove 22s ease-in-out infinite;
-  background-size: 200% 200%;
-}
-
-/* Smooth scroll-linked motion */
-@keyframes auroraMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+body, html, #root {
+  background: #0a0a12; /* Dark base */
+  margin: 0; 
+  padding: 0; 
+  height: 100%;
+  overflow-x: hidden;
 }
 

@@ -205,14 +205,14 @@ const Index = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {featuredAdSpaces.map((adSpace, index) => (
         <motion.div
-          key={adSpace.id}
-          custom={index}
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6"
-          // solid background, no transparency
+  key={adSpace.id}
+  custom={index}
+  variants={fadeInUp}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-300 dark:border-gray-700"
+/>
         >
           <AdSpaceCard adSpace={adSpace} />
         </motion.div>

@@ -323,11 +323,12 @@
 }
 
 html, body {
-  background: transparent;
   margin: 0;
   padding: 0;
-  height: 100%;
+  background: #1f2937; /* Tailwind's gray-800 */
+  scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
 }
+
 

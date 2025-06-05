@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stage, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -8,7 +8,10 @@ const AvatarModel = () => {
   const avatarRef = useRef<THREE.Group>(null);
   const [speaking, setSpeaking] = useState(false);
 
-  useEffect(() => {
+  // Function to start speaking on click/touch
+  const handleSpeak = () => {
+    if (speaking) return; // Prevent overlapping speech
+
     const speechText = `Welcome to The Ad-Project, India's first PAN-India AdTech platform. We are transforming traditional advertising—like hoardings, wall ads, and billboards—into intelligent, eco-friendly, and immersive digital experiences using AI and AR. Whether you're a business, a government body, or a local property owner, our technology helps you plan smarter campaigns, boost visibility, and ensure full transparency. Join the future of outdoor advertising with The Ad-Project.`;
 
     const utterance = new SpeechSynthesisUtterance(speechText);
@@ -20,30 +23,36 @@ const AvatarModel = () => {
     utterance.onend = () => setSpeaking(false);
 
     speechSynthesis.speak(utterance);
-  }, []);
+  };
 
-  // Basic speaking animation: small up/down movement + subtle mouth open simulation by scaling Y
+  // Animate only when speaking: bobbing + lip sync scaling, no rotation
   useFrame(() => {
-    if (avatarRef.current) {
-      if (speaking) {
-        // Rotate slowly for liveliness
-        avatarRef.current.rotation.y += 0.002;
-        // Bobbing up and down smoothly
-        avatarRef.current.position.y = 0.02 * Math.sin(Date.now() * 0.005);
+    if (!avatarRef.current) return;
 
-        // Simple "lip-sync" effect: scale Y oscillates between 0.98 and 1.02
-        const mouthMovement = 1 + 0.02 * Math.sin(Date.now() * 0.03);
-        avatarRef.current.scale.set(1, mouthMovement, 1);
-      } else {
-        // Reset position and scale when not speaking
-        avatarRef.current.rotation.y += 0.001; // slow idle rotation
-        avatarRef.current.position.y = 0;
-        avatarRef.current.scale.set(1, 1, 1);
-      }
+    if (speaking) {
+      // Bobbing up and down smoothly
+      avatarRef.current.position.y = 0.02 * Math.sin(Date.now() * 0.005);
+
+      // Simple "lip-sync" effect: scale Y oscillates between 0.98 and 1.02
+      const mouthMovement = 1 + 0.02 * Math.sin(Date.now() * 0.03);
+      avatarRef.current.scale.set(1, mouthMovement, 1);
+    } else {
+      // Reset position and scale when not speaking
+      avatarRef.current.position.y = 0;
+      avatarRef.current.scale.set(1, 1, 1);
     }
   });
 
-  return <primitive object={scene} ref={avatarRef} scale={1} />;
+  return (
+    <primitive
+      object={scene}
+      ref={avatarRef}
+      scale={1}
+      onClick={handleSpeak}
+      onTouchStart={handleSpeak}
+      style={{ cursor: "pointer" }}
+    />
+  );
 };
 
 const HumanAIAvatar = () => {
@@ -60,7 +69,7 @@ const HumanAIAvatar = () => {
         <Stage environment="city" intensity={0.5} adjustCamera={false}>
           <AvatarModel />
         </Stage>
-        {/* No OrbitControls for no user interaction */}
+        {/* No user interaction controls */}
       </Canvas>
     </div>
   );

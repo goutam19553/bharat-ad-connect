@@ -238,7 +238,7 @@ const Index = () => {
            maxWidth: '600px'
          }}>
       <img 
-        src="/your-image-path.jpg" 
+        src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/BPAC_Main.png" 
         alt="Political Campaign Visual" 
         className="rounded-xl w-full h-auto object-cover shadow-xl"
       />

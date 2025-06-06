@@ -114,7 +114,7 @@ const Advertisers = () => {
             </div>
             <div className="hidden lg:block relative">
               <img
-                src="https://source.unsplash.com/featured/?billboard,city,advertising"
+                src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/cloud_gif.gif"
                 alt="Vibrant outdoor advertising in urban setting"
                 className="rounded-3xl shadow-2xl object-cover max-h-[480px] w-full"
                 loading="lazy"

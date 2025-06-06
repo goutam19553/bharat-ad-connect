@@ -226,26 +226,50 @@ const Index = () => {
 </section>
 
       
-  {/* Political Campaign Support Section */}
+ <style jsx>{`
+  @keyframes glowCycle {
+    0% {
+      box-shadow: 0 0 12px 4px #FF9933;
+    }
+    33% {
+      box-shadow: 0 0 12px 4px #ffffff;
+    }
+    66% {
+      box-shadow: 0 0 12px 4px #138808;
+    }
+    100% {
+      box-shadow: 0 0 12px 4px #FF9933;
+    }
+  }
+`}</style>
+
+{/* Political Campaign Support Section */}
 <section className="section bg-white dark:bg-gray-800">
   <div className="flex flex-col justify-center items-center py-10 space-y-8">
 
-    {/* Indian Flag Themed Image Box */}
-    <div className="border-4 rounded-2xl p-1"
-         style={{
-           borderImage: 'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
-           borderImageSlice: 1,
-           maxWidth: '600px'
-         }}>
-      <img 
-        src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/BPAC_Main.png" 
-        alt="Political Campaign Visual" 
-        className="rounded-xl w-full h-auto object-cover shadow-xl"
+    {/* Indian Flag Themed Glowing Image Box */}
+    <div
+      className="border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
+      style={{
+        borderImage:
+          'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
+        borderImageSlice: 1,
+        maxWidth: '600px'
+      }}
+    >
+      <img
+        src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/BPAC_Main.png"
+        alt="Political Campaign Visual"
+        className="rounded-xl w-full h-auto object-cover"
       />
     </div>
 
     {/* Political Campaign Support Button */}
-    <a href="https://political-campaign-rose.vercel.app/" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://political-campaign-rose.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <button className="relative px-10 py-5 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
         <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
         <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
@@ -260,7 +284,6 @@ const Index = () => {
         </span>
       </button>
     </a>
-
   </div>
 </section>
 

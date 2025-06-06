@@ -2,117 +2,160 @@ import { Link } from "react-router-dom";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import ContactForm from "@/components/ContactForm";
-import { CheckCircle, BarChart, Lightbulb, Target, MapPin, User, ArrowRight } from "lucide-react";
+import {
+  CheckCircle,
+  BarChart,
+  Lightbulb,
+  Target,
+  MapPin,
+  User,
+  ArrowRight,
+} from "lucide-react";
 
 const Advertisers = () => {
   const benefits = [
     {
       icon: <MapPin className="h-10 w-10 text-bharat-saffron" />,
-      title: "Prime Ad Spaces",
-      description: "Access exclusive advertising locations in high-traffic areas across major Indian cities."
+      title: "Exclusive Prime Ad Spaces",
+      description:
+        "Unlock handpicked, ultra-premium advertising locations in India’s busiest metros and emerging hubs — where your brand gets unrivaled visibility.",
     },
     {
       icon: <BarChart className="h-10 w-10 text-bharat-saffron" />,
-      title: "Data-Driven Decisions",
-      description: "Leverage foot traffic analysis and audience demographics to optimize ad placement."
+      title: "Cutting-Edge Data Insights",
+      description:
+        "Harness deep footfall analytics and audience intelligence to laser-target your ads — maximizing impact, minimizing waste.",
     },
     {
       icon: <Lightbulb className="h-10 w-10 text-bharat-saffron" />,
-      title: "AI Design Recommendations",
-      description: "Get intelligent design suggestions tailored to each location and target audience."
+      title: "AI-Driven Creative Genius",
+      description:
+        "Experience design innovation with AI-powered recommendations personalized for every locale, audience, and campaign goal.",
     },
     {
       icon: <Target className="h-10 w-10 text-bharat-saffron" />,
-      title: "AR Preview Technology",
-      description: "See exactly how your ad will look in real-world locations before committing."
+      title: "Immersive AR Previews",
+      description:
+        "Visualize your ad in real-world settings before launch through stunning augmented reality — see success before you commit.",
     },
     {
       icon: <CheckCircle className="h-10 w-10 text-bharat-saffron" />,
-      title: "Quality Guaranteed",
-      description: "All ad spaces are verified and regularly maintained to ensure quality."
+      title: "Verified Quality & Reliability",
+      description:
+        "Every ad space is vetted and maintained with strict quality checks, ensuring your brand shines on the best canvas possible.",
     },
     {
       icon: <User className="h-10 w-10 text-bharat-saffron" />,
-      title: "Dedicated Support",
-      description: "Get personalized assistance from our expert team throughout your campaign."
-    }
+      title: "Dedicated Campaign Support",
+      description:
+        "From ideation to installation, our expert team is your trusted partner — guiding you seamlessly at every step.",
+    },
   ];
 
   const howItWorks = [
     {
       number: "01",
-      title: "Search & Filter",
-      description: "Browse our extensive database of ad spaces, filtering by location, size, budget, and more."
+      title: "Search & Refine",
+      description:
+        "Explore an extensive, curated marketplace — filter by city, size, budget, and demographics to find your perfect ad spot.",
     },
     {
       number: "02",
-      title: "Preview with AR",
-      description: "Use our AR technology to visualize how your ad will look in the selected space."
+      title: "Visualize with AR",
+      description:
+        "Step into the future with our AR tool — see exactly how your ad looks in context, boosting confidence and creativity.",
     },
     {
       number: "03",
-      title: "Get AI Recommendations",
-      description: "Receive AI-powered design suggestions optimized for your selected location."
+      title: "Leverage AI Insights",
+      description:
+        "Unlock powerful AI-driven design and placement suggestions, tailored to maximize engagement and brand recall.",
     },
     {
       number: "04",
-      title: "Book & Deploy",
-      description: "Complete your booking online and work with our partners for printing and installation."
-    }
+      title: "Seamless Booking & Launch",
+      description:
+        "Book your spot in a few clicks, and collaborate with our trusted printing & installation partners for flawless execution.",
+    },
   ];
 
   return (
     <div className="transition-colors duration-300">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Hero Header */}
+      <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/95 pt-36 pb-20 text-white">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-                Transform Your Advertising Strategy
+              <h1 className="text-5xl md:text-6xl font-heading font-extrabold leading-tight mb-6 drop-shadow-lg">
+                Revolutionize Your Outdoor Advertising <br />
+                <span className="text-bharat-saffron">with Bharat-Ad</span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8">
-                Access premium outdoor ad spaces across India and leverage our AI and AR technology 
-                to maximize your campaign's effectiveness.
+              <p className="text-2xl md:text-2xl text-gray-300 mb-10 max-w-xl leading-relaxed tracking-wide">
+                Discover a new era of advertising excellence — premium ad
+                spaces, AI-powered designs, and immersive AR previews tailored
+                to India’s vibrant cities and audiences.
               </p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link to="/ad-spaces" className="btn-primary">
-                  Find Ad Spaces
+              <div className="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-6">
+                <Link
+                  to="/ad-spaces"
+                  className="btn-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  aria-label="Find Ad Spaces"
+                >
+                  Find Your Perfect Ad Space
                 </Link>
-                <Link to="/contact" className="bg-white text-bharat-navy hover:bg-gray-100 font-bold py-3 px-6 rounded-md transition-all duration-200">
-                  Contact Us
+                <Link
+                  to="/contact"
+                  className="bg-white text-bharat-navy hover:bg-gray-100 font-semibold py-4 px-8 rounded-md shadow-md transition duration-300"
+                  aria-label="Contact Us"
+                >
+                  Talk to Our Experts
                 </Link>
               </div>
             </div>
-            <div className="hidden lg:block">
-              <img 
-                src="https://source.unsplash.com/photo-1498050108023-c5249f4df085" 
-                alt="Outdoor Advertising" 
-                className="rounded-xl shadow-xl"
+            <div className="hidden lg:block relative">
+              <img
+                src="https://source.unsplash.com/featured/?billboard,city,advertising"
+                alt="Vibrant outdoor advertising in urban setting"
+                className="rounded-3xl shadow-2xl object-cover max-h-[480px] w-full"
+                loading="lazy"
               />
+              <div className="absolute bottom-6 right-6 bg-bharat-saffron/30 rounded-full p-4 animate-pulse"></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Benefits */}
-      <section className="section bg-white dark:bg-gray-900">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
-              Why Advertise With Bharat-Ad
+      <section className="section bg-white dark:bg-gray-900 py-20">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-extrabold mb-4 text-gray-900 dark:text-white tracking-tight">
+              Why Bharat-Ad? Unlock Game-Changing Benefits
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our innovative platform gives you a competitive edge in the outdoor advertising space
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Bharat-Ad blends cutting-edge technology with unmatched local
+              expertise to put your brand in the spotlight — wherever your
+              audience goes.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg card-hover transition-all duration-300">
-                <div className="mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-heading font-semibold mb-2 text-gray-900 dark:text-white">{benefit.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {benefits.map((benefit, idx) => (
+              <div
+                key={idx}
+                className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+                tabIndex={0}
+                aria-label={`Benefit: ${benefit.title}`}
+              >
+                <div className="mb-5 text-bharat-saffron group-hover:scale-110 transition-transform duration-300">
+                  {benefit.icon}
+                </div>
+                <h3 className="text-2xl font-heading font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-bharat-saffron transition-colors duration-300">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
             ))}
           </div>
@@ -120,30 +163,36 @@ const Advertisers = () => {
       </section>
 
       {/* How It Works */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
-              How It Works
+      <section className="section bg-gray-50 dark:bg-gray-800 py-20">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-extrabold mb-4 text-gray-900 dark:text-white tracking-tight">
+              How Bharat-Ad Works: Your Journey to Advertising Mastery
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our streamlined process makes finding and booking ad spaces simple and effective
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              A seamless, intuitive process powered by smart tech and expert
+              support — designed to get your message seen and remembered.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {howItWorks.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md relative z-10 h-full card-hover transition-all duration-300">
-                  <div className="text-5xl font-bold text-bharat-saffron opacity-20 absolute top-2 right-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+            {howItWorks.map((step, idx) => (
+              <div key={idx} className="relative">
+                <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg relative z-20 h-full transition-transform hover:-translate-y-2 duration-300 cursor-default">
+                  <div className="text-6xl font-extrabold text-bharat-saffron opacity-15 absolute top-4 right-6 select-none pointer-events-none">
                     {step.number}
                   </div>
-                  <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900 dark:text-white">{step.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+                  <h3 className="text-2xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                {index < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-0">
-                    <ArrowRight className="h-8 w-8 text-bharat-teal" />
+
+                {idx < howItWorks.length - 1 && (
+                  <div className="hidden lg:flex absolute top-1/2 right-[-2rem] transform -translate-y-1/2 z-10">
+                    <ArrowRight className="h-10 w-10 text-bharat-teal animate-bounce" />
                   </div>
                 )}
               </div>
@@ -153,37 +202,42 @@ const Advertisers = () => {
       </section>
 
       {/* AI Design Section */}
-      <section className="section bg-white dark:bg-gray-900">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
-              AI-Powered Design Optimization
+      <section className="section bg-white dark:bg-gray-900 py-20">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="text-center mb-14 max-w-4xl mx-auto">
+            <h2 className="text-4xl font-heading font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">
+              Next-Level AI-Powered Design Optimization
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our artificial intelligence analyzes locations, audiences, and environments to create ad designs
-              that drive maximum engagement and brand recall
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              Let Bharat-Ad’s intelligent algorithms analyze every angle — from
+              location nuances to audience preferences — delivering designs
+              crafted to captivate and convert.
             </p>
           </div>
 
           <AIDesignDemo />
 
-          <div className="mt-12 text-center">
-            <Link to="/ad-spaces" className="btn-primary">
-              Find Ad Spaces to Apply AI Design
+          <div className="mt-14 text-center">
+            <Link
+              to="/ad-spaces"
+              className="btn-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              Explore Ad Spaces with AI Designs
             </Link>
           </div>
         </div>
       </section>
 
       {/* Foot Traffic Analysis */}
-      <section className="section bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
-              Data-Driven Foot Traffic Analysis
+      <section className="section bg-gray-50 dark:bg-gray-800 py-20">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="text-center mb-14 max-w-4xl mx-auto">
+            <h2 className="text-4xl font-heading font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">
+              Data-Driven Foot Traffic Analysis — Precision Targeting
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Make informed decisions based on comprehensive pedestrian and vehicle traffic patterns
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              Dive deep into pedestrian and vehicle flow data to uncover the
+              perfect moments and places for your brand to shine brightest.
             </p>
           </div>
 
@@ -191,29 +245,38 @@ const Advertisers = () => {
         </div>
       </section>
 
-     
-             
-      {/* Contact Form */}
-      <section className="section bg-white dark:bg-gray-900">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Contact Section */}
+      <section className="section bg-white dark:bg-gray-900 py-20">
+        <div className="container-custom max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
-                Ready to Transform Your Advertising?
+              <h2 className="text-4xl font-heading font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">
+                Ready to Elevate Your Brand’s Presence?
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                Get in touch with our team to learn more about our premium ad spaces and how 
-                our AI and AR technology can boost your advertising effectiveness.
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-lg">
+                Connect with our passionate team and discover how Bharat-Ad’s
+                innovative ad platform, backed by AI and AR technology, can
+                transform your advertising strategy and amplify your impact.
               </p>
 
-              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg mb-6 transition-all duration-300">
-                <h3 className="text-xl font-heading font-semibold mb-4 text-gray-900 dark:text-white">Our Advertisers Include:</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {["Retail", "Real Estate", "Technology", "Finance", "Entertainment", "Hospitality"].map((industry) => (
-                    <div key={industry} className="flex items-center text-gray-700 dark:text-gray-300">
-                      <svg className="h-5 w-5 text-bharat-teal mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+              <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl mb-12 shadow-inner">
+                <h3 className="text-2xl font-heading font-semibold mb-6 text-gray-900 dark:text-white">
+                  Trusted by Industry Leaders Across Sectors
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-gray-700 dark:text-gray-300">
+                  {[
+                    "Retail",
+                    "Real Estate",
+                    "Technology",
+                    "Finance",
+                    "Entertainment",
+                    "Hospitality",
+                  ].map((industry) => (
+                    <div
+                      key={industry}
+                      className="flex items-center gap-3 font-medium"
+                    >
+                      <CheckCircle className="h-6 w-6 text-bharat-teal" />
                       <span>{industry}</span>
                     </div>
                   ))}

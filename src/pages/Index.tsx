@@ -241,20 +241,57 @@ const Index = () => {
       box-shadow: 0 0 12px 4px #FF9933;
     }
   }
+
+  @keyframes wordEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .film-text span {
+    display: inline-block;
+    opacity: 0;
+    animation: wordEnter 0.6s ease-out forwards;
+  }
+
+  .film-text span:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .film-text span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  .film-text span:nth-child(3) {
+    animation-delay: 0.8s;
+  }
+  .film-text span:nth-child(4) {
+    animation-delay: 1.1s;
+  }
+  .film-text span:nth-child(5) {
+    animation-delay: 1.4s;
+  }
+  .film-text span:nth-child(6) {
+    animation-delay: 1.7s;
+  }
+  .film-text span:nth-child(7) {
+    animation-delay: 2s;
+  }
 `}</style>
 
-{/* Political Campaign Support Section */}
 <section className="section bg-white dark:bg-gray-800">
   <div className="flex flex-col justify-center items-center py-10 space-y-8">
-
-    {/* Indian Flag Themed Glowing Image Box with Text Overlay */}
+    {/* Glowing Indian Flag Border Image */}
     <div
       className="relative border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
       style={{
         borderImage:
           'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
         borderImageSlice: 1,
-        maxWidth: '600px'
+        maxWidth: '600px',
       }}
     >
       <img
@@ -262,12 +299,25 @@ const Index = () => {
         alt="Political Campaign Visual"
         className="rounded-xl w-full h-auto object-cover"
       />
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/30 dark:bg-black/40 text-black dark:text-white px-6 py-2 rounded-full backdrop-blur-md text-center text-sm sm:text-base font-semibold shadow-lg">
-        Scan. See. Support – Ads that Speak to Every Indian.
+
+      {/* Animated Slogan Text */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 backdrop-blur-md bg-white/30 dark:bg-black/40 text-black dark:text-white rounded-full shadow-lg text-center font-semibold text-sm sm:text-base whitespace-nowrap overflow-hidden">
+        <span className="film-text tracking-wide">
+          <span>Scan.</span>{" "}
+          <span>See.</span>{" "}
+          <span>Support</span>{" "}
+          <span>–</span>{" "}
+          <span>Ads</span>{" "}
+          <span>that</span>{" "}
+          <span>Speak</span>{" "}
+          <span>to</span>{" "}
+          <span>Every</span>{" "}
+          <span>Indian.</span>
+        </span>
       </div>
     </div>
 
-    {/* Political Campaign Support Button */}
+    {/* Button */}
     <a
       href="https://political-campaign-rose.vercel.app/"
       target="_blank"
@@ -289,7 +339,6 @@ const Index = () => {
     </a>
   </div>
 </section>
-
 
 
       {/* AI/AR Design Demos */}

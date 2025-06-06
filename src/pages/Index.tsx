@@ -226,7 +226,7 @@ const Index = () => {
 </section>
 
       
- <style jsx>{`
+<style jsx>{`
   @keyframes glowCycle {
     0% {
       box-shadow: 0 0 12px 4px #FF9933;
@@ -247,9 +247,9 @@ const Index = () => {
 <section className="section bg-white dark:bg-gray-800">
   <div className="flex flex-col justify-center items-center py-10 space-y-8">
 
-    {/* Indian Flag Themed Glowing Image Box */}
+    {/* Indian Flag Themed Glowing Image Box with Text Overlay */}
     <div
-      className="border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
+      className="relative border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
       style={{
         borderImage:
           'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
@@ -262,6 +262,9 @@ const Index = () => {
         alt="Political Campaign Visual"
         className="rounded-xl w-full h-auto object-cover"
       />
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/30 dark:bg-black/40 text-black dark:text-white px-6 py-2 rounded-full backdrop-blur-md text-center text-sm sm:text-base font-semibold shadow-lg">
+        Scan. See. Support – Ads that Speak to Every Indian.
+      </div>
     </div>
 
     {/* Political Campaign Support Button */}
@@ -286,6 +289,7 @@ const Index = () => {
     </a>
   </div>
 </section>
+
 
 
       {/* AI/AR Design Demos */}

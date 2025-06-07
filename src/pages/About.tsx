@@ -119,64 +119,123 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Values - Glowing + Animated */}
-      <section className="bg-gray-900 py-20">
-        <div className="container-custom">
-          <h2 className="text-4xl font-heading font-bold text-white mb-12 text-center animate-fade-in">
-            Our Core Values
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 animate-slide-up">
-            {[
-              "Innovation in every solution we provide",
-              "Transparency in all our dealings and transactions",
-              "Excellence in customer service and support",
-              "Data-driven decision making for optimal results"
-            ].map((value, idx) => (
-              <div
-                key={idx}
-                className="bg-gradient-to-tr from-bharat-navy/70 to-gray-800 p-6 rounded-xl border border-bharat-teal shadow-xl hover:shadow-bharat-teal/50 transform transition duration-300 hover:scale-105"
-              >
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="h-6 w-6 text-bharat-teal shrink-0 mt-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <p className="text-gray-200">{value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+     {/* Our Core Values - Animated Branch Tree */}
+<section className="bg-gray-900 py-28 relative overflow-hidden">
+  <div className="container-custom relative z-10">
+    <h2 className="text-5xl font-heading font-bold text-white mb-20 text-center animate-fade-in">
+      Our Core Values
+    </h2>
+
+    {/* Central Core - Why We’re Unique */}
+    <div className="relative w-full flex justify-center">
+      <div className="relative">
+        <div className="rounded-full w-32 h-32 bg-bharat-teal flex items-center justify-center text-center text-white font-bold text-lg shadow-lg glow-core">
+          Why We’re<br />Unique
         </div>
 
-        {/* Glow & animation */}
-        <style>{`
-          .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-          }
-          .animate-slide-up {
-            animation: slideUp 1s ease-out forwards;
-            opacity: 0;
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-        `}</style>
-      </section>
+        {/* Connector lines */}
+        <div className="absolute top-1/2 left-1/2 w-[2px] h-60 bg-bharat-teal -translate-x-1/2"></div>
+        <div className="absolute top-1/2 left-1/2 w-60 h-[2px] bg-bharat-teal -translate-y-1/2"></div>
+        <div className="absolute top-1/2 left-1/2 w-[2px] h-60 bg-bharat-teal rotate-45 origin-top"></div>
+        <div className="absolute top-1/2 left-1/2 w-[2px] h-60 bg-bharat-teal -rotate-45 origin-top"></div>
+      </div>
+    </div>
+
+    {/* Branch Nodes */}
+    <div className="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 px-4 animate-slide-up">
+      {[
+        {
+          title: "Innovation First",
+          description:
+            "We blend AR, AI, geospatial tools, and real-world data to give advertisers cutting-edge campaign control no other OOH platform in India currently offers."
+        },
+        {
+          title: "Radical Transparency",
+          description:
+            "From pricing and visibility reports to government-compliant tax tracking, we ensure complete clarity for advertisers and authorities alike."
+        },
+        {
+          title: "Eco-Driven Campaigns",
+          description:
+            "We promote biodegradable, fabric-based ad materials and tree-safe installations to align with green India goals."
+        },
+        {
+          title: "Hyperlocal to PAN-India",
+          description:
+            "Plan and launch your outdoor ads in multiple cities remotely — whether it’s a rural wall painting or a top mall LED, we’ve mapped it."
+        },
+        {
+          title: "Tech-Powered Storytelling",
+          description:
+            "QR-powered AR experiences turn passive viewers into engaged consumers by unlocking digital content behind every printed ad."
+        },
+        {
+          title: "AI Ad Planner",
+          description:
+            "Our intelligent system helps advertisers predict best locations using foot traffic heatmaps, past performance, and demographic fit."
+        },
+      ].map((value, index) => (
+        <div
+          key={index}
+          className="relative bg-gradient-to-tr from-bharat-navy/70 to-gray-800 p-6 rounded-xl border border-bharat-teal shadow-xl hover:shadow-bharat-teal/50 transition-all duration-300 group"
+        >
+          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-bharat-teal">{value.title}</h3>
+          <p className="text-gray-300 text-sm">{value.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Glow Background Effect */}
+  <div className="absolute -top-20 -left-20 w-96 h-96 bg-bharat-teal/20 rounded-full blur-3xl animate-pulse-slow"></div>
+  <div className="absolute -bottom-32 -right-20 w-80 h-80 bg-bharat-teal/20 rounded-full blur-2xl animate-pulse-slow"></div>
+
+  {/* Animations */}
+  <style>{`
+    .glow-core {
+      animation: glowPulse 2s infinite ease-in-out;
+      box-shadow: 0 0 20px #14b8a6, 0 0 60px #14b8a6aa;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 0 20px #14b8a6, 0 0 60px #14b8a6aa;
+      }
+      50% {
+        box-shadow: 0 0 40px #14b8a6, 0 0 80px #14b8a6cc;
+      }
+    }
+
+    .animate-fade-in {
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .animate-slide-up {
+      opacity: 0;
+      animation: slideUp 1.4s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-pulse-slow {
+      animation: pulseSlow 6s infinite alternate;
+    }
+
+    @keyframes pulseSlow {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+  `}</style>
+</section>
 
       {/* Team */}
       <section className="bg-gray-800 py-20">

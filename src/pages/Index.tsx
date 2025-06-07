@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
@@ -9,7 +9,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-import PlexusBackground from "@/components/PlexusBackground";
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -117,16 +117,13 @@ const Index = () => {
 
   return (
     <div>
-     {/* Hero Section (no Plexus) */}
+      {/* Hero Section (no Plexus) */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
-  
-     {/* Benefits */}
+ 
+      {/* Benefits */}
 <div className="relative z-0 bg-gray-800">
-  {/* Plexus background placed absolutely behind content */}
-  <PlexusBackground className="absolute inset-0 -z-10 opacity-60" />
-
   <section className="section bg-transparent">
     <div className="container-custom relative z-10">
       <div className="text-center mb-12">
@@ -189,9 +186,8 @@ const Index = () => {
       </div>
     </div>
   </section>
-  
+ 
       {/* Featured Ad Spaces */}
-{/* Featured Ad Spaces */}
 <section className="section relative bg-gray-50 dark:bg-gray-800">
   <div className="container-custom relative z-10">
     <div className="text-center mb-12">
@@ -225,7 +221,7 @@ const Index = () => {
   </div>
 </section>
 
-      
+     
 <style jsx>{`
   @keyframes glowCycle {
     0% {
@@ -345,11 +341,8 @@ const Index = () => {
       <AIDesignDemo />
       <FootTrafficDemo />
 
-         {/* How It Works Section - ADDED */}
+        {/* How It Works Section - ADDED */}
 <div className="relative z-0 bg-gray-800">
-  {/* Plexus background placed absolutely behind content */}
-  <PlexusBackground className="absolute inset-0 -z-10 opacity-60" />
-
   <section className="section bg-transparent">
     <div className="container-custom relative z-10">
       <HowItWorks />
@@ -368,7 +361,7 @@ const Index = () => {
           </section>
         </div>
       </div>
-     );
+      );
 };
 
 export default Index;

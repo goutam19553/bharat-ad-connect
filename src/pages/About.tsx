@@ -119,64 +119,73 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Values - Glowing + Animated */}
-      <section className="bg-gray-900 py-20">
-        <div className="container-custom">
-          <h2 className="text-4xl font-heading font-bold text-white mb-12 text-center animate-fade-in">
-            Our Core Values
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 animate-slide-up">
-            {[
-              "Innovation in every solution we provide",
-              "Transparency in all our dealings and transactions",
-              "Excellence in customer service and support",
-              "Data-driven decision making for optimal results"
-            ].map((value, idx) => (
-              <div
-                key={idx}
-                className="bg-gradient-to-tr from-bharat-navy/70 to-gray-800 p-6 rounded-xl border border-bharat-teal shadow-xl hover:shadow-bharat-teal/50 transform transition duration-300 hover:scale-105"
-              >
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="h-6 w-6 text-bharat-teal shrink-0 mt-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <p className="text-gray-200">{value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    {/* Our Values - Detailed paragraph style */}
+<section className="bg-gray-900 py-20">
+  <div className="container-custom max-w-4xl mx-auto">
+    <h2 className="text-4xl font-heading font-bold text-white mb-16 text-center animate-fade-in">
+      Our Core Values
+    </h2>
 
-        {/* Glow & animation */}
-        <style>{`
-          .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-          }
-          .animate-slide-up {
-            animation: slideUp 1s ease-out forwards;
-            opacity: 0;
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-        `}</style>
-      </section>
+    {[
+      {
+        title: "Innovation in every solution we provide",
+        content:
+          `At the heart of our company lies a relentless drive to innovate. We constantly explore emerging technologies such as Artificial Intelligence, Augmented Reality, and geospatial analytics to revolutionize outdoor advertising. 
+          Our platform offers advertisers cutting-edge tools to create smarter, more engaging campaigns that deliver measurable impact and a competitive edge in a dynamic marketplace.`,
+      },
+      {
+        title: "Transparency in all our dealings and transactions",
+        content:
+          `We believe that trust and openness are fundamental to building lasting relationships with our clients and partners. 
+          Our platform ensures clear pricing models, real-time insights into campaign performance, and full compliance with government regulations. 
+          By maintaining complete transparency, we empower advertisers to make confident decisions and foster trust across the entire advertising ecosystem.`,
+      },
+      {
+        title: "Excellence in customer service and support",
+        content:
+          `Providing exceptional customer service is one of our top priorities. From onboarding to campaign execution and beyond, 
+          our dedicated team offers personalized, responsive assistance tailored to each client's unique needs. 
+          We are committed to ensuring a seamless experience, addressing challenges promptly, and delivering proactive support to help our customers succeed.`,
+      },
+      {
+        title: "Data-driven decision making for optimal results",
+        content:
+          `Our commitment to leveraging data is unwavering. Through advanced data analytics and machine learning, 
+          we equip advertisers with actionable insights that optimize ad placements, budget allocations, and campaign strategies. 
+          This ensures that every advertising investment is maximized to reach the right audience at the right time, driving superior business outcomes.`,
+      },
+    ].map(({ title, content }, idx) => (
+      <div
+        key={idx}
+        className="bg-gradient-to-tr from-bharat-navy/70 to-gray-800 p-8 rounded-xl border border-bharat-teal shadow-xl mb-12 animate-slide-up hover:shadow-bharat-teal/50 transition-transform duration-300 hover:scale-105"
+      >
+        <h3 className="text-bharat-teal font-heading font-semibold text-2xl mb-4">{title}</h3>
+        <p className="text-gray-300 leading-relaxed whitespace-pre-line">{content}</p>
+      </div>
+    ))}
+  </div>
+
+  {/* Glow & animation */}
+  <style>{`
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+    .animate-slide-up {
+      animation: slideUp 1s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `}</style>
+</section>
+
 
       {/* Team */}
       <section className="bg-gray-800 py-20">

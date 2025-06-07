@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import AIAnalytics from "./pages/AIAnalytics";
-import ParallaxSection from "@/components/ParallaxSection";
+
 // Lazy-loaded pages
 const AdSpaces = lazy(() => import("./pages/AdSpaces"));
 const Advertisers = lazy(() => import("./pages/Advertisers"));
@@ -94,8 +94,7 @@ const App = () => {
                     path="/"
                     element={(
                       <>
-                        <Index />
-                        <ParallaxSection />
+                        <Index />          
                         <EarnMoneySection />
                         <GovernmentSupportSection />
                       </>

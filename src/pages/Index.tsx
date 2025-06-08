@@ -186,7 +186,23 @@ const Index = () => {
       </div>
     </div>
   </section>
- 
+
+<section className="bg-gray-100 dark:bg-gray-900 py-16">
+  <div className="container-custom text-center">
+    <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">📊 Trusted Across India</h2>
+    <p className="mb-10 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      Our platform is empowering India's advertising revolution with data, visibility, and innovation.
+    </p>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div><h3 className="text-4xl font-bold text-bharat-saffron">50K+</h3><p className="text-gray-500 dark:text-gray-300">Ads Displayed</p></div>
+      <div><h3 className="text-4xl font-bold text-bharat-saffron">10K+</h3><p className="text-gray-500 dark:text-gray-300">Verified Locations</p></div>
+      <div><h3 className="text-4xl font-bold text-bharat-saffron">300+</h3><p className="text-gray-500 dark:text-gray-300">Cities Covered</p></div>
+      <div><h3 className="text-4xl font-bold text-bharat-saffron">24/7</h3><p className="text-gray-500 dark:text-gray-300">Support & Tracking</p></div>
+    </div>
+  </div>
+</section>
+
+  
       {/* Featured Ad Spaces */}
 <section className="section relative bg-gray-50 dark:bg-gray-800">
   <div className="container-custom relative z-10">

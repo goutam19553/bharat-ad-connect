@@ -1,88 +1,36 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // Simulate loading time for the effect
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <>
-      {/* 3D Cube Spinner */}
-      {isLoading && (
-        <div className="loader-container">
-          <div className="cube-spinner">
-            <div className="front"></div>
-            <div className="back"></div>
-            <div className="left"></div>
-            <div className="right"></div>
-            <div className="top"></div>
-            <div className="bottom"></div>
-          </div>
-        </div>
-      )}
-
-      <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-        {/* 🔥 Video Background with Poster */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/hero-video-poster.webp"
-          className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
-        >
-          <source src="" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* 🔲 Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-0" />
-
-        {/* 📦 Main Content */}
-        <div className="container-custom relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <div className="relative">
-                <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
-                  <img
-                    src=""
-                    alt="Discover"
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -left-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                  <div className="bg-bharat-saffron p-3 rounded">
-                    <p className="text-white font-bold">AI-Powered</p>
-                  </div>
-                </div>
-                <div className="absolute -top-4 -right-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                  <div className="bg-bharat-navy p-3 rounded">
-                    <p className="text-white font-bold">AR Preview</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ✅ "AI & AR Experience" Button Positioned Below All Content */}
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/ai-analytics"
-              className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-            >
-              👉AI & AR Experience👈
-            </Link>
-          </div>
-        </div>
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* ✅ Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center z-0"
+        style={{
+          backgroundImage:
+            "url('https://www.adinnoutdoors.com/wp-content/uploads/2024/04/banner-outdoor1.jpg')",
+        }}
+      >
+        {/* Optional: Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
-    </>
+
+      {/* ✅ Hero Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg">
+          The Ad-Project
+        </h1>
+        <p className="mt-4 text-lg md:text-2xl max-w-2xl drop-shadow-md">
+          India’s First PAN-India Traditional AdTech Platform Empowering Brands with AI & AR Ad Campaigns
+        </p>
+        <Link
+          to="/ai-analytics"
+          className="mt-8 bg-white text-black font-bold py-3 px-6 rounded-full text-lg hover:bg-gray-200 transition"
+        >
+          👉 Explore AI & AR Experience
+        </Link>
+      </div>
+    </section>
   );
 };
 

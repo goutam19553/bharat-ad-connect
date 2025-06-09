@@ -17,12 +17,10 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Next slide handler
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % banners.length);
   };
 
-  // Previous slide handler
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length);
   };
@@ -43,20 +41,12 @@ const Hero = () => {
         </div>
       )}
 
-      <div
-        className="relative overflow-hidden mx-auto"
-        style={{
-          width: "1536px",
-          height: "1024px",
-        }}
-      >
+      <div className="relative w-full max-h-[700px] overflow-hidden mx-auto">
         {/* Banner Slider */}
         <img
           src={banners[currentIndex]}
           alt={`Banner ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
-          width={1536}
-          height={1024}
+          className="w-full h-[600px] md:h-[700px] object-cover"
           loading="eager"
           draggable={false}
         />
@@ -84,7 +74,7 @@ const Hero = () => {
         <div className="container-custom relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              {/* You can add your hero text/content here if needed */}
+              {/* Add your hero text/content here */}
             </div>
           </div>
         </div>

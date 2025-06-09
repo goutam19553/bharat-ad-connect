@@ -2,37 +2,26 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <!-- ✅ Corrected viewport for full mobile responsiveness -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    
+    <meta name="viewport" content="width=1024" />
     <title>The Ad-Project | Outdoor Advertising Marketplace</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-    
     <meta name="description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta name="author" content="The Ad-Project" />
 
-    <!-- Open Graph Meta -->
     <meta property="og:title" content="The Ad-Project | Outdoor Advertising Marketplace" />
     <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Supabase (for data fetching) -->
+    <!-- Supabase CDN - fixed import for createClient -->
     <script type="module">
       import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-      const supabase = createClient(
-        'https://eemwdgvywfjdvvhewglt.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE'
-      );
+      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE');
 
       async function fetchData() {
         const { data, error } = await supabase.from('wall-spaces').select('*');
@@ -46,24 +35,21 @@
       fetchData();
     </script>
 
-    <!-- Prevent font zooming and apply full height rules -->
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Prevent mobile browsers from shrinking text -->
     <style>
       html {
         -webkit-text-size-adjust: 100%;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
       }
     </style>
   </head>
 
   <body class="transition-colors duration-300 bg-gray-900 text-gray-100">
-    <div id="root" class="min-h-screen"></div>
+    <div id="root"></div>
 
-    <!-- Main App -->
+    <!-- GPT & App Scripts -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -75,7 +75,7 @@ const GovernmentSupportSection = () => {
 
 const ContactForm = () => {
   return (
-    <section className="py-20 px-6 bg-white dark:bg-gray-950" id="contact">
+    <section className="py-20 px-6 bg-white dark:bg-gray-900" id="contact">
       <div className="max-w-4xl mx-auto rounded-xl shadow-2xl p-10 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-black border border-gray-200 dark:border-gray-700">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800 dark:text-white">
           Contact Us

@@ -4,6 +4,7 @@ const banners = [
   "/banner1.png",
   "/banner2.png",
   "/banner3.png",
+  "/banner4.png",
 ];
 
 const Hero = () => {

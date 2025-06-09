@@ -152,6 +152,10 @@ const config: Config = {
         "swipe-glow-up": "swipe-glow-up 3s infinite linear",
         "swipe-glow-down": "swipe-glow-down 3s infinite linear",
         "spin-fast": "spin 0.7s linear infinite",
+    colors: {
+  'bharat-green': '#0E9F6E',
+  'bharat-saffron': '#FF9933',
+}
       },
     },
   },

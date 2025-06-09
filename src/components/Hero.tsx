@@ -7,13 +7,23 @@ const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // Simulate loading time for the effect
+    }, 3000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Fix mobile vh issue by setting CSS variable dynamically (optional)
+  useEffect(() => {
+    function setVh() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
   }, []);
 
   return (
     <>
-      {/* 3D Cube Spinner */}
       {isLoading && (
         <div className="loader-container fixed inset-0 flex items-center justify-center bg-black z-50">
           <div className="cube-spinner">
@@ -27,8 +37,14 @@ const Hero = () => {
         </div>
       )}
 
-      <div className="relative min-h-screen overflow-hidden flex flex-col justify-center">
-        {/* Video Background with Poster */}
+      <div
+        className="relative overflow-hidden flex flex-col justify-center"
+        style={{
+          height: "calc(var(--vh, 1vh) * 100)", // Use custom --vh variable for mobile vh fix
+          minHeight: "100vh", // fallback for desktop
+        }}
+      >
+        {/* Video Background */}
         <video
           autoPlay
           loop

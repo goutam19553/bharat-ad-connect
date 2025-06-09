@@ -84,23 +84,7 @@ Connect with real-world ad spaces across the country using smart maps, AR previe
               </div>
             </div>
 
-            <div className="relative">
-              <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
-                <img src="/images/your-image.jpg" alt="Discover" className="rounded-lg w-full h-auto" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                <div className="bg-bharat-saffron p-3 rounded">
-                  <p className="text-white font-bold">AI-Powered</p>
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                <div className="bg-bharat-navy p-3 rounded">
-                  <p className="text-white font-bold">AR Preview</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
+            
           {/* ✅ "AI & AR Experience" Button Positioned Below All Content */}
           <div className="mt-12 flex justify-center">
             <Link

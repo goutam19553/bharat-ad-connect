@@ -2,7 +2,7 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=1024" />
     <title>The Ad-Project | Outdoor Advertising Marketplace</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
     <meta name="description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
@@ -38,28 +38,12 @@
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Dynamic viewport height fix for mobile hero -->
+    <!-- Prevent mobile browsers from shrinking text -->
     <style>
       html {
         -webkit-text-size-adjust: 100%;
       }
-      :root {
-        --vh: 100vh;
-      }
-      #hero-section {
-        height: calc(var(--vh) * 100);
-      }
     </style>
-
-    <script>
-      window.addEventListener("load", () => {
-        const setVh = () => {
-          document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
-        };
-        setVh();
-        window.addEventListener("resize", setVh);
-      });
-    </script>
   </head>
 
   <body class="transition-colors duration-300 bg-gray-900 text-gray-100">

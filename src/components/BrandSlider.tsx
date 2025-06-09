@@ -1,6 +1,7 @@
+import { useEffect, useRef } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // SVG icons
-import "keen-slider/keen-slider.min.css"; // Don't forget the Keen slider CSS
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "keen-slider/keen-slider.min.css";
 
 const brandLogos = [
   "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/99-removebg-preview.png",
@@ -14,6 +15,8 @@ const brandLogos = [
 ];
 
 const BrandSlider = () => {
+  const timer = useRef<NodeJS.Timeout | null>(null);
+
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     loop: true,
     slides: {
@@ -27,6 +30,14 @@ const BrandSlider = () => {
         },
       },
     },
+    created(slider) {
+      timer.current = setInterval(() => {
+        slider.next();
+      }, 4000); // 👈 4000ms = 4 seconds per slide
+    },
+    destroyed() {
+      if (timer.current) clearInterval(timer.current);
+    },
   });
 
   const handlePrev = () => {
@@ -36,6 +47,12 @@ const BrandSlider = () => {
   const handleNext = () => {
     slider.current?.next();
   };
+
+  useEffect(() => {
+    return () => {
+      if (timer.current) clearInterval(timer.current);
+    };
+  }, []);
 
   return (
     <div className="py-12 bg-white dark:bg-gray-900 relative">
@@ -52,7 +69,7 @@ const BrandSlider = () => {
               <img
                 src={logo}
                 alt={`Brand ${index + 1}`}
-                className="h-12 md:h-16 object-contain transition-all duration-300 hover:scale-105" // Colorful logos + slight zoom on hover
+                className="h-12 md:h-16 object-contain transition-all duration-300 hover:scale-105"
               />
             </div>
           ))}

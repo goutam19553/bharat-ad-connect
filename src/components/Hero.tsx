@@ -26,7 +26,7 @@ const Hero = () => {
         </div>
       )}
 
-      <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+      <div className="relative pt-40 pb-40 md:pt-56 md:pb-56 overflow-hidden">
         {/* 🔥 Video Background */}
         <video
           autoPlay
@@ -37,7 +37,7 @@ const Hero = () => {
           poster="/banner1.png"
           className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
         >
-          <source src="/" type="video/mp4" />
+          <source src="/your-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -49,7 +49,7 @@ const Hero = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* 👇 Invisible Placeholder to preserve layout height */}
             <div className="text-center lg:text-left invisible lg:visible">
-              <div className="h-[300px] w-full" />
+              <div className="h-[500px] w-full" />
             </div>
           </div>
         </div>

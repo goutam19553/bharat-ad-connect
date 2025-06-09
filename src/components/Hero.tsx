@@ -38,21 +38,21 @@ const Hero = () => {
         <div ref={sliderRef} className="keen-slider h-full">
           <div className="keen-slider__slide number-slide1">
             <img
-              src="/images/banner1.jpg"
+              src="/banner1.jpg"
               alt="Banner 1"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="keen-slider__slide number-slide2">
             <img
-              src="/images/banner2.jpg"
+              src="/banner2.jpg"
               alt="Banner 2"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="keen-slider__slide number-slide3">
             <img
-              src="/images/banner3.jpg"
+              src="/banner3.jpg"
               alt="Banner 3"
               className="w-full h-full object-cover"
             />

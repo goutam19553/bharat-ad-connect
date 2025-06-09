@@ -38,7 +38,7 @@ const Hero = () => {
           poster="/hero-video-poster.webp"
           className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
         >
-          <source src="/19419586-hd_1920_1080_30fps (1).mp4" type="video/mp4" />
+          <source src="/lmg-video (1).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

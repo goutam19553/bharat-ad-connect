@@ -613,42 +613,7 @@ const Index = () => {
       {/* Brands Slider */}
       <BrandSlider />
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-bharat-navy to-bharat-saffron text-white">
-        <div className="container-custom text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6"
-          >
-            Ready to Transform Your Advertising Strategy?
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-xl mb-8 max-w-3xl mx-auto"
-          >
-            Join thousands of businesses already using Bharat-Ad to reach their target audience effectively.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Link 
-              to="/get-started" 
-              className="inline-block px-8 py-4 bg-white text-bharat-navy font-bold rounded-lg hover:bg-gray-100 hover:shadow-lg transition-all duration-300"
-            >
-              Get Started Today
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+     
 
       
 

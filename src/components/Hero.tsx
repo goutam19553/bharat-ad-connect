@@ -44,10 +44,13 @@ const Hero = () => {
         {/* 🔲 Overlay */}
         <div className="absolute inset-0 bg-black/50 z-0" />
 
-        {/* 📦 Image + Tags (No Text or Buttons) */}
+        {/* 📦 Image + Invisible Spacer for Layout */}
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left"></div>
+            {/* 👇 Invisible Placeholder to Preserve Layout */}
+            <div className="text-center lg:text-left invisible lg:visible">
+              <div className="h-[300px] w-full"></div>
+            </div>
 
             <div className="relative">
               <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">

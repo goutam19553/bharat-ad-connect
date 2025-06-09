@@ -73,6 +73,49 @@ const GovernmentSupportSection = () => {
   );
 };
 
+const ContactForm = () => {
+  return (
+    <section className="py-20 px-6 bg-white dark:bg-gray-950" id="contact">
+      <div className="max-w-4xl mx-auto rounded-xl shadow-2xl p-10 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-black border border-gray-200 dark:border-gray-700">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+          Contact Us
+        </h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-10">
+          Have questions, suggestions, or want to collaborate? Reach out and we’ll get back to you.
+        </p>
+        <form className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-4 border rounded-md bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-4 border rounded-md bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
+            />
+          </div>
+          <textarea
+            placeholder="Your Message"
+            rows={5}
+            className="w-full p-4 border rounded-md bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
+          />
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+
 const App = () => {
   // ✅ Force dark mode by default
   useEffect(() => {
@@ -97,6 +140,7 @@ const App = () => {
                         <Index />          
                         <EarnMoneySection />
                         <GovernmentSupportSection />
+                         <ContactForm />
                       </>
                     )}
                   />

@@ -650,12 +650,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900 py-16">
-        <div className="container-custom">
-          <ContactForm />
-        </div>
-      </section>
+      
 
       {/* Global Styles */}
       <style jsx global>{`

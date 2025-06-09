@@ -17,6 +17,14 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Autoplay: change slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % banners.length);
   };
@@ -27,7 +35,6 @@ const Hero = () => {
 
   return (
     <>
-      {/* 3D Cube Spinner */}
       {isLoading && (
         <div className="loader-container">
           <div className="cube-spinner">
@@ -50,9 +57,6 @@ const Hero = () => {
           loading="eager"
           draggable={false}
         />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-10 pointer-events-none" />
 
         {/* Controls */}
         <button

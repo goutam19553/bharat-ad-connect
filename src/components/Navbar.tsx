@@ -43,13 +43,16 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
         scrolled
-          ? "bg-white shadow-md py-2 dark:bg-gray-900 dark:text-white"
-          : "bg-transparent py-4 dark:bg-transparent dark:text-white"
+          ? "bg-black bg-opacity-50 shadow-md py-2 dark:bg-black dark:bg-opacity-50 dark:text-white"
+          : "bg-black bg-opacity-50 py-4 dark:bg-black dark:bg-opacity-50 dark:text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold font-heading text-bharat-green dark:text-white">
+        <Link
+          to="/"
+          className="text-2xl font-bold font-heading text-bharat-green dark:text-white"
+        >
           The Ad<span className="text-bharat-saffron">-Project</span>
         </Link>
 
@@ -62,7 +65,7 @@ const Navbar = () => {
               className={`text-sm font-medium transition-colors ${
                 location.pathname === item.href
                   ? "text-bharat-saffron font-semibold"
-                  : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
+                  : "text-white hover:text-bharat-saffron"
               }`}
             >
               {item.name}
@@ -80,12 +83,6 @@ const Navbar = () => {
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
           </button>
-
-          <Link to="/contact">
-            <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-full hover:bg-bharat-saffron transition">
-              Get Started
-            </button>
-          </Link>
         </div>
 
         {/* Mobile Nav Button */}
@@ -112,7 +109,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 shadow-lg animate-fade-in">
+        <div className="md:hidden bg-black bg-opacity-90 dark:bg-black dark:bg-opacity-90 shadow-lg animate-fade-in">
           <div className="px-4 pt-3 pb-4 space-y-2">
             {navigation.map((item) => (
               <Link
@@ -122,19 +119,12 @@ const Navbar = () => {
                 className={`block px-4 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron dark:text-white dark:hover:bg-gray-700"
+                    : "text-white hover:bg-bharat-saffron hover:text-white"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center px-4 py-2 mt-2 bg-bharat-green text-white font-semibold rounded-md hover:bg-bharat-saffron transition"
-            >
-              Get Started
-            </Link>
           </div>
         </div>
       )}

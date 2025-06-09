@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const banners = ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"];
+const banners = ["/banner1.png", "/banner2.png", "/banner3.png"];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);

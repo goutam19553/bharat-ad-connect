@@ -45,17 +45,14 @@ const Hero = () => {
         {/* 🔲 Overlay */}
         <div className="absolute inset-0 bg-black/50 z-0" />
 
-       
-
-          {/* ✅ "AI & AR Experience" Button Positioned Below All Content */}
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/ai-analytics"
-              className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
-            >
-             👉AI & AR Experience👈
-            </Link>
-          </div>
+        {/* ✅ "AI & AR Experience" Button Positioned Below All Content */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            to="/ai-analytics"
+            className="btn-3d text-white font-bold py-3 px-8 rounded-lg"
+          >
+            👉AI & AR Experience👈
+          </Link>
         </div>
       </div>
     </>

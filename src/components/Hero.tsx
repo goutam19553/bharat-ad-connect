@@ -37,7 +37,7 @@ const Hero = () => {
           poster="/hero-video-poster.webp"
           className="absolute top-0 left-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ease-in"
         >
-          <source src="/19419586-hd_1920_1080_30fps (1).mp4" type="video/mp4" />
+          <source src="" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -52,23 +52,7 @@ const Hero = () => {
               <div className="h-[300px] w-full"></div>
             </div>
 
-            <div className="relative">
-              <div className="bg-white/90 p-2 rounded-xl shadow-xl rotate-2 transform transition-transform hover:rotate-0 backdrop-blur-sm">
-                <img
-                  src="/images/your-image.jpg"
-                  alt="Discover"
-                  className="rounded-lg w-full h-auto"
-                />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                <div className="bg-bharat-saffron p-3 rounded">
-                  <p className="text-white font-bold">AI-Powered</p>
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 bg-white/90 p-1 rounded-lg shadow-lg backdrop-blur-sm">
-                <div className="bg-bharat-navy p-3 rounded">
-                  <p className="text-white font-bold">AR Preview</p>
-                </div>
+            
               </div>
             </div>
           </div>

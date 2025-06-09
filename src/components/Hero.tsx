@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const slides = ["/banner1.png", "/banner2.png", "/banner3.png"];
+const slides = ["/banner1.png", "/banner2.png", "/banner3.png"]; // Add your image paths
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -8,29 +8,26 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 7000); // 7 seconds per slide
+    }, 7000); // Change slide every 7 seconds
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-[100dvh] overflow-hidden">
       {slides.map((img, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${
+          className={`absolute top-0 left-0 w-full h-full bg-black/50 transition-opacity duration-1000 ease-in-out ${
             i === current ? "opacity-100 z-20" : "opacity-0 z-10"
           }`}
           style={{
             backgroundImage: `url(${img})`,
             backgroundSize: "cover",
-            backgroundPosition: "center center",
+            backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
         />
       ))}
-
-      {/* Optional overlay (semi-transparent dark layer) */}
-      <div className="absolute inset-0 bg-black/40 z-30" />
     </section>
   );
 };

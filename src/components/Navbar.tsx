@@ -43,8 +43,8 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
         scrolled
-          ? "bg-black bg-opacity-50 shadow-md py-2 dark:bg-black dark:bg-opacity-50 dark:text-white"
-          : "bg-black bg-opacity-50 py-4 dark:bg-black dark:bg-opacity-50 dark:text-white"
+          ? "py-2"
+          : "py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
@@ -52,6 +52,7 @@ const Navbar = () => {
         <Link
           to="/"
           className="text-2xl font-bold font-heading text-bharat-green dark:text-white"
+          style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }}
         >
           The Ad<span className="text-bharat-saffron">-Project</span>
         </Link>
@@ -67,6 +68,7 @@ const Navbar = () => {
                   ? "text-bharat-saffron font-semibold"
                   : "text-white hover:text-bharat-saffron"
               }`}
+              style={{ textShadow: "0 0 6px rgba(0,0,0,0.7)" }}
             >
               {item.name}
             </Link>
@@ -78,7 +80,7 @@ const Navbar = () => {
             aria-label="Toggle Theme"
           >
             {theme === "light" ? (
-              <Moon className="h-5 w-5 text-gray-700" />
+              <Moon className="h-5 w-5 text-white" style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }} />
             ) : (
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
@@ -93,14 +95,15 @@ const Navbar = () => {
             aria-label="Toggle Theme"
           >
             {theme === "light" ? (
-              <Moon className="h-5 w-5 text-gray-700" />
+              <Moon className="h-5 w-5 text-white" style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }} />
             ) : (
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
+            className="p-2 rounded-md text-white hover:text-bharat-saffron focus:outline-none"
+            style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

@@ -10,7 +10,7 @@ const banners = [
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); // Always starts at banner5
   const canvasRef = useRef(null);
 
   // Preload all banners
@@ -137,11 +137,11 @@ const Hero = () => {
         </div>
       )}
 
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
         <img
           src={banners[currentIndex]}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover lg:object-fill transition-opacity duration-500"
           loading="eager"
           draggable={false}
         />

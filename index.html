@@ -2,7 +2,8 @@
 <html lang="en" id="html-root">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1024" />
+    <!-- Force desktop view on mobile -->
+    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>The Ad-Project | Outdoor Advertising Marketplace</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
     <meta name="description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
@@ -39,6 +40,10 @@
             colors: {
               primary: '#1D4ED8',
             },
+            screens: {
+              'mobile': {'raw': '(max-width: 1024px)'},
+              'desktop': {'raw': '(min-width: 1024px)'},
+            },
           },
         },
       };
@@ -47,6 +52,16 @@
     <style>
       html {
         -webkit-text-size-adjust: 100%;
+      }
+      /* Force desktop layout on mobile */
+      @media (max-width: 1024px) {
+        body {
+          min-width: 1024px;
+          overflow-x: auto;
+        }
+        #root {
+          min-width: 1024px;
+        }
       }
     </style>
   </head>

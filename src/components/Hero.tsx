@@ -18,6 +18,7 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Autoplay: change slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
@@ -48,13 +49,12 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Responsive Hero Section */}
-      <div className="relative w-full h-[600px] md:h-[700px] lg:h-[85vh] overflow-hidden">
-        {/* Banner Image */}
+      <div className="relative w-full max-h-[700px] overflow-hidden mx-auto">
+        {/* Banner Slider */}
         <img
           src={banners[currentIndex]}
           alt={`Banner ${currentIndex + 1}`}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="w-full h-[600px] md:h-[700px] object-cover"
           loading="eager"
           draggable={false}
         />
@@ -75,10 +75,12 @@ const Hero = () => {
           &#8594;
         </button>
 
-        {/* Hero Content */}
-        <div className="absolute inset-0 z-30 flex items-center justify-center px-6 md:px-12">
-          <div className="text-white text-center md:text-left max-w-4xl">
-            {/* Add your content here */}
+        {/* Hero Content Placeholder */}
+        <div className="container-custom relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              {/* Add your hero text/content here */}
+            </div>
           </div>
         </div>
       </div>

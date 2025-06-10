@@ -5,18 +5,27 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bharat-navy text-white relative overflow-hidden pt-0">
-      {/* Top Wave Curve */}
-      <svg
-        className="w-full -mb-1"
-        viewBox="0 0 1440 150"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill="#0f172a"
-          d="M0,96L48,80C96,64,192,32,288,42.7C384,53,480,107,576,122.7C672,139,768,117,864,117.3C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-        />
-      </svg>
+   <footer className="bg-bharat-navy text-white relative overflow-hidden pt-0">
+  {/* Top Wave Curve */}
+  <svg
+    className="w-full -mb-1"
+    viewBox="0 0 1440 150"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Light mode (white) */}
+    <path
+      className="dark:hidden"
+      fill="#ffffff"
+      d="M0,96L48,80C96,64,192,32,288,42.7C384,53,480,107,576,122.7C672,139,768,117,864,117.3C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+    />
+    {/* Dark mode (gray/navy) */}
+    <path
+      className="hidden dark:block"
+      fill="#0f172a"
+      d="M0,96L48,80C96,64,192,32,288,42.7C384,53,480,107,576,122.7C672,139,768,117,864,117.3C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+    />
+  </svg>
+
 
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

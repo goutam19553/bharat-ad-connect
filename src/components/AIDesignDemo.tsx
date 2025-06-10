@@ -125,8 +125,7 @@ const AIDesignDemo = () => {
           Every Business, Auto-Optimized
         </h2>
         <p className="text-gray-300 text-lg">
-          Our AI adapts design logic for every industry vertical — from political campaigns to fashion brands,
-          FMCG to tech launches. Each category gets specialized treatment.
+          Built for Every Business — from local SMEs to nationwide brands. Our AI tailors powerful, performance-driven designs for all industry verticals: political campaigns, fashion, FMCG, tech, and beyond.
         </p>
       </div>
 

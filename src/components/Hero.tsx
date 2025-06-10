@@ -48,12 +48,13 @@ const Hero = () => {
         </div>
       )}
 
-      <div className="relative w-full h-[600px] md:h-[90vh] overflow-hidden">
+      {/* Fullscreen Hero Section */}
+      <div className="relative w-screen h-screen overflow-hidden">
         {/* Banner Image */}
         <img
           src={banners[currentIndex]}
           alt={`Banner ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
           draggable={false}
         />
@@ -74,10 +75,10 @@ const Hero = () => {
           &#8594;
         </button>
 
-        {/* Hero Text/Content Area */}
+        {/* Hero Content */}
         <div className="absolute inset-0 z-30 flex items-center justify-center px-6 md:px-12">
           <div className="text-white text-center md:text-left max-w-4xl">
-            {/* Add your hero content here */}
+            {/* Your content here */}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
@@ -7,7 +7,7 @@ import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building, Users, BarChart2, Shield, Clock, Globe, Smartphone } from "lucide-react";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building, Users, BarChart2, Shield, Clock, Globe, Smartphone, Sun, Moon } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
 const fadeInUp = {
@@ -36,8 +36,28 @@ const staggerContainer = {
 };
 
 const Index = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Check for user's preferred color scheme
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isDark = localStorage.getItem('darkMode') === 'true' || 
+                     (!('darkMode' in localStorage) && 
+                     window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(isDark);
+      document.documentElement.classList.toggle('dark', isDark);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('darkMode', String(newMode));
+    document.documentElement.classList.toggle('dark', newMode);
+  };
+
   const featuredAdSpaces: AdSpaceProps[] = [
-    {
+  {
       id: 1,
       title: "Indian Cricket Stadium",
       location: "M.Chinnaswamy Stadium",
@@ -108,7 +128,7 @@ const Index = () => {
       image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
       rating: 4,
       featured: true,
-    },
+    },  // ... (keep your existing ad spaces array)
   ];
 
   const advertiserBenefits = [
@@ -151,7 +171,16 @@ const Index = () => {
   ];
 
   return (
-    <div className="overflow-hidden">
+    <div className={`overflow-hidden ${darkMode ? 'dark' : ''}`}>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed z-50 bottom-6 right-6 p-3 rounded-full bg-bharat-navy dark:bg-bharat-saffron text-white dark:text-bharat-navy shadow-lg hover:shadow-xl transition-all"
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {darkMode ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+      </button>
+
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white overflow-hidden">
         {/* Animated background elements */}
@@ -194,7 +223,7 @@ const Index = () => {
       </section>
 
       {/* Benefits */}
-      <div className="relative z-0 bg-gray-800">
+      <div className="relative z-0 bg-gray-800 dark:bg-gray-950">
         <div className="absolute inset-0 overflow-hidden opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float1"></div>
@@ -536,7 +565,7 @@ const Index = () => {
       <FootTrafficDemo />
 
       {/* How It Works Section */}
-      <div className="relative z-0 bg-gray-800 py-16">
+      <div className="relative z-0 bg-gray-800 dark:bg-gray-950 py-16">
         <div className="absolute inset-0 overflow-hidden opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float3"></div>
@@ -612,10 +641,6 @@ const Index = () => {
 
       {/* Brands Slider */}
       <BrandSlider />
-
-     
-
-      
 
       {/* Global Styles */}
       <style jsx global>{`

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 const banners = [
-  "/banner5.png", // Default banner (fixed idle)
+  "/banner5.png", // Default fixed banner
   "/banner1.png",
   "/banner2.png",
   "/banner3.png",
@@ -10,7 +10,8 @@ const banners = [
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); // Starts at banner5
+  const [sliderClicked, setSliderClicked] = useState(false);
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -112,28 +113,35 @@ const Hero = () => {
   }, [isLoading]);
 
   const nextSlide = () => {
+    setSliderClicked(true);
     setCurrentIndex((prev) => (prev + 1) % banners.length);
   };
 
   const prevSlide = () => {
+    setSliderClicked(true);
     setCurrentIndex((prev) =>
       prev === 0 ? banners.length - 1 : (prev - 1) % banners.length
     );
   };
 
+  const displayedBanner = sliderClicked ? banners[currentIndex] : banners[0];
+
   return (
     <>
       {isLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900">
-          <canvas ref={canvasRef} className="w-[200px] h-[200px]" />
+          <canvas
+            ref={canvasRef}
+            className="w-[150px] h-[150px] md:w-[200px] md:h-[200px]"
+          />
         </div>
       )}
 
-      <div className="relative w-full h-[700px] overflow-hidden">
+      <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
         <img
-          src={banners[currentIndex]}
-          alt={`Banner ${currentIndex + 1}`}
-          className="w-full h-full object-fill transition-opacity duration-500"
+          src={displayedBanner}
+          alt="Hero Banner"
+          className="w-full h-full object-cover transition-opacity duration-500"
           loading="eager"
           draggable={false}
         />
@@ -152,17 +160,6 @@ const Hero = () => {
         >
           &#8594;
         </button>
-
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-12 items-center px-8">
-            <div className="text-left text-white">
-              {/* Add your fixed desktop-style hero content here */}
-              <h1 className="text-4xl font-bold">Welcome to The Ad-Project</h1>
-              <p className="mt-4 text-lg">India's First Digital AdSpace Marketplace</p>
-            </div>
-            <div>{/* Optional image or illustration */}</div>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -1,138 +1,69 @@
-
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
 const AIDesignDemo = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const beforeAfter = [
+  const categories = [
     {
-      title: "Urban Billboard Design",
-      description: "AI optimized design for high traffic areas with improved visibility and brand recall.",
-      before: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Add%20a%20heading%20(1).jpg",
-      after: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Add%20a%20heading%20(2).jpg",
-      improvements: [
-        "Enhanced contrast for better visibility from a distance",
-        "Strategic color palette based on surrounding environment",
-        "Optimized text size for readability at traffic speeds",
-        "Brand colors adapted for maximum impact"
-      ]
+      emoji: "👗",
+      title: "Fashion & Retail",
+      description: "Seasonal trends, style preferences, demographic targeting",
     },
     {
-      title: "Mall Advertisement Panel",
-      description: "Location-aware design tailored for indoor mall environment and target demographics.",
-      before: "https://source.unsplash.com/photo-1499951360447-b19be8fe80f5",
-      after: "https://source.unsplash.com/photo-1493397212122-2b85dda8106b",
-      improvements: [
-        "Visual elements optimized for mall shoppers' eye level",
-        "Engagement features tailored to target demographic",
-        "Color scheme complementary to mall interior design",
-        "QR code placement for maximum scan conversion"
-      ]
+      emoji: "📱",
+      title: "Technology",
+      description: "Innovation focus, tech-savvy audience, feature highlights",
     },
     {
-      title: "Transport Hub Display",
-      description: "AI optimized for high footfall areas with quick message comprehension.",
-      before: "https://source.unsplash.com/photo-1483058712412-4245e9b90334",
-      after: "https://source.unsplash.com/photo-1581091226825-a6a2a5aee158",
-      improvements: [
-        "Simplified message for quick comprehension while in transit",
-        "High contrast colors for visibility in varying light conditions",
-        "Strategic visual hierarchy for information retention",
-        "Motion elements optimized for attention capture"
-      ]
+      emoji: "🛒",
+      title: "FMCG Products",
+      description: "Daily essentials, family-oriented messaging, value proposition",
+    },
+    {
+      emoji: "🗳️",
+      title: "Political Campaigns",
+      description: "Regional messaging, voter demographics, issue-based content",
+    },
+    {
+      emoji: "🏢",
+      title: "Small Businesses & SMEs",
+      description: "Localized outreach, cost-efficient branding, growth-oriented design",
+    },
+    {
+      emoji: "🌆",
+      title: "Real Estate & Construction",
+      description: "High-impact visual storytelling for space, trust & locality",
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % beforeAfter.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + beforeAfter.length) % beforeAfter.length);
-  };
-
-  const current = beforeAfter[currentSlide];
-
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="bg-bharat-navy text-white p-6">
-        <h3 className="text-2xl font-heading font-bold">AI-Powered Design Recommendations</h3>
-        <p className="mt-2">Our AI analyzes location, audience, and environment to create high-impact ad designs.</p>
+    <section className="bg-gray-950 py-20 px-6 md:px-20 text-white">
+      <div className="max-w-6xl mx-auto text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-bharat-saffron mb-4">
+          Every Business, Auto-Optimized
+        </h2>
+        <p className="text-gray-300 text-lg">
+          Our AI adapts design logic for every industry vertical — from political campaigns to fashion brands,
+          FMCG to tech launches. Each category gets specialized treatment.
+        </p>
       </div>
-      
-      <div className="p-6">
-        <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
-          <div className="w-full lg:w-2/3">
-            <div className="rounded-lg overflow-hidden bg-gray-100">
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <div className="bg-bharat-lightgray py-2 text-center font-medium text-gray-600">Before</div>
-                    <img 
-                      src={current.before} 
-                      alt="Before AI optimization" 
-                      className="w-full h-56 object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="bg-bharat-saffron py-2 text-center font-medium text-white">After AI Optimization</div>
-                    <img 
-                      src={current.after} 
-                      alt="After AI optimization" 
-                      className="w-full h-56 object-cover"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex justify-between absolute top-1/2 transform -translate-y-1/2 left-0 right-0 px-2">
-                  <button 
-                    onClick={prevSlide}
-                    className="bg-white/80 hover:bg-white rounded-full p-1 shadow-md"
-                  >
-                    <ChevronLeft className="h-8 w-8 text-bharat-navy" />
-                  </button>
-                  <button 
-                    onClick={nextSlide}
-                    className="bg-white/80 hover:bg-white rounded-full p-1 shadow-md"
-                  >
-                    <ChevronRight className="h-8 w-8 text-bharat-navy" />
-                  </button>
-                </div>
-              </div>
-              
-              <div className="p-4">
-                <h4 className="font-heading font-bold text-xl mb-2">{current.title}</h4>
-                <p className="text-gray-600">{current.description}</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="w-full lg:w-1/3">
-            <div className="bg-gray-50 rounded-lg p-4 h-full">
-              <h4 className="font-heading font-semibold text-bharat-navy mb-3">AI-Powered Improvements</h4>
-              <ul className="space-y-2">
-                {current.improvements.map((improvement, i) => (
-                  <li key={i} className="flex items-start">
-                    <svg className="h-5 w-5 text-bharat-teal mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700">{improvement}</span>
-                  </li>
-                ))}
+
+      <div className="overflow-x-auto pb-4">
+        <div className="flex space-x-6 min-w-max px-4">
+          {categories.map((cat, i) => (
+            <div
+              key={i}
+              className="min-w-[300px] bg-gray-900 border border-bharat-saffron rounded-xl p-6 shadow-lg hover:shadow-bharat-saffron/50 transition-all duration-300"
+            >
+              <div className="text-3xl mb-2">{cat.emoji}</div>
+              <h3 className="text-xl font-semibold mb-2">{cat.title}</h3>
+              <p className="text-gray-400 mb-4">{cat.description}</p>
+              <ul className="text-sm text-gray-300 space-y-1 pl-4 list-disc">
+                <li>Smart audience targeting</li>
+                <li>Industry-specific templates</li>
+                <li>Performance optimization</li>
               </ul>
-              
-              <div className="mt-6 border-t pt-4">
-                <p className="text-sm text-gray-500 italic">
-                  Our AI analyzes over 50 data points including location, time of day, weather patterns, and 
-                  demographic data to create designs that maximize engagement and ROI.
-                </p>
-              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

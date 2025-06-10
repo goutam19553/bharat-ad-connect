@@ -39,21 +39,34 @@ const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   // Check for user's preferred color scheme
-  useEffect(() => {
+ useEffect(() => {
     if (typeof window !== 'undefined') {
-      const isDark = localStorage.getItem('darkMode') === 'true' || 
-                     (!('darkMode' in localStorage) && 
-                     window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const isDark =
+        localStorage.getItem('darkMode') === 'true' ||
+        (!('darkMode' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+
       setDarkMode(isDark);
-      document.documentElement.classList.toggle('dark', isDark);
+
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }, []);
 
+  // Toggle theme and store preference
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem('darkMode', String(newMode));
-    document.documentElement.classList.toggle('dark', newMode);
+
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const featuredAdSpaces: AdSpaceProps[] = [

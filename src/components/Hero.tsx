@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const banners = [
-  "/banner5.png",
+  "/banner5.png", // Default banner (fixed idle)
   "/banner1.png",
   "/banner2.png",
   "/banner3.png",
@@ -10,10 +10,10 @@ const banners = [
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); // Always starts at banner5
 
+  // Preload all banners
   useEffect(() => {
-    // Preload images
     banners.forEach((src) => {
       const img = new Image();
       img.src = src;
@@ -23,28 +23,24 @@ const Hero = () => {
     });
   }, []);
 
+  // Hide loading screen once all banners load
   useEffect(() => {
     if (imagesLoaded === banners.length) {
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 800); // fade delay for smooth transition
+      }, 800); // Smooth fade
       return () => clearTimeout(timer);
     }
   }, [imagesLoaded]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % banners.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % banners.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length);
+    setCurrentIndex((prev) =>
+      prev === 0 ? banners.length - 1 : (prev - 1) % banners.length
+    );
   };
 
   return (
@@ -63,7 +59,7 @@ const Hero = () => {
         <img
           src={banners[currentIndex]}
           alt={`Banner ${currentIndex + 1}`}
-          className="w-full h-full object-cover lg:object-fill"
+          className="w-full h-full object-cover lg:object-fill transition-opacity duration-500"
           loading="eager"
           draggable={false}
         />
@@ -84,11 +80,11 @@ const Hero = () => {
           &#8594;
         </button>
 
-        {/* Hero Content Placeholder */}
+        {/* Optional Hero Content */}
         <div className="container-custom relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              {/* Hero text or CTA goes here */}
+              {/* Add your hero content here */}
             </div>
           </div>
         </div>

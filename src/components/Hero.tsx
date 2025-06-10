@@ -48,8 +48,8 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Fullscreen Hero Section */}
-      <div className="relative w-screen h-screen overflow-hidden">
+      {/* Responsive Hero Section */}
+      <div className="relative w-full h-[600px] md:h-[700px] lg:h-[85vh] overflow-hidden">
         {/* Banner Image */}
         <img
           src={banners[currentIndex]}
@@ -78,7 +78,7 @@ const Hero = () => {
         {/* Hero Content */}
         <div className="absolute inset-0 z-30 flex items-center justify-center px-6 md:px-12">
           <div className="text-white text-center md:text-left max-w-4xl">
-            {/* Your content here */}
+            {/* Add your content here */}
           </div>
         </div>
       </div>

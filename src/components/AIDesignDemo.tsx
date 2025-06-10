@@ -1,3 +1,11 @@
+// Import Swiper React components and styles
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
+
+import { Navigation, Autoplay, EffectCoverflow } from "swiper/modules";
+
 const AIDesignDemo = () => {
   const categories = [
     {
@@ -74,14 +82,34 @@ const AIDesignDemo = () => {
         </p>
       </div>
 
-      <div className="overflow-x-auto pb-6">
-        <div className="flex space-x-6 min-w-max px-4">
-          {categories.map((cat, i) => (
-            <div
-              key={i}
-              className="min-w-[300px] bg-gray-900 border border-bharat-saffron rounded-xl p-6 shadow-xl transform transition-transform duration-300 hover:rotate-[-1deg] hover:scale-[1.05] hover:shadow-bharat-saffron/60"
-              style={{ perspective: "1000px" }}
-            >
+      <Swiper
+        modules={[Navigation, Autoplay, EffectCoverflow]}
+        slidesPerView={1.2}
+        spaceBetween={20}
+        navigation
+        loop
+        effect="coverflow"
+        coverflowEffect={{
+          rotate: 10,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false,
+        }}
+        breakpoints={{
+          768: {
+            slidesPerView: 2.2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        className="max-w-6xl mx-auto"
+      >
+        {categories.map((cat, i) => (
+          <SwiperSlide key={i}>
+            <div className="bg-gray-900 border border-bharat-saffron rounded-xl p-6 shadow-xl hover:shadow-bharat-saffron/60 transition-all duration-300 transform hover:scale-[1.03]">
               <div className="text-4xl mb-3">{cat.emoji}</div>
               <h3 className="text-xl font-semibold mb-2">{cat.title}</h3>
               <p className="text-gray-400 mb-4">{cat.description}</p>
@@ -99,9 +127,9 @@ const AIDesignDemo = () => {
                 </ul>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };

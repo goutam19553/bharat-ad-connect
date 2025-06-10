@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" id="html-root">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1024" />
@@ -17,28 +17,33 @@
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Supabase CDN - fixed import for createClient -->
+    <!-- Supabase CDN -->
     <script type="module">
       import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlbXdkZ3Z5d2ZqZHZ2aGV3Z2x0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU5MjkzMzIsImV4cCI6MjA2MTUwNTMzMn0.WDZg5jLJo-XrbgaiX8A5OmamqyKk5Rdawthiku10faE');
-
+      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
       async function fetchData() {
         const { data, error } = await supabase.from('wall-spaces').select('*');
-        if (error) {
-          console.error('Error fetching data:', error);
-        } else {
-          console.log('Data:', data);
-        }
+        if (error) console.error('Error fetching data:', error);
+        else console.log('Data:', data);
       }
-
       fetchData();
     </script>
 
-    <!-- TailwindCSS CDN -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1D4ED8',
+            },
+          },
+        },
+      };
+    </script>
 
-    <!-- Prevent mobile browsers from shrinking text -->
     <style>
       html {
         -webkit-text-size-adjust: 100%;
@@ -46,10 +51,40 @@
     </style>
   </head>
 
-  <body class="transition-colors duration-300 bg-gray-900 text-gray-100">
+  <body class="transition-colors duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Dark Mode Toggle Button -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 text-black dark:bg-white dark:text-black px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform">
+      🌙 / ☀️
+    </button>
+
+    <!-- React App Root -->
     <div id="root"></div>
 
-    <!-- GPT & App Scripts -->
+    <!-- Dark Mode Script -->
+    <script>
+      const html = document.getElementById('html-root');
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme === 'dark') {
+        html.classList.add('dark');
+      } else if (savedTheme === 'light') {
+        html.classList.remove('dark');
+      } else {
+        html.classList.add('dark'); // Default to dark
+      }
+
+      function toggleTheme() {
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+    </script>
+
+    <!-- App Scripts -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>

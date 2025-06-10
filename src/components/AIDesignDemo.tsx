@@ -1,4 +1,4 @@
-const AIIndustries = () => {
+const AIDesignDemo = () => {
   const categories = [
     {
       emoji: "👗",
@@ -106,4 +106,4 @@ const AIIndustries = () => {
   );
 };
 
-export default AIIndustries;
+export default AIDesignDemo;

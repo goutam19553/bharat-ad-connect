@@ -29,7 +29,7 @@ const Hero = () => {
     if (imagesLoaded === banners.length) {
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 800); // Smooth fade
+      }, 800);
       return () => clearTimeout(timer);
     }
   }, [imagesLoaded]);
@@ -43,13 +43,11 @@ const Hero = () => {
     let animationFrameId;
     let particles = [];
     const particleCount = 150;
-    const colors = ['#FF9933', '#FFFFFF', '#138808']; // Saffron, White, Green
+    const colors = ['#FF9933', '#FFFFFF', '#138808'];
 
-    // Set canvas size
     canvas.width = 300;
     canvas.height = 300;
 
-    // Particle class
     class Particle {
       constructor() {
         this.reset();
@@ -72,17 +70,11 @@ const Hero = () => {
       update() {
         this.angle += this.speed;
         this.rotation += this.rotationSpeed;
-        
-        // 3D position
         const xPos = Math.cos(this.angle) * this.radius;
         const yPos = Math.sin(this.angle) * this.radius;
-        
-        // Apply 3D perspective
         const scale = 1 / (2 + this.z);
         this.x = xPos * scale;
         this.y = yPos * scale;
-        
-        // Z movement
         this.z += 0.05;
         if (this.z > 2) {
           this.reset();
@@ -104,21 +96,16 @@ const Hero = () => {
       }
     }
 
-    // Create particles
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
-    // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw particles
       particles.forEach(particle => {
         particle.update();
         particle.draw();
       });
-      
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -150,10 +137,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Invisible line to maintain size */}
-      <div className="invisible w-full h-[600px] md:h-[700px] lg:h-screen" aria-hidden="true"></div>
-
-      {/* Hero Section */}
       <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
         <img
           src={banners[currentIndex]}
@@ -163,7 +146,6 @@ const Hero = () => {
           draggable={false}
         />
 
-        {/* Slide Controls */}
         <button
           onClick={prevSlide}
           className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full"

@@ -68,6 +68,54 @@ const AIDesignDemo = () => {
       description: "Scenic storytelling, comfort-focused visuals, trust-building",
       extras: ["Destination promos", "Hotel features", "Tourist attraction highlights"],
     },
+{
+  emoji: "🏛️",
+  title: "Government & Public Sector",
+  description: "Transparent messaging, policy awareness, citizen engagement",
+  extras: ["e-Governance campaigns", "Tax awareness", "Public outreach drives"],
+},
+{
+  emoji: "🚚",
+  title: "Logistics & Transportation",
+  description: "Fleet visibility, timely deliveries, route branding",
+  extras: ["Vehicle branding", "Transit media", "Highway billboards"],
+},
+{
+  emoji: "🌱",
+  title: "Agriculture & Rural",
+  description: "Farmer-centric outreach, regional languages, seasonal updates",
+  extras: ["Krishi Mela ads", "Fertilizer promotions", "Weather-aware targeting"],
+},
+{
+  emoji: "💼",
+  title: "Finance & Insurance",
+  description: "Trust building, ROI messaging, secure visuals",
+  extras: ["Loan schemes", "Policy comparison visuals", "Customer testimonials"],
+},
+{
+  emoji: "🧑‍🍳",
+  title: "Food & Beverages",
+  description: "Taste appeal, vibrant imagery, influencer tie-ins",
+  extras: ["Chef branding", "Sampling campaign", "Street food ads"],
+},
+{
+  emoji: "🧘‍♂️",
+  title: "Fitness & Wellness",
+  description: "Healthy lifestyle push, transformation journeys",
+  extras: ["Yoga center promos", "Nutrition campaigns", "Before-after stories"],
+},
+{
+  emoji: "🛍️",
+  title: "E-Commerce Platforms",
+  description: "Rapid conversion CTAs, new user onboarding, trust badges",
+  extras: ["App download push", "Cart recovery ads", "Coupon spotlight"],
+},
+{
+  emoji: "🎮",
+  title: "Gaming & Esports",
+  description: "Dynamic visuals, thrill-based hooks, young audience focus",
+  extras: ["Tournament promos", "Livestream ads", "In-game previews"],
+},   
   ];
 
   return (

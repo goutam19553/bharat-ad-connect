@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 const banners = [
   "/banner5.png",
+   "/banner1.png",
+   "/banner2.png",
+   "/banner3.png",
 ];
 
 const Hero = () => {

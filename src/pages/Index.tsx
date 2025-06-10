@@ -43,7 +43,7 @@ const Index = () => {
     if (typeof window !== 'undefined') {
       const isDark = localStorage.getItem('darkMode') === 'true' || 
                      (!('darkMode' in localStorage) && 
-                     window.matchMedia('(prefers-color-scheme: dark)').matches;
+                     window.matchMedia('(prefers-color-scheme: dark)').matches);
       setDarkMode(isDark);
       document.documentElement.classList.toggle('dark', isDark);
     }

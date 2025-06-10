@@ -130,7 +130,7 @@ const Hero = () => {
   }, [isLoading]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % banners.length);
+    setCurrentIndex((prev) => (prev === 0 ? 1 : (prev + 1) % banners.length));
   };
 
   const prevSlide = () => {
@@ -150,11 +150,14 @@ const Hero = () => {
         </div>
       )}
 
+      {/* Invisible line to maintain size */}
+      <div className="invisible w-full h-[600px] md:h-[700px] lg:h-screen" aria-hidden="true"></div>
+
       {/* Hero Section */}
       <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
         <img
           src={banners[currentIndex]}
-          alt={Banner ${currentIndex + 1}}
+          alt=""
           className="w-full h-full object-cover lg:object-fill transition-opacity duration-500"
           loading="eager"
           draggable={false}
@@ -175,15 +178,6 @@ const Hero = () => {
         >
           &#8594;
         </button>
-
-        {/* Optional Hero Content */}
-        <div className="container-custom relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              {/* Add your hero content here */}
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );

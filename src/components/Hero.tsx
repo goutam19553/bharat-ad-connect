@@ -13,18 +13,14 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const canvasRef = useRef(null);
 
-  // Preload all banners
   useEffect(() => {
     banners.forEach((src) => {
       const img = new Image();
       img.src = src;
-      img.onload = () => {
-        setImagesLoaded((prev) => prev + 1);
-      };
+      img.onload = () => setImagesLoaded((prev) => prev + 1);
     });
   }, []);
 
-  // Hide loading screen once all banners load
   useEffect(() => {
     if (imagesLoaded === banners.length) {
       const timer = setTimeout(() => {
@@ -34,7 +30,6 @@ const Hero = () => {
     }
   }, [imagesLoaded]);
 
-  // 3D Particle Spinner Effect
   useEffect(() => {
     if (!isLoading || !canvasRef.current) return;
 
@@ -44,15 +39,16 @@ const Hero = () => {
     let particles = [];
     const particleCount = 150;
     const colors = [
-      'rgba(255, 105, 180, 0.8)',  // Hot pink glow
-      'rgba(100, 255, 255, 0.8)',  // Cyan glow
-      'rgba(255, 255, 100, 0.8)',   // Yellow glow
-      'rgba(100, 255, 100, 0.8)',   // Green glow
-      'rgba(255, 100, 255, 0.8)'    // Purple glow
+      'rgba(255, 105, 180, 0.8)',
+      'rgba(100, 255, 255, 0.8)',
+      'rgba(255, 255, 100, 0.8)',
+      'rgba(100, 255, 100, 0.8)',
+      'rgba(255, 100, 255, 0.8)',
     ];
 
-    canvas.width = 300;
-    canvas.height = 300;
+    // Fullscreen canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     class Particle {
       constructor() {
@@ -85,11 +81,8 @@ const Hero = () => {
         this.x = xPos * scale;
         this.y = yPos * scale;
         this.z += 0.05;
-        
-        // Update glow pulse
         this.glowPhase += this.glowPulseSpeed;
         this.currentGlow = this.glowIntensity * (0.5 + 0.5 * Math.sin(this.glowPhase));
-        
         if (this.z > 2) {
           this.reset();
           this.z = -2;
@@ -99,16 +92,10 @@ const Hero = () => {
       draw() {
         const particleSize = Math.max(0.1, this.size * (1 / (2 + this.z)));
         const glowSize = Math.max(particleSize, particleSize * (1 + this.currentGlow * 0.5));
-        
-        // Ensure all values are finite
         const centerX = canvas.width / 2 + this.x;
         const centerY = canvas.height / 2 + this.y;
-        
-        if (!isFinite(centerX) || !isFinite(centerY) || !isFinite(particleSize) || !isFinite(glowSize)) {
-          return; // Skip drawing if any value is non-finite
-        }
+        if (!isFinite(centerX) || !isFinite(centerY) || !isFinite(particleSize) || !isFinite(glowSize)) return;
 
-        // Draw glow effect
         const gradient = ctx.createRadialGradient(
           centerX,
           centerY,
@@ -117,30 +104,16 @@ const Hero = () => {
           centerY,
           glowSize
         );
-        
         gradient.addColorStop(0, this.color);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        
+
         ctx.beginPath();
-        ctx.arc(
-          centerX, 
-          centerY, 
-          glowSize, 
-          0, 
-          Math.PI * 2
-        );
+        ctx.arc(centerX, centerY, glowSize, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
-        
-        // Draw core particle
+
         ctx.beginPath();
-        ctx.arc(
-          centerX, 
-          centerY, 
-          particleSize, 
-          0, 
-          Math.PI * 2
-        );
+        ctx.arc(centerX, centerY, particleSize, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
       }
@@ -152,21 +125,20 @@ const Hero = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(0, 0, 20, 0.2)';
+      ctx.fillStyle = 'rgba(31, 41, 55, 1)'; // gray-800 background
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      particles.forEach(particle => {
+
+      particles.forEach((particle) => {
         particle.update();
         particle.draw();
       });
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => cancelAnimationFrame(animationFrameId);
   }, [isLoading]);
 
   const nextSlide = () => {
@@ -182,10 +154,10 @@ const Hero = () => {
   return (
     <>
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900">
+        <div className="fixed inset-0 z-50 bg-gray-800 flex items-center justify-center">
           <canvas 
             ref={canvasRef} 
-            className="w-[150px] h-[150px] md:w-[200px] md:h-[200px]"
+            className="absolute w-full h-full" 
           />
         </div>
       )}

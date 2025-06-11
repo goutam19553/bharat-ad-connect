@@ -13,22 +13,22 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    banners.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => setImagesLoaded((prev) => prev + 1);
-    });
-  }, []);
+   useEffect(() => {
+    // Load only the first banner initially
+    const firstImg = new Image();
+    firstImg.src = banners[0];
+    firstImg.onload = () => {
+      setIsLoading(false);
 
-  useEffect(() => {
-    if (imagesLoaded === banners.length) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 800);
-      return () => clearTimeout(timer);
-    }
-  }, [imagesLoaded]);
+      // Load remaining banners after 1s
+      setTimeout(() => {
+        banners.slice(1).forEach((src) => {
+          const img = new Image();
+          img.src = src;
+        });
+      }, 1000);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isLoading || !canvasRef.current) return;

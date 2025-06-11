@@ -248,52 +248,48 @@ box-shadow: 0 0 30px #14b8a6, 0 0 60px #14b8a6cc;
 `}</style>
 </section>
 
-      {/* Our Partners (Stacked Cards Layout) */}
-<section className="bg-gray-800 py-20">
-  <div className="container-custom">
-    <h2 className="text-4xl font-heading font-bold text-white mb-16 text-center animate-fade-in">
-      Our Partners
-    </h2>
+   {/* Our Partners - Horizontal Card Carousel */}
+<section className="bg-gray-900 py-20">
+  <div className="container-custom text-center">
+    <h2 className="text-4xl font-heading font-bold text-white mb-12">Our Partners</h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {partners.map((partner, idx) => (
+    <div className="relative max-w-xl mx-auto">
+      <div className="relative overflow-hidden h-[300px]">
         <div
-          key={idx}
-          className={`bg-gradient-to-tr from-gray-700 to-gray-800 border-l-4 border-bharat-teal p-6 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 hover:shadow-bharat-teal/50 animate-slide-up delay-${idx * 100}`}
+          className="transition-transform duration-500 ease-in-out flex"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-bharat-teal mb-2">{partner.name}</h3>
-          <p className="uppercase text-xs font-bold tracking-wider text-gray-400 mb-4">
-            {partner.type}
-          </p>
-          <p className="text-gray-300">{partner.description}</p>
+          {partners.map((partner, idx) => (
+            <div
+              key={idx}
+              className="min-w-full bg-gradient-to-tr from-gray-700 to-gray-800 p-6 rounded-xl border border-bharat-teal shadow-xl"
+            >
+              <h3 className="text-2xl font-semibold text-bharat-teal mb-2">{partner.name}</h3>
+              <p className="uppercase text-xs font-bold tracking-wider text-gray-400 mb-4">
+                {partner.type}
+              </p>
+              <p className="text-gray-300">{partner.description}</p>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <div className="flex justify-between mt-6">
+        <button
+          onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : partners.length - 1))}
+          className="bg-bharat-teal text-white px-4 py-2 rounded hover:bg-bharat-teal/80 transition"
+        >
+          ← Prev
+        </button>
+        <button
+          onClick={() => setActiveIndex((prev) => (prev < partners.length - 1 ? prev + 1 : 0))}
+          className="bg-bharat-teal text-white px-4 py-2 rounded hover:bg-bharat-teal/80 transition"
+        >
+          Next →
+        </button>
+      </div>
     </div>
-
-    {/* Animation Styles */}
-    <style>{`
-      .animate-slide-up {
-        animation: slideUpCard 0.8s ease-out forwards;
-        opacity: 0;
-      }
-
-      @keyframes slideUpCard {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      ${partners.map((_, idx) => `
-        .delay-${idx * 100} {
-          animation-delay: ${idx * 100}ms;
-        }
-      `).join('\n')}
-    `}</style>
   </div>
 </section>
     </div>

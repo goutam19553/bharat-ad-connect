@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import ScrollToTop from "./components/ScrollToTop";
 import AIAnalytics from "./pages/AIAnalytics";
+import DesktopNotice from "./components/DesktopNotice"; // ✅ Imported
 
 // Lazy-loaded pages
 const AdSpaces = lazy(() => import("./pages/AdSpaces"));
@@ -128,6 +129,7 @@ const App = () => {
         <Toaster />
         <BrowserRouter>
           <ScrollToTop />
+          <DesktopNotice /> {/* ✅ Fancy popup here */}
           <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
             <Navbar />
             <main className="flex-grow">
@@ -140,7 +142,7 @@ const App = () => {
                         <Index />          
                         <EarnMoneySection />
                         <GovernmentSupportSection />
-                         <ContactForm />
+                        <ContactForm />
                       </>
                     )}
                   />
@@ -152,7 +154,7 @@ const App = () => {
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/government-support" element={<GovernmentSupportPage />} />
-                   <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
             </main>

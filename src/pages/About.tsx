@@ -187,25 +187,23 @@ const About = () => {
 </section>
 
 
-      {/* Team */}
+     {/* Collaborative Team Section (New) */}
       <section className="bg-gray-800 py-20">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-heading font-bold text-white mb-16">Meet Our Director</h2>
-          <div className="flex justify-center">
-            <div className="bg-gradient-to-br from-bharat-navy via-gray-900 to-bharat-teal p-1 rounded-2xl animate-glow border-4 border-bharat-teal shadow-lg hover:scale-105 transition-transform duration-500">
-              <div className="bg-gray-900 p-8 rounded-2xl max-w-3xl">
-                <img
-                  src={teamMembers[0].image}
-                  alt={teamMembers[0].name}
-                  className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-bharat-teal shadow-md"
-                />
-                <h3 className="text-3xl font-bold text-white mb-2">{teamMembers[0].name}</h3>
-                <p className="text-sm uppercase tracking-wider text-bharat-teal font-semibold mb-4">
-                  {teamMembers[0].position}
-                </p>
-                <p className="text-gray-300 text-lg">{teamMembers[0].bio}</p>
-              </div>
-            </div>
+        <div className="container-custom text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl font-heading font-bold text-white mb-6">
+            We believe in collaboration over hierarchy.
+          </h2>
+          <p className="text-gray-300 text-lg leading-relaxed mb-8">
+            We're a small but dedicated team of creators, tech enthusiasts, and change-makers working together to redefine the outdoor advertising ecosystem.
+          </p>
+          <div className="bg-gradient-to-br from-bharat-teal to-bharat-navy p-6 rounded-2xl shadow-lg animate-glow hover:scale-105 transition-transform duration-500">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">JOIN THE TEAM</h3>
+            <p className="text-lg text-white mb-6">
+              This is just the beginning. If you're passionate about AI, AR, any tech related to this startup or building something futuristic for India — we're hiring and always open to new minds.
+            </p>
+            <Link to="/careers" className="btn-primary font-bold text-white">
+              Let’s co-build the future. [Join Us →]
+            </Link>
           </div>
         </div>
         <style>{`
@@ -218,7 +216,6 @@ const About = () => {
           }
         `}</style>
       </section>
-
       {/* Partners */}
       <section className="bg-gray-700 py-16">
         <div className="container-custom">

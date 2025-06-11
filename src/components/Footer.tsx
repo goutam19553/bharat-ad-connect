@@ -100,7 +100,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-bharat-saffron mr-2" />
                 <a href="mailto:info@aura-ad.com" className="text-gray-300 hover:text-bharat-saffron">
-                  info@aura-ad.com
+                  Theadproject01@gmail.com
                 </a>
               </li>
             </ul>

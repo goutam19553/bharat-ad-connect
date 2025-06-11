@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase"; // Make sure this path is correct
 
 interface ContactFormProps {
   title?: string;
@@ -22,31 +22,46 @@ const ContactForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    const { error } = await supabase.from("contacts").insert([
+      {
+        name,
+        email,
+        subject: includeSubject ? subject : null,
+        message,
+      },
+    ]);
+
+    if (error) {
+      toast({
+        title: "Error sending message",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } else {
       toast({
         title: "Message sent!",
-        description: "We will get back to you soon.",
+        description: "We’ll get back to you shortly.",
       });
-      
-      // Reset form
+
+      // Reset the form
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
-      setIsSubmitting(false);
-    }, 1500);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
       {title && <h3 className="text-2xl font-heading font-bold text-bharat-navy mb-2">{title}</h3>}
       {subtitle && <p className="text-gray-600 mb-6">{subtitle}</p>}
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -62,7 +77,7 @@ const ContactForm = ({
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
           />
         </div>
-        
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email Address
@@ -77,7 +92,7 @@ const ContactForm = ({
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
           />
         </div>
-        
+
         {includeSubject && (
           <div>
             <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
@@ -94,7 +109,7 @@ const ContactForm = ({
             />
           </div>
         )}
-        
+
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
             Message
@@ -109,7 +124,7 @@ const ContactForm = ({
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
           ></textarea>
         </div>
-        
+
         <button
           type="submit"
           disabled={isSubmitting}

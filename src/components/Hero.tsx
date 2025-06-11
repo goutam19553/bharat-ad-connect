@@ -39,12 +39,13 @@ const Hero = () => {
     let particles = [];
     const particleCount = 150;
     const colors = [
-      'rgba(255, 105, 180, 0.8)',
-      'rgba(100, 255, 255, 0.8)',
-      'rgba(255, 255, 100, 0.8)',
-      'rgba(100, 255, 100, 0.8)',
-      'rgba(255, 100, 255, 0.8)',
-    ];
+  'rgba(58, 97, 255, 0.6)',   // Electric Blue
+  'rgba(198, 83, 255, 0.6)',  // Purple Glow
+  'rgba(255, 92, 92, 0.6)',   // Soft Red
+  'rgba(255, 180, 60, 0.6)',  // Amber Orange
+  'rgba(72, 255, 203, 0.6)',  // Teal Glow
+  'rgba(50, 255, 126, 0.6)',  // Green Glow
+                             ];
 
     // Fullscreen canvas
     canvas.width = window.innerWidth;

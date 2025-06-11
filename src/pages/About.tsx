@@ -187,35 +187,36 @@ const About = () => {
 </section>
 
 
-     {/* Collaborative Team Section (New) */}
-      <section className="bg-gray-800 py-20">
-        <div className="container-custom text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl font-heading font-bold text-white mb-6">
-            We believe in collaboration over hierarchy.
-          </h2>
-          <p className="text-gray-300 text-lg leading-relaxed mb-8">
-            We're a small but dedicated team of creators, tech enthusiasts, and change-makers working together to redefine the outdoor advertising ecosystem.
-          </p>
-          <div className="bg-gradient-to-br from-bharat-teal to-bharat-navy p-6 rounded-2xl shadow-lg animate-glow hover:scale-105 transition-transform duration-500">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">JOIN THE TEAM</h3>
-            <p className="text-lg text-white mb-6">
-              This is just the beginning. If you're passionate about AI, AR, any tech related to this startup or building something futuristic for India — we're hiring and always open to new minds.
-            </p>
-            <Link to="/careers" className="btn-primary font-bold text-white">
-              Let’s co-build the future. [Join Us →]
-            </Link>
-          </div>
-        </div>
-        <style>{`
-          .animate-glow {
-            box-shadow: 0 0 20px #14b8a6, 0 0 40px #14b8a6aa;
-            transition: box-shadow 0.4s ease-in-out;
-          }
-          .animate-glow:hover {
-            box-shadow: 0 0 30px #14b8a6, 0 0 60px #14b8a6cc;
-          }
-        `}</style>
-      </section>
+    {/* Collaborative Team Section (New) */}
+<section className="bg-gray-800 py-20">
+  <div className="container-custom text-center max-w-3xl mx-auto">
+    <h2 className="text-4xl font-heading font-bold text-white mb-6">
+      We believe in collaboration over hierarchy.
+    </h2>
+    <p className="text-gray-300 text-lg leading-relaxed mb-8">
+      We're a small but dedicated team of creators, tech enthusiasts, and change-makers working together to redefine the outdoor advertising ecosystem.
+    </p>
+    <div className="bg-gradient-to-br from-bharat-teal to-bharat-navy p-6 rounded-2xl shadow-lg animate-glow hover:scale-105 transition-transform duration-500">
+      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">JOIN THE TEAM</h3>
+      <p className="text-lg text-white mb-6">
+        This is just the beginning. If you're passionate about AI, AR, any tech related to this startup or building something futuristic for India — we're hiring and always open to new minds.
+      </p>
+      <Link to="/contact" className="btn-primary font-bold text-white">
+        Let’s co-build the future. [Join Us →]
+      </Link>
+    </div>
+  </div>
+  <style>{`
+    .animate-glow {
+      box-shadow: 0 0 20px #14b8a6, 0 0 40px #14b8a6aa;
+      transition: box-shadow 0.4s ease-in-out;
+    }
+    .animate-glow:hover {
+      box-shadow: 0 0 30px #14b8a6, 0 0 60px #14b8a6cc;
+    }
+  `}</style>
+</section>
+
       {/* Partners */}
       <section className="bg-gray-700 py-16">
         <div className="container-custom">
@@ -235,16 +236,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer CTA */}
-      <div className="bg-bharat-navy/90 py-12 text-center">
-        <h3 className="text-2xl font-heading font-bold text-white mb-4">
-          Interested in partnering with us?
-        </h3>
-        <Link to="/contact" className="btn-primary">
-          Contact Us
-        </Link>
-      </div>
     </div>
   );
 };

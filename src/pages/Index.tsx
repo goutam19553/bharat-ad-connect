@@ -592,7 +592,7 @@ const Index = () => {
       </div>
      
       {/* Testimonial Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-16 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-900">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-bharat-navy dark:text-white">

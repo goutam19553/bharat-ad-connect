@@ -43,7 +43,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="relative bg-gray-800 text-white py-20 px-4 overflow-hidden">
+    <section className="relative bg-gray-900 text-white py-20 px-4 overflow-hidden">
    
 
       <h2 className="text-white text-4xl font-bold text-center mb-16 z-10 relative">

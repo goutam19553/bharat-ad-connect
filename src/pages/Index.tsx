@@ -578,7 +578,7 @@ const Index = () => {
       <FootTrafficDemo />
 
       {/* How It Works Section */}
-      <div className="relative z-0 bg-gray-800 dark:bg-gray-950 py-16">
+     <div className="relative z-0 bg-gray-900 py-16">
         <div className="absolute inset-0 overflow-hidden opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float3"></div>

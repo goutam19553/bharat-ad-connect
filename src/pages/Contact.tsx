@@ -70,7 +70,7 @@ const Contact = () => {
                     <h3 className="font-heading font-semibold text-lg dark:text-white">Email</h3>
                     <p className="text-gray-600 dark:text-gray-300">
                       <a href="mailto:theadproject01@gmail.com" className="hover:text-bharat-saffron dark:hover:text-bharat-saffron">info@the-ad-project.com</a><br />
-                      <a href="mailto:support@the-ad-project.com" className="hover:text-bharat-saffron dark:hover:text-bharat-saffron">support@the-ad-project.com</a>
+                      <a href="mailto:theadproject01@gmail.com" className="hover:text-bharat-saffron dark:hover:text-bharat-saffron">support@the-ad-project.com</a>
                     </p>
                   </div>
                 </div>

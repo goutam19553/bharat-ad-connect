@@ -330,5 +330,58 @@ html, body {
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
 }
+.desktop-notice {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  animation: fadeInUp 0.5s ease-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desktop-notice strong {
+  color: #ffd369;
+}
+
+.desktop-notice button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.desktop-notice button:hover {
+  transform: scale(1.2);
+  color: #ff6b81;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
 
 

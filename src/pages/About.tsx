@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   const [loading, setLoading] = useState(true);
+const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1800);

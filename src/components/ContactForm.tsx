@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase"; // Make sure this path is correct
+import { supabase } from "@/lib/supabase";
 
 interface ContactFormProps {
   title?: string;
@@ -47,7 +47,6 @@ const ContactForm = ({
         description: "We’ll get back to you shortly.",
       });
 
-      // Reset the form
       setName("");
       setEmail("");
       setSubject("");
@@ -58,11 +57,11 @@ const ContactForm = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-      {title && <h3 className="text-2xl font-heading font-bold text-bharat-navy mb-2">{title}</h3>}
+    <div className="bg-white rounded-xl shadow-xl p-6 md:p-8 border border-gray-100">
+      {title && <h3 className="text-2xl font-semibold text-bharat-navy mb-2">{title}</h3>}
       {subtitle && <p className="text-gray-600 mb-6">{subtitle}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Full Name
@@ -74,7 +73,7 @@ const ContactForm = ({
             onChange={(e) => setName(e.target.value)}
             placeholder="Your name"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
+            className="w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bharat-teal focus:border-transparent transition"
           />
         </div>
 
@@ -89,7 +88,7 @@ const ContactForm = ({
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your.email@example.com"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
+            className="w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bharat-teal focus:border-transparent transition"
           />
         </div>
 
@@ -105,7 +104,7 @@ const ContactForm = ({
               onChange={(e) => setSubject(e.target.value)}
               placeholder="What is this regarding?"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
+              className="w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bharat-teal focus:border-transparent transition"
             />
           </div>
         )}
@@ -121,24 +120,42 @@ const ContactForm = ({
             placeholder="Your message"
             required
             rows={5}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bharat-teal"
+            className="w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bharat-teal focus:border-transparent transition"
           ></textarea>
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full flex justify-center items-center"
+          className="btn-primary w-full flex justify-center items-center rounded-lg px-6 py-2 transition bg-bharat-teal text-white hover:bg-bharat-teal/90 disabled:opacity-50"
         >
           {isSubmitting ? (
             <>
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
               </svg>
               Sending...
             </>
-          ) : buttonText}
+          ) : (
+            buttonText
+          )}
         </button>
       </form>
     </div>

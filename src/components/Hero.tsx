@@ -10,7 +10,7 @@ const banners = [
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0); // Always starts at banner5
+  const [currentIndex, setCurrentIndex] = useState(0);
   const canvasRef = useRef(null);
 
   // Preload all banners
@@ -43,7 +43,6 @@ const Hero = () => {
     let animationFrameId;
     let particles = [];
     const particleCount = 150;
-    // Updated colors with glowing effect
     const colors = [
       'rgba(255, 105, 180, 0.8)',  // Hot pink glow
       'rgba(100, 255, 255, 0.8)',  // Cyan glow
@@ -72,7 +71,6 @@ const Hero = () => {
         this.radius = 50 + Math.random() * 20;
         this.rotation = Math.random() * Math.PI * 2;
         this.rotationSpeed = Math.random() * 0.01 + 0.005;
-        // Add glow properties
         this.glowIntensity = Math.random() * 0.5 + 0.5;
         this.glowPulseSpeed = Math.random() * 0.02 + 0.01;
         this.glowPhase = Math.random() * Math.PI * 2;
@@ -99,16 +97,24 @@ const Hero = () => {
       }
 
       draw() {
-        const particleSize = this.size * (1 / (2 + this.z));
-        const glowSize = particleSize * (1 + this.currentGlow * 0.5);
+        const particleSize = Math.max(0.1, this.size * (1 / (2 + this.z)));
+        const glowSize = Math.max(particleSize, particleSize * (1 + this.currentGlow * 0.5));
         
+        // Ensure all values are finite
+        const centerX = canvas.width / 2 + this.x;
+        const centerY = canvas.height / 2 + this.y;
+        
+        if (!isFinite(centerX) || !isFinite(centerY) || !isFinite(particleSize) || !isFinite(glowSize)) {
+          return; // Skip drawing if any value is non-finite
+        }
+
         // Draw glow effect
         const gradient = ctx.createRadialGradient(
-          canvas.width / 2 + this.x,
-          canvas.height / 2 + this.y,
+          centerX,
+          centerY,
           particleSize * 0.5,
-          canvas.width / 2 + this.x,
-          canvas.height / 2 + this.y,
+          centerX,
+          centerY,
           glowSize
         );
         
@@ -117,8 +123,8 @@ const Hero = () => {
         
         ctx.beginPath();
         ctx.arc(
-          canvas.width / 2 + this.x, 
-          canvas.height / 2 + this.y, 
+          centerX, 
+          centerY, 
           glowSize, 
           0, 
           Math.PI * 2
@@ -129,8 +135,8 @@ const Hero = () => {
         // Draw core particle
         ctx.beginPath();
         ctx.arc(
-          canvas.width / 2 + this.x, 
-          canvas.height / 2 + this.y, 
+          centerX, 
+          centerY, 
           particleSize, 
           0, 
           Math.PI * 2
@@ -146,7 +152,6 @@ const Hero = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Add a subtle background glow
       ctx.fillStyle = 'rgba(0, 0, 20, 0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       

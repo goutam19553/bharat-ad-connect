@@ -1,83 +1,82 @@
-import React from "react";
+import React, { useEffect, useRef } from 'react';
+import './NeonNetwork.css';
 
-const nodes = [
-  { name: "Government Bodies", icon: "🏛️", x: "15%", y: "10%" },
-  { name: "Ad Agencies", icon: "📢", x: "85%", y: "20%" },
-  { name: "Printing Press Network", icon: "🖨️", x: "10%", y: "40%" },
-  { name: "AI Analytics Dashboard", icon: "📊", x: "45%", y: "5%" },
-  { name: "Media Companies", icon: "🗞️", x: "90%", y: "60%" },
-  { name: "Research Orgs", icon: "🧪", x: "15%", y: "80%" },
-  { name: "CMS Platform", icon: "🖥️", x: "85%", y: "85%" },
-];
+const NeonNetwork = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-export default function NeonNetwork() {
-  const center = { x: "50%", y: "50%" };
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+    const centralNode = container.querySelector('.central-node') as HTMLElement;
+    const nodes = Array.from(container.querySelectorAll('.network-node:not(.central-node)')) as HTMLElement[];
+
+    const drawConnections = () => {
+      // Clear existing connections
+      const existingConnections = container.querySelectorAll('.network-connection');
+      existingConnections.forEach(conn => conn.remove());
+
+      if (!centralNode) return;
+
+      const centralRect = centralNode.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      const centralX = centralRect.left + centralRect.width/2 - containerRect.left;
+      const centralY = centralRect.top + centralRect.height/2 - containerRect.top;
+
+      nodes.forEach(node => {
+        const nodeRect = node.getBoundingClientRect();
+        const nodeX = nodeRect.left + nodeRect.width/2 - containerRect.left;
+        const nodeY = nodeRect.top + nodeRect.height/2 - containerRect.top;
+
+        // Calculate distance and angle
+        const dx = nodeX - centralX;
+        const dy = nodeY - centralY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+        // Create connection element
+        const connection = document.createElement('div');
+        connection.className = 'network-connection';
+        connection.style.width = `${distance}px`;
+        connection.style.left = `${centralX}px`;
+        connection.style.top = `${centralY}px`;
+        connection.style.transform = `rotate(${angle}deg)`;
+
+        container.appendChild(connection);
+      });
+    };
+
+    // Initial draw
+    drawConnections();
+
+    // Redraw on resize
+    const resizeObserver = new ResizeObserver(drawConnections);
+    resizeObserver.observe(container);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
-    <div className="relative w-full h-screen bg-black text-white overflow-hidden font-sans">
-      {/* Center Circle */}
-      <div
-        className="absolute w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-cyan-500 
-        flex items-center justify-center text-3xl font-bold shadow-[0_0_60px_#00ffc3] border-4 border-cyan-400 z-10"
-        style={{
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        bb
+    <section className="network-section">
+      <div className="network-container" ref={containerRef}>
+        {/* Central Node */}
+        <div className="network-node central-node">AI Analytics<br />Dashboard</div>
+        
+        {/* Surrounding Nodes */}
+        <div className="network-node node-1">Government<br />Bodies</div>
+        <div className="network-node node-2">Ad Agencies</div>
+        <div className="network-node node-3">Research<br />Orgs</div>
+        <div className="network-node node-4">Media<br />Companies</div>
+        <div className="network-node node-5">Research<br />Orgs</div>
+        <div className="network-node node-6">CMS<br />Platform</div>
+        <div className="network-node node-7">Printing<br />Press</div>
+        <div className="network-node node-8">CMS<br />Platform</div>
       </div>
-
-      {/* Branch Nodes */}
-      {nodes.map((node, index) => (
-        <div
-          key={index}
-          className="absolute text-xs md:text-sm text-white bg-gray-800/90 px-3 py-2 rounded-md shadow-md 
-          border border-cyan-400 backdrop-blur-md transition-all duration-300 hover:scale-105 z-10"
-          style={{
-            top: node.y,
-            left: node.x,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <span className="text-green-300 mr-1">{node.icon}</span>
-          {node.name}
-        </div>
-      ))}
-
-      {/* SVG Lines */}
-      <svg
-        className="absolute w-full h-full top-0 left-0 pointer-events-none"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#00ffc3" />
-            <stop offset="100%" stopColor="#00ff88" />
-          </linearGradient>
-        </defs>
-        {nodes.map((node, index) => {
-          const fromX = 50;
-          const fromY = 50;
-          const toX = parseFloat(node.x);
-          const toY = parseFloat(node.y);
-
-          return (
-            <line
-              key={index}
-              x1={`${fromX}`}
-              y1={`${fromY}`}
-              x2={`${toX}`}
-              y2={`${toY}`}
-              stroke="url(#glow)"
-              strokeWidth="0.5"
-              className="animate-pulse"
-              vectorEffect="non-scaling-stroke"
-            />
-          );
-        })}
-      </svg>
-    </div>
+    </section>
   );
-}
+};
+
+export default NeonNetwork;

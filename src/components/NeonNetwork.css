@@ -1,0 +1,85 @@
+.network-section {
+  background-color: #0a0a1a;
+  padding: 80px 20px;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.network-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  height: 600px;
+}
+
+.network-node {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  border: 2px solid #00ffff;
+  background: rgba(0, 30, 60, 0.7);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.network-node:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+}
+
+.network-connection {
+  position: absolute;
+  background: linear-gradient(90deg, rgba(0,255,255,0.8), rgba(0,150,255,0.5));
+  height: 2px;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+.central-node {
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.9);
+  background: rgba(0, 50, 100, 0.8);
+  font-size: 18px;
+}
+
+/* Node positions */
+.node-1 { left: 20%; top: 10%; }
+.node-2 { left: 80%; top: 10%; }
+.node-3 { left: 10%; top: 30%; }
+.node-4 { left: 90%; top: 30%; }
+.node-5 { left: 10%; top: 70%; }
+.node-6 { left: 90%; top: 70%; }
+.node-7 { left: 20%; top: 90%; }
+.node-8 { left: 80%; top: 90%; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .network-container {
+    height: 500px;
+  }
+  
+  .network-node {
+    width: 90px;
+    height: 90px;
+    font-size: 14px;
+  }
+  
+  .central-node {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -207,33 +207,38 @@ const Index = () => {
         <Hero />
       </div>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container-custom">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                custom={index}
-                className="bg-gradient-to-br from-bharat-navy/5 to-bharat-saffron/5 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center"
-              >
-                <div className="flex justify-center mb-3 text-bharat-saffron">
-                  {stat.icon}
-                </div>
-                <h3 className="text-3xl font-bold text-bharat-navy dark:text-white mb-2">{stat.value}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+     {/* Stats Section */}
+<section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div className="container-custom">
+    <motion.div 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={staggerContainer}
+      className="grid grid-cols-2 md:grid-cols-4 gap-6"
+    >
+      {stats.map((stat, index) => (
+        <motion.div
+          key={index}
+          variants={fadeInUp}
+          custom={index}
+          className="bg-gradient-to-br from-bharat-navy/5 to-bharat-saffron/5 dark:from-white/5 dark:to-white/10 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transition-colors duration-300"
+        >
+          <div className="flex justify-center mb-3 text-bharat-saffron dark:text-bharat-saffron/80">
+            {stat.icon}
+          </div>
+          <h3 className="text-3xl font-bold text-bharat-navy dark:text-white mb-2">
+            {stat.value}
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            {stat.label}
+          </p>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Benefits */}
       <div className="relative z-0 bg-gray-800 dark:bg-gray-950">

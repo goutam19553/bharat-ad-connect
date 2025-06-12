@@ -9,6 +9,7 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building, Users, BarChart2, Shield, Clock, Globe, Smartphone, Sun, Moon } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
+import NetworkNeon from "@/components/NeonNetwork";
 
 
 const fadeInUp = {
@@ -600,6 +601,8 @@ const Index = () => {
           </div>
         </section>
       </div>
+
+      <NeonNetwork />
 
      
       {/* Testimonial Section */}

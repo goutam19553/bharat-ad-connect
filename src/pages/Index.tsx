@@ -240,123 +240,127 @@ const Index = () => {
 </section>
 
 
-      {/* Benefits */}
-      <div className="relative z-0 bg-gray-800 dark:bg-gray-950">
-        <div className="absolute inset-0 overflow-hidden opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float1"></div>
-            <div className="absolute top-1/3 right-1/3 w-48 h-48 rounded-full bg-bharat-green mix-blend-overlay filter blur-3xl animate-float2"></div>
-          </div>
-        </div>
-        <section className="section bg-transparent">
-          <div className="container-custom relative z-10">
-            <div className="text-center mb-12">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-white"
-              >
-                Transforming Outdoor Advertising in India
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-lg text-gray-200 max-w-3xl mx-auto"
-              >
-                Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
-              </motion.p>
-            </div>
+    {/* Benefits */}
+<div className="relative z-0 bg-white dark:bg-gray-950 transition-colors duration-300">
+  {/* Floating Background Effects */}
+  <div className="absolute inset-0 overflow-hidden opacity-10">
+    <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float1"></div>
+      <div className="absolute top-1/3 right-1/3 w-48 h-48 rounded-full bg-bharat-green mix-blend-overlay filter blur-3xl animate-float2"></div>
+    </div>
+  </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {/* Advertisers */}
-              <div>
-                <motion.h3 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="text-2xl font-bold mb-6 text-center md:text-left text-white"
-                >
-                  For Advertisers
-                </motion.h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {advertiserBenefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      custom={index}
-                      variants={fadeInUp}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
-                      <p className="text-gray-300">{benefit.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="mt-6 text-center md:text-left"
-                >
-                  <Link to="/advertisers" className="btn-primary hover:shadow-lg hover:shadow-bharat-saffron/30 transition-all">
-                    For Advertisers
-                  </Link>
-                </motion.div>
-              </div>
-
-              {/* Ad Space Owners */}
-              <div>
-                <motion.h3 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="text-2xl font-bold mb-6 text-center md:text-left text-white"
-                >
-                  For Ad Space Owners
-                </motion.h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {ownerBenefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      custom={index}
-                      variants={fadeInUp}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
-                      <p className="text-gray-300">{benefit.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="mt-6 text-center md:text-left"
-                >
-                  <Link to="/ad-space-owners" className="btn-secondary hover:shadow-lg hover:shadow-bharat-navy/30 transition-all">
-                    For Ad Space Owners
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <section className="section bg-transparent">
+    <div className="container-custom relative z-10">
+      {/* Heading */}
+      <div className="text-center mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white transition-colors"
+        >
+          Transforming Outdoor Advertising in India
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto transition-colors"
+        >
+          Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+        </motion.p>
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        {/* Advertisers */}
+        <div>
+          <motion.h3 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold mb-6 text-center md:text-left text-black dark:text-white transition-colors"
+          >
+            For Advertisers
+          </motion.h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {advertiserBenefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-gray-100 dark:bg-gray-900 bg-opacity-70 p-5 rounded-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              >
+                <div className="mb-4">{benefit.icon}</div>
+                <h4 className="text-lg font-semibold mb-2 text-black dark:text-white transition-colors">{benefit.title}</h4>
+                <p className="text-gray-700 dark:text-gray-300 transition-colors">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-6 text-center md:text-left"
+          >
+            <Link to="/advertisers" className="btn-primary hover:shadow-lg hover:shadow-bharat-saffron/30 transition-all">
+              For Advertisers
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Ad Space Owners */}
+        <div>
+          <motion.h3 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold mb-6 text-center md:text-left text-black dark:text-white transition-colors"
+          >
+            For Ad Space Owners
+          </motion.h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {ownerBenefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-gray-100 dark:bg-gray-900 bg-opacity-70 p-5 rounded-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              >
+                <div className="mb-4">{benefit.icon}</div>
+                <h4 className="text-lg font-semibold mb-2 text-black dark:text-white transition-colors">{benefit.title}</h4>
+                <p className="text-gray-700 dark:text-gray-300 transition-colors">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-6 text-center md:text-left"
+          >
+            <Link to="/ad-space-owners" className="btn-secondary hover:shadow-lg hover:shadow-bharat-navy/30 transition-all">
+              For Ad Space Owners
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 
       {/* Key Features Section */}
       <section className="py-16 bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-gray-800">

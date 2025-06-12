@@ -602,19 +602,20 @@ const Index = () => {
         </section>
       </div>
 
-        {/* How It Works Section */}
-     <div className="relative z-0 bg-gray-900 py-16">
-        <div className="absolute inset-0 overflow-hidden opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float3"></div>
-          </div>
-        </div>
-        <section className="section bg-transparent">
-          <div className="container-custom relative z-10">
-            <HowItWorks />
-          </div>
-        </section>
-      </div>
+       {/* Neon Network Section */}
+<div className="relative z-0 bg-gray-900 py-16">
+  <div className="absolute inset-0 overflow-hidden opacity-10">
+    <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-cyan-500 mix-blend-overlay filter blur-3xl animate-float1"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-64 h-64 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl animate-float2"></div>
+    </div>
+  </div>
+  <section className="section bg-transparent">
+    <div className="container-custom relative z-10">
+      <NeonNetwork />
+    </div>
+  </section>
+</div>
 
      
       {/* Testimonial Section */}

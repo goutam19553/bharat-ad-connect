@@ -602,7 +602,19 @@ const Index = () => {
         </section>
       </div>
 
-      <NeonNetwork />
+        {/* How It Works Section */}
+     <div className="relative z-0 bg-gray-900 py-16">
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-bharat-saffron mix-blend-overlay filter blur-3xl animate-float3"></div>
+          </div>
+        </div>
+        <section className="section bg-transparent">
+          <div className="container-custom relative z-10">
+            <HowItWorks />
+          </div>
+        </section>
+      </div>
 
      
       {/* Testimonial Section */}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -37,11 +37,9 @@ const Footer = () => {
             <p className="mb-4 text-gray-300">
               Connecting advertisers with ad space owners across India through our innovative digital marketplace.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-bharat-saffron"><Facebook className="h-5 w-5" /></a>
-              <a href="#" className="text-gray-300 hover:text-bharat-saffron"><Twitter className="h-5 w-5" /></a>
+            <div className="flex space-x-4">          
               <a href="#" className="text-gray-300 hover:text-bharat-saffron"><Instagram className="h-5 w-5" /></a>
-              <a href="#" className="text-gray-300 hover:text-bharat-saffron"><Linkedin className="h-5 w-5" /></a>
+              <a href="https://www.linkedin.com/company/the-adz-project/" className="text-gray-300 hover:text-bharat-saffron"><Linkedin className="h-5 w-5" /></a>
             </div>
           </div>
 

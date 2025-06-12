@@ -9,8 +9,6 @@ import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building, Users, BarChart2, Shield, Clock, Globe, Smartphone, Sun, Moon } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-import NeonNetwork from "@/components/NeonNetwork";
-
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -601,21 +599,6 @@ const Index = () => {
           </div>
         </section>
       </div>
-
-       {/* Neon Network Section */}
-<div className="relative z-0 bg-gray-900 py-16">
-  <div className="absolute inset-0 overflow-hidden opacity-10">
-    <div className="absolute top-0 left-0 w-full h-full">
-      <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-cyan-500 mix-blend-overlay filter blur-3xl animate-float1"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-64 h-64 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl animate-float2"></div>
-    </div>
-  </div>
-  <section className="section bg-transparent">
-    <div className="container-custom relative z-10">
-      <NeonNetwork />
-    </div>
-  </section>
-</div>
 
      
       {/* Testimonial Section */}

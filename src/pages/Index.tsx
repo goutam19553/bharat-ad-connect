@@ -158,12 +158,7 @@ const Index = () => {
     { icon: <Zap className="h-8 w-8 text-bharat-navy" />, title: "Seamless Management", description: "Easy-to-use platform for managing your ad inventory." },
   ];
 
-  const stats = [
-    { value: "10,000+", label: "Ad Spaces Available", icon: <MapPin className="h-6 w-6" /> },
-    { value: "5,000+", label: "Happy Clients", icon: <Users className="h-6 w-6" /> },
-    { value: "85%", label: "Increase in Engagement", icon: <BarChart2 className="h-6 w-6" /> },
-    { value: "24/7", label: "Support Available", icon: <Clock className="h-6 w-6" /> },
-  ];
+  
 
   const features = [
     {
@@ -207,37 +202,7 @@ const Index = () => {
         <Hero />
       </div>
 
-     {/* Stats Section */}
-<section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
-  <div className="container-custom">
-    <motion.div 
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={staggerContainer}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6"
-    >
-      {stats.map((stat, index) => (
-        <motion.div
-          key={index}
-          variants={fadeInUp}
-          custom={index}
-          className="bg-gradient-to-br from-bharat-navy/5 to-bharat-saffron/5 dark:from-white/5 dark:to-white/10 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center transition-colors duration-300"
-        >
-          <div className="flex justify-center mb-3 text-bharat-saffron dark:text-bharat-saffron/80">
-            {stat.icon}
-          </div>
-          <h3 className="text-3xl font-bold text-bharat-navy dark:text-white mb-2">
-            {stat.value}
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300">
-            {stat.label}
-          </p>
-        </motion.div>
-      ))}
-    </motion.div>
-  </div>
-</section>
+     
 
 
     {/* Benefits */}

@@ -119,7 +119,7 @@ const AIDesignDemo = () => {
   ];
 
   return (
-    <section className="bg-gray-950 py-20 px-6 md:px-20 text-white">
+    <section className="bg-gray-800 py-20 px-6 md:px-20 text-white">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-bharat-saffron mb-4">
           Every Business, Auto-Optimized

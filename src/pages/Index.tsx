@@ -581,13 +581,13 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                quote: "Bharat-Ad helped us find the perfect ad spaces for our national campaign. The AI recommendations saved us weeks of research!",
+                quote: "The Ad-Project helped us find the perfect ad spaces for our national campaign. The AI recommendations saved us weeks of research!",
                 author: "Rahul Sharma",
                 company: "Marketing Director, UrbanClap",
                 rating: 5
               },
               {
-                quote: "As a small business owner, I never thought I could afford premium ad spaces. Bharat-Ad made it possible with their affordable options.",
+                quote: "As a small business owner, I never thought I could afford premium ad spaces. The Ad-Project made it possible with their affordable options.",
                 author: "Priya Patel",
                 company: "Founder, SpiceCraft",
                 rating: 4
@@ -595,7 +595,7 @@ const Index = () => {
               {
                 quote: "The AR preview feature is revolutionary. We could visualize our ads before booking, eliminating all guesswork.",
                 author: "Vikram Mehta",
-                company: "CMO, Paytm",
+                company: "CMO, Kudio",
                 rating: 5
               }
             ].map((testimonial, index) => (

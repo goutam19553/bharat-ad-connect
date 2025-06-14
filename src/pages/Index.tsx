@@ -235,7 +235,7 @@ const Index = () => {
           viewport={{ once: true }}
           className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto transition-colors"
         >
-          Bharat-Ad connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+          The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
         </motion.p>
       </div>
 

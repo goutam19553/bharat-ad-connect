@@ -1,33 +1,20 @@
 import { useEffect, useState, useRef } from "react";
 
-const banners = [
-  "/banner5.png", // Default banner (fixed idle)
-  "/banner1.png",
-  "/banner2.png",
-  "/banner3.png",
-];
+const banners = ["/banner5.png"]; // Only use banner5 after video
 
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
   const canvasRef = useRef(null);
 
-   useEffect(() => {
-    // Load only the first banner initially
-    const firstImg = new Image();
-    firstImg.src = banners[0];
-    firstImg.onload = () => {
-      setIsLoading(false);
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 768;
+    setShowVideo(isDesktop);
 
-      // Load remaining banners after 1s
-      setTimeout(() => {
-        banners.slice(1).forEach((src) => {
-          const img = new Image();
-          img.src = src;
-        });
-      }, 1000);
-    };
+    const img = new Image();
+    img.src = banners[0];
+    img.onload = () => setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -39,15 +26,14 @@ const Hero = () => {
     let particles = [];
     const particleCount = 150;
     const colors = [
-  'rgba(58, 97, 255, 0.6)',   // Electric Blue
-  'rgba(198, 83, 255, 0.6)',  // Purple Glow
-  'rgba(255, 92, 92, 0.6)',   // Soft Red
-  'rgba(255, 180, 60, 0.6)',  // Amber Orange
-  'rgba(72, 255, 203, 0.6)',  // Teal Glow
-  'rgba(50, 255, 126, 0.6)',  // Green Glow
-                             ];
+      'rgba(58, 97, 255, 0.6)',
+      'rgba(198, 83, 255, 0.6)',
+      'rgba(255, 92, 92, 0.6)',
+      'rgba(255, 180, 60, 0.6)',
+      'rgba(72, 255, 203, 0.6)',
+      'rgba(50, 255, 126, 0.6)',
+    ];
 
-    // Fullscreen canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -126,7 +112,7 @@ const Hero = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(31, 41, 55, 1)'; // gray-800 background
+      ctx.fillStyle = 'rgba(31, 41, 55, 1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
@@ -142,50 +128,34 @@ const Hero = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, [isLoading]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? 1 : (prev + 1) % banners.length));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? banners.length - 1 : (prev - 1) % banners.length
-    );
-  };
-
   return (
     <>
       {isLoading && (
         <div className="fixed inset-0 z-50 bg-gray-800 flex items-center justify-center">
-          <canvas 
-            ref={canvasRef} 
-            className="absolute w-full h-full" 
-          />
+          <canvas ref={canvasRef} className="absolute w-full h-full" />
         </div>
       )}
 
       <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
-        <img
-          src={banners[currentIndex]}
-          alt=""
-          className="w-full h-full object-cover lg:object-fill transition-opacity duration-500"
-          loading="eager"
-          draggable={false}
-        />
-
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full"
-          aria-label="Previous Slide"
-        >
-          &#8592;
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full"
-          aria-label="Next Slide"
-        >
-          &#8594;
-        </button>
+        {showVideo && !videoEnded ? (
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            playsInline
+            onEnded={() => setVideoEnded(true)}
+          >
+            <source src="/herovideo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <img
+            src={banners[0]}
+            alt="Banner"
+            className="w-full h-full object-cover lg:object-fill"
+            draggable={false}
+          />
+        )}
       </div>
     </>
   );

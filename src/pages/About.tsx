@@ -224,7 +224,7 @@ to { opacity: 1; transform: translateY(0); }
 </section>
 
 {/* Initiatives 3D Swiper Slider */}
-<section className="bg-black py-20">
+<section className="bg-gradient-to-b from-gray-900 to-gray-800 py-20">
   <div className="container-custom text-center">
     <h2 className="text-4xl font-heading font-bold text-white mb-12">
       Real Initiatives from the Ground

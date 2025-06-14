@@ -1,43 +1,51 @@
 import { useEffect, useState, useRef } from "react";
 
-const banners = ["/banner5.png"]; // Only use banner5 after video
-
 const Hero = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showVideo, setShowVideo] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
-  const canvasRef = useRef(null);
+  const [isReady, setIsReady] = useState(false); // when video/image is ready
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const isDesktop = window.innerWidth >= 768;
-    setShowVideo(isDesktop);
-
-    const img = new Image();
-    img.src = banners[0];
-    img.onload = () => setIsLoading(false);
+    setIsDesktop(window.innerWidth >= 768);
   }, []);
 
+  // Initialize particles animation
   useEffect(() => {
-    if (!isLoading || !canvasRef.current) return;
+    if (isReady || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    let particles = [];
-    const particleCount = 150;
+    const ctx = canvas.getContext("2d");
+    let animationFrameId: number;
+    const particleCount = 120;
     const colors = [
-      'rgba(58, 97, 255, 0.6)',
-      'rgba(198, 83, 255, 0.6)',
-      'rgba(255, 92, 92, 0.6)',
-      'rgba(255, 180, 60, 0.6)',
-      'rgba(72, 255, 203, 0.6)',
-      'rgba(50, 255, 126, 0.6)',
+      "rgba(58, 97, 255, 0.6)",
+      "rgba(198, 83, 255, 0.6)",
+      "rgba(255, 92, 92, 0.6)",
+      "rgba(255, 180, 60, 0.6)",
+      "rgba(72, 255, 203, 0.6)",
+      "rgba(50, 255, 126, 0.6)",
     ];
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     class Particle {
+      x: number;
+      y: number;
+      z: number;
+      size: number;
+      color: string;
+      speed: number;
+      angle: number;
+      radius: number;
+      rotation: number;
+      rotationSpeed: number;
+      glowIntensity: number;
+      glowPulseSpeed: number;
+      glowPhase: number;
+      currentGlow: number;
+
       constructor() {
         this.reset();
         this.z = Math.random() * 4 - 2;
@@ -57,6 +65,7 @@ const Hero = () => {
         this.glowIntensity = Math.random() * 0.5 + 0.5;
         this.glowPulseSpeed = Math.random() * 0.02 + 0.01;
         this.glowPhase = Math.random() * Math.PI * 2;
+        this.currentGlow = 0;
       }
 
       update() {
@@ -69,7 +78,8 @@ const Hero = () => {
         this.y = yPos * scale;
         this.z += 0.05;
         this.glowPhase += this.glowPulseSpeed;
-        this.currentGlow = this.glowIntensity * (0.5 + 0.5 * Math.sin(this.glowPhase));
+        this.currentGlow =
+          this.glowIntensity * (0.5 + 0.5 * Math.sin(this.glowPhase));
         if (this.z > 2) {
           this.reset();
           this.z = -2;
@@ -77,11 +87,23 @@ const Hero = () => {
       }
 
       draw() {
-        const particleSize = Math.max(0.1, this.size * (1 / (2 + this.z)));
-        const glowSize = Math.max(particleSize, particleSize * (1 + this.currentGlow * 0.5));
+        const particleSize = Math.max(
+          0.1,
+          this.size * (1 / (2 + this.z))
+        );
+        const glowSize = Math.max(
+          particleSize,
+          particleSize * (1 + this.currentGlow * 0.5)
+        );
         const centerX = canvas.width / 2 + this.x;
         const centerY = canvas.height / 2 + this.y;
-        if (!isFinite(centerX) || !isFinite(centerY) || !isFinite(particleSize) || !isFinite(glowSize)) return;
+        if (
+          !isFinite(centerX) ||
+          !isFinite(centerY) ||
+          !isFinite(particleSize) ||
+          !isFinite(glowSize)
+        )
+          return;
 
         const gradient = ctx.createRadialGradient(
           centerX,
@@ -92,7 +114,7 @@ const Hero = () => {
           glowSize
         );
         gradient.addColorStop(0, this.color);
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
 
         ctx.beginPath();
         ctx.arc(centerX, centerY, glowSize, 0, Math.PI * 2);
@@ -106,54 +128,53 @@ const Hero = () => {
       }
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
+    const particles: Particle[] = Array.from({ length: particleCount }, () => new Particle());
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(31, 41, 55, 1)';
+      ctx.fillStyle = "rgba(31, 41, 55, 1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
       });
-
       animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isLoading]);
+  }, [isReady]);
 
   return (
     <>
-      {isLoading && (
+      {!isReady && (
         <div className="fixed inset-0 z-50 bg-gray-800 flex items-center justify-center">
           <canvas ref={canvasRef} className="absolute w-full h-full" />
         </div>
       )}
 
       <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
-        {showVideo && !videoEnded ? (
+        {isDesktop && !videoEnded ? (
           <video
             className="w-full h-full object-cover"
             autoPlay
             muted
             playsInline
+            poster="/banner5.png"
             onEnded={() => setVideoEnded(true)}
+            onCanPlayThrough={() => setIsReady(true)} // loader ends here
           >
             <source src="/herovideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
           <img
-            src={banners[0]}
+            src="/banner5.png"
             alt="Banner"
             className="w-full h-full object-cover lg:object-fill"
             draggable={false}
+            onLoad={() => setIsReady(true)} // loader ends here for mobile
           />
         )}
       </div>

@@ -247,12 +247,12 @@ to { opacity: 1; transform: translateY(0); }
       className="w-full max-w-6xl"
     >
       {[
-        '/work(1).png',
-        '/work(2).png',
-        '/work(3).png',
-        '/work(4).png',
-        '/work(5).png',
-       '/work(6).png',
+        '/work (1).png',
+        '/work (2).png',
+        '/work (3).png',
+        '/work (4).png',
+        '/work (5).png',
+        '/work (6).png',
       ].map((img, idx) => (
         <SwiperSlide key={idx} className="max-w-md">
           <div className="relative rounded-3xl overflow-hidden border-4 border-bharat-teal shadow-[0_0_40px_#14b8a688] hover:scale-105 transition-all duration-500">

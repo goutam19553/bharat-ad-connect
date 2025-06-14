@@ -1,6 +1,10 @@
 // Keep imports the same
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 
 const About = () => {
   const [loading, setLoading] = useState(true);
@@ -197,6 +201,7 @@ className="bg-gradient-to-tr from-bharat-navy/70 to-gray-800 p-8 rounded-xl bord
 ))}
 </div>
 
+
 {/* Glow & animation */}
 <style>{`
 .animate-fade-in {
@@ -218,7 +223,52 @@ to { opacity: 1; transform: translateY(0); }
 `}</style>
 </section>
 
+{/* Initiatives 3D Swiper Slider */}
+<section className="bg-black py-20">
+  <div className="container-custom text-center">
+    <h2 className="text-4xl font-heading font-bold text-white mb-12">
+      Real Initiatives from the Ground
+    </h2>
+    <Swiper
+      effect="coverflow"
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView="auto"
+      loop={true}
+      autoplay={{ delay: 2500 }}
+      coverflowEffect={{
+        rotate: 30,
+        stretch: 0,
+        depth: 200,
+        modifier: 2.5,
+        slideShadows: true,
+      }}
+      modules={[EffectCoverflow, Autoplay]}
+      className="w-full max-w-6xl"
+    >
+      {[
+        '/work(1).png',
+        '/work(2).png',
+        '/work(3).png',
+        '/work(4).png',
+        '/work(5).png',
+       '/work(6).png',
+      ].map((img, idx) => (
+        <SwiperSlide key={idx} className="max-w-md">
+          <div className="relative rounded-3xl overflow-hidden border-4 border-bharat-teal shadow-[0_0_40px_#14b8a688] hover:scale-105 transition-all duration-500">
+            <img
+              src={img}
+              alt={`initiative-${idx}`}
+              className="w-full h-80 object-cover rounded-3xl"
+            />
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</section>
 
+      
 {/* Collaborative Team Section (New) */}
 <section className="bg-gray-800 py-20">
 <div className="container-custom text-center max-w-3xl mx-auto">

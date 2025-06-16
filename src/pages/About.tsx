@@ -281,7 +281,7 @@ We're a small but dedicated team of creators, tech enthusiasts, and change-maker
 <div className="bg-gradient-to-br from-bharat-teal to-bharat-navy p-6 rounded-2xl shadow-lg animate-glow hover:scale-105 transition-transform duration-500">
 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">JOIN THE TEAM</h3>
 <p className="text-lg text-white mb-6">
-This is just the beginning. If you're passionate about AI, AR, any tech related to this startup or building something futuristic for India — we're hiring and always open to new minds.
+This is just the beginning. Whether you're from tech, sales, marketing, real estate, or any industry — if you're passionate about AI, AR, or building something futuristic for India, we’re hiring and always open to visionary minds.
 </p>
 <Link to="/contact" className="btn-primary font-bold text-white">
 Let’s co-build the future. [Join Us →]

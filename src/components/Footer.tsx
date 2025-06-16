@@ -75,7 +75,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://aiadplanner.netlify.app/" 
+                  href="https://aiplanner-orpin.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-gray-300 hover:text-bharat-saffron"

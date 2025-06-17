@@ -94,7 +94,7 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-bharat-saffron mr-2 mt-0.5" />
                 <span className="text-gray-300">
                   Innovation Park, <br />
-                  Belagavi, Karnataka 590001
+                  Bengaluru, Karnataka 560001
                 </span>
               </li>
               <li className="flex items-center">

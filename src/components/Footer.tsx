@@ -65,7 +65,7 @@ const Footer = () => {
               <li><Link to="/ad-space-owners" className="text-gray-300 hover:text-bharat-saffron">List Your Ad Space</Link></li>
               <li>
                 <a
-                  href="https://aiplanner-orpin.vercel.app/"
+                  href="https://aiadplanner.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-bharat-saffron"

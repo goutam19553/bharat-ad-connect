@@ -1,149 +1,268 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>List Your Ad Space – The Ad Project</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .step { display: none; }
-    .step.active { display: block; }
-  </style>
-</head>
-<body class="bg-gradient-to-br from-indigo-950 via-purple-900 to-black text-white">
-  <div class="max-w-3xl mx-auto px-4 py-12">
-    <div class="bg-zinc-900 shadow-2xl border border-purple-800 rounded-3xl overflow-hidden">
-      <div class="px-6 py-8 border-b border-purple-700 text-center">
-        <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 animate-pulse">📸 List Your Ad Space</h2>
-        <p class="text-sm text-gray-300 mt-1">Just 3 Steps to Start Earning from Your Property</p>
+import React, { useCallback, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Upload } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+
+const formSchema = z.object({
+  title: z.string().min(5, "Title must be at least 5 characters"),
+  adType: z.string().min(1, "Please select an ad space type"),
+  location: z.string().min(5, "Location must be at least 5 characters"),
+  size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
+  price: z.string().min(1, "Please enter the monthly rental price"),
+  images: z
+    .any()
+    .refine(
+      (files) => files instanceof FileList && files.length > 0,
+      "Please upload at least one image"
+    ),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+const AdSpaceUpload: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      adType: "",
+      location: "",
+      size: "",
+      price: "",
+      images: undefined,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = useCallback(async (values) => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    const files: File[] = Array.from(values.images);
+    const uploadedUrls: string[] = [];
+
+    toast.loading("Uploading images...", { id: "upload" });
+
+    for (const file of files) {
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error(`File ${file.name} exceeds 10MB size limit.`, { id: "upload" });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const { data, error } = await supabase.storage
+        .from("ad-space-images")
+        .upload(`ad-spaces/${Date.now()}-${file.name}`, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type || "image/png",
+        });
+
+      if (error || !data?.path) {
+        toast.error(`Failed to upload image: ${file.name}`, { id: "upload" });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const publicUrl = supabase.storage
+        .from("ad-space-images")
+        .getPublicUrl(data.path).data?.publicUrl;
+
+      if (publicUrl) {
+        uploadedUrls.push(publicUrl);
+      }
+    }
+
+    const { error: dbError } = await supabase.from("ad_spaces").insert([{
+      title: values.title,
+      ad_type: values.adType,
+      location: values.location,
+      size: values.size,
+      price: Number(values.price),
+      image_urls: uploadedUrls,
+    }]);
+
+    if (dbError) {
+      toast.error("Failed to submit ad space data.", { id: "upload" });
+      setIsSubmitting(false);
+      return;
+    }
+
+    toast.success("Ad space listed successfully!", { id: "upload" });
+
+    setTimeout(() => {
+      form.reset();
+      const fileInput = document.getElementById("ad-image-upload") as HTMLInputElement;
+      if (fileInput) fileInput.value = "";
+      setPreviewUrls([]);
+      setIsSubmitting(false);
+    }, 1000);
+  }, [form, isSubmitting]);
+
+  return (
+    <div className="pt-20 bg-gradient-to-b from-indigo-950 via-purple-900 to-black min-h-screen">
+      <div className="text-center py-12 mb-10 bg-gradient-to-r from-purple-800 to-indigo-800 shadow-xl rounded-b-[50px]">
+        <h1 className="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 animate-pulse">
+          List Your Ad Space
+        </h1>
+        <p className="text-lg text-gray-100 max-w-2xl mx-auto">
+          Whether it’s a wall, hoarding, auto, shop, or rooftop — turn it into income. Upload details of your space and attract advertisers across India.
+        </p>
       </div>
 
-      <form id="listingForm" class="p-8 space-y-10">
+      <div className="max-w-3xl mx-auto p-8 bg-zinc-950 border border-purple-800 rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.4)] backdrop-blur-md">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-300">Listing Title</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="e.g., Auto Billboard in Andheri East" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <!-- Step 1 -->
-        <div class="step active" id="step1">
-          <div class="space-y-6">
-            <div>
-              <label class="block text-purple-300 font-semibold">Listing Title *</label>
-              <input type="text" required class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="e.g. Billboard on Rooftop near Railway Station" />
-            </div>
+            <FormField
+              control={form.control}
+              name="adType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-300">Type of Ad Space</FormLabel>
+                  <FormControl>
+                    <select
+                      {...field}
+                      className="w-full p-3 rounded-md bg-zinc-800 text-white border border-zinc-700"
+                    >
+                      <option value="">Select...</option>
+                      <option value="Wall">Wall</option>
+                      <option value="Hoarding">Hoarding</option>
+                      <option value="Auto Rickshaw">Auto Rickshaw</option>
+                      <option value="Shop Front">Shop Front</option>
+                      <option value="Rooftop">Rooftop</option>
+                      <option value="Mall">Mall</option>
+                      <option value="Bus">Bus</option>
+                      <option value="Digital Screen">Digital Screen</option>
+                    </select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-            <div>
-              <label class="block text-purple-300 font-semibold">Type of Ad Space *</label>
-              <select required class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg">
-                <option value="">Select ad space type</option>
-                <option>Wall</option>
-                <option>Hoarding</option>
-                <option>Auto Rickshaw</option>
-                <option>Shop Front</option>
-                <option>Bus</option>
-                <option>Mall</option>
-                <option>Rooftop</option>
-                <option>Digital Screen</option>
-              </select>
-            </div>
+            {["location", "size", "price"].map((fieldKey) => (
+              <FormField
+                key={fieldKey}
+                control={form.control}
+                name={fieldKey as keyof FormValues}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-purple-300">
+                      {fieldKey === "location"
+                        ? "Location"
+                        : fieldKey === "size"
+                        ? "Ad Space Size (e.g. 10ft x 8ft)"
+                        : "Monthly Rent (₹)"}
+                    </FormLabel>
+                    <FormControl>
+                      <Input {...field} type={fieldKey === "price" ? "number" : "text"} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
 
-            <div>
-              <label class="block text-purple-300 font-semibold">Location *</label>
-              <input type="text" required class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="e.g. MG Road, Bengaluru" />
-            </div>
+            <FormField
+              control={form.control}
+              name="images"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-300">Upload Images (1–3)</FormLabel>
+                  <FormControl>
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <label
+                        htmlFor="ad-image-upload"
+                        className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-purple-600 rounded-xl cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition duration-300"
+                      >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                          <Upload className="w-8 h-8 mb-4 text-purple-400" />
+                          <p className="mb-2 text-sm text-purple-300">
+                            <span className="font-semibold">Click to upload</span> or drag and drop
+                          </p>
+                          <p className="text-xs text-purple-500">Max size 10MB per image</p>
+                        </div>
+                        <input
+                          id="ad-image-upload"
+                          type="file"
+                          className="hidden"
+                          accept="image/*"
+                          multiple
+                          onChange={(e) => {
+                            const files = e.target.files;
+                            if (files && files.length > 0) {
+                              const urls = Array.from(files).map((file) =>
+                                URL.createObjectURL(file)
+                              );
+                              setPreviewUrls(urls);
+                            }
+                            field.onChange(e.target.files);
+                          }}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        />
+                      </label>
 
-            <button type="button" onclick="nextStep(2)" class="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black p-3 rounded-xl text-lg font-bold hover:scale-105 transition">Next →</button>
-          </div>
-        </div>
+                      {previewUrls.length > 0 && (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 w-full">
+                          {previewUrls.map((url, index) => (
+                            <img
+                              key={index}
+                              src={url}
+                              alt={`Preview ${index + 1}`}
+                              className="w-full h-40 object-cover rounded-lg border border-purple-600"
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <!-- Step 2 -->
-        <div class="step" id="step2">
-          <div class="space-y-6">
-            <div>
-              <label class="block text-purple-300 font-semibold">Upload 1–3 Images *</label>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <input type="file" required accept="image/*" class="p-2 bg-zinc-800 text-white border border-purple-600 rounded-lg">
-                <input type="file" accept="image/*" class="p-2 bg-zinc-800 text-white border border-purple-600 rounded-lg">
-                <input type="file" accept="image/*" class="p-2 bg-zinc-800 text-white border border-purple-600 rounded-lg">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <label class="block text-purple-300 font-semibold">Length (ft)</label>
-                <input type="number" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="e.g. 10" />
-              </div>
-              <div>
-                <label class="block text-purple-300 font-semibold">Width (ft)</label>
-                <input type="number" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="e.g. 8" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-purple-300 font-semibold">Short Description</label>
-              <textarea class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" rows="3" placeholder="Describe visibility, traffic, nearby landmarks, etc."></textarea>
-            </div>
-
-            <div class="flex justify-between">
-              <button type="button" onclick="prevStep(1)" class="bg-gray-600 text-white px-6 py-2 rounded-xl hover:bg-gray-700">← Back</button>
-              <button type="button" onclick="nextStep(3)" class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black px-6 py-2 rounded-xl font-bold hover:scale-105">Next →</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="step" id="step3">
-          <div class="space-y-6">
-            <div>
-              <label class="block text-purple-300 font-semibold">Monthly Rent (₹)</label>
-              <input type="number" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="e.g. 20000" />
-            </div>
-
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <label class="block text-purple-300 font-semibold">Available From</label>
-                <input type="date" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" />
-              </div>
-              <div>
-                <label class="block text-purple-300 font-semibold">Available To</label>
-                <input type="date" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-purple-300 font-semibold">Contact Number *</label>
-              <input type="tel" required class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="+91 9876543210" />
-            </div>
-
-            <div>
-              <label class="block text-purple-300 font-semibold">Email Address</label>
-              <input type="email" class="w-full mt-1 p-3 bg-zinc-800 text-white border border-purple-600 rounded-lg" placeholder="your@email.com" />
-            </div>
-
-            <div class="flex items-center">
-              <input type="checkbox" required class="mr-2 border-purple-600" />
-              <label class="text-gray-300 text-sm">I am the legal owner or have permission to list this space.</label>
-            </div>
-
-            <div class="flex justify-between mt-6">
-              <button type="button" onclick="prevStep(2)" class="bg-gray-600 text-white px-6 py-2 rounded-xl hover:bg-gray-700">← Back</button>
-              <button type="submit" class="bg-gradient-to-r from-green-400 via-lime-500 to-emerald-500 text-black px-6 py-2 rounded-xl font-bold hover:scale-105">✅ Submit Listing</button>
-            </div>
-          </div>
-        </div>
-
-      </form>
+            <Button
+              type="submit"
+              className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold py-3 rounded-lg hover:brightness-110 transition-all shadow-lg"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Uploading..." : "List Your Ad Space"}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
-  </div>
+  );
+};
 
-  <script>
-    function nextStep(step) {
-      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-      document.getElementById('step' + step).classList.add('active');
-    }
-    function prevStep(step) {
-      nextStep(step);
-    }
-  </script>
-</body>
-</html>
+export default AdSpaceUpload;

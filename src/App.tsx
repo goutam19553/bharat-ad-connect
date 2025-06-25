@@ -17,7 +17,7 @@ const AdSpaceOwners = lazy(() => import("./pages/AdSpaceOwners"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const WallUpload = lazy(() => import("./pages/WallUpload"));
+const AdSpaceUpload = lazy(() => import("./pages/AdSpaceUpload"));
 const GovernmentSupportPage = lazy(() => import("./pages/GovernmentSupportPage"));
 
 const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ const EarnMoneySection = () => {
     <section className="earn-money-section text-center bg-white dark:bg-gray-900 py-20 px-6 overflow-hidden mb-0">
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-6">
-          Got an Empty Wall? Start Earning Today
+          Got an Empty Wall or any other ad space? Start Earning Today
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
           You can earn money by simply uploading your wall spaces. Advertisers will pay to place ads on your walls, allowing you to earn a passive income from your property. It's that simple!
@@ -150,7 +150,7 @@ const App = () => {
                   <Route path="/ad-spaces" element={<AdSpaces />} />
                   <Route path="/ai-analytics" element={<AIAnalytics />} />
                   <Route path="/advertisers" element={<Advertisers />} />
-                  <Route path="/wall-upload" element={<WallUpload />} />
+                  <Route path="/ad-space-upload" element={<AdSpaceUpload />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/government-support" element={<GovernmentSupportPage />} />

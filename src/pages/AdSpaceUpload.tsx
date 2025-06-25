@@ -14,11 +14,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Upload } from "lucide-react";
-import WallAdSpaceGrid from "@/components/WallAdSpaceGrid";
 import { supabase } from "@/lib/supabase";
 
 const formSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
+  adType: z.string().min(1, "Please select an ad space type"),
   location: z.string().min(5, "Location must be at least 5 characters"),
   size: z.string().min(3, "Please specify the size (e.g., 20ft x 10ft)"),
   price: z.string().min(1, "Please enter the monthly rental price"),
@@ -32,7 +32,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const WallUpload: React.FC = () => {
+const AdSpaceUpload: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
@@ -40,6 +40,7 @@ const WallUpload: React.FC = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      adType: "",
       location: "",
       size: "",
       price: "",
@@ -64,8 +65,8 @@ const WallUpload: React.FC = () => {
       }
 
       const { data, error } = await supabase.storage
-        .from("wall-images")
-        .upload(`walls/${Date.now()}-${file.name}`, file, {
+        .from("ad-space-images")
+        .upload(`ad-spaces/${Date.now()}-${file.name}`, file, {
           cacheControl: "3600",
           upsert: false,
           contentType: file.type || "image/png",
@@ -78,7 +79,7 @@ const WallUpload: React.FC = () => {
       }
 
       const publicUrl = supabase.storage
-        .from("wall-images")
+        .from("ad-space-images")
         .getPublicUrl(data.path).data?.publicUrl;
 
       if (publicUrl) {
@@ -86,27 +87,26 @@ const WallUpload: React.FC = () => {
       }
     }
 
-    const { error: dbError } = await supabase.from("wall_spaces").insert([
-      {
-        title: values.title,
-        location: values.location,
-        size: values.size,
-        price: Number(values.price),
-        image_urls: uploadedUrls,
-      },
-    ]);
+    const { error: dbError } = await supabase.from("ad_spaces").insert([{
+      title: values.title,
+      ad_type: values.adType,
+      location: values.location,
+      size: values.size,
+      price: Number(values.price),
+      image_urls: uploadedUrls,
+    }]);
 
     if (dbError) {
-      toast.error("Failed to submit wall data.", { id: "upload" });
+      toast.error("Failed to submit ad space data.", { id: "upload" });
       setIsSubmitting(false);
       return;
     }
 
-    toast.success("Wall space listed successfully!", { id: "upload" });
+    toast.success("Ad space listed successfully!", { id: "upload" });
 
     setTimeout(() => {
       form.reset();
-      const fileInput = document.getElementById("wall-image-upload") as HTMLInputElement;
+      const fileInput = document.getElementById("ad-image-upload") as HTMLInputElement;
       if (fileInput) fileInput.value = "";
       setPreviewUrls([]);
       setIsSubmitting(false);
@@ -117,48 +117,76 @@ const WallUpload: React.FC = () => {
     <div className="pt-20 bg-gradient-to-b from-indigo-950 via-purple-900 to-black min-h-screen">
       <div className="text-center py-12 mb-10 bg-gradient-to-r from-purple-800 to-indigo-800 shadow-xl rounded-b-[50px]">
         <h1 className="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 animate-pulse">
-          Monetize Your Wall Space
+          List Your Ad Space
         </h1>
         <p className="text-lg text-gray-100 max-w-2xl mx-auto">
-          Turn your empty walls into a steady source of income. Upload photos of your wall spaces,
-          set a rental price, and attract top advertisers looking for visibility in your area.
+          Whether it’s a wall, hoarding, auto, shop, or rooftop — turn it into income. Upload details of your space and attract advertisers across India.
         </p>
       </div>
 
       <div className="max-w-3xl mx-auto p-8 bg-zinc-950 border border-purple-800 rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.4)] backdrop-blur-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            {["title", "location", "size", "price"].map((fieldKey) => (
+            {/* Title */}
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-300">Listing Title</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="e.g., Auto Billboard in Andheri East" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Ad Space Type */}
+            <FormField
+              control={form.control}
+              name="adType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-300">Type of Ad Space</FormLabel>
+                  <FormControl>
+                    <select
+                      {...field}
+                      className="w-full p-3 rounded-md bg-zinc-800 text-white border border-zinc-700"
+                    >
+                      <option value="">Select...</option>
+                      <option value="Wall">Wall</option>
+                      <option value="Hoarding">Hoarding</option>
+                      <option value="Auto Rickshaw">Auto Rickshaw</option>
+                      <option value="Shop Front">Shop Front</option>
+                      <option value="Rooftop">Rooftop</option>
+                      <option value="Mall">Mall</option>
+                      <option value="Bus">Bus</option>
+                      <option value="Digital Screen">Digital Screen</option>
+                    </select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Location, Size, Price */}
+            {["location", "size", "price"].map((fieldKey) => (
               <FormField
                 key={fieldKey}
                 control={form.control}
                 name={fieldKey as keyof FormValues}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-purple-300 text-sm font-medium tracking-wide">
-                      {fieldKey === "title"
-                        ? "Wall Space Title"
-                        : fieldKey === "location"
+                    <FormLabel className="text-purple-300">
+                      {fieldKey === "location"
                         ? "Location"
                         : fieldKey === "size"
-                        ? "Wall Size"
-                        : "Monthly Rental Price (₹)"}
+                        ? "Ad Space Size (e.g. 10ft x 8ft)"
+                        : "Monthly Rent (₹)"}
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        type={fieldKey === "price" ? "number" : "text"}
-                        placeholder={
-                          fieldKey === "title"
-                            ? "e.g., Prime Commercial Wall Space - MG Road"
-                            : fieldKey === "location"
-                            ? "e.g., MG Road, Bangalore"
-                            : fieldKey === "size"
-                            ? "e.g., 20ft x 10ft"
-                            : "e.g., 25000"
-                        }
-                        className="bg-zinc-800 border border-zinc-700 placeholder-gray-500 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                      />
+                      <Input {...field} type={fieldKey === "price" ? "number" : "text"} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -166,18 +194,17 @@ const WallUpload: React.FC = () => {
               />
             ))}
 
+            {/* Image Upload */}
             <FormField
               control={form.control}
               name="images"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-purple-300 text-sm font-medium tracking-wide">
-                    Upload Wall Space Images
-                  </FormLabel>
+                  <FormLabel className="text-purple-300">Upload Images (1–3)</FormLabel>
                   <FormControl>
                     <div className="flex flex-col items-center justify-center w-full">
                       <label
-                        htmlFor="wall-image-upload"
+                        htmlFor="ad-image-upload"
                         className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-purple-600 rounded-xl cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition duration-300"
                       >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -185,12 +212,10 @@ const WallUpload: React.FC = () => {
                           <p className="mb-2 text-sm text-purple-300">
                             <span className="font-semibold">Click to upload</span> or drag and drop
                           </p>
-                          <p className="text-xs text-purple-500">
-                            High quality images recommended (MAX. 10MB)
-                          </p>
+                          <p className="text-xs text-purple-500">Max size 10MB per image</p>
                         </div>
                         <input
-                          id="wall-image-upload"
+                          id="ad-image-upload"
                           type="file"
                           className="hidden"
                           accept="image/*"
@@ -230,22 +255,19 @@ const WallUpload: React.FC = () => {
               )}
             />
 
+            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold py-3 rounded-lg hover:brightness-110 transition-all shadow-lg"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Uploading..." : "List Your Wall Space"}
+              {isSubmitting ? "Uploading..." : "List Your Ad Space"}
             </Button>
           </form>
         </Form>
-      </div>
-
-      <div className="mt-16">
-        <WallAdSpaceGrid />
       </div>
     </div>
   );
 };
 
-export default WallUpload;
+export default AdSpaceUpload;

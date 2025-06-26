@@ -31,7 +31,7 @@ const Hero = () => {
             onEnded={() => setVideoEnded(true)}
             onCanPlayThrough={() => setIsReady(true)}
           >
-            <source src="/hero2.mp4" type="video/mp4" />
+            <source src="/heroo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (

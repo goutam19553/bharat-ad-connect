@@ -20,7 +20,7 @@ const BrandSlider = () => {
       </div>
 
       <div className="relative w-full overflow-hidden">
-        <div className="flex animate-scroll gap-10 whitespace-nowrap">
+        <div className="flex gap-10 whitespace-nowrap animate-scroll">
           {[...brandLogos, ...brandLogos].map((logo, index) => (
             <div
               key={index}

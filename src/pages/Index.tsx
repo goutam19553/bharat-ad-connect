@@ -127,9 +127,7 @@ const Index = () => {
         </Canvas>
       </div>
 
-      {/* Neural Network Background */}
-      <NeuralNetworkBackground />
-
+    
       {/* Theme Toggle */}
       <motion.button
         onClick={toggleDarkMode}

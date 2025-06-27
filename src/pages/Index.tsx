@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, Float } from "@react-three/drei";
-import Particles from "@/components/Particles";
+
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -16,9 +16,7 @@ import {
   Smartphone, Sun, Moon, ArrowRight, Satellite
 } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-import HolographicCard from "@/components/HolographicCard";
-import NeuralNetworkBackground from "@/components/NeuralNetworkBackground";
-import CyberButton from "@/components/CyberButton";
+
 
 // Animation variants
 const fadeInUp = {

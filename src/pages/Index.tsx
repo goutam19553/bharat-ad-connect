@@ -178,7 +178,7 @@ const Index = () => {
                          bg-[length:200%_200%] bg-clip-text text-transparent
                          animate-gradient-x drop-shadow-md tracking-tight leading-tight"
             >
-              The Future of Out-of-Home Advertising
+              Building the Next-Gen Ad Infrastructure for India
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}

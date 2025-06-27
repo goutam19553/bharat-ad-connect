@@ -260,7 +260,7 @@ const Index = () => {
           >
             <HeroHeading />
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Bharat-Ad connects advertisers with ad space owners through our innovative digital marketplace powered by AI and AR technology.
+              The Ad-Project connects advertisers with ad space owners through our innovative digital marketplace powered by AI and AR technology.
             </p>
           </motion.div>
 

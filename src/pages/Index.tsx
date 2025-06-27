@@ -421,7 +421,8 @@ const Index = () => {
       <ContactForm />
     </div>
   </section>
-</div> {/* ← Add this if there's a main wrapping <div> above */}
-);
+</div>  {/* ✅ Main wrapper close */}
+);      // ✅ return end
+};      // ✅ function end
 
 export default Index;

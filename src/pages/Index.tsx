@@ -55,12 +55,14 @@ const Index = () => {
 
   // Theme management
   useEffect(() => {
-    const isDark = localStorage.getItem('darkMode') === 'true' || 
-                  (!('darkMode' in localStorage) && 
-                  window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setDarkMode(isDark);
-    document.documentElement.classList.toggle('dark', isDark);
-  }, []);
+  const isDark =
+    localStorage.getItem('darkMode') === 'true' ||
+    (!('darkMode' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches);
+  
+  setDarkMode(isDark);
+  document.documentElement.classList.toggle('dark', isDark);
+}, []);
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;

@@ -38,6 +38,7 @@ const config: Config = {
         destructive: "var(--destructive)",
         input: "var(--input)",
         ring: "var(--ring)",
+        border: "#e5e7eb",
         bharat: {
           green: "#00A651",
           saffron: "#FF9933",
@@ -48,7 +49,6 @@ const config: Config = {
           darkBackground: "#121212",
           darkText: "#f5f5f5",
         },
-        border: "#e5e7eb",
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
@@ -108,12 +108,8 @@ const config: Config = {
           "100%": { backgroundPosition: "700px 0" },
         },
         "glow-radial": {
-          "0%, 100%": {
-            boxShadow: "0 0 0 rgba(255,255,255,0)",
-          },
-          "50%": {
-            boxShadow: "0 0 60px 20px rgba(0, 255, 255, 0.4)",
-          },
+          "0%, 100%": { boxShadow: "0 0 0 rgba(255,255,255,0)" },
+          "50%": { boxShadow: "0 0 60px 20px rgba(0, 255, 255, 0.4)" },
         },
         "swipe-glow-left": {
           "0%": { transform: "translateX(100%)", opacity: 0 },
@@ -135,6 +131,10 @@ const config: Config = {
           "50%": { opacity: 1 },
           "100%": { transform: "translateY(100%)", opacity: 0 },
         },
+        "gradient-x": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -152,30 +152,11 @@ const config: Config = {
         "swipe-glow-up": "swipe-glow-up 3s infinite linear",
         "swipe-glow-down": "swipe-glow-down 3s infinite linear",
         "spin-fast": "spin 0.7s linear infinite",
-    colors: {
-  'bharat-green': '#0E9F6E',
-  'bharat-saffron': '#FF9933',
-}
+        "gradient-x": "gradient-x 6s ease infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
-
-module.exports = {
-  theme: {
-    extend: {
-      animation: {
-        'gradient-x': 'gradient-x 6s ease infinite',
-      },
-      keyframes: {
-        'gradient-x': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-      },
-    },
-  },
 };
 
 export default config;

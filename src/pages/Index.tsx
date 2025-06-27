@@ -15,22 +15,28 @@ import {
   ArrowRight, Star, Globe, Smartphone, Shield
 } from "lucide-react";
 
-// 🧩 NEW: Animated Shatter Heading Component
 const HeroHeading = () => {
   const text = "Building the Next-Gen Ad Infrastructure for India";
   const splitText = text.split("");
-return (
-    <h2 className="text-3xl md:text-6xl font-bold mb-6 flex flex-wrap justify-center text-white overflow-hidden">
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setShow(true), 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <h2 className="text-3xl md:text-6xl font-bold mb-6 flex flex-wrap justify-center text-white overflow-hidden leading-tight">
       {splitText.map((letter, index) => (
         <motion.span
           key={index}
-          initial={{ opacity: 0, y: -100, rotate: -90, scale: 0.5 }}
-          animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+          initial={{ opacity: 0, y: -80, rotate: -45, scale: 0.8 }}
+          animate={show ? { opacity: 1, y: 0, rotate: 0, scale: 1 } : {}}
           transition={{
             duration: 0.6,
             delay: index * 0.03,
             type: "spring",
-            stiffness: 80,
+            stiffness: 120,
           }}
           className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-yellow-500"
         >

@@ -19,7 +19,7 @@ const HeroHeading = () => {
   const text = "Building the Next-Gen Ad Infrastructure for India";
 
   return (
-    <h2 className="text-3xl md:text-6xl font-bold mb-6 px-2 pt-2 pb-3 flex flex-wrap justify-center text-white leading-snug bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-yellow-500">
+    <h2 className="text-2xl md:text-5xl font-extrabold mb-6 px-4 py-3 flex flex-wrap justify-center leading-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 animate-gradient-x bg-[length:300%_300%]">
       {text}
     </h2>
   );

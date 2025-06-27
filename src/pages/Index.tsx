@@ -420,7 +420,6 @@ const Index = () => {
           <ContactForm />
         </div>
       </section>
- </div>
   );
 };
 

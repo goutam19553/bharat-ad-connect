@@ -420,28 +420,7 @@ const Index = () => {
           <ContactForm />
         </div>
       </section>
-
-     
-
-      {/* Global Animations */}
-      <style jsx global>{`
-        @keyframes float1 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-20px) translateX(10px); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(15px) translateX(-15px); }
-        }
-        @keyframes float3 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-15px) translateX(-10px); }
-        }
-        .animate-float1 { animation: float1 8s ease-in-out infinite; }
-        .animate-float2 { animation: float2 10s ease-in-out infinite; }
-        .animate-float3 { animation: float3 12s ease-in-out infinite; }
-      `}</style>
-    </div>
+ </div>
   );
 };
 

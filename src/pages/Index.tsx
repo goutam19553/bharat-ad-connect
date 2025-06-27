@@ -348,27 +348,100 @@ const Index = () => {
       <AIDesignDemo />
       <FootTrafficDemo />
 
-        {/* How It Works Section - ADDED */}
-<div className="relative z-0 bg-gray-800">
-  <section className="section bg-transparent">
-    <div className="container-custom relative z-10">
-      <HowItWorks />
-    </div>
-  </section>
-</div>
-     
+      {/* How It Works */}
+      <div className="relative bg-gray-900 py-20">
+        <div className="container mx-auto px-4 relative z-10">
+          <HowItWorks />
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+              Trusted By Industry Leaders
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              What our partners say about working with us
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 italic mb-6 text-lg">
+                    "{testimonial.quote}"
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold">
+                      {testimonial.author.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">{testimonial.company}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Brands Slider */}
       <BrandSlider />
 
       {/* Contact Form */}
-      <section className="section bg-gray-100 dark:bg-gray-900">
-        <div className="container-custom">
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4">
           <ContactForm />
-            </div>
-          </section>
         </div>
-      </div>
-      );
+      </section>
+
+     
+
+      {/* Global Animations */}
+      <style jsx global>{`
+        @keyframes float1 {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        @keyframes float2 {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(15px) translateX(-15px); }
+        }
+        @keyframes float3 {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-15px) translateX(-10px); }
+        }
+        .animate-float1 { animation: float1 8s ease-in-out infinite; }
+        .animate-float2 { animation: float2 10s ease-in-out infinite; }
+        .animate-float3 { animation: float3 12s ease-in-out infinite; }
+      `}</style>
+    </div>
+  );
 };
 
 export default Index;

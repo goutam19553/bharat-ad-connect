@@ -63,17 +63,18 @@ const Index = () => {
       rating: 4,
       featured: true,
     },
-    {
-      id: 4,
-      title: "Prime Billboard - MG Road",
-      location: "MG Road",
-      city: "Bengaluru",
-      type: "Billboard",
-      size: "30 x 15 feet",
-      price: 45000,
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/092bfbdd-50d2-411b-9914-d2734e65ebb3.jpg",
-      rating: 5,
-      featured: true,
+   {
+     id: 4,
+    title: "Water Bottle Ads",
+    location: "Anywhere",
+    city: "Anywhere",
+    type: "Product Branding",
+    size: "Reusable Bottle",
+    price: 5000,
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png", // ← Replace with your image later
+    rating: 4.7,
+    impressions: "High visibility in offices, gyms, and events",
+    featured: true
     },
     {
       id: 5,

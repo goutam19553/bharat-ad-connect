@@ -556,48 +556,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-amber-500 to-orange-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-white mix-blend-overlay filter blur-3xl animate-float1"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 rounded-full bg-white mix-blend-overlay filter blur-3xl animate-float2"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            Ready to Transform Your Advertising?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-xl mb-8 max-w-3xl mx-auto"
-          >
-            Join the future of outdoor advertising today
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <button className="px-8 py-4 bg-white text-amber-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
-              Get Started
-            </button>
-            <button className="px-8 py-4 border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-colors">
-              Schedule Demo
-            </button>
-          </motion.div>
-        </div>
-      </section>
+     
 
       {/* Global Animations */}
       <style jsx global>{`

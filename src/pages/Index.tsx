@@ -10,18 +10,7 @@ import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
-const HeroHeading = () => {
-  return (
-    <h2
-      className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
-                 bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
-                 bg-[length:200%_200%] bg-clip-text text-transparent
-                 animate-gradient-x drop-shadow-md tracking-tight leading-tight"
-    >
-      Building the Next-Gen Ad Infrastructure for India
-    </h2>
-  );
-};
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: (i: number) => ({
@@ -138,7 +127,14 @@ const Index = () => {
   <section className="section bg-transparent">
     <div className="container-custom relative z-10">
       <div className="text-center mb-12">
-       
+        <h2
+      className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
+                 bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
+                 bg-[length:200%_200%] bg-clip-text text-transparent
+                 animate-gradient-x drop-shadow-md tracking-tight leading-tight"
+    >
+      Building the Next-Gen Ad Infrastructure for India
+    </h2>
         <p className="text-lg text-gray-200 max-w-3xl mx-auto">
           The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
         </p>

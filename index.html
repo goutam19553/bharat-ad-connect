@@ -3,165 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Ad-Project | AI-Powered Outdoor Advertising Marketplace</title>
+    <title>The Ad-Project | Outdoor Advertising Marketplace</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-    <meta name="description" content="Transform your outdoor advertising with The Ad-Project's AI-powered digital marketplace connecting advertisers with premium ad spaces across India." />
+    <meta name="description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta name="author" content="The Ad-Project" />
 
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="The Ad-Project | AI-Powered Outdoor Advertising Marketplace" />
-    <meta property="og:description" content="Transform your outdoor advertising with The Ad-Project's AI-powered digital marketplace connecting advertisers with premium ad spaces across India." />
+    <meta property="og:title" content="The Ad-Project | Outdoor Advertising Marketplace" />
+    <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/Augmented_reality-Image.jpg" />
-    <meta property="og:url" content="https://adtechproject.vercel.app" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bharat_ad" />
-    <meta name="twitter:creator" content="@bharat_ad" />
-    <meta name="twitter:title" content="The Ad-Project | AI-Powered Outdoor Advertising Marketplace" />
-    <meta name="twitter:description" content="Transform your outdoor advertising with The Ad-Project's AI-powered digital marketplace." />
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/Augmented_reality-Image.jpg" />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Augmented_reality-Image.jpg" />
 
-    <!-- Preconnect to important domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script type="module">
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
+      async function fetchData() {
+        const { data, error } = await supabase.from('wall-spaces').select('*');
+        if (error) console.error('Error fetching data:', error);
+        else console.log('Data:', data);
+      }
+      fetchData();
+    </script>
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind CSS with custom config -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
-          fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
-            heading: ['Space Grotesk', 'sans-serif'],
-          },
           extend: {
             colors: {
-              primary: {
-                light: '#4f46e5',
-                DEFAULT: '#4338ca',
-                dark: '#3730a3',
-              },
-              secondary: {
-                light: '#f59e0b',
-                DEFAULT: '#d97706',
-                dark: '#b45309',
-              },
-              dark: {
-                DEFAULT: '#0f172a',
-                light: '#1e293b',
-              }
+              primary: '#1D4ED8',
             },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              }
-            }
           },
         },
       };
     </script>
 
-    <!-- Custom Base Styles -->
     <style>
       html {
         -webkit-text-size-adjust: 100%;
-        scroll-behavior: smooth;
-      }
-      
-      body {
-        @apply bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark dark:to-dark-light;
-      }
-      
-      .gradient-text {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary.light to-secondary.DEFAULT;
-      }
-      
-      .card-hover {
-        @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
       }
     </style>
   </head>
 
-  <body class="min-h-screen font-sans antialiased text-gray-800 dark:text-gray-200">
-    <!-- Theme Toggle Button -->
-    <button onclick="toggleTheme()" class="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 dark:bg-dark/80 backdrop-blur-md shadow-lg hover:shadow-xl transition-all group">
-      <span class="dark:hidden text-gray-700 group-hover:text-primary.DEFAULT">
-        <i class="fas fa-moon text-lg"></i>
-      </span>
-      <span class="hidden dark:inline text-gray-300 group-hover:text-secondary.DEFAULT">
-        <i class="fas fa-sun text-lg"></i>
-      </span>
+  <body class="transition-colors duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Dark Mode Toggle Button -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 text-black dark:bg-white dark:text-black px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform">
+      🌙 / ☀️
     </button>
-
-    <!-- Preloader -->
-    <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-dark transition-opacity duration-500">
-      <div class="relative w-24 h-24">
-        <div class="absolute inset-0 rounded-full border-4 border-t-primary.DEFAULT border-r-secondary.DEFAULT border-b-primary.DEFAULT border-l-secondary.DEFAULT animate-spin"></div>
-        <div class="absolute inset-4 rounded-full border-4 border-t-secondary.DEFAULT border-r-primary.DEFAULT border-b-secondary.DEFAULT border-l-primary.DEFAULT animate-spin-reverse"></div>
-      </div>
-    </div>
 
     <!-- React App Root -->
     <div id="root"></div>
 
     <!-- Dark Mode Script -->
     <script>
-      // Preloader
-      window.addEventListener('load', function() {
-        const preloader = document.getElementById('preloader');
-        setTimeout(() => {
-          preloader.style.opacity = '0';
-          setTimeout(() => preloader.style.display = 'none', 500);
-        }, 1000);
-      });
-
-      // Theme management
       const html = document.getElementById('html-root');
-      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      
+      const savedTheme = localStorage.getItem('theme');
+
       if (savedTheme === 'dark') {
         html.classList.add('dark');
-      } else {
+      } else if (savedTheme === 'light') {
         html.classList.remove('dark');
+      } else {
+        html.classList.add('dark'); // Default to dark
       }
 
       function toggleTheme() {
-        html.classList.toggle('dark');
-        localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-      }
-    </script>
-
-    <!-- Supabase Client -->
-    <script type="module">
-      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-      const supabase = createClient('https://eemwdgvywfjdvvhewglt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
-      
-      async function fetchData() {
-        try {
-          const { data, error } = await supabase.from('wall-spaces').select('*');
-          if (error) throw error;
-          console.log('Ad spaces data:', data);
-        } catch (error) {
-          console.error('Error fetching ad spaces:', error);
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
         }
       }
-      
-      fetchData();
     </script>
 
     <!-- App Scripts -->

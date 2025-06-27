@@ -15,6 +15,32 @@ import {
   ArrowRight, Star, Globe, Smartphone, Shield
 } from "lucide-react";
 
+// 🧩 NEW: Animated Shatter Heading Component
+const HeroHeading = () => {
+  const text = "Building the Next-Gen Ad Infrastructure for India";
+  const splitText = text.split("");
+return (
+    <h2 className="text-3xl md:text-6xl font-bold mb-6 flex flex-wrap justify-center text-white overflow-hidden">
+      {splitText.map((letter, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0, y: -100, rotate: -90, scale: 0.5 }}
+          animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+          transition={{
+            duration: 0.6,
+            delay: index * 0.03,
+            type: "spring",
+            stiffness: 80,
+          }}
+          className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-yellow-500"
+        >
+          {letter === " " ? "\u00A0" : letter}
+        </motion.span>
+      ))}
+    </h2>
+  );
+};
+  
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -245,9 +271,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Building the Next-Gen Ad Infrastructure for India
-            </h2>
+            <HeroHeading />
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Bharat-Ad connects advertisers with ad space owners through our innovative digital marketplace powered by AI and AR technology.
             </p>

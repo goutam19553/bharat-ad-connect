@@ -16,11 +16,14 @@ import {
 } from "lucide-react";
 
 const HeroHeading = () => {
-  const text = "Building the Next-Gen Ad Infrastructure for India";
-
   return (
-    <h2 className="text-2xl md:text-5xl font-extrabold mb-6 px-4 py-3 flex flex-wrap justify-center leading-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 animate-gradient-x bg-[length:300%_300%]">
-      {text}
+    <h2
+      className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
+                 bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
+                 bg-[length:200%_200%] bg-clip-text text-transparent
+                 animate-gradient-x drop-shadow-md tracking-tight leading-tight"
+    >
+      Building the Next-Gen Ad Infrastructure for India
     </h2>
   );
 };

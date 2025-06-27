@@ -246,7 +246,7 @@ const Index = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Transforming Outdoor Advertising in India
+              Building the Next-Gen Ad Infrastructure for India
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Bharat-Ad connects advertisers with ad space owners through our innovative digital marketplace powered by AI and AR technology.

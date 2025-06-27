@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, Float } from "@react-three/drei";
-
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
@@ -13,10 +12,9 @@ import BrandSlider from "@/components/BrandSlider";
 import { 
   MapPin, Zap, TrendingUp, Eye, Award, Building, 
   Users, BarChart2, Shield, Clock, Globe, 
-  Smartphone, Sun, Moon, ArrowRight, Satellite
+  Smartphone, Sun, Moon, ArrowRight
 } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
-
 
 // Animation variants
 const fadeInUp = {
@@ -44,23 +42,41 @@ const staggerContainer = {
   }
 };
 
+interface HolographicCardProps {
+  children: React.ReactNode;
+  index?: number;
+}
+
+const HolographicCard: React.FC<HolographicCardProps> = ({ children, index = 0 }) => (
+  <motion.div
+    custom={index}
+    variants={fadeInUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    className="relative p-6 rounded-xl bg-white/10 dark:bg-gray-800/50 backdrop-blur-md border border-white/20 dark:border-gray-600/20 shadow-lg overflow-hidden group"
+  >
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="relative z-10">{children}</div>
+  </motion.div>
+);
+
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   // Theme management
   useEffect(() => {
-  const isDark =
-    localStorage.getItem('darkMode') === 'true' ||
-    (!('darkMode' in localStorage) &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches);
-  
-  setDarkMode(isDark);
-  document.documentElement.classList.toggle('dark', isDark);
-}, []);
+    const isDark =
+      localStorage.getItem('darkMode') === 'true' ||
+      (!('darkMode' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    setDarkMode(isDark);
+    document.documentElement.classList.toggle('dark', isDark);
+  }, []);
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;
@@ -84,7 +100,30 @@ const Index = () => {
       impressions: "2M+/month",
       featured: true,
     },
-    // ... (other ad spaces with added impressions data)
+    {
+      id: 2,
+      title: "Promotional Space",
+      location: "IT Park Manyata Tech Park",
+      city: "Bangalore",
+      type: "Space Ad",
+      size: "10 x 10 feet",
+      price: 25000,
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/ps%201.avif",
+      rating: 4,
+      featured: true,
+    },
+    {
+      id: 3,
+      title: "Exterior Train Branding",
+      location: "Mumbai Local Train",
+      city: "Mumbai",
+      type: "Transit",
+      size: "5 x 8 feet",
+      price: 80000,
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/ps3.avif",
+      rating: 4,
+      featured: true,
+    },
   ];
 
   // Benefits data
@@ -95,7 +134,51 @@ const Index = () => {
       description: "Access to exclusive premium ad spaces across major Indian cities.",
       gradient: "from-purple-500 to-blue-500"
     },
-    // ... (other benefits)
+    { 
+      icon: <Eye className="h-8 w-8" />, 
+      title: "AR Preview", 
+      description: "See exactly how your ad will look before making an investment.",
+      gradient: "from-blue-500 to-green-500"
+    },
+    { 
+      icon: <Zap className="h-8 w-8" />, 
+      title: "AI-Powered Design", 
+      description: "Get intelligent design recommendations based on location and audience.",
+      gradient: "from-green-500 to-yellow-500"
+    },
+    { 
+      icon: <TrendingUp className="h-8 w-8" />, 
+      title: "Traffic Analysis", 
+      description: "Make data-driven decisions with our foot traffic analysis.",
+      gradient: "from-yellow-500 to-red-500"
+    },
+  ];
+
+  const ownerBenefits = [
+    { 
+      icon: <Building className="h-8 w-8" />, 
+      title: "Maximize Revenue", 
+      description: "List your ad spaces and connect with quality advertisers.",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    { 
+      icon: <Award className="h-8 w-8" />, 
+      title: "Verified Advertisers", 
+      description: "We verify all advertisers to ensure quality partnerships.",
+      gradient: "from-pink-500 to-red-500"
+    },
+    { 
+      icon: <TrendingUp className="h-8 w-8" />, 
+      title: "Data Insights", 
+      description: "Access analytics about your space's performance and value.",
+      gradient: "from-red-500 to-orange-500"
+    },
+    { 
+      icon: <Zap className="h-8 w-8" />, 
+      title: "Seamless Management", 
+      description: "Easy-to-use platform for managing your ad inventory.",
+      gradient: "from-orange-500 to-yellow-500"
+    },
   ];
 
   // Features data
@@ -106,7 +189,39 @@ const Index = () => {
       description: "Access ad spaces across all major Indian cities and towns",
       tech: "Real-time geospatial mapping"
     },
-    // ... (other features)
+    {
+      icon: <Smartphone className="h-8 w-8" />,
+      title: "Mobile Integration",
+      description: "Manage your campaigns on-the-go with our mobile app",
+      tech: "Cross-platform compatibility"
+    },
+    {
+      icon: <Shield className="h-8 w-8" />,
+      title: "Secure Transactions",
+      description: "End-to-end encrypted payments and contracts",
+      tech: "Blockchain verification"
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: "The Ad-Project helped us find the perfect ad spaces for our national campaign. The AI recommendations saved us weeks of research!",
+      author: "Rahul Sharma",
+      company: "Marketing Director, UrbanClap",
+      rating: 5
+    },
+    {
+      quote: "As a small business owner, I never thought I could afford premium ad spaces. The Ad-Project made it possible with their affordable options.",
+      author: "Priya Patel",
+      company: "Founder, SpiceCraft",
+      rating: 4
+    },
+    {
+      quote: "The AR preview feature is revolutionary. We could visualize our ads before booking, eliminating all guesswork.",
+      author: "Vikram Mehta",
+      company: "CMO, Kudio",
+      rating: 5
+    }
   ];
 
   return (
@@ -127,7 +242,6 @@ const Index = () => {
         </Canvas>
       </div>
 
-    
       {/* Theme Toggle */}
       <motion.button
         onClick={toggleDarkMode}
@@ -148,7 +262,11 @@ const Index = () => {
 
       {/* Benefits Section */}
       <section className="relative py-20 overflow-hidden">
-        <Particles />
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl animate-float1"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 rounded-full bg-purple-600 mix-blend-overlay filter blur-3xl animate-float2"></div>
+        </div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -284,191 +402,4 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ad Spaces Showcase */}
-      <section className="py-20 bg-gray-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-blue-500 mix-blend-overlay filter blur-3xl animate-float1"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 rounded-full bg-purple-600 mix-blend-overlay filter blur-3xl animate-float2"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                Premium Ad Spaces
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Curated selection of high-impact advertising locations
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredAdSpaces.map((adSpace, index) => (
-              <motion.div
-                key={adSpace.id}
-                custom={index}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="group"
-              >
-                <AdSpaceCard 
-                  adSpace={adSpace} 
-                  className="transform group-hover:-translate-y-2 transition-transform duration-300"
-                />
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <CyberButton>
-              Explore All Spaces <ArrowRight className="ml-2" />
-            </CyberButton>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* AI/AR Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
-
-      {/* How It Works */}
-      <HowItWorks />
-
-      {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-                Trusted By Industry Leaders
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              What our partners say about working with us
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 relative overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative z-10">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 italic mb-6 text-lg">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
-                      {testimonial.author.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-semibold">{testimonial.author}</p>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-white mix-blend-overlay filter blur-3xl animate-float1"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 rounded-full bg-white mix-blend-overlay filter blur-3xl animate-float2"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            Ready to Transform Your Advertising?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-xl mb-8 max-w-3xl mx-auto"
-          >
-            Join the future of outdoor advertising today
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <button className="px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
-              Get Started
-            </button>
-            <button className="px-8 py-4 border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-colors">
-              Schedule Demo
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Global Animations */}
-      <style jsx global>{`
-        @keyframes float1 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-20px) translateX(10px); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(15px) translateX(-15px); }
-        }
-        @keyframes float3 {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-15px) translateX(-10px); }
-        }
-        .animate-float1 { animation: float1 8s ease-in-out infinite; }
-        .animate-float2 { animation: float2 10s ease-in-out infinite; }
-        .animate-float3 { animation: float3 12s ease-in-out infinite; }
-      `}</style>
-    </div>
-  );
-};
-
-export default Index;
+      {/* Ad

@@ -175,29 +175,30 @@ const Index = () => {
      <div className="container mx-auto px-4 relative z-10">
   <div className="text-center mb-16">
     <motion.h2
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="relative flex justify-center mb-12"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="flex justify-center items-center mb-12"
+>
+  <svg
+    viewBox="0 0 1600 200"
+    className="w-full max-w-7xl h-auto"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <text
+      x="50%"
+      y="50%"
+      dominantBaseline="middle"
+      textAnchor="middle"
+      className="svg-headline"
     >
-      <svg
-        viewBox="0 0 1200 200"
-        className="w-full max-w-5xl h-auto"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <text
-          x="50%"
-          y="50%"
-          dominantBaseline="middle"
-          textAnchor="middle"
-          className="svg-headline"
-        >
-          Building the Next-Gen Ad Infrastructure for India
-        </text>
-      </svg>
-    </motion.h2>
+      Building the Next-Gen Ad Infrastructure for India
+    </text>
+  </svg>
+</motion.h2>
+
 
     <motion.p
       initial={{ opacity: 0 }}

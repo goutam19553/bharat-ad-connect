@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -423,46 +423,7 @@ body {
   animation: scroll 25s linear infinite;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-.logo-animate {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2rem;
-  color: white;
-  border-right: 2px solid #00ff91;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 4s steps(20, end) forwards, blink 0.7s infinite;
-  position: relative;
-  text-shadow: 0 0 5px white, 0 0 10px #00ff91, 0 0 20px #00ff91;
-}
-
-.logo-animate::after {
-  content: 'Building the Next-Gen Ad Infrastructure for India';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #00ff91;
-  filter: blur(4px);
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
-}
 
 .typing-glow {
   display: inline-block;
@@ -472,7 +433,7 @@ body {
   animation: typing 4s steps(40, end), blink 0.75s step-end infinite, glow 3s ease-in-out infinite;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap');
+
 
 .typing-glow {
   display: inline-block;

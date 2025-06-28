@@ -1,4 +1,3 @@
-// Keep all chart imports the same
 import React from "react";
 import { Line, Bar } from "react-chartjs-2";
 import {
@@ -13,6 +12,8 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle, BarChart2, MapPin, Shield, DollarSign, Layout, Users } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +26,18 @@ ChartJS.register(
   Legend,
   Filler
 );
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 const GovernmentSupportPage = () => {
   const taxRecoveryData = {
@@ -47,182 +60,355 @@ const GovernmentSupportPage = () => {
     plugins: {
       legend: { display: false },
     },
+    scales: {
+      y: {
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'
+        },
+        ticks: {
+          color: '#fff'
+        }
+      },
+      x: {
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'
+        },
+        ticks: {
+          color: '#fff'
+        }
+      }
+    }
+  };
+
+  const featureIcons = {
+    "Digital Transparency": <BarChart2 className="w-6 h-6" />,
+    "Revenue Analytics": <DollarSign className="w-6 h-6" />,
+    "Compliance Monitoring": <Shield className="w-6 h-6" />,
+    "Real-time Tax Collection": <DollarSign className="w-6 h-6" />,
+    "Government Dashboard": <Layout className="w-6 h-6" />,
+    "White-label Solution": <Users className="w-6 h-6" />
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen px-6 pt-36 pb-20">
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 min-h-screen px-6 pt-32 pb-20">
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        <h1 className="text-5xl font-extrabold text-gray-800 dark:text-white mb-6">
-          The Ad Project – India's First B2G AdTech Platform
-        </h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          We're not just modernizing outdoor advertising — we're building a direct digital bridge between government bodies and the physical ad economy. Our platform empowers municipalities to track, regulate, and tax outdoor ads with never-before-seen precision.
-        </p>
+      <div className="max-w-6xl mx-auto text-center mb-20">
+        <motion.h1 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
+        >
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            The Ad Project
+          </span> – India's First B2G AdTech Platform
+        </motion.h1>
+        <motion.p 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+          className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+        >
+          Revolutionizing urban governance through transparent, data-driven outdoor advertising management
+        </motion.p>
       </div>
 
       {/* Why B2G Model */}
-      <div className="max-w-6xl mx-auto mb-16">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
-          Why a B2G Model is Essential
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
+      <div className="max-w-6xl mx-auto mb-24">
+        <motion.h2 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center"
+        >
+          The Digital Infrastructure <span className="text-blue-600">Cities Need</span>
+        </motion.h2>
+        
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {[
-            "Governments lose hundreds of crores yearly due to unregistered hoardings, illegal flex banners, and lack of real-time data.",
-            "There is no unified platform today that enables local bodies to digitally manage their ad inventories.",
-            "The Ad Project is the first of its kind to offer tax automation, geo-tagged tracking, campaign monitoring, and public-facing ad transparency — all in one system.",
-            "We integrate directly with Smart City portals, municipal billing engines, and urban planning systems.",
-          ].map((point, i) => (
-            <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-bold text-[#FDCB6E] mb-2">✅ Key Insight</h3>
-              <p>{point}</p>
-            </div>
+            {
+              title: "Revenue Recovery",
+              value: "₹2000+ Cr",
+              desc: "Potential tax recovery for Bangalore alone",
+              icon: <DollarSign className="w-8 h-8 text-blue-500" />
+            },
+            {
+              title: "Cities Impacted",
+              value: "150+",
+              desc: "Projected nationwide adoption",
+              icon: <MapPin className="w-8 h-8 text-blue-500" />
+            },
+            {
+              title: "Compliance Rate",
+              value: "98%",
+              desc: "Expected adherence with digital tracking",
+              icon: <CheckCircle className="w-8 h-8 text-blue-500" />
+            },
+            {
+              title: "Implementation",
+              value: "6 Weeks",
+              desc: "Average city onboarding timeline",
+              icon: <ArrowRight className="w-8 h-8 text-blue-500" />
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              transition={{ delay: 0.1 * i }}
+              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <div className="flex items-center mb-4">
+                <div className="p-2 rounded-full bg-blue-50 dark:bg-blue-900/30 mr-4">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{item.value}</h3>
+              </div>
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{item.title}</h4>
+              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Financial Impact */}
-      <div className="max-w-5xl mx-auto text-center mb-20">
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          📉 ₹2,000+ Crores Lost in Bangalore Alone
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Bangalore has suffered over ₹2,000 Cr in lost tax revenue due to outdoor ad mismanagement in the past decade. The Ad Project stops this hemorrhage by introducing end-to-end visibility and accountability.
-        </p>
-      </div>
-
-      {/* Charts Section */}
-      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2">
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">📈 Tax Recovery Over Time</h2>
-          <Line data={taxRecoveryData} options={barOptions} />
-        </div>
-
-        <div className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-[#FDCB6E] mb-4">💼 Platform Adoption by Cities</h2>
-          <Bar
-            data={{
-              labels: ["Pilot Phase", "Expansion", "Nationwide"],
-              datasets: [
-                {
-                  label: "Cities Onboarded",
-                  data: [5, 25, 150],
-                  backgroundColor: "#FDCB6E",
-                },
-              ],
-            }}
-            options={barOptions}
-          />
-        </div>
+      {/* Problem Statement */}
+      <div className="max-w-6xl mx-auto mb-24 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-white">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+        >
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">The Urban Governance Challenge</h2>
+          <p className="text-lg mb-6 opacity-90">
+            Municipalities currently lack the digital infrastructure to effectively manage outdoor advertising, resulting in:
+          </p>
+          <ul className="space-y-3 mb-8">
+            {[
+              "Massive tax revenue leakage (₹2000+ Cr in Bangalore alone)",
+              "No centralized inventory of legal/illegal advertisements",
+              "Manual processes prone to errors and corruption",
+              "No real-time visibility into ad placements",
+              "Difficulty enforcing compliance and regulations"
+            ].map((item, i) => (
+              <li key={i} className="flex items-start">
+                <CheckCircle className="w-5 h-5 mt-0.5 mr-2 flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="bg-white/10 p-4 rounded-lg border border-white/20">
+            <p className="font-medium">Our Solution: A unified digital platform that brings transparency, automation, and real-time monitoring to urban ad governance.</p>
+          </div>
+        </motion.div>
       </div>
 
       {/* Platform Benefits */}
-      <div className="max-w-6xl mx-auto mt-20 grid gap-10 md:grid-cols-2">
-        {[
-          "Real-time tracking of every hoarding",
-          "Automated tax billing & receipts",
-          "Transparent vendor registry",
-          "Public dashboard for citizen complaints",
-          "Data-backed policy making",
-          "Zero leakage in ad tax collection",
-        ].map((benefit, i) => (
-          <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-            <h2 className="text-xl font-semibold text-[#FDCB6E] mb-2">✅ {benefit}</h2>
-            <p>Part of our integrated B2G toolkit that ensures city-wide transparency and governance compliance.</p>
-          </div>
-        ))}
+      <div className="max-w-6xl mx-auto mb-24">
+        <motion.h2 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center"
+        >
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            Platform Capabilities
+          </span>
+        </motion.h2>
+        
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              title: "Digital Transparency",
+              desc: "End-to-end visibility of all outdoor advertising with blockchain-backed audit trails",
+              icon: featureIcons["Digital Transparency"]
+            },
+            {
+              title: "Revenue Analytics",
+              desc: "AI-powered insights to optimize pricing and identify revenue opportunities",
+              icon: featureIcons["Revenue Analytics"]
+            },
+            {
+              title: "Compliance Monitoring",
+              desc: "Computer vision detects unauthorized ads and alerts enforcement teams",
+              icon: featureIcons["Compliance Monitoring"]
+            },
+            {
+              title: "Real-time Tax Collection",
+              desc: "Automated billing integrated with municipal payment systems",
+              icon: featureIcons["Real-time Tax Collection"]
+            },
+            {
+              title: "Government Dashboard",
+              desc: "Centralized control panel with real-time reporting and analytics",
+              icon: featureIcons["Government Dashboard"]
+            },
+            {
+              title: "White-label Solution",
+              desc: "Customizable platform matching each city's branding and requirements",
+              icon: featureIcons["White-label Solution"]
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              transition={{ delay: 0.1 * i }}
+              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:border-blue-500/30 transition-all"
+            >
+              <div className="flex items-center mb-4">
+                <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 mr-4 text-blue-600 dark:text-blue-400">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* Feature Boxes */}
-      <div className="max-w-6xl mx-auto mt-24 grid gap-10 md:grid-cols-3">
-        {[
-          {
-            title: "Digital Transparency",
-            desc: "Track all outdoor advertising transactions in real-time with complete transparency and accountability.",
-          },
-          {
-            title: "Revenue Analytics",
-            desc: "Comprehensive analytics on city-wide advertising revenue, trends, and optimization opportunities.",
-          },
-          {
-            title: "Compliance Monitoring",
-            desc: "Automated detection of unauthorized advertisements and compliance violations.",
-          },
-          {
-            title: "Real-time Tax Collection",
-            desc: "Streamlined tax and fee collection with automated billing and payment processing.",
-          },
-          {
-            title: "Government Dashboard",
-            desc: "Comprehensive control panel for municipal authorities with permit management, compliance tracking and real-time reporting.",
-          },
-          {
-            title: "White-label Solution",
-            desc: "Custom-branded, multi-language supported platform tailored for municipalities with scalable infra.",
-          },
-        ].map((box, i) => (
-          <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-bold text-[#FDCB6E] mb-2">{box.title}</h3>
-            <p>{box.desc}</p>
+      {/* Charts Section */}
+      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mb-24">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="bg-gray-800 text-white rounded-2xl p-6 shadow-xl"
+        >
+          <div className="flex items-center mb-6">
+            <div className="p-2 rounded-lg bg-blue-500/20 mr-4 text-blue-400">
+              <BarChart2 className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl font-bold">Tax Recovery Projections</h2>
           </div>
-        ))}
+          <div className="h-64">
+            <Line data={taxRecoveryData} options={barOptions} />
+          </div>
+          <p className="mt-4 text-gray-300 text-sm">
+            Projected tax recovery growth as cities adopt our platform (in ₹ Crores)
+          </p>
+        </motion.div>
+
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          transition={{ delay: 0.1 }}
+          className="bg-gray-800 text-white rounded-2xl p-6 shadow-xl"
+        >
+          <div className="flex items-center mb-6">
+            <div className="p-2 rounded-lg bg-amber-500/20 mr-4 text-amber-400">
+              <MapPin className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl font-bold">Platform Adoption Roadmap</h2>
+          </div>
+          <div className="h-64">
+            <Bar
+              data={{
+                labels: ["Pilot Phase", "Expansion", "Nationwide"],
+                datasets: [
+                  {
+                    label: "Cities Onboarded",
+                    data: [5, 25, 150],
+                    backgroundColor: "#00cec9",
+                  },
+                ],
+              }}
+              options={barOptions}
+            />
+          </div>
+          <p className="mt-4 text-gray-300 text-sm">
+            Projected city adoption over the next 3 years
+          </p>
+        </motion.div>
       </div>
 
       {/* Government Use Cases */}
-      <div className="max-w-6xl mx-auto mt-24">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
-          Government Use Cases
-        </h2>
-        <div className="grid gap-10 md:grid-cols-2">
+      <div className="max-w-6xl mx-auto mb-24">
+        <motion.h2 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center"
+        >
+          Transformative <span className="text-blue-600">Use Cases</span>
+        </motion.h2>
+        
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
               title: "Revenue Optimization",
-              desc: "Identify high-value ad locations and optimize pricing strategies using real-time data.",
+              desc: "Dynamic pricing models based on location analytics and demand forecasting",
+              icon: <DollarSign className="w-5 h-5 text-blue-500" />
             },
             {
-              title: "Illegal Advertisement Detection",
-              desc: "AI-powered system flags unauthorized ads and alerts enforcement teams.",
+              title: "Illegal Ad Detection",
+              desc: "AI identifies unauthorized ads and triggers enforcement workflows",
+              icon: <Shield className="w-5 h-5 text-blue-500" />
             },
             {
               title: "Urban Planning",
-              desc: "Use density heatmaps of ad placements to influence infrastructure decisions.",
+              desc: "Ad density heatmaps inform infrastructure and zoning decisions",
+              icon: <MapPin className="w-5 h-5 text-blue-500" />
             },
             {
               title: "Digital Tax Collection",
-              desc: "Automated billing systems reduce manual intervention and boost tax compliance.",
+              desc: "Automated billing with integrated payment gateways reduces leakage",
+              icon: <DollarSign className="w-5 h-5 text-blue-500" />
             },
             {
               title: "Permit Management",
-              desc: "Digitized permits with workflow automation and compliance logs.",
+              desc: "End-to-end digital permitting with automated compliance checks",
+              icon: <CheckCircle className="w-5 h-5 text-blue-500" />
             },
             {
-              title: "Public-Private Partnerships",
-              desc: "Enable trust-based collaboration with clear revenue-sharing models.",
-            },
+              title: "Public Transparency",
+              desc: "Citizen portals showing authorized ads and revenue utilization",
+              icon: <Users className="w-5 h-5 text-blue-500" />
+            }
           ].map((item, i) => (
-            <div key={i} className="bg-[#1B3A4B] text-white rounded-xl p-6 shadow-md">
-              <h3 className="text-xl font-semibold text-[#FDCB6E] mb-2">{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
+            <motion.div
+              key={i}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              transition={{ delay: 0.1 * i }}
+              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all"
+            >
+              <div className="flex items-center mb-3">
+                <div className="p-1.5 rounded-md bg-blue-50 dark:bg-blue-900/30 mr-3">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Call to Action */}
-      <div className="mt-24 text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-          Join Us in Transforming Urban Governance
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
-          Partner with us to digitize your city's ad infrastructure, increase civic trust, and enable data-driven governance.
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-center text-white"
+      >
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Transform Your City's Ad Governance?</h2>
+        <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+          Schedule a demo with our government solutions team to see the platform in action.
         </p>
         <a
           href="/contact"
-          className="inline-block bg-[#FDCB6E] text-[#1B3A4B] font-bold px-6 py-3 rounded-full hover:bg-yellow-400 transition"
+          className="inline-flex items-center bg-white text-blue-600 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition shadow-lg"
         >
-          Contact Government Team →
+          Contact Government Team
+          <ArrowRight className="w-5 h-5 ml-2" />
         </a>
-      </div>
+      </motion.div>
     </div>
   );
 };

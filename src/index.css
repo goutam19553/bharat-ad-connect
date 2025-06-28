@@ -476,14 +476,15 @@ body {
 
 .svg-headline {
   font-family: 'Great Vibes', cursive;
-  font-size: 32px;
+  font-size: 42px; /* BIG heading */
   stroke: #00ff91;
-  stroke-width: 1.5;
+  stroke-width: 2.5;
   fill: transparent;
-  stroke-dasharray: 1800;
-  stroke-dashoffset: 1800;
-  animation: drawText 5s ease forwards, glowPulse 2s infinite;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: drawText 6s ease-out forwards, glowPulse 3s infinite ease-in-out;
   filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
+  letter-spacing: 1px;
 }
 
 @keyframes drawText {
@@ -497,10 +498,9 @@ body {
     filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
   }
   50% {
-    filter: drop-shadow(0 0 12px #00ffaa) drop-shadow(0 0 24px #00ffaa);
+    filter: drop-shadow(0 0 14px #00ffaa) drop-shadow(0 0 30px #00ffaa);
   }
 }
-
 
 
 

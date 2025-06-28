@@ -42,13 +42,15 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
-        scrolled ? "py-2" : "py-4"
+        scrolled
+          ? "bg-white shadow-md py-2 dark:bg-gray-900 dark:text-white"
+          : "bg-transparent py-4 dark:bg-transparent dark:text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        {/* Animated Logo */}
-        <Link to="/" className="relative overflow-hidden whitespace-nowrap">
-          <h1 className="logo-animate">The Ad-Project</h1>
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold font-heading text-bharat-green dark:text-white">
+          The Ad<span className="text-bharat-saffron">-Project</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -60,9 +62,8 @@ const Navbar = () => {
               className={`text-sm font-medium transition-colors ${
                 location.pathname === item.href
                   ? "text-bharat-saffron font-semibold"
-                  : "text-white hover:text-bharat-saffron"
+                  : "text-gray-600 dark:text-gray-300 hover:text-bharat-saffron"
               }`}
-              style={{ textShadow: "0 0 6px rgba(0,0,0,0.7)" }}
             >
               {item.name}
             </Link>
@@ -74,11 +75,17 @@ const Navbar = () => {
             aria-label="Toggle Theme"
           >
             {theme === "light" ? (
-              <Moon className="h-5 w-5 text-white" style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }} />
+              <Moon className="h-5 w-5 text-gray-700" />
             ) : (
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
           </button>
+
+          <Link to="/contact">
+            <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-full hover:bg-bharat-saffron transition">
+              Get Started
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Nav Button */}
@@ -89,15 +96,14 @@ const Navbar = () => {
             aria-label="Toggle Theme"
           >
             {theme === "light" ? (
-              <Moon className="h-5 w-5 text-white" style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }} />
+              <Moon className="h-5 w-5 text-gray-700" />
             ) : (
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-md text-white hover:text-bharat-saffron focus:outline-none"
-            style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }}
+            className="p-2 rounded-md text-gray-400 hover:text-bharat-saffron focus:outline-none dark:text-white"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -106,7 +112,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black bg-opacity-90 dark:bg-black dark:bg-opacity-90 shadow-lg animate-fade-in">
+        <div className="md:hidden bg-white dark:bg-gray-800 shadow-lg animate-fade-in">
           <div className="px-4 pt-3 pb-4 space-y-2">
             {navigation.map((item) => (
               <Link
@@ -116,12 +122,19 @@ const Navbar = () => {
                 className={`block px-4 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.href
                     ? "bg-bharat-saffron text-white"
-                    : "text-white hover:bg-bharat-saffron hover:text-white"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-bharat-saffron dark:text-white dark:hover:bg-gray-700"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-center px-4 py-2 mt-2 bg-bharat-green text-white font-semibold rounded-md hover:bg-bharat-saffron transition"
+            >
+              Get Started
+            </Link>
           </div>
         </div>
       )}

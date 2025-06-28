@@ -172,26 +172,23 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-transparent to-black/30"></div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
-                         bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400
-                         bg-[length:200%_200%] bg-clip-text text-transparent
-                         animate-gradient-x drop-shadow-md tracking-tight leading-tight"
-            <motion.h2
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ duration: 0.6, delay: 0.1 }}
-  viewport={{ once: true }}
-  className="headline-typing-glow"
->
-  Building the Next-Gen Ad Infrastructure for India
-</motion.h2>
+      <div className="container mx-auto px-4 relative z-10">
+  <div className="text-center mb-16">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-3xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
+                 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400
+                 bg-[length:200%_200%] bg-clip-text text-transparent
+                 animate-gradient-x drop-shadow-md tracking-tight leading-tight"
+    >
+      Building the Next-Gen Ad Infrastructure for India
+    </motion.h2>
+  </div>
+</div>
+
             >
               The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
             </motion.p>

@@ -464,40 +464,44 @@ body {
   }
 }
 
-.headline-typing-glow {
-  font-size: 2rem;
-  font-weight: 600;
-  color: white;
+.typing-glow {
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
-  border-right: 2px solid #00ff91;
-  animation: typing 5s steps(40, end) forwards, blink 0.7s infinite;
-  position: relative;
-  text-align: center;
-  margin: 0 auto;
-  text-shadow: 0 0 6px white, 0 0 12px #00ff91, 0 0 24px #00ff91;
-}
-
-.headline-typing-glow::after {
-  content: 'Building the Next-Gen Ad Infrastructure for India';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #00ff91;
-  filter: blur(3px);
-  opacity: 0.6;
-  pointer-events: none;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  animation: typing 4s steps(40, end), blink 0.75s step-end infinite, glow 3s ease-in-out infinite;
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent }
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.75);
+  }
 }
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #ffa726, 0 0 10px #fb8c00, 0 0 20px #f44336;
+  }
+  50% {
+    text-shadow: 0 0 20px #ff7043, 0 0 30px #ff5722, 0 0 40px #e53935;
+  }
+  100% {
+    text-shadow: 0 0 5px #ffa726, 0 0 10px #fb8c00, 0 0 20px #f44336;
+  }
+}
+
 
 
 

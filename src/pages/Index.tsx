@@ -174,7 +174,7 @@ const Index = () => {
         
      <div className="container mx-auto px-4 relative z-10">
   <div className="text-center mb-16">
-    <motion.h2
+   <motion.div
   initial={{ opacity: 0, y: 20 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6 }}
@@ -182,22 +182,25 @@ const Index = () => {
   className="flex justify-center items-center mb-12"
 >
   <svg
-    viewBox="0 0 1600 200"
+    viewBox="0 0 1400 300"
     className="w-full max-w-7xl h-auto"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <path
+      d="M100,200 C150,100 300,100 350,200 S550,300 600,200
+         M650,200 C700,100 850,100 900,200 S1100,300 1150,200"
+      className="handwriting-path"
+    />
     <text
       x="50%"
-      y="50%"
-      dominantBaseline="middle"
+      y="85%"
       textAnchor="middle"
-      className="svg-headline"
+      className="handwriting-label"
     >
       Building the Next-Gen Ad Infrastructure for India
     </text>
   </svg>
-</motion.h2>
+</motion.div>
 
 
     <motion.p

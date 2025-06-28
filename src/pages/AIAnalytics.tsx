@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const AIAnalytics = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.replace('https://adproject2.vercel.app//');
+      window.location.replace('https://dashboard.adproject.in/');
     }, 3000); // 3s to let animation shine
     return () => clearTimeout(timer);
   }, []);

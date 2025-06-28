@@ -107,7 +107,7 @@ const GovernmentSupportPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 min-h-screen px-6 pt-32 pb-20">
+   <div className="bg-gradient-to-b from-black to-gray-900 min-h-screen px-6 pt-32 pb-20">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto text-center mb-20">
         <motion.h1 

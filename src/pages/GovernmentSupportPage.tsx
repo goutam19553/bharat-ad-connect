@@ -375,7 +375,7 @@ const GovernmentSupportPage = () => {
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Pilot Phase (2023):</strong> Bangalore, Hyderabad, Pune, Ahmedabad, Jaipur</li>
                     <li><strong>Expansion (2024):</strong> Top 25 cities including Chennai, Kolkata, Surat</li>
-                    <li><strong>Nationwide (2025):</strong> All 150+ municipal corporations with population > 500k</li>
+                  <li><strong>Nationwide (2025):</strong> All 150+ municipal corporations with population &gt; 500k</li>
                   </ul>
                 </div>
               </motion.div>

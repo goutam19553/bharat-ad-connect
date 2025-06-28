@@ -172,20 +172,69 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-transparent to-black/30"></div>
         </div>
         
-     <div className="container mx-auto px-4 relative z-10">
+    <div className="container mx-auto px-4 relative z-10">
   <div className="text-center mb-16">
-   <motion.h2
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-center mb-12"
->
-  <span className="typing-glow text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-    Building the Next-Gen Ad Infrastructure for India
-  </span>
-</motion.h2>
-
+    <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="flex justify-center"
+    >
+      <svg
+        width="800"
+        height="120"
+        viewBox="0 0 800 120"
+        className="w-full max-w-4xl"
+      >
+        {/* Animated path drawing */}
+        <motion.path
+          d="M50,60 C100,10 150,110 200,60 C250,10 300,110 350,60 C400,10 450,110 500,60 C550,10 600,110 650,60 C700,10 750,110 800,60"
+          stroke="url(#textGradient)"
+          strokeWidth="3"
+          strokeDasharray="1000"
+          strokeDashoffset="1000"
+          fill="none"
+          initial={{ strokeDashoffset: 1000 }}
+          animate={{ strokeDashoffset: 0 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+        />
+        
+        {/* Text with same path */}
+        <path
+          id="textPath"
+          d="M50,60 C100,10 150,110 200,60 C250,10 300,110 350,60 C400,10 450,110 500,60 C550,10 600,110 650,60 C700,10 750,110 800,60"
+          fill="none"
+        />
+        
+        {/* Gradient definition */}
+        <defs>
+          <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#3b82f6" />
+            <stop offset="50%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+        </defs>
+        
+        {/* Text following the path */}
+        <text
+          fontSize="32"
+          fontFamily="Arial"
+          fontWeight="bold"
+          fill="url(#textGradient)"
+        >
+          <textPath href="#textPath" startOffset="50%" textAnchor="middle">
+            Building the Next-Gen Ad Infrastructure for India
+          </textPath>
+        </text>
+        
+        {/* Glow effect */}
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </svg>
+    </motion.div>
 
     <motion.p
       initial={{ opacity: 0 }}
@@ -198,8 +247,7 @@ const Index = () => {
       innovative digital marketplace powered by AI and AR technology.
     </motion.p>
   </div>
-
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+</div>
 
             {/* Advertisers */}
             <motion.div

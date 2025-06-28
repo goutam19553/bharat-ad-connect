@@ -392,7 +392,7 @@ const AdSpaces = () => {
   }
 
   return (
-    <div>
+    <div className="bg-gradient-to-b from-black to-gray-900">
       {/* Ad Spaces Header */}
       <div className="bg-gradient-to-r from-bharat-navy to-bharat-navy/90 pt-32 pb-16 text-white">
         <div className="container-custom text-center">

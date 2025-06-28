@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star } from "lucide-react";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
 const fadeInUp = {
@@ -58,6 +58,12 @@ const testimonials = [
 ];
 
 const Index = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const featuredAdSpaces: AdSpaceProps[] = [
     {
       id: 1,
@@ -364,8 +370,12 @@ const Index = () => {
                       ₹{adSpace.price.toLocaleString()}
                       <span className="text-sm font-normal text-gray-500">/month</span>
                     </span>
-                    <button className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300">
-                      Book Now
+                    <button 
+                      onClick={togglePopup}
+                      className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="relative z-10">Book Now</span>
                     </button>
                   </div>
                 </div>
@@ -391,6 +401,84 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Development Feature Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={togglePopup}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="relative bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full p-8 shadow-2xl border border-gray-200 dark:border-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={togglePopup}
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+              </button>
+
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 mb-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Coming Soon!
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  This feature is currently under development in our environment.
+                  We're working hard to make it available soon!
+                </p>
+
+                <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-6">
+                  <motion.div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={togglePopup}
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 w-full"
+                >
+                  Got it!
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Political Campaign Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
@@ -537,7 +625,15 @@ const Index = () => {
       {/* Brands Slider */}
       <BrandSlider />
 
-      
+      {/* Contact Form */}
+      <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <ContactForm />
+        </div>
+      </section>
 
       <style jsx global>{`
         @keyframes glowCycle {

@@ -13,7 +13,7 @@ import {
   Filler,
 } from "chart.js";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, BarChart2, MapPin, Shield, DollarSign, Layout, Users } from "lucide-react";
+import { AlertTriangle, MapPin, Eye, Zap, Layers, Database, ArrowRight } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -40,21 +40,21 @@ const fadeInUp = {
 };
 
 const GovernmentSupportPage = () => {
-  const taxRecoveryData = {
-    labels: ["2023", "2024", "2025"],
+  const potentialRevenueData = {
+    labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
     datasets: [
       {
-        label: "Recovered Tax (₹ Cr)",
-        data: [85, 120, 200],
-        borderColor: "#00cec9",
-        backgroundColor: "rgba(0, 206, 201, 0.3)",
+        label: "Lost Revenue (₹ Cr)",
+        data: [250, 300, 350, 400, 300, 350, 400, 450],
+        borderColor: "#ef4444",
+        backgroundColor: "rgba(239, 68, 68, 0.1)",
         fill: true,
         tension: 0.4,
       },
     ],
   };
 
-  const barOptions = {
+  const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
     plugins: {
@@ -66,7 +66,10 @@ const GovernmentSupportPage = () => {
           color: 'rgba(255, 255, 255, 0.1)'
         },
         ticks: {
-          color: '#fff'
+          color: '#fff',
+          callback: function(value) {
+            return '₹' + value + ' Cr';
+          }
         }
       },
       x: {
@@ -80,15 +83,6 @@ const GovernmentSupportPage = () => {
     }
   };
 
-  const featureIcons = {
-    "Digital Transparency": <BarChart2 className="w-6 h-6" />,
-    "Revenue Analytics": <DollarSign className="w-6 h-6" />,
-    "Compliance Monitoring": <Shield className="w-6 h-6" />,
-    "Real-time Tax Collection": <DollarSign className="w-6 h-6" />,
-    "Government Dashboard": <Layout className="w-6 h-6" />,
-    "White-label Solution": <Users className="w-6 h-6" />
-  };
-
   return (
     <div className="bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 min-h-screen px-6 pt-32 pb-20">
       {/* Hero Section */}
@@ -100,8 +94,8 @@ const GovernmentSupportPage = () => {
           className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
         >
           <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            The Ad Project
-          </span> – India's First B2G AdTech Platform
+            Solving India's ₹10,000+ Crore
+          </span><br />Outdoor Ad Tax Crisis
         </motion.h1>
         <motion.p 
           initial="hidden"
@@ -110,46 +104,78 @@ const GovernmentSupportPage = () => {
           transition={{ delay: 0.2 }}
           className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
         >
-          Revolutionizing urban governance through transparent, data-driven outdoor advertising management
+          The Ad Project is building India's first integrated platform to track, regulate, and monetize outdoor advertising at scale
         </motion.p>
       </div>
 
-      {/* Why B2G Model */}
+      {/* Crisis Highlight */}
+      <div className="max-w-6xl mx-auto mb-24 bg-gradient-to-r from-red-600 to-rose-600 rounded-2xl p-8 md:p-12 text-white">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+        >
+          <div className="flex items-center justify-center mb-6">
+            <AlertTriangle className="w-8 h-8 mr-3" />
+            <h2 className="text-2xl md:text-3xl font-bold">The ₹2000+ Crore BBMP Wake-up Call</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-lg mb-6 opacity-90">
+                Bangalore's municipal corporation has lost over <span className="font-bold">₹2000 crores</span> in just 6-7 years due to:
+              </p>
+              <ul className="space-y-3 mb-6">
+                {[
+                  "No centralized digital inventory of ads",
+                  "Manual processes vulnerable to leakage",
+                  "No real-time monitoring of installations",
+                  "Massive unaccounted political/brand hoardings",
+                  "Zero automated tax collection system"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <div className="bg-white/20 rounded-full p-1 mr-3 mt-0.5">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="h-64">
+              <Line data={potentialRevenueData} options={chartOptions} />
+              <p className="mt-2 text-sm opacity-80 text-center">BBMP's lost revenue projection (2016-2023)</p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Market Gap */}
       <div className="max-w-6xl mx-auto mb-24">
         <motion.h2 
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
-          className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center"
+          className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center"
         >
-          The Digital Infrastructure <span className="text-blue-600">Cities Need</span>
+          Why This Problem <span className="text-blue-600">Remains Unsolved</span>
         </motion.h2>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-3">
           {[
             {
-              title: "Revenue Recovery",
-              value: "₹2000+ Cr",
-              desc: "Potential tax recovery for Bangalore alone",
-              icon: <DollarSign className="w-8 h-8 text-blue-500" />
+              title: "No Digital Infrastructure",
+              desc: "Cities lack even basic digitized records of advertising assets",
+              icon: <Database className="w-8 h-8 text-rose-500" />
             },
             {
-              title: "Cities Impacted",
-              value: "150+",
-              desc: "Projected nationwide adoption",
-              icon: <MapPin className="w-8 h-8 text-blue-500" />
+              title: "Zero Monitoring",
+              desc: "No geospatial tracking of installed ads in real-time",
+              icon: <Eye className="w-8 h-8 text-amber-500" />
             },
             {
-              title: "Compliance Rate",
-              value: "98%",
-              desc: "Expected adherence with digital tracking",
-              icon: <CheckCircle className="w-8 h-8 text-blue-500" />
-            },
-            {
-              title: "Implementation",
-              value: "6 Weeks",
-              desc: "Average city onboarding timeline",
-              icon: <ArrowRight className="w-8 h-8 text-blue-500" />
+              title: "Manual Processes",
+              desc: "Paper-based systems enable leakage and corruption",
+              icon: <Layers className="w-8 h-8 text-blue-500" />
             }
           ].map((item, i) => (
             <motion.div
@@ -158,175 +184,90 @@ const GovernmentSupportPage = () => {
               animate="visible"
               variants={fadeInUp}
               transition={{ delay: 0.1 * i }}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
             >
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-full bg-blue-50 dark:bg-blue-900/30 mr-4">
-                  {item.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{item.value}</h3>
+              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-700 mb-4 mx-auto">
+                {item.icon}
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{item.title}</h4>
-              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+              <h3 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-2">{item.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-center">{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Problem Statement */}
-      <div className="max-w-6xl mx-auto mb-24 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-white">
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-        >
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">The Urban Governance Challenge</h2>
-          <p className="text-lg mb-6 opacity-90">
-            Municipalities currently lack the digital infrastructure to effectively manage outdoor advertising, resulting in:
-          </p>
-          <ul className="space-y-3 mb-8">
-            {[
-              "Massive tax revenue leakage (₹2000+ Cr in Bangalore alone)",
-              "No centralized inventory of legal/illegal advertisements",
-              "Manual processes prone to errors and corruption",
-              "No real-time visibility into ad placements",
-              "Difficulty enforcing compliance and regulations"
-            ].map((item, i) => (
-              <li key={i} className="flex items-start">
-                <CheckCircle className="w-5 h-5 mt-0.5 mr-2 flex-shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="bg-white/10 p-4 rounded-lg border border-white/20">
-            <p className="font-medium">Our Solution: A unified digital platform that brings transparency, automation, and real-time monitoring to urban ad governance.</p>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Platform Benefits */}
-      <div className="max-w-6xl mx-auto mb-24">
-        <motion.h2 
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center"
-        >
-          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            Platform Capabilities
-          </span>
-        </motion.h2>
-        
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              title: "Digital Transparency",
-              desc: "End-to-end visibility of all outdoor advertising with blockchain-backed audit trails",
-              icon: featureIcons["Digital Transparency"]
-            },
-            {
-              title: "Revenue Analytics",
-              desc: "AI-powered insights to optimize pricing and identify revenue opportunities",
-              icon: featureIcons["Revenue Analytics"]
-            },
-            {
-              title: "Compliance Monitoring",
-              desc: "Computer vision detects unauthorized ads and alerts enforcement teams",
-              icon: featureIcons["Compliance Monitoring"]
-            },
-            {
-              title: "Real-time Tax Collection",
-              desc: "Automated billing integrated with municipal payment systems",
-              icon: featureIcons["Real-time Tax Collection"]
-            },
-            {
-              title: "Government Dashboard",
-              desc: "Centralized control panel with real-time reporting and analytics",
-              icon: featureIcons["Government Dashboard"]
-            },
-            {
-              title: "White-label Solution",
-              desc: "Customizable platform matching each city's branding and requirements",
-              icon: featureIcons["White-label Solution"]
-            }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
+      {/* Our Solution */}
+      <div className="max-w-6xl mx-auto mb-24 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+        <div className="grid md:grid-cols-2">
+          <div className="p-8 md:p-12">
+            <motion.div 
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              transition={{ delay: 0.1 * i }}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:border-blue-500/30 transition-all"
             >
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 mr-4 text-blue-600 dark:text-blue-400">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-6">
+                <Zap className="w-5 h-5 mr-2" />
+                <span>Our Tech-Powered Solution</span>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">The Ad Project Platform</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                We're building India's first integrated system combining:
+              </p>
+              <ul className="space-y-4">
+                {[
+                  "📌 Geospatial mapping of all ad locations",
+                  "🤖 AI-powered image recognition for ad monitoring",
+                  "📱 AR verification tools for field inspectors",
+                  "📊 Automated tax calculation and billing",
+                  "🔍 Blockchain-based audit trails",
+                  "📈 Real-time revenue dashboards"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 mr-3 mt-0.5 flex-shrink-0">
+                      {i + 1}
+                    </div>
+                    <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
-          ))}
+          </div>
+          <div className="bg-gradient-to-br from-blue-600 to-cyan-500 p-8 md:p-12 flex items-center justify-center">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+              className="text-white"
+            >
+              <div className="flex items-center mb-6">
+                <MapPin className="w-8 h-8 mr-3" />
+                <h3 className="text-xl font-bold">Pilot Focus: Bangalore First</h3>
+              </div>
+              <p className="mb-6">
+                We're prioritizing BBMP as our first implementation to:
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Recover lost ₹2000+ crore revenue",
+                  "Create a model for other Indian cities",
+                  "Work with municipal tech partners",
+                  "Establish India's first digital ad inventory"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <div className="bg-white/20 rounded-full p-1 mr-3 mt-0.5">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Charts Section */}
-      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-2 mb-24">
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="bg-gray-800 text-white rounded-2xl p-6 shadow-xl"
-        >
-          <div className="flex items-center mb-6">
-            <div className="p-2 rounded-lg bg-blue-500/20 mr-4 text-blue-400">
-              <BarChart2 className="w-6 h-6" />
-            </div>
-            <h2 className="text-xl font-bold">Tax Recovery Projections</h2>
-          </div>
-          <div className="h-64">
-            <Line data={taxRecoveryData} options={barOptions} />
-          </div>
-          <p className="mt-4 text-gray-300 text-sm">
-            Projected tax recovery growth as cities adopt our platform (in ₹ Crores)
-          </p>
-        </motion.div>
-
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          transition={{ delay: 0.1 }}
-          className="bg-gray-800 text-white rounded-2xl p-6 shadow-xl"
-        >
-          <div className="flex items-center mb-6">
-            <div className="p-2 rounded-lg bg-amber-500/20 mr-4 text-amber-400">
-              <MapPin className="w-6 h-6" />
-            </div>
-            <h2 className="text-xl font-bold">Platform Adoption Roadmap</h2>
-          </div>
-          <div className="h-64">
-            <Bar
-              data={{
-                labels: ["Pilot Phase", "Expansion", "Nationwide"],
-                datasets: [
-                  {
-                    label: "Cities Onboarded",
-                    data: [5, 25, 150],
-                    backgroundColor: "#00cec9",
-                  },
-                ],
-              }}
-              options={barOptions}
-            />
-          </div>
-          <p className="mt-4 text-gray-300 text-sm">
-            Projected city adoption over the next 3 years
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Government Use Cases */}
+      {/* How It Works */}
       <div className="max-w-6xl mx-auto mb-24">
         <motion.h2 
           initial="hidden"
@@ -334,40 +275,40 @@ const GovernmentSupportPage = () => {
           variants={fadeInUp}
           className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center"
         >
-          Transformative <span className="text-blue-600">Use Cases</span>
+          Our <span className="text-blue-600">Technology Stack</span>
         </motion.h2>
         
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {[
             {
-              title: "Revenue Optimization",
-              desc: "Dynamic pricing models based on location analytics and demand forecasting",
-              icon: <DollarSign className="w-5 h-5 text-blue-500" />
+              title: "Geospatial Mapping",
+              desc: "GIS-powered digital twin of all ad locations with property boundaries",
+              stats: "100% location accuracy"
             },
             {
-              title: "Illegal Ad Detection",
-              desc: "AI identifies unauthorized ads and triggers enforcement workflows",
-              icon: <Shield className="w-5 h-5 text-blue-500" />
+              title: "AI Monitoring",
+              desc: "Computer vision identifies unauthorized ads and verifies installations",
+              stats: "90%+ detection accuracy"
             },
             {
-              title: "Urban Planning",
-              desc: "Ad density heatmaps inform infrastructure and zoning decisions",
-              icon: <MapPin className="w-5 h-5 text-blue-500" />
+              title: "AR Verification",
+              desc: "Field inspectors use mobile AR to validate ads against permits",
+              stats: "Real-time compliance"
             },
             {
-              title: "Digital Tax Collection",
-              desc: "Automated billing with integrated payment gateways reduces leakage",
-              icon: <DollarSign className="w-5 h-5 text-blue-500" />
+              title: "Blockchain Records",
+              desc: "Immutable audit trail of all transactions and changes",
+              stats: "Tamper-proof history"
             },
             {
-              title: "Permit Management",
-              desc: "End-to-end digital permitting with automated compliance checks",
-              icon: <CheckCircle className="w-5 h-5 text-blue-500" />
+              title: "Smart Contracts",
+              desc: "Auto-executing agreements for payments and renewals",
+              stats: "Zero manual processes"
             },
             {
-              title: "Public Transparency",
-              desc: "Citizen portals showing authorized ads and revenue utilization",
-              icon: <Users className="w-5 h-5 text-blue-500" />
+              title: "Data Analytics",
+              desc: "Revenue optimization and policy impact simulations",
+              stats: "Actionable insights"
             }
           ].map((item, i) => (
             <motion.div
@@ -378,13 +319,11 @@ const GovernmentSupportPage = () => {
               transition={{ delay: 0.1 * i }}
               className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all"
             >
-              <div className="flex items-center mb-3">
-                <div className="p-1.5 rounded-md bg-blue-50 dark:bg-blue-900/30 mr-3">
-                  {item.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{item.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{item.desc}</p>
+              <div className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium inline-block">
+                {item.stats}
               </div>
-              <p className="text-gray-600 dark:text-gray-300">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -397,17 +336,25 @@ const GovernmentSupportPage = () => {
         variants={fadeInUp}
         className="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 md:p-12 text-center text-white"
       >
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Transform Your City's Ad Governance?</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Be Part of the Solution</h2>
         <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-          Schedule a demo with our government solutions team to see the platform in action.
+          We're seeking forward-thinking municipal partners and government advisors to pilot this transformation.
         </p>
-        <a
-          href="/contact"
-          className="inline-flex items-center bg-white text-blue-600 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition shadow-lg"
-        >
-          Contact Government Team
-          <ArrowRight className="w-5 h-5 ml-2" />
-        </a>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center bg-white text-blue-600 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition shadow-lg"
+          >
+            Government Partnerships
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </a>
+          <a
+            href="/demo"
+            className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white/10 transition"
+          >
+            Request Platform Demo
+          </a>
+        </div>
       </motion.div>
     </div>
   );

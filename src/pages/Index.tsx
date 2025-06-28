@@ -133,32 +133,15 @@ const Index = () => {
                  bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
                  bg-[length:200%_200%] bg-clip-text text-transparent
                  animate-gradient-x drop-shadow-md tracking-tight leading-tight"
-    <div className="container mx-auto px-4 relative z-10">
-  <div className="text-center mb-16">
-    <motion.h2
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-center mb-12"
->
-  <span className="typing-glow text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-    Building the Next-Gen Ad Infrastructure for India
-  </span>
-</motion.h2>
-
-    <motion.p
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.1 }}
-      viewport={{ once: true }}
-      className="text-lg md:text-xl font-medium text-muted-foreground mb-8 max-w-3xl mx-auto"
     >
-      The Ad-Project connects advertisers with ad space owners across India through our
-      innovative digital marketplace powered by AI and AR technology.
-    </motion.p>
-  </div>
-</div>
+      Building the Next-Gen Ad Infrastructure for India
+    </h2>
+        <p className="text-lg text-gray-200 max-w-3xl mx-auto">
+          The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Advertisers */}
         <div>
           <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Advertisers</h3>

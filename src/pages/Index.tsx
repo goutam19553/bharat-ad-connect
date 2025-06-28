@@ -348,9 +348,8 @@ const Index = () => {
                 </Link>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
+           </div>
+        </section>
  
       {/* Featured Ad Spaces */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">

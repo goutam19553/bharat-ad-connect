@@ -1,27 +1,18 @@
 {
   "headers": [
     {
-      "source": "/sitemap.xml",
+      "source": "/seo-sitemap.xml",
       "headers": [
         {
           "key": "Content-Type",
           "value": "application/xml"
         }
       ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
     }
   ],
   "rewrites": [
     {
-      "source": "/(sitemap.xml|robots.txt)",
+      "source": "/(seo-sitemap.xml|robots.txt)",
       "destination": "/$1"
     },
     {

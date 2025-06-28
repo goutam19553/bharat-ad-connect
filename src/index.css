@@ -472,73 +472,37 @@ body {
   animation: typing 4s steps(40, end), blink 0.75s step-end infinite, glow 3s ease-in-out infinite;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap');
 
-.svg-headline {
-  font-family: 'Great Vibes', cursive;
-  font-size: 42px; /* BIG heading */
-  stroke: #00ff91;
-  stroke-width: 2.5;
-  fill: transparent;
-  stroke-dasharray: 3000;
-  stroke-dashoffset: 3000;
-  animation: drawText 6s ease-out forwards, glowPulse 3s infinite ease-in-out;
-  filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
-  letter-spacing: 1px;
+.typing-glow {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #00ff91;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #ffffff;
+  text-shadow: 0 0 6px #00ff91, 0 0 12px #00ffaa;
+  animation: typing 4.5s steps(45, end), blink 0.8s step-end infinite;
 }
 
-@keyframes drawText {
+@keyframes typing {
+  from {
+    width: 0;
+  }
   to {
-    stroke-dashoffset: 0;
+    width: 100%;
   }
 }
 
-@keyframes glowPulse {
+@keyframes blink {
   0%, 100% {
-    filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
+    border-color: #00ff91;
   }
   50% {
-    filter: drop-shadow(0 0 14px #00ffaa) drop-shadow(0 0 30px #00ffaa);
-  }
-}
-.handwriting-path {
-  fill: none;
-  stroke: #00ff91;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: draw 6s ease-in-out forwards, glow 2s infinite ease-in-out;
-  filter: drop-shadow(0 0 6px #00ff91);
-}
-
-.handwriting-label {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(32px, 5vw, 64px);
-  fill: transparent;
-  stroke: #00ff91;
-  stroke-width: 1;
-  stroke-dasharray: 2200;
-  stroke-dashoffset: 2200;
-  animation: draw 6s ease forwards 0.5s, glow 2s infinite ease-in-out;
-  filter: drop-shadow(0 0 8px #00ff91);
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
+    border-color: transparent;
   }
 }
 
-@keyframes glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 6px #00ff91);
-  }
-  50% {
-    filter: drop-shadow(0 0 12px #00ffaa);
-  }
-}
 
 
 

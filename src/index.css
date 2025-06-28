@@ -472,33 +472,32 @@ body {
   animation: typing 4s steps(40, end), blink 0.75s step-end infinite, glow 3s ease-in-out infinite;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.svg-headline {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  stroke: #00ff91;
+  stroke-width: 1.5;
+  fill: transparent;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: drawText 5s ease forwards, glowPulse 2s infinite;
+  filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
+}
+
+@keyframes drawText {
   to {
-    width: 100%;
+    stroke-dashoffset: 0;
   }
 }
 
-@keyframes blink {
-  from, to {
-    border-color: transparent;
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #00ff91) drop-shadow(0 0 12px #00ff91);
   }
   50% {
-    border-color: rgba(255, 255, 255, 0.75);
-  }
-}
-
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #ffa726, 0 0 10px #fb8c00, 0 0 20px #f44336;
-  }
-  50% {
-    text-shadow: 0 0 20px #ff7043, 0 0 30px #ff5722, 0 0 40px #e53935;
-  }
-  100% {
-    text-shadow: 0 0 5px #ffa726, 0 0 10px #fb8c00, 0 0 20px #f44336;
+    filter: drop-shadow(0 0 12px #00ffaa) drop-shadow(0 0 24px #00ffaa);
   }
 }
 

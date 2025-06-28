@@ -464,5 +464,41 @@ body {
   }
 }
 
+.headline-typing-glow {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  border-right: 2px solid #00ff91;
+  animation: typing 5s steps(40, end) forwards, blink 0.7s infinite;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  text-shadow: 0 0 6px white, 0 0 12px #00ff91, 0 0 24px #00ff91;
+}
+
+.headline-typing-glow::after {
+  content: 'Building the Next-Gen Ad Infrastructure for India';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00ff91;
+  filter: blur(3px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+
 
 

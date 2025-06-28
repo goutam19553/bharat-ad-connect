@@ -42,19 +42,13 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-30 transition-all duration-300 ${
-        scrolled
-          ? "py-2"
-          : "py-4"
+        scrolled ? "py-2" : "py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold font-heading text-bharat-green dark:text-white"
-          style={{ textShadow: "0 0 6px rgba(0,0,0,0.6)" }}
-        >
-          The Ad<span className="text-bharat-saffron">-Project</span>
+        {/* Animated Logo */}
+        <Link to="/" className="relative overflow-hidden whitespace-nowrap">
+          <h1 className="logo-animate">The Ad-Project</h1>
         </Link>
 
         {/* Desktop Nav */}

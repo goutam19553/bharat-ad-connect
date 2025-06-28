@@ -297,8 +297,7 @@ const Index = () => {
                   <span className="relative invisible">For Ad Space Owners</span>
                 </Link>
               </div>
-            </motion.div>
-           </div>
+            </motion.div>         
         </section>
  
       {/* Featured Ad Spaces */}

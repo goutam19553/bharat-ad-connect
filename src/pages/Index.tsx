@@ -179,22 +179,25 @@ const Index = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="text-3xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
-                 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400
-                 bg-[length:200%_200%] bg-clip-text text-transparent
-                 animate-gradient-x drop-shadow-md tracking-tight leading-tight"
+      className="text-3xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 bg-[length:200%_200%] bg-clip-text text-transparent animate-gradient-x drop-shadow-md tracking-tight leading-tight"
     >
-      Building the Next-Gen Ad Infrastructure for India
+      <span className="typing-glow">Building the Next-Gen Ad Infrastructure for India</span>
     </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      viewport={{ once: true }}
+      className="text-lg md:text-xl font-medium text-muted-foreground mb-8 max-w-3xl mx-auto"
+    >
+      The Ad-Project connects advertisers with ad space owners across India through our
+      innovative digital marketplace powered by AI and AR technology.
+    </motion.p>
   </div>
-</div>
 
-            >
-              The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
-            </motion.p>
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {/* Advertisers */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}

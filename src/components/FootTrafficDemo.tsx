@@ -197,7 +197,7 @@ const FootTrafficDemo = () => {
         {/* ✅ BUTTON SECTION BELOW GRAPH */}
         <div className="w-full flex justify-center mt-10">
   <a 
-    href="https://adproject2.vercel.app/" // Replace with your actual link
+    href="https://dashboard.adproject.in/" // Replace with your actual link
     className="relative px-8 py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-[0_0_25px_#ff9933] border border-bharat-saffron hover:border-white transition-all duration-300 ease-in-out overflow-hidden group"
   >
     <span className="absolute inset-0 bg-bharat-saffron opacity-10 blur-lg animate-pulse rounded-2xl"></span>

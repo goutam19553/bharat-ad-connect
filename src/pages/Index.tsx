@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
-import ContactForm from "@/components/ContactForm";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star } from "lucide-react";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
 const fadeInUp = {
@@ -46,6 +45,12 @@ const testimonials = [
 ];
 
 const Index = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const featuredAdSpaces: AdSpaceProps[] = [
     {
       id: 1,
@@ -124,9 +129,14 @@ const Index = () => {
 
   const advertiserBenefits = [
     { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
-    { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
     { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
     { icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />, title: "Traffic Analysis", description: "Make data-driven decisions with our foot traffic analysis." },
+    { 
+      icon: <Eye className="h-8 w-8 text-bharat-saffron" />, 
+      title: "Instant Booking", 
+      description: "Book premium ad spaces instantly with our streamlined process.",
+      onClick: togglePopup
+    },
   ];
 
   const ownerBenefits = [
@@ -175,6 +185,7 @@ const Index = () => {
                       whileInView="visible"
                       viewport={{ once: true }}
                       className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
+                      onClick={benefit.onClick}
                     >
                       <div className="mb-4">{benefit.icon}</div>
                       <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
@@ -237,7 +248,17 @@ const Index = () => {
                 viewport={{ once: true }}
                 className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl hover:ring-2 hover:ring-purple-400/50 transition duration-300 p-6"
               >
-                <AdSpaceCard adSpace={adSpace} />
+                <AdSpaceCard 
+                  adSpace={adSpace} 
+                  actionButton={
+                    <button 
+                      onClick={togglePopup}
+                      className="mt-4 w-full px-4 py-2 bg-gradient-to-r from-bharat-saffron to-bharat-navy text-white rounded-lg font-medium hover:shadow-lg transition-all"
+                    >
+                      Book Now
+                    </button>
+                  }
+                />
               </motion.div>
             ))}
           </div>
@@ -434,8 +455,83 @@ const Index = () => {
       {/* Brands Slider */}
       <BrandSlider />
 
-      </div>
-      </section>
+      {/* Development Feature Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={togglePopup}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="relative bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full p-8 shadow-2xl border border-gray-200 dark:border-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={togglePopup}
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+              </button>
+
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 mb-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Coming Soon!
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  This feature is currently under development in our environment.
+                  We're working hard to make it available soon!
+                </p>
+
+                <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-6">
+                  <motion.div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={togglePopup}
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 w-full"
+                >
+                  Got it!
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

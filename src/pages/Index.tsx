@@ -164,13 +164,90 @@ const Index = () => {
         <section className="section bg-transparent">
           <div className="container-custom relative z-10">
             <div className="text-center mb-12">
-              <h2
-                className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
-                         bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
-                         bg-[length:200%_200%] bg-clip-text text-transparent
-                         animate-gradient-x drop-shadow-md tracking-tight leading-tight"
-              >
-                Building the Next-Gen Ad Infrastructure for India
+              <style jsx>{`
+                @keyframes typing {
+                  from { width: 0 }
+                  to { width: 100% }
+                }
+                
+                @keyframes blink-caret {
+                  from, to { border-color: transparent }
+                  50% { border-color: #00f0ff }
+                }
+                
+                @keyframes glow {
+                  0% { text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 15px #00f0ff, 0 0 20px #00f0ff; }
+                  50% { text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff, 0 0 40px #00f0ff; }
+                  100% { text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 15px #00f0ff, 0 0 20px #00f0ff; }
+                }
+                
+                @keyframes float {
+                  0%, 100% { transform: translateY(0); }
+                  50% { transform: translateY(-10px); }
+                }
+                
+                .tech-heading {
+                  display: inline-block;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  border-right: 3px solid;
+                  width: 0;
+                  animation: 
+                    typing 2.5s steps(30, end) forwards,
+                    blink-caret .75s step-end infinite,
+                    glow 2s ease-in-out infinite alternate,
+                    float 3s ease-in-out infinite;
+                  animation-delay: 0.5s;
+                  font-family: 'Courier New', monospace;
+                  letter-spacing: 2px;
+                }
+                
+                .tech-heading span {
+                  display: inline-block;
+                }
+                
+                .tech-heading span:nth-child(1) { animation: float 3s ease-in-out infinite; }
+                .tech-heading span:nth-child(2) { animation: float 3s ease-in-out infinite 0.2s; }
+                .tech-heading span:nth-child(3) { animation: float 3s ease-in-out infinite 0.4s; }
+                .tech-heading span:nth-child(4) { animation: float 3s ease-in-out infinite 0.6s; }
+                .tech-heading span:nth-child(5) { animation: float 3s ease-in-out infinite 0.8s; }
+                .tech-heading span:nth-child(6) { animation: float 3s ease-in-out infinite 1s; }
+                .tech-heading span:nth-child(7) { animation: float 3s ease-in-out infinite 1.2s; }
+              `}</style>
+              
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 px-4 pt-4 pb-3 text-center">
+                <div className="tech-heading bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+                  <span>T</span>
+                  <span>h</span>
+                  <span>e</span>
+                  <span> </span>
+                  <span>A</span>
+                  <span>d</span>
+                  <span>T</span>
+                  <span>e</span>
+                  <span>c</span>
+                  <span>h</span>
+                  <span> </span>
+                  <span>E</span>
+                  <span>n</span>
+                  <span>g</span>
+                  <span>i</span>
+                  <span>n</span>
+                  <span>e</span>
+                  <span> </span>
+                  <span>o</span>
+                  <span>f</span>
+                  <span> </span>
+                  <span>N</span>
+                  <span>e</span>
+                  <span>w</span>
+                  <span> </span>
+                  <span>I</span>
+                  <span>n</span>
+                  <span>d</span>
+                  <span>i</span>
+                  <span>a</span>
+                </div>
               </h2>
               <p className="text-lg text-gray-200 max-w-3xl mx-auto">
                 The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.

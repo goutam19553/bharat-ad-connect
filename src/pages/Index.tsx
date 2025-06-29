@@ -22,6 +22,17 @@ const fadeInUp = {
     },
   }),
 };
+const floatAnimation = {
+  y: [-10, 10],
+  transition: {
+    y: {
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    },
+  },
+};
 
 const testimonials = [
   {

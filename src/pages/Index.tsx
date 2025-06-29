@@ -62,7 +62,11 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   
-  const fullText = "The AdTech Engine of New India";
+  const texts = [
+    "The AdTech Engine of New India",
+    "India's Ad Future, Now Live",
+    "India's First Future-Ready AdTech Grid"
+  ];
   const typingSpeed = 100;
   const deletingSpeed = 50;
   const delayBetweenLoops = 2000;
@@ -73,10 +77,11 @@ const Index = () => {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
+    const currentText = texts[loopNum % texts.length];
 
     if (isDeleting) {
       timer = setTimeout(() => {
-        setDisplayText(fullText.substring(0, currentIndex - 1));
+        setDisplayText(currentText.substring(0, currentIndex - 1));
         setCurrentIndex(currentIndex - 1);
         
         if (currentIndex === 0) {
@@ -86,10 +91,10 @@ const Index = () => {
       }, deletingSpeed);
     } else {
       timer = setTimeout(() => {
-        setDisplayText(fullText.substring(0, currentIndex + 1));
+        setDisplayText(currentText.substring(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
         
-        if (currentIndex === fullText.length) {
+        if (currentIndex === currentText.length) {
           setTimeout(() => {
             setIsDeleting(true);
           }, delayBetweenLoops);

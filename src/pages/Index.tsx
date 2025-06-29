@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
@@ -57,10 +57,48 @@ const testimonials = [
 
 const Index = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  
+  const fullText = "The AdTech Engine of New India";
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const delayBetweenLoops = 2000;
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setDisplayText(fullText.substring(0, currentIndex - 1));
+        setCurrentIndex(currentIndex - 1);
+        
+        if (currentIndex === 0) {
+          setIsDeleting(false);
+          setLoopNum(loopNum + 1);
+        }
+      }, deletingSpeed);
+    } else {
+      timer = setTimeout(() => {
+        setDisplayText(fullText.substring(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+        
+        if (currentIndex === fullText.length) {
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, delayBetweenLoops);
+        }
+      }, typingSpeed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, isDeleting, loopNum]);
 
   const featuredAdSpaces: AdSpaceProps[] = [
     {
@@ -170,7 +208,8 @@ const Index = () => {
                          bg-[length:200%_200%] bg-clip-text text-transparent
                          animate-gradient-x drop-shadow-md tracking-tight leading-tight"
               >
-                The AdTech Engine of New India
+                {displayText}
+                <span className="typing-cursor">|</span>
               </h2>
               <p className="text-lg text-gray-200 max-w-3xl mx-auto">
                 The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.

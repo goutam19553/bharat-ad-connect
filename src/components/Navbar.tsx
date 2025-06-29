@@ -80,12 +80,6 @@ const Navbar = () => {
               <Sun className="h-5 w-5 text-yellow-400" />
             )}
           </button>
-
-          <Link to="/contact">
-            <button className="ml-2 px-4 py-2 text-sm font-medium bg-bharat-green text-white rounded-full hover:bg-bharat-saffron transition">
-              Get Started
-            </button>
-          </Link>
         </div>
 
         {/* Mobile Nav Button */}
@@ -128,13 +122,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center px-4 py-2 mt-2 bg-bharat-green text-white font-semibold rounded-md hover:bg-bharat-saffron transition"
-            >
-              Get Started
-            </Link>
           </div>
         </div>
       )}

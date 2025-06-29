@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star } from "lucide-react";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
 const fadeInUp = {
@@ -56,6 +56,12 @@ const testimonials = [
 ];
 
 const Index = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const featuredAdSpaces: AdSpaceProps[] = [
     {
       id: 1,

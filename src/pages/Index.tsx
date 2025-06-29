@@ -548,7 +548,7 @@ const Index = () => {
 
           {/* Button */}
           <a
-            href="https://political-campaign-rose.vercel.app/"
+            href="http://politicalads.adproject.in/"
             target="_blank"
             rel="noopener noreferrer"
           >

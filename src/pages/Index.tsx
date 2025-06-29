@@ -434,11 +434,7 @@ const Index = () => {
       {/* Brands Slider */}
       <BrandSlider />
 
-      {/* Contact Form */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <ContactForm />
-        </div>
+   
       </section>
     </div>
   );

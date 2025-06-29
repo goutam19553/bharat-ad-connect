@@ -434,7 +434,7 @@ const Index = () => {
       {/* Brands Slider */}
       <BrandSlider />
 
-   
+      </div>
       </section>
     </div>
   );

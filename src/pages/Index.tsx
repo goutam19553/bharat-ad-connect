@@ -215,17 +215,26 @@ const Index = () => {
         </section>
       </div>
  
-      {/* Featured Ad Spaces */}
-      <section className="section relative bg-gray-50 dark:bg-gray-800">
-        <div className="container-custom relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Advanced OOH Campaign Planner</h2>
+       {/* Featured Ad Spaces */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
+              Advanced OOH Campaign Planner
+            </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               We help streamline OOH Ad-campaign planning with advanced tools and proprietary data insights for precise media placement.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredAdSpaces.map((adSpace, index) => (
               <motion.div
                 key={adSpace.id}
@@ -234,20 +243,156 @@ const Index = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl hover:ring-2 hover:ring-purple-400/50 transition duration-300 p-6"
+                whileHover={{ y: -10 }}
+                className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group"
               >
-                <AdSpaceCard adSpace={adSpace} />
+                <div className="relative overflow-hidden h-48">
+                  <img 
+                    src={adSpace.image} 
+                    alt={adSpace.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    Featured
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{adSpace.title}</h3>
+                    <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded">
+                      {adSpace.type}
+                    </span>
+                  </div>
+                  <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span>{adSpace.location}, {adSpace.city}</span>
+                  </div>
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Size: {adSpace.size}</span>
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`w-4 h-4 ${i < Math.floor(adSpace.rating) ? 'text-amber-400 fill-current' : 'text-gray-300 dark:text-gray-600'}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                      ₹{adSpace.price.toLocaleString()}
+                      <span className="text-sm font-normal text-gray-500">/month</span>
+                    </span>
+                    <button 
+                      onClick={togglePopup}
+                      className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="relative z-10">Book Now</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-10 text-center">
-            <Link to="/ad-spaces" className="btn-primary">
-              View All Ad Spaces
+          <div className="mt-16 text-center">
+            <Link 
+              to="/ad-spaces" 
+              className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-full shadow-lg group"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600"></span>
+              <span className="absolute bottom-0 right-0 w-8 h-8 -mb-8 -mr-8 transition-all duration-300 ease-out transform translate-x-0 translate-y-0 bg-blue-800 rounded-full group-hover:-translate-x-1 group-hover:-translate-y-1"></span>
+              <span className="absolute top-0 left-0 w-8 h-8 -mt-8 -ml-8 transition-all duration-300 ease-out transform -translate-x-0 -translate-y-0 bg-indigo-800 rounded-full group-hover:translate-x-1 group-hover:translate-y-1"></span>
+              <span className="relative z-20 flex items-center text-sm md:text-base">
+                View All Ad Spaces
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </span>
             </Link>
           </div>
         </div>
       </section>
+
+      {/* Development Feature Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={togglePopup}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="relative bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full p-8 shadow-2xl border border-gray-200 dark:border-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={togglePopup}
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+              </button>
+
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 mb-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Coming Soon!
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  This feature is currently under development in our environment.
+                  We're working hard to make it available soon!
+                </p>
+
+                <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-6">
+                  <motion.div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={togglePopup}
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 w-full"
+                >
+                  Got it!
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Political Campaign Section */}
       <style jsx>{`

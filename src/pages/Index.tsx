@@ -421,7 +421,7 @@ const Index = () => {
       <ContactForm />
     </div>
   </section>
-</div>  {/* ✅ Main wrapper close */}
+
 );      // ✅ return end
 };      // ✅ function end
 

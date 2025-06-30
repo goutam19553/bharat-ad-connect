@@ -24,10 +24,9 @@
       gtag('config', 'G-50LHXE4Y04');
     </script>
 
-    <!-- Canonical -->
+    <!-- Canonical & Meta -->
     <link rel="canonical" href="https://www.adproject.in/" />
     <link rel="me" href="https://www.linkedin.com/company/the-adz-project/" />
-
     <meta name="description" content="India’s first location-intelligent outdoor ad network — AI-powered, location-smart, and designed for next-gen brand visibility." />
     <meta name="author" content="The Ad-Project" />
     <meta property="og:title" content="The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform" />
@@ -41,7 +40,7 @@
     <meta name="twitter:description" content="Connect advertisers with ad space owners using AI + AR across India." />
     <meta name="twitter:image" content="https://www.adproject.in/og-image.jpg" />
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -88,36 +87,36 @@
       html, body {
         margin: 0;
         padding: 0;
-        width: 1280px;
+        width: 100%;
         overflow-x: hidden;
         -webkit-text-size-adjust: 100%;
       }
 
       #root {
-        width: 1280px;
         margin: 0 auto;
         padding: 0;
+        max-width: 1280px;
       }
 
       .hero-container {
-        width: 100%;
-        overflow: hidden;
-        margin: 0;
+        max-width: 1280px;
+        margin: 0 auto;
         padding: 0;
+        overflow: hidden;
       }
 
       .hero-container video,
       .hero-container img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: cover;
+        width: 100%;
+        height: auto;
         display: block;
-        max-width: 100%;
+        object-fit: cover;
       }
     </style>
   </head>
 
   <body class="transition-colors duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- GTM Noscript -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHDWPNXM"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -133,7 +132,7 @@
       <div id="root"></div>
     </div>
 
-    <!-- Dark Mode Script -->
+    <!-- Theme Script -->
     <script>
       const html = document.getElementById('html-root');
       const savedTheme = localStorage.getItem('theme');

@@ -13,8 +13,8 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Forced Desktop-View Hero */}
-      <div className="relative w-[1280px] max-w-none h-[700px] overflow-hidden mx-auto hero-wrapper">
+      {/* Responsive Hero - Desktop Feel on Mobile, Fluid on Desktop */}
+      <div className="relative w-full max-w-[1280px] h-[700px] overflow-hidden mx-auto px-4">
         {!videoEnded ? (
           <video
             className="w-full h-full object-cover"

@@ -2,7 +2,8 @@
 <html lang="en" id="html-root">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Force desktop layout on all devices -->
+    <meta name="viewport" content="width=1280, initial-scale=0.85, maximum-scale=1, user-scalable=no" />
     <title>The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform</title>
     <link rel="icon" href="https://www.adproject.in/favicon.ico" sizes="48x48" type="image/x-icon" />
 
@@ -93,6 +94,9 @@
     <style>
       html {
         -webkit-text-size-adjust: 100%;
+      }
+      body {
+        touch-action: manipulation;
       }
     </style>
   </head>

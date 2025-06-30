@@ -2,7 +2,6 @@
 <html lang="en" id="html-root">
   <head>
     <meta charset="UTF-8" />
-    <!-- Force desktop-like width even on mobile -->
     <meta name="viewport" content="width=1280" />
     <title>The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform</title>
     <link rel="icon" href="https://www.adproject.in/favicon.ico" sizes="48x48" type="image/x-icon" />
@@ -32,12 +31,12 @@
     <link rel="me" href="https://www.linkedin.com/company/the-adz-project/" />
 
     <!-- SEO Meta -->
-    <meta name="description" content="India’s first location-intelligent outdoor ad network — AI-powered, location‑smart, and designed for next‑gen brand visibility." />
+    <meta name="description" content="India’s first location-intelligent outdoor ad network — AI-powered, location-smart, and designed for next-gen brand visibility." />
     <meta name="author" content="The Ad-Project" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform" />
-    <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI‑powered digital marketplace." />
+    <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.adproject.in/" />
     <meta property="og:image" content="https://www.adproject.in/og-image.jpg" />
@@ -92,23 +91,22 @@
     </script>
 
     <style>
-      html { -webkit-text-size-adjust: 100%; }
-
-      /* Ensure hero spans full width on mobile, same as desktop */
-      .hero-container {
-        width: 100%;
-        max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
+      html, body {
+        -webkit-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
       }
 
-      /* Override any portrait-specific styles */
-      .hero-container img,
-      .hero-container video,
-      .hero-container .hero-background {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
+      #root {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .hero-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0;
       }
     </style>
   </head>
@@ -124,11 +122,12 @@
       🌙 / ☀️
     </button>
 
-    <!-- React Root & Hero Container -->
+    <!-- Main Content Container -->
     <div class="hero-container">
       <div id="root"></div>
     </div>
 
+    <!-- Theme Script -->
     <script>
       const html = document.getElementById('html-root');
       const savedTheme = localStorage.getItem('theme');
@@ -148,6 +147,7 @@
       }
     </script>
 
+    <!-- React App -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>

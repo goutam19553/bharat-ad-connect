@@ -2,7 +2,8 @@
 <html lang="en" id="html-root">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1280" />
+    <!-- Force desktop view even on mobile -->
+    <meta name="viewport" content="width=1280, initial-scale=1.0" />
     <title>The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform</title>
     <link rel="icon" href="https://www.adproject.in/favicon.ico" sizes="48x48" type="image/x-icon" />
 
@@ -27,21 +28,21 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://www.adproject.in/" />
 
-    <!-- LinkedIn Company Profile -->
+    <!-- LinkedIn -->
     <link rel="me" href="https://www.linkedin.com/company/the-adz-project/" />
 
-    <!-- SEO Meta -->
+    <!-- Meta SEO -->
     <meta name="description" content="India’s first location-intelligent outdoor ad network — AI-powered, location-smart, and designed for next-gen brand visibility." />
     <meta name="author" content="The Ad-Project" />
 
-    <!-- Open Graph -->
+    <!-- OG Meta -->
     <meta property="og:title" content="The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform" />
     <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.adproject.in/" />
     <meta property="og:image" content="https://www.adproject.in/og-image.jpg" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bharat_ad" />
     <meta name="twitter:title" content="The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform" />
@@ -90,28 +91,40 @@
       };
     </script>
 
+    <!-- Custom Styling -->
     <style>
       html, body {
         -webkit-text-size-adjust: 100%;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        width: 1280px;
       }
 
       #root {
-        margin: 0 !important;
-        padding: 0 !important;
+        width: 1280px;
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      video {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover;
+        display: block;
       }
 
       .hero-container {
-        max-width: 1280px;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
         padding: 0;
+        overflow: hidden;
       }
     </style>
   </head>
 
   <body class="transition-colors duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- GTM noscript -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHDWPNXM"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -122,7 +135,7 @@
       🌙 / ☀️
     </button>
 
-    <!-- Main Content Container -->
+    <!-- Hero Section Container -->
     <div class="hero-container">
       <div id="root"></div>
     </div>
@@ -131,10 +144,9 @@
     <script>
       const html = document.getElementById('html-root');
       const savedTheme = localStorage.getItem('theme');
-
       if (savedTheme === 'dark') html.classList.add('dark');
       else if (savedTheme === 'light') html.classList.remove('dark');
-      else html.classList.add('dark'); // default
+      else html.classList.add('dark');
 
       function toggleTheme() {
         if (html.classList.contains('dark')) {

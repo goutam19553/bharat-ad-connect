@@ -20,7 +20,7 @@ const Hero = () => {
       )}
 
       {/* Hero Section with Video or Fallback Image */}
-      <div className="relative w-full h-[600px] md:h-[700px] lg:h-screen overflow-hidden">
+    <div className="relative w-screen h-[700px] overflow-hidden">
         {isDesktop && !videoEnded ? (
           <video
             className="w-full h-full object-cover"

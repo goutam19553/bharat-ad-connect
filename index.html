@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />  
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
     <title>The Ad-Project | India's AI-Powered Outdoor Ad Booking Platform</title>  
-    <link rel="icon" href="https://www.adproject.in/favicon.ico" sizes="48x48" type="image/x-icon" />  
-  
+
+    <!-- Favicon & Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
     <!-- Google Tag Manager -->  
     <script>  
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  
@@ -14,8 +20,8 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  
       })(window,document,'script','dataLayer','GTM-KHDWPNXM');  
     </script>  
-  
-    <!-- Google Analytics (inside GTM fallback) -->  
+
+    <!-- Google Analytics -->  
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-50LHXE4Y04"></script>  
     <script>  
       window.dataLayer = window.dataLayer || [];  
@@ -23,31 +29,31 @@
       gtag('js', new Date());  
       gtag('config', 'G-50LHXE4Y04');  
     </script>  
-  
+
     <!-- Canonical -->  
     <link rel="canonical" href="https://www.adproject.in/" />  
-  
+
     <!-- LinkedIn Company Profile -->  
     <link rel="me" href="https://www.linkedin.com/company/the-adz-project/" />  
-  
+
     <!-- SEO Meta -->  
     <meta name="description" content="India’s first location-intelligent outdoor ad network — AI-powered, location-smart, and designed for next-gen brand visibility." />  
     <meta name="author" content="The Ad-Project" />  
-  
+
     <!-- Open Graph (Facebook / LinkedIn) -->  
     <meta property="og:title" content="The Ad-Project |  India's AI-Powered Outdoor Ad Booking Platform" />  
     <meta property="og:description" content="The Ad-Project connects advertisers with ad space owners across India through an AI-powered digital marketplace." />  
     <meta property="og:type" content="website" />  
     <meta property="og:url" content="https://www.adproject.in/" />  
     <meta property="og:image" content="https://www.adproject.in/og-image.jpg" />  
-  
+
     <!-- Twitter Card -->  
     <meta name="twitter:card" content="summary_large_image" />  
     <meta name="twitter:site" content="@bharat_ad" />  
     <meta name="twitter:title" content="The Ad-Project |  India's AI-Powered Outdoor Ad Booking Platform" />  
     <meta name="twitter:description" content="Connect advertisers with ad space owners using AI + AR across India." />  
     <meta name="twitter:image" content="https://www.adproject.in/og-image.jpg" />  
-  
+
     <!-- Optional: JSON-LD Structured Data -->  
     <script type="application/ld+json">  
     {  
@@ -62,7 +68,7 @@
       }  
     }  
     </script>  
-  
+
     <!-- Supabase CDN -->  
     <script type="module">  
       import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';  
@@ -74,7 +80,7 @@
       }  
       fetchData();  
     </script>  
-  
+
     <!-- Tailwind CSS CDN -->  
     <script src="https://cdn.tailwindcss.com"></script>  
     <script>  
@@ -89,32 +95,32 @@
         },  
       };  
     </script>  
-  
+
     <style>  
       html {  
         -webkit-text-size-adjust: 100%;  
       }  
     </style>  
   </head>  
-  
+
   <body class="transition-colors duration-300 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">  
     <!-- Google Tag Manager (noscript) -->  
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHDWPNXM"  
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>  
-  
+
     <!-- Dark Mode Toggle Button -->  
     <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 text-black dark:bg-white dark:text-black px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform">  
       🌙 / ☀️  
     </button>  
-  
+
     <!-- React App Root -->  
     <div id="root"></div>  
-  
+
     <!-- Dark Mode Script -->  
     <script>  
       const html = document.getElementById('html-root');  
       const savedTheme = localStorage.getItem('theme');  
-  
+
       if (savedTheme === 'dark') {  
         html.classList.add('dark');  
       } else if (savedTheme === 'light') {  
@@ -122,7 +128,7 @@
       } else {  
         html.classList.add('dark'); // Default to dark  
       }  
-  
+
       function toggleTheme() {  
         if (html.classList.contains('dark')) {  
           html.classList.remove('dark');  
@@ -133,7 +139,7 @@
         }  
       }  
     </script>  
-  
+
     <!-- App Scripts -->  
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>  
     <script type="module" src="/src/main.tsx"></script>  

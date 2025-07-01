@@ -75,7 +75,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://droneads.netlify.app/"
+                  href="https://droneads.adproject.in/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-bharat-saffron"

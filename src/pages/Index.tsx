@@ -151,7 +151,7 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   
-  // Circular slider state
+  // 3D Carousel state
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -239,25 +239,21 @@ const Index = () => {
     setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
   };
 
-  // Calculate 3D circular positions
-  const getCircularPosition = (index: number) => {
+  // Calculate 3D curved positions
+  const getCurvedPosition = (index: number) => {
     const totalItems = featuredAdSpaces.length;
-    const angle = (index - currentSlide) * (360 / totalItems);
-    const radius = 250; // Radius of the circular path
+    const centerIndex = currentSlide;
+    const distanceFromCenter = (index - centerIndex + totalItems) % totalItems;
     
-    // Convert angle to radians
-    const radians = (angle * Math.PI) / 180;
+    // Calculate angle based on position relative to center
+    const angle = ((distanceFromCenter - Math.floor(totalItems / 2)) * 15;
     
-    // Calculate 3D coordinates
-    const x = Math.sin(radians) * radius;
-    const z = -Math.cos(radians) * radius;
+    // Calculate 3D transform values
+    const translateZ = -Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 50;
+    const scale = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.15;
+    const opacity = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.3;
     
-    // Calculate scale and opacity based on position
-    const distanceFromCenter = Math.abs(angle % 360);
-    const scale = 1 - (distanceFromCenter / 180) * 0.5;
-    const opacity = 1 - (distanceFromCenter / 180) * 0.5;
-    
-    return { x, z, scale, opacity, angle };
+    return { angle, translateZ, scale, opacity, distanceFromCenter };
   };
 
   return (
@@ -341,9 +337,10 @@ const Index = () => {
         </section>
       </div>
  
-      {/* Featured Ad Spaces - 3D Circular Carousel */}
+      {/* Featured Ad Spaces - Futuristic 3D Curved Carousel */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-gray-200/10 to-transparent dark:via-gray-900/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -360,159 +357,178 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* 3D Circular Carousel Container */}
-          <div className="relative h-[600px] w-full perspective-1000" ref={sliderRef}>
-            {/* Carousel items */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              <motion.div 
-                className="relative w-full h-full"
-                animate={{
-                  rotateY: -currentSlide * (360 / featuredAdSpaces.length),
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20
-                }}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                {featuredAdSpaces.map((adSpace, index) => {
-                  const { x, z, scale, opacity, angle } = getCircularPosition(index);
-                  const isFront = Math.abs(angle % 360) < 45;
-                  
-                  return (
-                    <motion.div
-                      key={adSpace.id}
-                      className={`absolute w-72 h-96 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/30 dark:border-gray-700/50`}
-                      initial={false}
-                      animate={{
-                        x,
-                        z,
-                        scale,
-                        opacity,
-                        rotateY: angle,
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 20
-                      }}
-                      whileHover={{
-                        scale: isFront ? 1.05 : scale * 1.1,
-                        z: isFront ? 20 : z + 20,
-                      }}
-                      style={{
-                        transformStyle: "preserve-3d",
-                      }}
-                    >
-                      <div className="relative h-full group">
-                        {/* Holographic glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        {/* Image with gradient overlay */}
-                        <div className="relative h-48 overflow-hidden">
-                          <img 
-                            src={adSpace.image} 
-                            alt={adSpace.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                          <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
-                            Featured
-                          </div>
+          {/* Futuristic 3D Curved Carousel */}
+          <div className="relative h-[600px] w-full perspective-1000 overflow-visible" ref={sliderRef}>
+            {/* Carousel track with curved layout */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {featuredAdSpaces.map((adSpace, index) => {
+                const { angle, translateZ, scale, opacity, distanceFromCenter } = getCurvedPosition(index);
+                const isCenter = distanceFromCenter === 0;
+                
+                return (
+                  <motion.div
+                    key={adSpace.id}
+                    className={`absolute w-72 h-96 rounded-2xl shadow-2xl overflow-hidden border-2 ${
+                      isCenter 
+                        ? 'border-amber-500/50 dark:border-amber-400/50' 
+                        : 'border-gray-200/30 dark:border-gray-700/50'
+                    }`}
+                    initial={false}
+                    animate={{
+                      x: angle * 20, // Horizontal position based on angle
+                      y: Math.abs(angle) * 0.5, // Slight vertical offset
+                      z: translateZ,
+                      scale,
+                      opacity,
+                      rotateY: angle,
+                      filter: isCenter ? 'brightness(1.1)' : 'brightness(0.8)',
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 20
+                    }}
+                    whileHover={{
+                      scale: scale * 1.05,
+                      z: translateZ + 20,
+                    }}
+                    style={{
+                      transformStyle: "preserve-3d",
+                      transformOrigin: "center bottom",
+                    }}
+                  >
+                    <div className="relative h-full group">
+                      {/* Holographic effect */}
+                      <div className={`absolute inset-0 ${
+                        isCenter 
+                          ? 'bg-gradient-to-br from-amber-500/10 to-blue-500/10' 
+                          : 'bg-gradient-to-br from-gray-500/5 to-gray-700/5'
+                      } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                      
+                      {/* Glow effect for center card */}
+                      {isCenter && (
+                        <div className="absolute inset-0 rounded-2xl pointer-events-none">
+                          <div className="absolute inset-0 rounded-2xl bg-amber-500/10 blur-md animate-pulse"></div>
+                          <div className="absolute inset-0 rounded-2xl shadow-[0_0_30px_5px_rgba(245,158,11,0.3)]"></div>
                         </div>
-                        
-                        {/* Card content */}
-                        <div className="p-6 h-[calc(100%-12rem)] flex flex-col bg-white dark:bg-gray-900">
-                          <div className="flex justify-between items-start mb-3">
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-1">{adSpace.title}</h3>
-                            <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
-                              {adSpace.type}
-                            </span>
-                          </div>
-                          
-                          <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3 text-sm">
-                            <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-                            <span className="line-clamp-1">{adSpace.location}, {adSpace.city}</span>
-                          </div>
-                          
-                          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                            <p className="font-medium">Size: <span className="font-normal">{adSpace.size}</span></p>
-                            {adSpace.impressions && (
-                              <p className="text-xs mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">{adSpace.impressions}</p>
-                            )}
-                          </div>
-                          
-                          <div className="mt-auto flex justify-between items-center">
-                            <div className="flex items-center">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className={`w-4 h-4 ${i < Math.floor(adSpace.rating) ? 'text-amber-400 fill-current' : 'text-gray-300 dark:text-gray-600'}`}
-                                />
-                              ))}
-                              <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">({adSpace.rating})</span>
-                            </div>
-                            <button 
-                              onClick={togglePopup}
-                              className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-md transition-all duration-300 hover:scale-105"
-                            >
-                              Enquire Now
-                            </button>
-                          </div>
+                      )}
+                      
+                      {/* Image with gradient overlay */}
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={adSpace.image} 
+                          alt={adSpace.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
+                          Featured
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+                      
+                      {/* Card content */}
+                      <div className="p-6 h-[calc(100%-12rem)] flex flex-col bg-white dark:bg-gray-900">
+                        <div className="flex justify-between items-start mb-3">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-1">{adSpace.title}</h3>
+                          <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
+                            {adSpace.type}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3 text-sm">
+                          <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                          <span className="line-clamp-1">{adSpace.location}, {adSpace.city}</span>
+                        </div>
+                        
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                          <p className="font-medium">Size: <span className="font-normal">{adSpace.size}</span></p>
+                          {adSpace.impressions && (
+                            <p className="text-xs mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">{adSpace.impressions}</p>
+                          )}
+                        </div>
+                        
+                        <div className="mt-auto flex justify-between items-center">
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <Star 
+                                key={i} 
+                                className={`w-4 h-4 ${i < Math.floor(adSpace.rating) ? 'text-amber-400 fill-current' : 'text-gray-300 dark:text-gray-600'}`}
+                              />
+                            ))}
+                            <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">({adSpace.rating})</span>
+                          </div>
+                          <button 
+                            onClick={togglePopup}
+                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-md transition-all duration-300 hover:scale-105"
+                          >
+                            Enquire Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
-            {/* Navigation controls */}
+            {/* Navigation controls - Futuristic style */}
             <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-20">
               <button 
                 onClick={prevSlide}
-                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                <div className="relative">
+                  <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                  <div className="absolute inset-0 rounded-full bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
               </button>
-              <div className="flex items-center gap-2">
+              
+              <div className="flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 {featuredAdSpaces.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${currentSlide === index ? 'bg-orange-500 w-6' : 'bg-gray-300 dark:bg-gray-600'}`}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      currentSlide === index 
+                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 w-6 scale-125' 
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                    }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
               </div>
+              
               <button 
                 onClick={nextSlide}
-                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 aria-label="Next slide"
               >
-                <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                <div className="relative">
+                  <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                  <div className="absolute inset-0 rounded-full bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
               </button>
             </div>
           </div>
 
-          {/* View All Button */}
+          {/* View All Button - Futuristic style */}
           <div className="mt-16 text-center">
             <Link 
               to="/ad-spaces" 
-              className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-full shadow-lg group"
+              className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white transition duration-300 ease-out rounded-full shadow-xl group"
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600"></span>
-              <span className="absolute bottom-0 right-0 w-8 h-8 -mb-8 -mr-8 transition-all duration-300 ease-out transform translate-x-0 translate-y-0 bg-blue-800 rounded-full group-hover:-translate-x-1 group-hover:-translate-y-1"></span>
-              <span className="absolute top-0 left-0 w-8 h-8 -mt-8 -ml-8 transition-all duration-300 ease-out transform -translate-x-0 -translate-y-0 bg-indigo-800 rounded-full group-hover:translate-x-1 group-hover:translate-y-1"></span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 group-hover:from-blue-700 group-hover:via-blue-600 group-hover:to-indigo-700 transition-all duration-500"></span>
+              <span className="absolute bottom-0 right-0 w-8 h-8 -mb-8 -mr-8 transition-all duration-500 ease-out transform translate-x-0 translate-y-0 bg-blue-800 rounded-full group-hover:-translate-x-1 group-hover:-translate-y-1"></span>
+              <span className="absolute top-0 left-0 w-8 h-8 -mt-8 -ml-8 transition-all duration-500 ease-out transform -translate-x-0 -translate-y-0 bg-indigo-800 rounded-full group-hover:translate-x-1 group-hover:translate-y-1"></span>
               <span className="relative z-20 flex items-center text-sm md:text-base">
-                Explore All Ad Spaces
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <span className="mr-2">Explore All Ad Spaces</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
+              </span>
+              <span className="absolute inset-0 w-full h-full rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="absolute inset-0 bg-white/10 rounded-full animate-pulse"></span>
               </span>
             </Link>
           </div>

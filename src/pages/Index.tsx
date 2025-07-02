@@ -158,6 +158,7 @@ const Index = () => {
   
   // Popup state
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedAdSpace, setSelectedAdSpace] = useState<AdSpaceProps | null>(null);
 
   const texts = [
     "The AdTech Engine of New India",
@@ -216,7 +217,10 @@ const Index = () => {
   }, [isPlaying]);
 
   // Toggle popup
-  const togglePopup = () => {
+  const togglePopup = (adSpace?: AdSpaceProps) => {
+    if (adSpace) {
+      setSelectedAdSpace(adSpace);
+    }
     setShowPopup(!showPopup);
   };
 
@@ -458,7 +462,7 @@ const getCurvedPosition = (index: number) => {
                             <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">({adSpace.rating})</span>
                           </div>
                           <button 
-                            onClick={togglePopup}
+                            onClick={() => togglePopup(adSpace)}
                             className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-md transition-all duration-300 hover:scale-105"
                           >
                             Enquire Now
@@ -543,7 +547,7 @@ const getCurvedPosition = (index: number) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-            onClick={togglePopup}
+            onClick={() => togglePopup()}
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
@@ -554,7 +558,7 @@ const getCurvedPosition = (index: number) => {
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={togglePopup}
+                onClick={() => togglePopup()}
                 className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close"
               >
@@ -580,7 +584,7 @@ const getCurvedPosition = (index: number) => {
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  Coming Soon!
+                  Enquire About {selectedAdSpace?.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
                   This feature is currently under development in our environment.
@@ -602,7 +606,7 @@ const getCurvedPosition = (index: number) => {
                 </div>
 
                 <button
-                  onClick={togglePopup}
+                  onClick={() => togglePopup()}
                   className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 w-full"
                 >
                   Got it!

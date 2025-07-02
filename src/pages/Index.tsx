@@ -305,15 +305,44 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 overflow-x-hidden">
+      {/* Particle Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-bharat-saffron/20"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              width: Math.random() * 10 + 2,
+              height: Math.random() * 10 + 2,
+              opacity: Math.random() * 0.5 + 0.1,
+            }}
+            animate={{
+              y: [0, Math.random() * 100 - 50],
+              x: [0, Math.random() * 100 - 50],
+              transition: {
+                duration: Math.random() * 10 + 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              },
+            }}
+          />
+        ))}
+      </div>
+
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
+      <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         <Hero />
       </div>
 
       {/* New Features Section - Alternating Layout */}
       <div className="relative z-0">
-        <section className="py-20 px-4 md:px-20 text-center bg-gray-800">
+        <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <motion.h1 
             className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
             initial={{ opacity: 0, y: 20 }}
@@ -328,33 +357,41 @@ const Index = () => {
         {featureSections.map((section, index) => (
           <motion.section
             key={index}
-            className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'}`}
+            className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="max-w-6xl mx-auto">
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+            <div className="max-w-6xl mx-auto relative z-10">
               <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
                 {/* Image */}
                 <motion.div 
-                  className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl"
+                  className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl relative group"
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-br from-bharat-saffron/30 to-bharat-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                   <img 
                     src={section.image} 
                     alt={section.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 border-2 border-white/10 rounded-xl pointer-events-none"></div>
                 </motion.div>
 
                 {/* Content */}
                 <div className="w-full md:w-1/2">
                   <div className="flex items-center gap-4 mb-6">
-                    {section.icon}
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {section.icon}
+                    </motion.div>
                     <h2 className="text-3xl font-semibold text-white">{section.title}</h2>
                   </div>
                   <p className="text-gray-300 text-lg mb-6">{section.description}</p>
@@ -362,12 +399,13 @@ const Index = () => {
                     {section.features.map((feature, i) => (
                       <motion.li
                         key={i}
-                        className="flex items-start"
+                        className="flex items-start bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 rounded-lg border border-gray-700/50 hover:border-bharat-saffron/30 transition-colors duration-300"
                         custom={i}
                         variants={fadeInUp}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
+                        whileHover={{ x: 5 }}
                       >
                         <span className="flex-shrink-0 mt-1 mr-3 text-bharat-saffron">
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -781,6 +819,7 @@ const Index = () => {
 
       {/* How It Works */}
       <div className="relative bg-gray-900 py-20">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <HowItWorks />
         </div>
@@ -788,6 +827,7 @@ const Index = () => {
 
       {/* Testimonials */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

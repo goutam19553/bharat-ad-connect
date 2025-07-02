@@ -168,7 +168,7 @@ const Index = () => {
         "Hyper-Accurate Tracking: Get count-level precision and behavioral heatmaps to identify where and when your ads perform best.",
         "AR Activation Ready: Trigger immersive AR experiences when people scan your hoardings or kiosks—capturing attention instantly."
       ],
-      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/wev (1).jpg"
     },
     {
       title: "Campaign Analytics",

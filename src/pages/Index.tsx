@@ -9,6 +9,7 @@ import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
+// Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: (i: number) => ({
@@ -35,6 +36,7 @@ const floatAnimation = {
   },
 };
 
+// Testimonials data
 const testimonials = [
   {
     quote: "The Ad-Project helped us find premium ad spaces we couldn't access through traditional channels. Their AR preview feature saved us thousands in production costs.",
@@ -56,6 +58,7 @@ const testimonials = [
   }
 ];
 
+// Ad spaces data
 const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 1,
@@ -126,6 +129,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
   },
 ];
 
+// Benefits data
 const advertiserBenefits = [
   { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
   { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
@@ -141,13 +145,19 @@ const ownerBenefits = [
 ];
 
 const Index = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  // Typing animation state
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
+  
+  // Slider state
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
+  
+  // Popup state
+  const [showPopup, setShowPopup] = useState(false);
 
   const texts = [
     "The AdTech Engine of New India",
@@ -158,18 +168,10 @@ const Index = () => {
   const deletingSpeed = 50;
   const delayBetweenLoops = 2000;
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
+  // Auto-play interval (5 seconds)
+  const autoPlayInterval = 5000;
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === featuredAdSpaces.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? featuredAdSpaces.length - 1 : prev - 1));
-  };
-
+  // Typing animation effect
   useEffect(() => {
     let timer: NodeJS.Timeout;
     const currentText = texts[loopNum % texts.length];
@@ -199,6 +201,43 @@ const Index = () => {
 
     return () => clearTimeout(timer);
   }, [currentIndex, isDeleting, loopNum]);
+
+  // Auto-play slider effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setCurrentSlide(prev => (prev === featuredAdSpaces.length - 1 ? 0 : prev + 1));
+      }, autoPlayInterval);
+    }
+    
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
+  // Toggle popup
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  // Navigate slides
+  const nextSlide = () => {
+    setIsPlaying(false);
+    setCurrentSlide(prev => (prev === featuredAdSpaces.length - 1 ? 0 : prev + 1));
+    setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
+  };
+
+  const prevSlide = () => {
+    setIsPlaying(false);
+    setCurrentSlide(prev => (prev === 0 ? featuredAdSpaces.length - 1 : prev - 1));
+    setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
+  };
+
+  const goToSlide = (index: number) => {
+    setIsPlaying(false);
+    setCurrentSlide(index);
+    setTimeout(() => setIsPlaying(true), autoPlayInterval * 2;
+  };
 
   return (
     <div>
@@ -281,7 +320,7 @@ const Index = () => {
         </section>
       </div>
  
-      {/* Featured Ad Spaces - 3D Holographic Slider */}
+      {/* Featured Ad Spaces - Floating 3D Carousel */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -300,16 +339,16 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* Enhanced 3D Holographic Slider */}
+          {/* Floating 3D Carousel */}
           <div className="relative h-[600px] w-full" ref={sliderRef}>
-            {/* Holographic Background Effect */}
+            {/* Floating background effect */}
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/20 backdrop-blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/20 backdrop-blur-sm"></div>
               <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.1)_0%,transparent_70%)] animate-pulse"></div>
             </div>
 
-            {/* Slider Container */}
+            {/* Carousel items */}
             <div className="relative w-full h-full flex items-center justify-center">
               {featuredAdSpaces.map((adSpace, index) => {
                 const position = (index - currentSlide + featuredAdSpaces.length) % featuredAdSpaces.length;
@@ -326,7 +365,7 @@ const Index = () => {
                     initial={false}
                     animate={{
                       x: isActive ? 0 : isNext ? 400 : isPrev ? -400 : position < currentSlide ? -200 : 200,
-                      y: isActive ? 0 : 40,
+                      y: isActive ? [0, -10, 0] : [40, 30, 40], // Floating animation for active card
                       z: isActive ? 0 : -100,
                       scale: isActive ? 1 : 0.85,
                       opacity: isActive ? 1 : isNext || isPrev ? 0.8 : 0.5,
@@ -336,7 +375,12 @@ const Index = () => {
                       type: "spring",
                       stiffness: 100,
                       damping: 20,
-                      duration: 0.5
+                      duration: 0.5,
+                      y: isActive ? {
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      } : undefined
                     }}
                     whileHover={isActive ? { 
                       scale: 1.05,
@@ -348,10 +392,10 @@ const Index = () => {
                     }}
                   >
                     <div className="relative h-full group">
-                      {/* Holographic Glow Effect */}
+                      {/* Holographic glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
-                      {/* Image with Gradient Overlay */}
+                      {/* Image with gradient overlay */}
                       <div className="relative h-48 overflow-hidden">
                         <img 
                           src={adSpace.image} 
@@ -364,7 +408,7 @@ const Index = () => {
                         </div>
                       </div>
                       
-                      {/* Card Content */}
+                      {/* Card content */}
                       <div className="p-6 h-[calc(100%-12rem)] flex flex-col bg-white dark:bg-gray-900">
                         <div className="flex justify-between items-start mb-3">
                           <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-1">{adSpace.title}</h3>
@@ -409,7 +453,7 @@ const Index = () => {
               })}
             </div>
 
-            {/* Navigation Controls */}
+            {/* Navigation controls */}
             <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-20">
               <button 
                 onClick={prevSlide}
@@ -422,7 +466,7 @@ const Index = () => {
                 {featuredAdSpaces.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentSlide(index)}
+                    onClick={() => goToSlide(index)}
                     className={`w-3 h-3 rounded-full transition-all ${currentSlide === index ? 'bg-orange-500 w-6' : 'bg-gray-300 dark:bg-gray-600'}`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -458,7 +502,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Development Feature Popup */}
+      {/* Enquire Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div

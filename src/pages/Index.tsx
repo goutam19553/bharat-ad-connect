@@ -312,22 +312,31 @@ const Index = () => {
         <Hero />
       </div>
 
-      {/* New Features Section with Neon Connections */}
-      <div className="relative z-0 py-20">
-        
-            Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
-          </motion.h1>
-        </section>
+    {/* New Features Section with Neon Connections */}
+<div className="relative z-0 py-20">
+  <section>
+    <motion.h1
+      className="text-4xl font-bold text-center text-white mb-8"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
+    </motion.h1>
+  </section>
 
-        {featureSections.map((section, index) => (
-          <motion.section
-            key={index}
-            className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+  {featureSections.map((section, index) => (
+    <motion.section
+      key={index}
+      className={`py-16 px-4 md:px-20 ${
+        index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'
+      } relative`}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
             {/* Feature connection dots */}
             <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-[0_0_10px_2px_rgba(99,102,241,0.5)]"></div>
             

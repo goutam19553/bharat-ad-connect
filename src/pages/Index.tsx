@@ -151,7 +151,7 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   
-  // Slider state
+  // Circular slider state
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -236,7 +236,27 @@ const Index = () => {
   const goToSlide = (index: number) => {
     setIsPlaying(false);
     setCurrentSlide(index);
-   setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
+    setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
+  };
+
+  // Calculate circular positions
+  const getCircularPosition = (index: number) => {
+    const totalItems = featuredAdSpaces.length;
+    const angle = ((index - currentSlide + totalItems) % totalItems) * (360 / totalItems);
+    const radius = 300; // Radius of the circular path
+    
+    // Convert angle to radians
+    const radians = (angle * Math.PI) / 180;
+    
+    // Calculate x and y coordinates
+    const x = Math.sin(radians) * radius;
+    const y = -Math.cos(radians) * radius;
+    
+    // Calculate scale and z-index based on position
+    const scale = angle % 360 === 0 ? 1 : 0.8;
+    const zIndex = angle % 360 === 0 ? 10 : 5;
+    
+    return { x, y, scale, zIndex, angle };
   };
 
   return (
@@ -320,7 +340,7 @@ const Index = () => {
         </section>
       </div>
  
-      {/* Featured Ad Spaces - Floating 3D Carousel */}
+      {/* Featured Ad Spaces - 3D Circular Carousel */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -339,54 +359,71 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* Floating 3D Carousel */}
-          <div className="relative h-[600px] w-full" ref={sliderRef}>
-            {/* Floating background effect */}
-            <div className="absolute inset-0 overflow-hidden rounded-3xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/20 backdrop-blur-sm"></div>
-              <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.1)_0%,transparent_70%)] animate-pulse"></div>
+          {/* 3D Circular Carousel */}
+          <div className="relative h-[700px] w-full flex items-center justify-center" ref={sliderRef}>
+            {/* Circular background effect */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-[600px] h-[600px] rounded-full">
+                {/* Animated ring */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-full"
+                  animate={{
+                    rotate: 360,
+                    transition: {
+                      duration: 60,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }
+                  }}
+                />
+                {/* Pulsing center glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-xl opacity-20"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.2, 0.3, 0.2],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Carousel items */}
             <div className="relative w-full h-full flex items-center justify-center">
               {featuredAdSpaces.map((adSpace, index) => {
-                const position = (index - currentSlide + featuredAdSpaces.length) % featuredAdSpaces.length;
-                const isActive = position === 0;
-                const isNext = position === 1 || (currentSlide === featuredAdSpaces.length - 1 && index === 0);
-                const isPrev = position === featuredAdSpaces.length - 1 || (currentSlide === 0 && index === featuredAdSpaces.length - 1);
-
+                const { x, y, scale, zIndex, angle } = getCircularPosition(index);
+                const isActive = angle % 360 === 0;
+                
                 return (
                   <motion.div
                     key={adSpace.id}
-                    className={`absolute w-72 h-96 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/30 dark:border-gray-700/50 ${
-                      isActive ? 'z-10' : isNext || isPrev ? 'z-5' : 'z-0'
-                    }`}
+                    className={`absolute w-72 h-96 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/30 dark:border-gray-700/50 z-${zIndex}`}
                     initial={false}
                     animate={{
-                      x: isActive ? 0 : isNext ? 400 : isPrev ? -400 : position < currentSlide ? -200 : 200,
-                      y: isActive ? [0, -10, 0] : [40, 30, 40], // Floating animation for active card
-                      z: isActive ? 0 : -100,
-                      scale: isActive ? 1 : 0.85,
-                      opacity: isActive ? 1 : isNext || isPrev ? 0.8 : 0.5,
-                      rotateY: isActive ? 0 : isNext ? -15 : isPrev ? 15 : 0,
+                      x,
+                      y,
+                      scale,
+                      rotateY: isActive ? 0 : angle > 180 ? 15 : -15,
+                      opacity: isActive ? 1 : 0.8,
+                      zIndex,
                     }}
                     transition={{
                       type: "spring",
                       stiffness: 100,
                       damping: 20,
-                      duration: 0.5,
-                      y: isActive ? {
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      } : undefined
+                      duration: 0.8
                     }}
-                    whileHover={isActive ? { 
-                      scale: 1.05,
+                    whileHover={{
+                      scale: isActive ? 1.05 : scale * 1.1,
                       boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3)",
-                      z: 20
-                    } : {}}
+                      zIndex: 20
+                    }}
                     style={{
                       transformStyle: "preserve-3d",
                     }}

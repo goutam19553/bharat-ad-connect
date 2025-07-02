@@ -236,7 +236,7 @@ const Index = () => {
   const goToSlide = (index: number) => {
     setIsPlaying(false);
     setCurrentSlide(index);
-    setTimeout(() => setIsPlaying(true), autoPlayInterval * 2;
+   setTimeout(() => setIsPlaying(true), autoPlayInterval * 2);
   };
 
   return (

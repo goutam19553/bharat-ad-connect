@@ -157,7 +157,7 @@ const Index = () => {
   // Auto-play interval (5 seconds)
   const autoPlayInterval = 5000;
 
-  // Feature sections data
+  // Feature sections data with proper images
   const featureSections = [
     {
       title: "VIDAR: AI at the Edge",
@@ -168,7 +168,7 @@ const Index = () => {
         "Hyper-Accurate Tracking: Get count-level precision and behavioral heatmaps to identify where and when your ads perform best.",
         "AR Activation Ready: Trigger immersive AR experiences when people scan your hoardings or kiosks—capturing attention instantly."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/ai-edge.jpg"
+      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Campaign Analytics",
@@ -179,7 +179,7 @@ const Index = () => {
         "Time-Lapse Visuals: See how your site performs across dayparts, seasons, or events.",
         "Competitor Benchmarking: Understand how your ad space stacks up against others in real-world environments."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/analytics.jpg"
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Real-Time Optimisation",
@@ -190,7 +190,7 @@ const Index = () => {
         "Dynamic Strategy: Adapt creative placements, timing, and format based on real-time data.",
         "Remote Management: From Mumbai to Manipur—manage and modify campaigns from anywhere in the country."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/optimization.jpg"
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80"
     },
     {
       title: "Marketing Intelligence",
@@ -201,7 +201,7 @@ const Index = () => {
         "AR Scan Data: Track how many users interact with your AR-enhanced ads and what they do next.",
         "Performance Mapping: Geo-tag and analyze how regions and placements impact effectiveness."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/intelligence.jpg"
+      image: "https://images.unsplash.com/photo-1622675363311-3e1904dc1885?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Turn Ads into Experiences",
@@ -212,7 +212,7 @@ const Index = () => {
         "Immersive Product Previews: Display floating products, interactive animations, or gamified offers.",
         "Boost Engagement Metrics: Track time spent, interactions made, and conversions triggered from physical ads."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/ar-experience.jpg"
+      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
     }
   ];
 
@@ -306,41 +306,45 @@ const Index = () => {
 
   return (
     <div className="bg-gray-900 overflow-x-hidden">
-      {/* Particle Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-bharat-saffron/20"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              width: Math.random() * 10 + 2,
-              height: Math.random() * 10 + 2,
-              opacity: Math.random() * 0.5 + 0.1,
-            }}
-            animate={{
-              y: [0, Math.random() * 100 - 50],
-              x: [0, Math.random() * 100 - 50],
-              transition: {
-                duration: Math.random() * 10 + 5,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              },
-            }}
-          />
-        ))}
-      </div>
-
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         <Hero />
       </div>
 
-      {/* New Features Section - Alternating Layout */}
-      <div className="relative z-0">
+      {/* New Features Section with Neon Connections */}
+      <div className="relative z-0 py-20">
+        {/* Neon Connection Lines */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {/* Main connection path */}
+            <path 
+              d="M10,30 Q25,15 40,30 Q55,45 70,30 Q85,15 90,30"
+              stroke="url(#neonGradient)"
+              strokeWidth="0.3"
+              strokeDasharray="2 1"
+              fill="none"
+              strokeLinecap="round"
+            />
+            {/* Secondary connections */}
+            <path 
+              d="M20,50 Q35,35 50,50 Q65,65 80,50"
+              stroke="url(#neonGradient)"
+              strokeWidth="0.2"
+              strokeDasharray="3 1"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <defs>
+              <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.7" />
+                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#ec4899" stopOpacity="0.7" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
         <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <motion.h1 
@@ -363,6 +367,9 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
+            {/* Feature connection dots */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-[0_0_10px_2px_rgba(99,102,241,0.5)]"></div>
+            
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
             <div className="max-w-6xl mx-auto relative z-10">
               <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
@@ -389,17 +396,20 @@ const Index = () => {
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 10 }}
                       transition={{ type: "spring", stiffness: 300 }}
+                      className="p-2 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30"
                     >
                       {section.icon}
                     </motion.div>
-                    <h2 className="text-3xl font-semibold text-white">{section.title}</h2>
+                    <h2 className="text-3xl font-semibold text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                      {section.title}
+                    </h2>
                   </div>
                   <p className="text-gray-300 text-lg mb-6">{section.description}</p>
                   <ul className="space-y-4">
                     {section.features.map((feature, i) => (
                       <motion.li
                         key={i}
-                        className="flex items-start bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 rounded-lg border border-gray-700/50 hover:border-bharat-saffron/30 transition-colors duration-300"
+                        className="flex items-start bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 rounded-lg border border-gray-700/50 hover:border-blue-400/50 transition-colors duration-300"
                         custom={i}
                         variants={fadeInUp}
                         initial="hidden"
@@ -407,7 +417,7 @@ const Index = () => {
                         viewport={{ once: true }}
                         whileHover={{ x: 5 }}
                       >
-                        <span className="flex-shrink-0 mt-1 mr-3 text-bharat-saffron">
+                        <span className="flex-shrink-0 mt-1 mr-3 text-blue-400">
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>

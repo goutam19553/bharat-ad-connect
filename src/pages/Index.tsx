@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
@@ -6,271 +6,38 @@ import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
 import FootTrafficDemo from "@/components/FootTrafficDemo";
 import BrandSlider from "@/components/BrandSlider";
-import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X } from "lucide-react";
+import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-const floatAnimation = {
-  y: [-10, 10],
-  transition: {
-    y: {
-      duration: 3,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut",
-    },
-  },
-};
-
-const testimonials = [
-  {
-    quote: "The Ad-Project helped us find premium ad spaces we couldn't access through traditional channels. Their AR preview feature saved us thousands in production costs.",
-    author: "Rahul Sharma",
-    company: "Marketing Director, UrbanClap",
-    rating: 5
-  },
-  {
-    quote: "As a small business owner, I never thought I could afford premium outdoor advertising. The Ad-Project made it accessible with their innovative solutions.",
-    author: "Priya Patel",
-    company: "Founder, Chai Point",
-    rating: 4
-  },
-  {
-    quote: "We've increased our venue revenue by 30% since listing our spaces on The Ad-Project. The platform connects us with serious advertisers.",
-    author: "Vikram Mehta",
-    company: "Operations Manager, Phoenix Marketcity",
-    rating: 5
-  }
-];
+// ... (keep all your existing constants like fadeInUp, floatAnimation, testimonials, etc.)
 
 const Index = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  
-  const texts = [
-    "The AdTech Engine of New India",
-    "India's Ad Future, Now Live",
-    "India's First Future-Ready AdTech Grid"
-  ];
-  const typingSpeed = 100;
-  const deletingSpeed = 50;
-  const delayBetweenLoops = 2000;
+  // ... (keep all your existing state and effect hooks)
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === featuredAdSpaces.length - 1 ? 0 : prev + 1));
   };
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    const currentText = texts[loopNum % texts.length];
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? featuredAdSpaces.length - 1 : prev - 1));
+  };
 
-    if (isDeleting) {
-      timer = setTimeout(() => {
-        setDisplayText(currentText.substring(0, currentIndex - 1));
-        setCurrentIndex(currentIndex - 1);
-        
-        if (currentIndex === 0) {
-          setIsDeleting(false);
-          setLoopNum(loopNum + 1);
-        }
-      }, deletingSpeed);
-    } else {
-      timer = setTimeout(() => {
-        setDisplayText(currentText.substring(0, currentIndex + 1));
-        setCurrentIndex(currentIndex + 1);
-        
-        if (currentIndex === currentText.length) {
-          setTimeout(() => {
-            setIsDeleting(true);
-          }, delayBetweenLoops);
-        }
-      }, typingSpeed);
-    }
-
-    return () => clearTimeout(timer);
-  }, [currentIndex, isDeleting, loopNum]);
-
-  const featuredAdSpaces: AdSpaceProps[] = [
-    {
-      id: 1,
-      title: "Indian Cricket Stadium",
-      location: "M.Chinnaswamy Stadium",
-      city: "Bengaluru",
-      type: "Stadium",
-      size: "60 x 20 feet",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Promotional Space",
-      location: "IT Park Manyata Tech Park",
-      city: "Bangalore",
-      type: "Space Ad",
-      size: "10 x 10 feet",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Exterior Train Branding",
-      location: "Mumbai Local Train",
-      city: "Mumbai",
-      type: "Transit",
-      size: "5 x 8 feet",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Water Bottle Ads",
-      location: "Anywhere",
-      city: "Anywhere",
-      type: "Product Branding",
-      size: "Reusable Bottle",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png",
-      rating: 4.7,
-      impressions: "High visibility in offices, gyms, and events",
-      featured: true
-    },
-    {
-      id: 5,
-      title: "Drone Advertising",
-      location: "Anywhere",
-      city: "Anywhere",
-      type: "Digital LED Flying Drones",
-      size: "20 x 10 feet",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
-      rating: 4,
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Metro Station Panels",
-      location: "Rajiv Chowk Metro",
-      city: "New Delhi",
-      type: "Transit",
-      size: "15 x 8 feet",
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
-      rating: 4,
-      featured: true,
-    },
-  ];
-
-  const advertiserBenefits = [
-    { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
-    { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
-    { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
-    { icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />, title: "Traffic Analysis", description: "Make data-driven decisions with our foot traffic analysis." },
-  ];
-
-  const ownerBenefits = [
-    { icon: <Building className="h-8 w-8 text-bharat-navy" />, title: "Maximize Revenue", description: "List your ad spaces and connect with quality advertisers." },
-    { icon: <Award className="h-8 w-8 text-bharat-navy" />, title: "Verified Advertisers", description: "We verify all advertisers to ensure quality partnerships." },
-    { icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />, title: "Data Insights", description: "Access analytics about your space's performance and value." },
-    { icon: <Zap className="h-8 w-8 text-bharat-navy" />, title: "Seamless Management", description: "Easy-to-use platform for managing your ad inventory." },
-  ];
+  // ... (keep all your existing data arrays like featuredAdSpaces, advertiserBenefits, etc.)
 
   return (
     <div>
-      {/* Hero Section (no Plexus) */}
+      {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white">
         <Hero />
       </div>
  
-      {/* Benefits */}
-      <div className="relative z-0 bg-gray-800">
-        <section className="section bg-transparent">
-          <div className="container-custom relative z-10">
-            <div className="text-center mb-12">
-              <h2
-                className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
-                         bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
-                         bg-[length:200%_200%] bg-clip-text text-transparent
-                         animate-gradient-x drop-shadow-md tracking-tight leading-tight"
-              >
-                {displayText}
-                <span className="typing-cursor">|</span>
-              </h2>
-              <p className="text-lg text-gray-200 max-w-3xl mx-auto">
-                The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
-              </p>
-            </div>
+      {/* Benefits Section */}
+      {/* ... (keep your existing benefits section exactly as is) */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {/* Advertisers */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Advertisers</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {advertiserBenefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      custom={index}
-                      variants={fadeInUp}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
-                      <p className="text-gray-300">{benefit.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center md:text-left">
-                  <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
-                </div>
-              </div>
-
-              {/* Ad Space Owners */}
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Ad Space Owners</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {ownerBenefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      custom={index}
-                      variants={fadeInUp}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
-                    >
-                      <div className="mb-4">{benefit.icon}</div>
-                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
-                      <p className="text-gray-300">{benefit.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center md:text-left">
-                  <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
- 
-      {/* Featured Ad Spaces */}
+      {/* Featured Ad Spaces - 3D Holographic Slider */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -289,93 +56,89 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* 3D Holographic Slider */}
-          <div className="relative h-[500px] w-full perspective-1000">
-            <div className="absolute inset-0 flex items-center justify-center">
-              {/* Background Holographic Effect */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm"></div>
-                <div className="absolute inset-0 grid grid-cols-5 grid-rows-5">
-                  {Array.from({ length: 25 }).map((_, i) => (
-                    <div key={i} className="border border-gray-200/10"></div>
-                  ))}
-                </div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(120,119,198,0.1)_70%)] animate-pulse"></div>
-              </div>
+          {/* Enhanced 3D Holographic Slider */}
+          <div className="relative h-[600px] w-full" ref={sliderRef}>
+            {/* Holographic Background Effect */}
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/20 backdrop-blur-sm"></div>
+              <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.1)_0%,transparent_70%)] animate-pulse"></div>
+            </div>
 
-              {/* Ad Space Cards */}
-              <div className="relative w-full h-full">
-                {featuredAdSpaces.map((adSpace, index) => (
+            {/* Slider Container */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              {featuredAdSpaces.map((adSpace, index) => {
+                // Calculate position based on current slide
+                const position = (index - currentSlide + featuredAdSpaces.length) % featuredAdSpaces.length;
+                const isActive = position === 0;
+                const isNext = position === 1 || (currentSlide === featuredAdSpaces.length - 1 && index === 0);
+                const isPrev = position === featuredAdSpaces.length - 1 || (currentSlide === 0 && index === featuredAdSpaces.length - 1);
+
+                return (
                   <motion.div
                     key={adSpace.id}
-                    className="absolute w-64 h-80 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700"
-                    initial={{ 
-                      x: 0,
-                      y: 0,
-                      z: 0,
-                      rotateY: 0,
-                      opacity: 0
-                    }}
+                    className={`absolute w-72 h-96 rounded-2xl shadow-2xl overflow-hidden border border-gray-200/30 dark:border-gray-700/50 ${
+                      isActive ? 'z-10' : isNext || isPrev ? 'z-5' : 'z-0'
+                    }`}
+                    initial={false}
                     animate={{
-                      x: Math.sin(index * 0.6) * 180,
-                      y: Math.cos(index * 0.6) * 60 - 50,
-                      z: index * -40,
-                      rotateY: index * 15,
-                      opacity: 1
+                      x: isActive ? 0 : isNext ? 400 : isPrev ? -400 : position < currentSlide ? -200 : 200,
+                      y: isActive ? 0 : 40,
+                      z: isActive ? 0 : -100,
+                      scale: isActive ? 1 : 0.85,
+                      opacity: isActive ? 1 : isNext || isPrev ? 0.8 : 0.5,
+                      rotateY: isActive ? 0 : isNext ? -15 : isPrev ? 15 : 0,
                     }}
                     transition={{
                       type: "spring",
                       stiffness: 100,
-                      damping: 15,
-                      delay: index * 0.1
+                      damping: 20,
+                      duration: 0.5
                     }}
-                    whileHover={{
-                      z: 50,
+                    whileHover={isActive ? { 
                       scale: 1.05,
-                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                    }}
+                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.3)",
+                      z: 20
+                    } : {}}
                     style={{
                       transformStyle: "preserve-3d",
-                      left: "50%",
-                      top: "50%",
-                      transformOrigin: "center center"
                     }}
                   >
                     <div className="relative h-full group">
-                      {/* Holographic Reflection */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* Holographic Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
-                      {/* Image */}
-                      <div className="relative h-40 overflow-hidden">
+                      {/* Image with Gradient Overlay */}
+                      <div className="relative h-48 overflow-hidden">
                         <img 
                           src={adSpace.image} 
                           alt={adSpace.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
                           Featured
                         </div>
                       </div>
                       
-                      {/* Content */}
-                      <div className="p-5 h-[calc(100%-10rem)] flex flex-col">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">{adSpace.title}</h3>
-                          <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded">
+                      {/* Card Content */}
+                      <div className="p-6 h-[calc(100%-12rem)] flex flex-col bg-white dark:bg-gray-900">
+                        <div className="flex justify-between items-start mb-3">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-1">{adSpace.title}</h3>
+                          <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
                             {adSpace.type}
                           </span>
                         </div>
                         
                         <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3 text-sm">
-                          <MapPin className="w-4 h-4 mr-1" />
+                          <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
                           <span className="line-clamp-1">{adSpace.location}, {adSpace.city}</span>
                         </div>
                         
                         <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                          <p>Size: {adSpace.size}</p>
+                          <p className="font-medium">Size: <span className="font-normal">{adSpace.size}</span></p>
                           {adSpace.impressions && (
-                            <p className="text-xs mt-1 line-clamp-2">{adSpace.impressions}</p>
+                            <p className="text-xs mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">{adSpace.impressions}</p>
                           )}
                         </div>
                         
@@ -387,10 +150,11 @@ const Index = () => {
                                 className={`w-4 h-4 ${i < Math.floor(adSpace.rating) ? 'text-amber-400 fill-current' : 'text-gray-300 dark:text-gray-600'}`}
                               />
                             ))}
+                            <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">({adSpace.rating})</span>
                           </div>
                           <button 
                             onClick={togglePopup}
-                            className="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-xs font-medium hover:shadow-md transition-all duration-300"
+                            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg text-sm font-medium hover:shadow-md transition-all duration-300 hover:scale-105"
                           >
                             Enquire Now
                           </button>
@@ -398,25 +162,40 @@ const Index = () => {
                       </div>
                     </div>
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
             {/* Navigation Controls */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
-              <button className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                </svg>
+            <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-20">
+              <button 
+                onClick={prevSlide}
+                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
               </button>
-              <button className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:scale-110 transition-transform">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
+              <div className="flex items-center gap-2">
+                {featuredAdSpaces.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all ${currentSlide === index ? 'bg-orange-500 w-6' : 'bg-gray-300 dark:bg-gray-600'}`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+              <button 
+                onClick={nextSlide}
+                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-transform hover:bg-gray-100 dark:hover:bg-gray-700"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" />
               </button>
             </div>
           </div>
 
+          {/* View All Button */}
           <div className="mt-16 text-center">
             <Link 
               to="/ad-spaces" 
@@ -436,7 +215,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Development Feature Popup */}
+    {/* Development Feature Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div

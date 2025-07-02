@@ -190,7 +190,7 @@ const Index = () => {
         "Dynamic Strategy: Adapt creative placements, timing, and format based on real-time data.",
         "Remote Management: From Mumbai to Manipur—manage and modify campaigns from anywhere in the country."
       ],
-      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/opt.png"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/opt2.png"
     },
     {
       title: "Marketing Intelligence",
@@ -314,46 +314,7 @@ const Index = () => {
 
       {/* New Features Section with Neon Connections */}
       <div className="relative z-0 py-20">
-        {/* Neon Connection Lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {/* Main connection path */}
-            <path 
-              d="M10,30 Q25,15 40,30 Q55,45 70,30 Q85,15 90,30"
-              stroke="url(#neonGradient)"
-              strokeWidth="0.3"
-              strokeDasharray="2 1"
-              fill="none"
-              strokeLinecap="round"
-            />
-            {/* Secondary connections */}
-            <path 
-              d="M20,50 Q35,35 50,50 Q65,65 80,50"
-              stroke="url(#neonGradient)"
-              strokeWidth="0.2"
-              strokeDasharray="3 1"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <defs>
-              <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.7" />
-                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#ec4899" stopOpacity="0.7" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-          <motion.h1 
-            className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+        
             Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
           </motion.h1>
         </section>

@@ -240,21 +240,21 @@ const Index = () => {
   };
 
   // Calculate 3D curved positions
-  const getCurvedPosition = (index: number) => {
-    const totalItems = featuredAdSpaces.length;
-    const centerIndex = currentSlide;
-    const distanceFromCenter = (index - centerIndex + totalItems) % totalItems;
-    
-    // Calculate angle based on position relative to center
-    const angle = ((distanceFromCenter - Math.floor(totalItems / 2)) * 15;
-    
-    // Calculate 3D transform values
-    const translateZ = -Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 50;
-    const scale = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.15;
-    const opacity = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.3;
-    
-    return { angle, translateZ, scale, opacity, distanceFromCenter };
-  };
+const getCurvedPosition = (index: number) => {
+  const totalItems = featuredAdSpaces.length;
+  const centerIndex = currentSlide;
+  const distanceFromCenter = (index - centerIndex + totalItems) % totalItems;
+  
+  // Calculate angle based on position relative to center
+  const angle = (distanceFromCenter - Math.floor(totalItems / 2)) * 15
+  
+  // Calculate 3D transform values
+  const translateZ = -Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 50
+  const scale = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.15
+  const opacity = 1 - Math.abs(distanceFromCenter - Math.floor(totalItems / 2)) * 0.3
+  
+  return { angle, translateZ, scale, opacity, distanceFromCenter }
+};
 
   return (
     <div>

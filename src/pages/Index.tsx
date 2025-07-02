@@ -190,7 +190,7 @@ const Index = () => {
         "Dynamic Strategy: Adapt creative placements, timing, and format based on real-time data.",
         "Remote Management: From Mumbai to Manipur—manage and modify campaigns from anywhere in the country."
       ],
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/opt.png"
     },
     {
       title: "Marketing Intelligence",
@@ -212,7 +212,7 @@ const Index = () => {
         "Immersive Product Previews: Display floating products, interactive animations, or gamified offers.",
         "Boost Engagement Metrics: Track time spent, interactions made, and conversions triggered from physical ads."
       ],
-      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+      image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/exp.jpg"
     }
   ];
 

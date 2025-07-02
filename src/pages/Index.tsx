@@ -9,13 +9,158 @@ import BrandSlider from "@/components/BrandSlider";
 import { MapPin, Zap, TrendingUp, Eye, Award, Building, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import HowItWorks from "@/components/HowItWorks";
 
-// ... (keep all your existing constants like fadeInUp, floatAnimation, testimonials, etc.)
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const floatAnimation = {
+  y: [-10, 10],
+  transition: {
+    y: {
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    },
+  },
+};
+
+const testimonials = [
+  {
+    quote: "The Ad-Project helped us find premium ad spaces we couldn't access through traditional channels. Their AR preview feature saved us thousands in production costs.",
+    author: "Rahul Sharma",
+    company: "Marketing Director, UrbanClap",
+    rating: 5
+  },
+  {
+    quote: "As a small business owner, I never thought I could afford premium outdoor advertising. The Ad-Project made it accessible with their innovative solutions.",
+    author: "Priya Patel",
+    company: "Founder, Chai Point",
+    rating: 4
+  },
+  {
+    quote: "We've increased our venue revenue by 30% since listing our spaces on The Ad-Project. The platform connects us with serious advertisers.",
+    author: "Vikram Mehta",
+    company: "Operations Manager, Phoenix Marketcity",
+    rating: 5
+  }
+];
+
+const featuredAdSpaces: AdSpaceProps[] = [
+  {
+    id: 1,
+    title: "Indian Cricket Stadium",
+    location: "M.Chinnaswamy Stadium",
+    city: "Bengaluru",
+    type: "Stadium",
+    size: "60 x 20 feet",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
+    rating: 4,
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Promotional Space",
+    location: "IT Park Manyata Tech Park",
+    city: "Bangalore",
+    type: "Space Ad",
+    size: "10 x 10 feet",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
+    rating: 4,
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Exterior Train Branding",
+    location: "Mumbai Local Train",
+    city: "Mumbai",
+    type: "Transit",
+    size: "5 x 8 feet",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
+    rating: 4,
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "Water Bottle Ads",
+    location: "Anywhere",
+    city: "Anywhere",
+    type: "Product Branding",
+    size: "Reusable Bottle",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png",
+    rating: 4.7,
+    impressions: "High visibility in offices, gyms, and events",
+    featured: true
+  },
+  {
+    id: 5,
+    title: "Drone Advertising",
+    location: "Anywhere",
+    city: "Anywhere",
+    type: "Digital LED Flying Drones",
+    size: "20 x 10 feet",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
+    rating: 4,
+    featured: true,
+  },
+  {
+    id: 6,
+    title: "Metro Station Panels",
+    location: "Rajiv Chowk Metro",
+    city: "New Delhi",
+    type: "Transit",
+    size: "15 x 8 feet",
+    image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
+    rating: 4,
+    featured: true,
+  },
+];
+
+const advertiserBenefits = [
+  { icon: <MapPin className="h-8 w-8 text-bharat-saffron" />, title: "Prime Locations", description: "Access to exclusive premium ad spaces across major Indian cities." },
+  { icon: <Eye className="h-8 w-8 text-bharat-saffron" />, title: "AR Preview", description: "See exactly how your ad will look before making an investment." },
+  { icon: <Zap className="h-8 w-8 text-bharat-saffron" />, title: "AI-Powered Design", description: "Get intelligent design recommendations based on location and audience." },
+  { icon: <TrendingUp className="h-8 w-8 text-bharat-saffron" />, title: "Traffic Analysis", description: "Make data-driven decisions with our foot traffic analysis." },
+];
+
+const ownerBenefits = [
+  { icon: <Building className="h-8 w-8 text-bharat-navy" />, title: "Maximize Revenue", description: "List your ad spaces and connect with quality advertisers." },
+  { icon: <Award className="h-8 w-8 text-bharat-navy" />, title: "Verified Advertisers", description: "We verify all advertisers to ensure quality partnerships." },
+  { icon: <TrendingUp className="h-8 w-8 text-bharat-navy" />, title: "Data Insights", description: "Access analytics about your space's performance and value." },
+  { icon: <Zap className="h-8 w-8 text-bharat-navy" />, title: "Seamless Management", description: "Easy-to-use platform for managing your ad inventory." },
+];
 
 const Index = () => {
-  // ... (keep all your existing state and effect hooks)
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const texts = [
+    "The AdTech Engine of New India",
+    "India's Ad Future, Now Live",
+    "India's First Future-Ready AdTech Grid"
+  ];
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const delayBetweenLoops = 2000;
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === featuredAdSpaces.length - 1 ? 0 : prev + 1));
@@ -25,7 +170,35 @@ const Index = () => {
     setCurrentSlide((prev) => (prev === 0 ? featuredAdSpaces.length - 1 : prev - 1));
   };
 
-  // ... (keep all your existing data arrays like featuredAdSpaces, advertiserBenefits, etc.)
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const currentText = texts[loopNum % texts.length];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setDisplayText(currentText.substring(0, currentIndex - 1));
+        setCurrentIndex(currentIndex - 1);
+        
+        if (currentIndex === 0) {
+          setIsDeleting(false);
+          setLoopNum(loopNum + 1);
+        }
+      }, deletingSpeed);
+    } else {
+      timer = setTimeout(() => {
+        setDisplayText(currentText.substring(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+        
+        if (currentIndex === currentText.length) {
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, delayBetweenLoops);
+        }
+      }, typingSpeed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, isDeleting, loopNum]);
 
   return (
     <div>
@@ -35,8 +208,79 @@ const Index = () => {
       </div>
  
       {/* Benefits Section */}
-      {/* ... (keep your existing benefits section exactly as is) */}
+      <div className="relative z-0 bg-gray-800">
+        <section className="section bg-transparent">
+          <div className="container-custom relative z-10">
+            <div className="text-center mb-12">
+              <h2
+                className="text-2xl md:text-5xl font-bold mb-6 px-4 pt-4 pb-3 text-center
+                         bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400
+                         bg-[length:200%_200%] bg-clip-text text-transparent
+                         animate-gradient-x drop-shadow-md tracking-tight leading-tight"
+              >
+                {displayText}
+                <span className="typing-cursor">|</span>
+              </h2>
+              <p className="text-lg text-gray-200 max-w-3xl mx-auto">
+                The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+              </p>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              {/* Advertisers */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Advertisers</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {advertiserBenefits.map((benefit, index) => (
+                    <motion.div
+                      key={index}
+                      custom={index}
+                      variants={fadeInUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
+                    >
+                      <div className="mb-4">{benefit.icon}</div>
+                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
+                      <p className="text-gray-300">{benefit.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center md:text-left">
+                  <Link to="/advertisers" className="btn-primary">For Advertisers</Link>
+                </div>
+              </div>
+
+              {/* Ad Space Owners */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 text-center md:text-left text-white">For Ad Space Owners</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {ownerBenefits.map((benefit, index) => (
+                    <motion.div
+                      key={index}
+                      custom={index}
+                      variants={fadeInUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="bg-gray-900 bg-opacity-70 p-5 rounded-lg"
+                    >
+                      <div className="mb-4">{benefit.icon}</div>
+                      <h4 className="text-lg font-semibold mb-2 text-white">{benefit.title}</h4>
+                      <p className="text-gray-300">{benefit.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center md:text-left">
+                  <Link to="/ad-space-owners" className="btn-secondary">For Ad Space Owners</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+ 
       {/* Featured Ad Spaces - 3D Holographic Slider */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -68,7 +312,6 @@ const Index = () => {
             {/* Slider Container */}
             <div className="relative w-full h-full flex items-center justify-center">
               {featuredAdSpaces.map((adSpace, index) => {
-                // Calculate position based on current slide
                 const position = (index - currentSlide + featuredAdSpaces.length) % featuredAdSpaces.length;
                 const isActive = position === 0;
                 const isNext = position === 1 || (currentSlide === featuredAdSpaces.length - 1 && index === 0);
@@ -215,7 +458,7 @@ const Index = () => {
         </div>
       </section>
 
-    {/* Development Feature Popup */}
+      {/* Development Feature Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div

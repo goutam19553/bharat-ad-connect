@@ -781,22 +781,10 @@ const Index = () => {
               className="rounded-xl w-full h-auto object-cover"
             />
 
-            {/* Animated Slogan Text */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 backdrop-blur-md bg-white/30 dark:bg-black/40 text-black dark:text-white rounded-full shadow-lg text-center font-semibold text-sm sm:text-base whitespace-nowrap overflow-hidden">
-              <span className="film-text tracking-wide">
-                <span>Scan.</span>{" "}
-                <span>See.</span>{" "}
-                <span>Support</span>{" "}
-                <span>–</span>{" "}
-                <span>Ads</span>{" "}
-                <span>that</span>{" "}
-                <span>Speak</span>{" "}
-                <span>to</span>{" "}
-                <span>Every</span>{" "}
-                <span>Indian.</span>
-              </span>
-            </div>
-          </div>
+           {/* Slogan Text */}
+<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 backdrop-blur-md bg-white/30 dark:bg-black/40 text-black dark:text-white rounded-full shadow-lg text-center font-semibold text-sm sm:text-base">
+  Scan. See. Support – Ads that Speak to Every Indian.
+</div>
 
           {/* Button */}
           <a

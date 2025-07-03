@@ -880,9 +880,9 @@ const Index = () => {
       </section>
 
       {/* Brands Slider */}
-      <BrandSlider />
-    </div>
-  );
-};
+<BrandSlider />
+</div>
+);
+}
 
 export default Index;

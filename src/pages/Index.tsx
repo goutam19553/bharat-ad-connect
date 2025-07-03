@@ -145,6 +145,11 @@ const Index = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedAdSpace, setSelectedAdSpace] = useState<AdSpaceProps | null>(null);
 
+  // Notification bar state
+  const notificationText = "We're looking for passionate Co-Founders & Core Team Members to join us in building the future of AdTech in India! Let's build something iconic together. Reach out now.";
+  const [position, setPosition] = useState(0);
+  const notificationRef = useRef<HTMLDivElement>(null);
+
   const texts = [
     "The AdTech Engine of New India",
     "India's Ad Future, Now Live",
@@ -260,6 +265,25 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [isPlaying]);
 
+  // Notification bar animation effect
+  useEffect(() => {
+    const notificationWidth = notificationRef.current?.scrollWidth || 0;
+    const containerWidth = notificationRef.current?.parentElement?.clientWidth || 0;
+    
+    if (notificationWidth > containerWidth) {
+      const animation = setInterval(() => {
+        setPosition(prev => {
+          if (prev <= -notificationWidth) {
+            return containerWidth;
+          }
+          return prev - 1;
+        });
+      }, 30);
+
+      return () => clearInterval(animation);
+    }
+  }, []);
+
   // Toggle popup
   const togglePopup = (adSpace?: AdSpaceProps) => {
     if (adSpace) {
@@ -335,6 +359,19 @@ const Index = () => {
           The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
         </motion.p>
       </section>
+
+      {/* Notification Bar with Moving Text */}
+      <div className="bg-gradient-to-r from-bharat-saffron to-bharat-navy py-3 overflow-hidden">
+        <div className="relative whitespace-nowrap">
+          <div 
+            ref={notificationRef}
+            className="inline-block text-white font-medium text-lg"
+            style={{ transform: `translateX(${position}px)` }}
+          >
+            {notificationText} • {notificationText} • {notificationText} •
+          </div>
+        </div>
+      </div>
 
       {/* New Features Section with Neon Connections */}
       <div className="relative z-0 py-20">
@@ -675,7 +712,7 @@ const Index = () => {
             >
               <button
                 onClick={() => togglePopup()}
-                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close"
               >
                 <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />

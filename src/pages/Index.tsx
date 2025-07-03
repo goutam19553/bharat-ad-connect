@@ -768,121 +768,123 @@ const Index = () => {
       <section className="section bg-white dark:bg-gray-800">
         <div className="flex flex-col justify-center items-center py-10 space-y-8">
           {/* Glowing Indian Flag Border Image */}
-          <div
-            className="relative border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
-            style={{
-              borderImage: 'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
-              borderImageSlice: 1,
-              maxWidth: '600px',
-            }}
-          >
-            <img
-              src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/BPAC_Main.png"
-              alt="Political Campaign Visual"
-              className="rounded-xl w-full h-auto object-cover"
-            />
+        <div
+          className="relative border-4 rounded-2xl p-1 animate-[glowCycle_3s_linear_infinite]"
+          style={{
+            borderImage:
+              'linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1',
+            borderImageSlice: 1,
+            maxWidth: '600px',
+          }}
+        >
+          <img
+            src="https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/BPAC_Main.png"
+            alt="Political Campaign Visual"
+            className="rounded-xl w-full h-auto object-cover"
+          />
 
-           {/* Slogan Text */}
-<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 backdrop-blur-md bg-white/30 dark:bg-black/40 text-black dark:text-white rounded-full shadow-lg text-center font-semibold text-sm sm:text-base">
-  Scan. See. Support – Ads that Speak to Every Indian.
-</div>
-
-          {/* Button */}
-          <a
-            href="http://politicalads.adproject.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="relative px-10 py-5 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
-              <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
-              <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
-              <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
-                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
-                <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
-              </span>
-              <span className="relative z-10 overflow-hidden">
-                <span className="relative">🚀 Political Campaign Support</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
-              </span>
-            </button>
-          </a>
-        </div>
-      </section>
-
-      {/* AI/AR Design Demos */}
-      <AIDesignDemo />
-      <FootTrafficDemo />
-
-           {/* How It Works */}
-      <div className="relative bg-gray-900 py-20">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <HowItWorks />
-        </div>
-      </div>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Trusted By Industry Leaders
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              What our partners say about working with us
-            </p>
-          </motion.div>
-
-          {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 relative overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative z-10">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 italic mb-6 text-lg">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold">
-                      {testimonial.author.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</p>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          {/* Slogan Text */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-2 backdrop-blur-md bg-white/30 dark:bg-black/40 text-black dark:text-white rounded-full shadow-lg text-center font-semibold text-sm sm:text-base">
+            Scan. See. Support – Ads that Speak to Every Indian.
           </div>
         </div>
-      </section>
 
-      {/* Brands Slider */}
-      <BrandSlider />
-    </div> {/* ← This closes the main wrapper div opened at the top of the component */}
-  );
+        {/* Button */}
+        <a
+          href="http://politicalads.adproject.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="relative px-10 py-5 rounded-xl bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white font-semibold text-xl overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out shadow-[0_0_25px_#00fff5aa]">
+            <span className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"></span>
+            <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-swipe-glow pointer-events-none rounded-xl"></span>
+            <span className="absolute inset-0 bg-gradient-to-br from-[#ffffff08] via-[#00fff51a] to-[#00fff509] pointer-events-none rounded-xl"></span>
+            <span className="absolute inset-0 w-full h-full overflow-hidden rounded-xl pointer-events-none">
+              <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-[#00fff580] to-transparent opacity-0 group-hover:opacity-20 animate-glitch-horizontal"></span>
+              <span className="absolute top-1/2 left-0 w-full h-px bg-[#00fff5] opacity-0 group-hover:opacity-60 animate-glitch-line"></span>
+            </span>
+            <span className="relative z-10 overflow-hidden">
+              <span className="relative">🚀 Political Campaign Support</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer pointer-events-none"></span>
+            </span>
+          </button>
+        </a>
+      </div>
+    </section>
+
+    {/* AI/AR Design Demos */}
+    <AIDesignDemo />
+    <FootTrafficDemo />
+
+    {/* How It Works */}
+    <div className="relative bg-gray-900 py-20">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <HowItWorks />
+      </div>
+    </div>
+
+    {/* Testimonials */}
+    <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+            Trusted By Industry Leaders
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            What our partners say about working with us
+          </p>
+        </motion.div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              custom={index}
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 italic mb-6 text-lg">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold">
+                    {testimonial.author.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">{testimonial.company}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Brands Slider */}
+    <BrandSlider />
+  </div>
+);
 }
 
 export default Index;

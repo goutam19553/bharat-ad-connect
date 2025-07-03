@@ -145,10 +145,7 @@ const Index = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedAdSpace, setSelectedAdSpace] = useState<AdSpaceProps | null>(null);
 
-  // Notification bar state
-  const notificationText = "We're looking for passionate Co-Founders & Core Team Members to join us in building the future of AdTech in India! Let's build something iconic together. Reach out now.";
-  const [position, setPosition] = useState(0);
-  const notificationRef = useRef<HTMLDivElement>(null);
+  const notificationText = "Join The Ad-Project Revolution! We're hiring passionate Co-Founders & Core Team Members to build India's next AdTech unicorn. Let's create something iconic together - Apply Now!";
 
   const texts = [
     "The AdTech Engine of New India",
@@ -265,24 +262,27 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [isPlaying]);
 
-  // Notification bar animation effect
-  useEffect(() => {
-    const notificationWidth = notificationRef.current?.scrollWidth || 0;
-    const containerWidth = notificationRef.current?.parentElement?.clientWidth || 0;
-    
-    if (notificationWidth > containerWidth) {
-      const animation = setInterval(() => {
-        setPosition(prev => {
-          if (prev <= -notificationWidth) {
-            return containerWidth;
-          }
-          return prev - 1;
-        });
-      }, 30);
-
-      return () => clearInterval(animation);
-    }
-  }, []);
+  {/* Notification Bar with Moving Text - Updated Professional Version */}
+<div className="bg-white py-3 overflow-hidden border-b-2 border-bharat-saffron shadow-sm">
+  <div className="relative whitespace-nowrap">
+    <div 
+      ref={notificationRef}
+      className="inline-block text-gray-900 font-bold text-lg tracking-wide"
+      style={{ transform: `translateX(${position}px)` }}
+    >
+      <span className="inline-flex items-center">
+        <span className="mr-2 animate-pulse">🚀</span>
+        <span className="bg-bharat-saffron text-white px-2 py-1 rounded-md mr-3 text-sm">NEW OPPORTUNITY</span>
+        {notificationText} 
+        <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
+        {notificationText}
+        <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
+        {notificationText}
+      </span>
+    </div>
+    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-white pointer-events-none"></div>
+  </div>
+</div>
 
   // Toggle popup
   const togglePopup = (adSpace?: AdSpaceProps) => {

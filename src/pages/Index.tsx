@@ -373,39 +373,8 @@ const Index = () => {
         </div>
       </div>
 
-      {/* New Features Section with Neon Connections */}
+      {/* New Features Section */}
       <div className="relative z-0 py-20">
-        {/* Neon Connection Lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {/* Main connection path */}
-            <path 
-              d="M10,30 Q25,15 40,30 Q55,45 70,30 Q85,15 90,30"
-              stroke="url(#neonGradient)"
-              strokeWidth="0.3"
-              strokeDasharray="2 1"
-              fill="none"
-              strokeLinecap="round"
-            />
-            {/* Secondary connections */}
-            <path 
-              d="M20,50 Q35,35 50,50 Q65,65 80,50"
-              stroke="url(#neonGradient)"
-              strokeWidth="0.2"
-              strokeDasharray="3 1"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <defs>
-              <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.7" />
-                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#ec4899" stopOpacity="0.7" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
         <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
           <motion.h1 
@@ -428,9 +397,6 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {/* Feature connection dots */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-[0_0_10px_2px_rgba(99,102,241,0.5)]"></div>
-            
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
             <div className="max-w-6xl mx-auto relative z-10">
               <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>

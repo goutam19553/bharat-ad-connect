@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Hero from "@/components/Hero";
 import AdSpaceCard, { AdSpaceProps } from "@/components/AdSpaceCard";
 import AIDesignDemo from "@/components/AIDesignDemo";
@@ -10,7 +10,7 @@ import { Sparkles, BarChart, Radar, Eye, Move3D, MapPin, Zap, TrendingUp, Award,
 import HowItWorks from "@/components/HowItWorks";
 
 // Animation variants
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: (i: number) => ({
     opacity: 1,
@@ -67,6 +67,8 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
     rating: 4,
     featured: true,
+    location: "Mumbai",
+    city: "Mumbai"
   },
   {
     id: 2,
@@ -75,6 +77,8 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
     rating: 4,
     featured: true,
+    location: "Delhi",
+    city: "New Delhi"
   },
   {
     id: 3,
@@ -83,6 +87,8 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
     rating: 4,
     featured: true,
+    location: "Chennai",
+    city: "Chennai"
   },
   {
     id: 4,
@@ -92,7 +98,9 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png",
     rating: 4.7,
     impressions: "High visibility in offices, gyms, and events",
-    featured: true
+    featured: true,
+    location: "Bangalore",
+    city: "Bangalore"
   },
   {
     id: 5,
@@ -102,6 +110,8 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
     rating: 4,
     featured: true,
+    location: "Hyderabad",
+    city: "Hyderabad"
   },
   {
     id: 6,
@@ -110,6 +120,8 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
     rating: 4,
     featured: true,
+    location: "Kolkata",
+    city: "Kolkata"
   },
 ];
 
@@ -128,6 +140,10 @@ const Index = () => {
   // Popup state
   const [showPopup, setShowPopup] = useState(false);
   const [selectedAdSpace, setSelectedAdSpace] = useState<AdSpaceProps | null>(null);
+
+  // Notification animation state
+  const notificationRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState(0);
 
   const notificationText = "Join The Ad-Project Revolution! We're hiring passionate Co-Founders & Core Team Members to build India's next AdTech unicorn. Let's create something iconic together - Apply Now!";
 
@@ -246,27 +262,18 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [isPlaying]);
 
-  {/* Notification Bar with Moving Text - Updated Professional Version */}
-<div className="bg-white py-3 overflow-hidden border-b-2 border-bharat-saffron shadow-sm">
-  <div className="relative whitespace-nowrap">
-    <div 
-      ref={notificationRef}
-      className="inline-block text-gray-900 font-bold text-lg tracking-wide"
-      style={{ transform: `translateX(${position}px)` }}
-    >
-      <span className="inline-flex items-center">
-        <span className="mr-2 animate-pulse">🚀</span>
-        <span className="bg-bharat-saffron text-white px-2 py-1 rounded-md mr-3 text-sm">NEW OPPORTUNITY</span>
-        {notificationText} 
-        <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
-        {notificationText}
-        <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
-        {notificationText}
-      </span>
-    </div>
-    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-white pointer-events-none"></div>
-  </div>
-</div>
+  // Notification animation effect
+  useEffect(() => {
+    const animateNotification = () => {
+      if (notificationRef.current) {
+        const width = notificationRef.current.scrollWidth / 3;
+        setPosition(prev => (prev <= -width ? 0 : prev - 1));
+      }
+    };
+
+    const interval = setInterval(animateNotification, 30);
+    return () => clearInterval(interval);
+  }, []);
 
   // Toggle popup
   const togglePopup = (adSpace?: AdSpaceProps) => {
@@ -320,7 +327,7 @@ const Index = () => {
         <Hero />
       </div>
 
-      {/* Typing Animation Section - Added below Hero */}
+      {/* Typing Animation Section */}
       <section className="py-12 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
         <motion.h2 
@@ -345,104 +352,111 @@ const Index = () => {
       </section>
 
       {/* Notification Bar with Moving Text */}
-      <div className="bg-gradient-to-r from-bharat-saffron to-bharat-navy py-3 overflow-hidden">
+      <div className="bg-white py-3 overflow-hidden border-b-2 border-bharat-saffron shadow-sm">
         <div className="relative whitespace-nowrap">
           <div 
             ref={notificationRef}
-            className="inline-block text-white font-medium text-lg"
+            className="inline-block text-gray-900 font-bold text-lg tracking-wide"
             style={{ transform: `translateX(${position}px)` }}
           >
-            {notificationText} • {notificationText} • {notificationText} •
+            <span className="inline-flex items-center">
+              <span className="mr-2 animate-pulse">🚀</span>
+              <span className="bg-bharat-saffron text-white px-2 py-1 rounded-md mr-3 text-sm">NEW OPPORTUNITY</span>
+              {notificationText} 
+              <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
+              {notificationText}
+              <span className="mx-4 text-bharat-saffron font-extrabold">•</span>
+              {notificationText}
+            </span>
           </div>
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-white pointer-events-none"></div>
         </div>
       </div>
 
-      {/* Updated section - removed the extra wrapper div */}
-<section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
-  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-  <motion.h1 
-    className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-  >
-    Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
-  </motion.h1>
-</section>
+      {/* Feature sections */}
+      <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+        <motion.h1 
+          className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
+        </motion.h1>
+      </section>
 
-{/* Feature sections remain unchanged */}
-{featureSections.map((section, index) => (
-  <motion.section
-    key={index}
-    className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-  >
-    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-    <div className="max-w-6xl mx-auto relative z-10">
-      <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
-                {/* Image */}
-                <motion.div 
-                  className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl relative group"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-bharat-saffron/30 to-bharat-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-                  <img 
-                    src={section.image} 
-                    alt={section.title}
-                    className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 border-2 border-white/10 rounded-xl pointer-events-none"></div>
-                </motion.div>
+      {featureSections.map((section, index) => (
+        <motion.section
+          key={index}
+          className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
+              {/* Image */}
+              <motion.div 
+                className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl relative group"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-bharat-saffron/30 to-bharat-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <img 
+                  src={section.image} 
+                  alt={section.title}
+                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 border-2 border-white/10 rounded-xl pointer-events-none"></div>
+              </motion.div>
 
-                {/* Content */}
-                <div className="w-full md:w-1/2">
-                  <div className="flex items-center gap-4 mb-6">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 10 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      className="p-2 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30"
-                    >
-                      {section.icon}
-                    </motion.div>
-                    <h2 className="text-3xl font-semibold text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                      {section.title}
-                    </h2>
-                  </div>
-                  <p className="text-gray-300 text-lg mb-6">{section.description}</p>
-                  <ul className="space-y-4">
-                    {section.features.map((feature, i) => (
-                      <motion.li
-                        key={i}
-                        className="flex items-start bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 rounded-lg border border-gray-700/50 hover:border-blue-400/50 transition-colors duration-300"
-                        custom={i}
-                        variants={fadeInUp}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        whileHover={{ x: 5 }}
-                      >
-                        <span className="flex-shrink-0 mt-1 mr-3 text-blue-400">
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                        </span>
-                        <span className="text-gray-300">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+              {/* Content */}
+              <div className="w-full md:w-1/2">
+                <div className="flex items-center gap-4 mb-6">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="p-2 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30"
+                  >
+                    {section.icon}
+                  </motion.div>
+                  <h2 className="text-3xl font-semibold text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    {section.title}
+                  </h2>
                 </div>
+                <p className="text-gray-300 text-lg mb-6">{section.description}</p>
+                <ul className="space-y-4">
+                  {section.features.map((feature, i) => (
+                    <motion.li
+                      key={i}
+                      className="flex items-start bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-4 rounded-lg border border-gray-700/50 hover:border-blue-400/50 transition-colors duration-300"
+                      custom={i}
+                      variants={fadeInUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="flex-shrink-0 mt-1 mr-3 text-blue-400">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                      <span className="text-gray-300">{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
             </div>
-          </motion.section>
-        ))}
-    
+          </div>
+        </motion.section>
+      ))}
 
       {/* Featured Ad Spaces - Futuristic 3D Curved Carousel */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
@@ -482,8 +496,8 @@ const Index = () => {
                     }`}
                     initial={false}
                     animate={{
-                      x: angle * 20, // Horizontal position based on angle
-                      y: Math.abs(angle) * 0.5, // Slight vertical offset
+                      x: angle * 20,
+                      y: Math.abs(angle) * 0.5,
                       z: translateZ,
                       scale,
                       opacity,
@@ -578,7 +592,7 @@ const Index = () => {
               })}
             </div>
 
-            {/* Navigation controls - Futuristic style */}
+            {/* Navigation controls */}
             <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-20">
               <button 
                 onClick={prevSlide}
@@ -619,7 +633,7 @@ const Index = () => {
             </div>
           </div>
 
-          {/* View All Button - Futuristic style */}
+          {/* View All Button */}
           <div className="mt-16 text-center">
             <Link 
               to="/ad-spaces" 
@@ -662,7 +676,7 @@ const Index = () => {
             >
               <button
                 onClick={() => togglePopup()}
-                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close"
               >
                 <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />

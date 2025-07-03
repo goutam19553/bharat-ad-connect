@@ -88,12 +88,10 @@ const featuredAdSpaces: AdSpaceProps[] = [
     id: 4,
     title: "Water Bottle Ads",
     type: "Product Branding",
-    size: "Reusable Bottle",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png",
     rating: 4.7,
-    impressions: "High visibility in offices, gyms, and events",
     featured: true,
-     },
+  },
   {
     id: 5,
     title: "Drone Advertising",
@@ -109,7 +107,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
     rating: 4,
     featured: true,
-    },
+  },
 ];
 
 const Index = () => {
@@ -541,18 +539,6 @@ const Index = () => {
                           <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
                             {adSpace.type}
                           </span>
-                        </div>
-                        
-                        <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3 text-sm">
-                          <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-                          <span className="line-clamp-1">{adSpace.location}, {adSpace.city}</span>
-                        </div>
-                        
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                          <p className="font-medium">Size: <span className="font-normal">{adSpace.size}</span></p>
-                          {adSpace.impressions && (
-                            <p className="text-xs mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">{adSpace.impressions}</p>
-                          )}
                         </div>
                         
                         <div className="mt-auto flex justify-between items-center">

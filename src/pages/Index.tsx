@@ -814,7 +814,7 @@ const Index = () => {
       <AIDesignDemo />
       <FootTrafficDemo />
 
-      {/* How It Works */}
+           {/* How It Works */}
       <div className="relative bg-gray-900 py-20">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -880,9 +880,9 @@ const Index = () => {
       </section>
 
       {/* Brands Slider */}
-<BrandSlider />
-</div>
-);
+      <BrandSlider />
+    </div> {/* ← This closes the main wrapper div opened at the top of the component */}
+  );
 }
 
 export default Index;

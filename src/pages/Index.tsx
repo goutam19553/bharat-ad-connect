@@ -63,10 +63,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 1,
     title: "Indian Cricket Stadium",
-    location: "M.Chinnaswamy Stadium",
-    city: "Bengaluru",
     type: "Stadium",
-    size: "60 x 20 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
     rating: 4,
     featured: true,
@@ -74,10 +71,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 2,
     title: "Promotional Space",
-    location: "IT Park Manyata Tech Park",
-    city: "Bangalore",
     type: "Space Ad",
-    size: "10 x 10 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
     rating: 4,
     featured: true,
@@ -85,10 +79,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 3,
     title: "Exterior Train Branding",
-    location: "Mumbai Local Train",
-    city: "Mumbai",
     type: "Transit",
-    size: "5 x 8 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
     rating: 4,
     featured: true,
@@ -96,8 +87,6 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 4,
     title: "Water Bottle Ads",
-    location: "Anywhere",
-    city: "Anywhere",
     type: "Product Branding",
     size: "Reusable Bottle",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/main/public/waterdemo.png",
@@ -108,8 +97,6 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 5,
     title: "Drone Advertising",
-    location: "Anywhere",
-    city: "Anywhere",
     type: "Digital LED Flying Drones",
     size: "20 x 10 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
@@ -119,10 +106,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
   {
     id: 6,
     title: "Metro Station Panels",
-    location: "Rajiv Chowk Metro",
-    city: "New Delhi",
     type: "Transit",
-    size: "15 x 8 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
     rating: 4,
     featured: true,

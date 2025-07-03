@@ -312,6 +312,30 @@ const Index = () => {
         <Hero />
       </div>
 
+      {/* Typing Animation Section - Added below Hero */}
+      <section className="py-12 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+        <motion.h2 
+          className="text-3xl md:text-4xl font-extrabold text-white mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {displayText}
+          <span className="typing-cursor">|</span>
+        </motion.h2>
+        <motion.p 
+          className="text-lg text-gray-200 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
+        </motion.p>
+      </section>
+
       {/* New Features Section with Neon Connections */}
       <div className="relative z-0 py-20">
         {/* Neon Connection Lines */}

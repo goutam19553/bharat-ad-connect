@@ -260,12 +260,14 @@ const Index = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Toggle popup
+  // Toggle popup - UPDATED FUNCTION
   const togglePopup = (adSpace?: AdSpaceProps) => {
     if (adSpace) {
       setSelectedAdSpace(adSpace);
+      setShowPopup(true);
+    } else {
+      setShowPopup(false);
     }
-    setShowPopup(!showPopup);
   };
 
   // Navigate slides
@@ -629,7 +631,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Enquire Popup */}
+      {/* Enquire Popup - UPDATED */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -677,8 +679,7 @@ const Index = () => {
                   Enquire About {selectedAdSpace?.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  This feature is currently under development in our environment.
-                  We're working hard to make it available soon!
+                  Thank you for your interest in {selectedAdSpace?.title}. Our team will contact you shortly with more details.
                 </p>
 
                 <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-6">

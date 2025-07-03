@@ -373,33 +373,33 @@ const Index = () => {
         </div>
       </div>
 
-      {/* New Features Section */}
-      <div className="relative z-0 py-20">
-        <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-          <motion.h1 
-            className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
-          </motion.h1>
-        </section>
+      {/* Updated section - removed the extra wrapper div */}
+<section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
+  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+  <motion.h1 
+    className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    Make Your Investments in the <span className="text-bharat-saffron">Physical World</span> Smarter
+  </motion.h1>
+</section>
 
-        {featureSections.map((section, index) => (
-          <motion.section
-            key={index}
-            className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-            <div className="max-w-6xl mx-auto relative z-10">
-              <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
+{/* Feature sections remain unchanged */}
+{featureSections.map((section, index) => (
+  <motion.section
+    key={index}
+    className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+    <div className="max-w-6xl mx-auto relative z-10">
+      <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
                 {/* Image */}
                 <motion.div 
                   className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl relative group"
@@ -458,7 +458,7 @@ const Index = () => {
             </div>
           </motion.section>
         ))}
-      </div>
+    
 
       {/* Featured Ad Spaces - Futuristic 3D Curved Carousel */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">

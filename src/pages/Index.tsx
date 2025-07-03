@@ -309,68 +309,47 @@ const Index = () => {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-bharat-saffron to-bharat-navy/90 text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-        <div className="container mx-auto px-4 py-32 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                The Ad-Project
-              </span>
-            </motion.h1>
-            
-            <motion.h2 
-              className="text-3xl md:text-5xl font-bold mb-6 min-h-[4rem]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {displayText}
-              <span className="typing-cursor">|</span>
-            </motion.h2>
-            
-            <motion.p 
-              className="text-lg text-gray-200 max-w-3xl mx-auto mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              The Ad-Project connects advertisers with ad space owners across India through our innovative digital marketplace powered by AI and AR technology.
-            </motion.p>
-            
-            <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <Link
-                to="/ad-spaces"
-                className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg hover:shadow-xl"
-              >
-                Explore Ad Spaces
-              </Link>
-              <Link
-                to="/register"
-                className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 shadow-lg hover:shadow-xl"
-              >
-                List Your Space
-              </Link>
-            </motion.div>
-          </div>
-        </div>
+        <Hero />
       </div>
 
-      {/* Rest of your existing code remains the same... */}
       {/* New Features Section with Neon Connections */}
       <div className="relative z-0 py-20">
-        <section>
-          <motion.h1
-            className="text-4xl font-bold text-center text-white mb-8"
-            initial={{ opacity: 0, y: 50 }}
+        {/* Neon Connection Lines */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {/* Main connection path */}
+            <path 
+              d="M10,30 Q25,15 40,30 Q55,45 70,30 Q85,15 90,30"
+              stroke="url(#neonGradient)"
+              strokeWidth="0.3"
+              strokeDasharray="2 1"
+              fill="none"
+              strokeLinecap="round"
+            />
+            {/* Secondary connections */}
+            <path 
+              d="M20,50 Q35,35 50,50 Q65,65 80,50"
+              stroke="url(#neonGradient)"
+              strokeWidth="0.2"
+              strokeDasharray="3 1"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <defs>
+              <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.7" />
+                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#ec4899" stopOpacity="0.7" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <section className="py-20 px-4 md:px-20 text-center bg-gray-800 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+          <motion.h1 
+            className="text-4xl md:text-5xl font-extrabold text-white max-w-4xl mx-auto leading-tight"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -382,9 +361,7 @@ const Index = () => {
         {featureSections.map((section, index) => (
           <motion.section
             key={index}
-            className={`py-16 px-4 md:px-20 ${
-              index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'
-            } relative`}
+            className={`py-16 px-4 md:px-20 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} relative`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

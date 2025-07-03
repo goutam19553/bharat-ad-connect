@@ -67,8 +67,6 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%2022.jpg",
     rating: 4,
     featured: true,
-    location: "Mumbai",
-    city: "Mumbai"
   },
   {
     id: 2,
@@ -77,8 +75,6 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps%201.avif",
     rating: 4,
     featured: true,
-    location: "Delhi",
-    city: "New Delhi"
   },
   {
     id: 3,
@@ -87,8 +83,6 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/ps3.avif",
     rating: 4,
     featured: true,
-    location: "Chennai",
-    city: "Chennai"
   },
   {
     id: 4,
@@ -99,19 +93,14 @@ const featuredAdSpaces: AdSpaceProps[] = [
     rating: 4.7,
     impressions: "High visibility in offices, gyms, and events",
     featured: true,
-    location: "Bangalore",
-    city: "Bangalore"
-  },
+     },
   {
     id: 5,
     title: "Drone Advertising",
     type: "Digital LED Flying Drones",
-    size: "20 x 10 feet",
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20164050.png",
     rating: 4,
     featured: true,
-    location: "Hyderabad",
-    city: "Hyderabad"
   },
   {
     id: 6,
@@ -120,9 +109,7 @@ const featuredAdSpaces: AdSpaceProps[] = [
     image: "https://raw.githubusercontent.com/goutam19553/Startup-adtech/refs/heads/main/public/Annotation%202025-04-24%20171619.png",
     rating: 4,
     featured: true,
-    location: "Kolkata",
-    city: "Kolkata"
-  },
+    },
 ];
 
 const Index = () => {
